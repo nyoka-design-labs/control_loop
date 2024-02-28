@@ -14,3 +14,12 @@ def find_usb(vid: hex, pid: hex) -> usb.core | ValueError:
         raise ValueError('Device not found')
     
     return dev
+
+def read_weight(device: usb.core, endpoint) -> int:
+    """
+    Returns the weight read by the scale.
+    """
+    data = device.read(endpoint.bEndpointAddress, endpoint.wMaxPacketSize)
+    weight = data[4] + (256 * data[5])
+
+    return weight
