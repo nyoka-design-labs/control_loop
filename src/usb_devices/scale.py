@@ -1,5 +1,18 @@
 import usb.core
 
+# class USB:
+
+#     VENDOR_ID = None
+#     PRODUCT_ID = None
+
+#     def __init__(self, vid: hex, pid: hex) -> None:
+        
+#         dev = usb.core.find()
+
+
+
+
+
 def find_usb(vid: hex, pid: hex) -> usb.core | ValueError:
     """
     Find USB device and returns USB object.
