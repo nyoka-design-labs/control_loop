@@ -16,12 +16,13 @@ class Scale:
         """
 
         self.dev = usb.core.find(idVendor=vid, idProduct=pid)
-        self.ep = self.dev[0][(0,0)][0]
-        self.ep_address = self.ep.bEndpointAddress
-        self.ep_packet_size = self.ep.wMaxPacketSize
 
         if self.dev is None:
             raise ValueError('Device not found')
+        
+        endpoint = self.dev[0][(0,0)][0]
+        self.ep_address = endpoint.bEndpointAddress
+        self.ep_packet_size = endpoint.wMaxPacketSize
         
     def read_weight(self) -> int:
         """
