@@ -1,9 +1,19 @@
 from usb_devices.scale import Scale
 import time
 from threading import Thread
+from datetime import datetime
+import csv
 
 SCALE_DATA = None # data read from the scale
 INTERVAL = 1 # time in seconds for each reading
+
+def add_to_csv(number):
+    current_datetime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    data = [current_datetime, number]
+
+    with open('../data/test.csv', 'a', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(data)
 
 def continous_read():
     scale = Scale(0x0922, 0x8003)
