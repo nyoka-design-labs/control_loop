@@ -1,5 +1,5 @@
 import numpy as np
-
+import math
 def fit_polynomial(data, interval, degree=3):
     """
     Fits a polynomial to the given data with uniform time intervals.
@@ -23,6 +23,21 @@ def fit_polynomial(data, interval, degree=3):
     
     return poly_func
 
-# Example usage:
-data = np.random.rand(10)  # Example data points
-interval = 1  # Example time interval between data points
+
+def exponential_func(T):
+
+    u = -0.2
+    x_0 = 500
+
+    x = x_0 * math.exp(u * T)
+    return x
+
+
+def sigmoidal_func(T):
+    a = 3
+    b = 2
+    c = 1
+
+    x = a/(1+b*math.exp(-1*c*T))
+
+    return x
