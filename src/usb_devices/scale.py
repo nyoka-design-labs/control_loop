@@ -15,6 +15,7 @@ class Scale:
             pid: Product ID of USB device
         """
 
+        self.name = f"scale_{pid}"
         self.dev = usb.core.find(idVendor=vid, idProduct=pid)
 
         if self.dev is None:
