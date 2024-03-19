@@ -19,7 +19,7 @@ def get_current_weight():
 def get_expected_weight(time_arg):
 
     # Exponential
-    expected_weight_exp = start_weight - pf.exponential_func(time_arg)
+    expected_weight_exp = pf.exponential_func(time_arg)
     
     # sigmoidal
     expected_weight_sig = start_weight - pf.sigmoidal_func(time_arg)
@@ -43,9 +43,9 @@ while True:
     expected_weight = get_expected_weight(elapsed_time)
 
     if current_weight >= expected_weight:
-        control_pump(True)  # Turn on the pump
+        control_pump(False)  # Turn on the pump
     elif current_weight < expected_weight:
-        control_pump(False)  # Turn off the pump
+        control_pump(True)  # Turn off the pump
 
     # Wait for the next interval before the next iteration
     time.sleep(interval)
