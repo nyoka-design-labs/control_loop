@@ -2,6 +2,7 @@
 Script used for testing of only the scale and pump control loop.
 """
 
+from cv2 import repeat
 import usb.core
 import sys
 import threading
@@ -90,7 +91,7 @@ def loop():
     i = 0
     last_weight = m_0
     weight_drops_by_min = extract_specific_cells('feed_data_v0-2_u-0.2_m0-5000.csv', 6, 614, 3)
-    for i in range(0, len(weight_drops_by_min)): 
+    while i in range(0, len(weight_drops_by_min)): 
         current_time = time.time()
         elapsed_time = current_time - start_time
 
@@ -102,7 +103,15 @@ def loop():
         add_to_csv([current_weight, round(expected_weight, 2)])
 
         if current_weight < 50:
+            control_pump(False)
             arduino.write('2'.encode())
+            time.sleep(122)
+            arduino.write('3'.encode())
+            last_weight = get_current_weight()
+            control_pump(True)
+            time.sleep(interval)
+            continue
+
         elif current_weight >= expected_weight:
             control_pump(True)  # Turn on the pump
         elif current_weight < expected_weight:
@@ -111,6 +120,7 @@ def loop():
         last_weight = expected_weight # Update the last weight
 
         # Wait for the next interval before the next iteration
+        i += 1
         time.sleep(interval)
     
     control_pump(True)  # Turn off the pump
