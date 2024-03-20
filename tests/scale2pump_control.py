@@ -13,7 +13,9 @@ import serial
 import time
 import polynomialFunc as pf
 
-interval = 2
+interval = 60
+
+m_0 = 10000
 
 SCALE_DATA = None
 
@@ -24,6 +26,16 @@ def get_current_weight():
         if SCALE_DATA is not None:
             return SCALE_DATA
         time.sleep(1)
+
+def extract_specific_cells(csv_path, start_row, end_row, col):
+    with open(csv_path, 'r') as file:
+        reader = csv.reader(file)
+        # Skip the first start_rows - 1 rows
+        for _ in range(start_row - 1):
+            next(reader)
+        # Extract the data from the specific column
+        data = [row[col] for row in reader][:(end_row - start_row + 1)] 
+    return data
 
 def get_expected_weight(time_arg):
     x0 = 86
@@ -38,23 +50,31 @@ def control_pump(turn_on):
 
 def loop():
     start_time = time.time()
-    while True:
+    i = 0
+    last_weight = m_0
+    weight_drops_by_min = extract_specific_cells('feed_data_v0-2_u-0.2_m0-5000.csv', 6, 614, 3)
+    for i in range(0, len(weight_drops_by_min)): 
         current_time = time.time()
         elapsed_time = current_time - start_time
 
         current_weight = get_current_weight()
-        expected_weight = get_expected_weight(elapsed_time)
+        # expected_weight = get_expected_weight(elapsed_time)
+        expected_weight = last_weight - float(weight_drops_by_min[i])
 
         print(f"Elapsed time: {elapsed_time:.2f}s, Current weight: {current_weight}, Expected weight: {expected_weight:.2f}")
         add_to_csv([current_weight, round(expected_weight, 2)])
 
         if current_weight >= expected_weight:
-            control_pump(False)  # Turn on the pump
+            control_pump(True)  # Turn on the pump
         elif current_weight < expected_weight:
-            control_pump(True)  # Turn off the pump
+            control_pump(False)  # Turn off the pump
+
+        last_weight = expected_weight # Update the last weight
 
         # Wait for the next interval before the next iteration
         time.sleep(interval)
+    
+    control_pump(True)  # Turn off the pump
 
 
 class Scale:

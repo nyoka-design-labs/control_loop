@@ -1,6 +1,6 @@
 import serial
 import time
-import polynomialFunc as pf
+import control_loop.tests.polynomialFunc as pf
 
 interval = 30  # Interval in seconds
 data = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]  # Example data points
