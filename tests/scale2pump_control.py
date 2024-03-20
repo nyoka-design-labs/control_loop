@@ -102,17 +102,17 @@ def loop():
         print(f"Elapsed time: {elapsed_time:.2f}s, Current weight: {current_weight}, Expected weight: {expected_weight:.2f}")
         add_to_csv([current_weight, round(expected_weight, 2)])
 
-        if current_weight < 50:
-            control_pump(False)
-            arduino.write('2'.encode())
-            time.sleep(122)
-            arduino.write('3'.encode())
-            last_weight = get_current_weight()
-            control_pump(True)
-            time.sleep(interval)
-            continue
+        # if current_weight < 50:
+        #     control_pump(False)
+        #     arduino.write('2'.encode())
+        #     time.sleep(122)
+        #     arduino.write('3'.encode())
+        #     last_weight = get_current_weight()
+        #     control_pump(True)
+        #     time.sleep(interval)
+        #     continue
 
-        elif current_weight >= expected_weight:
+        if current_weight >= expected_weight:
             control_pump(True)  # Turn on the pump
         elif current_weight < expected_weight:
             control_pump(False)  # Turn off the pump
