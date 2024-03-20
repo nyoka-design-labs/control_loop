@@ -90,8 +90,10 @@ def loop():
     start_time = time.time()
     i = 0
     last_weight = m_0
-    weight_drops_by_min = extract_specific_cells('feed_data_v0-2_u-0.2_m0-5000.csv', 6, 614, 3)
+    weight_drops_by_min = extract_specific_cells('feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4) * 1000
     while i in range(0, len(weight_drops_by_min)): 
+        arduino.write('2'.encode())
+
         current_time = time.time()
         elapsed_time = current_time - start_time
 
@@ -101,7 +103,6 @@ def loop():
 
         print(f"Elapsed time: {elapsed_time:.2f}s, Current weight: {current_weight}, Expected weight: {expected_weight:.2f}")
         add_to_csv([current_weight, round(expected_weight, 2)])
-
         # if current_weight < 50:
         #     control_pump(False)
         #     arduino.write('2'.encode())
