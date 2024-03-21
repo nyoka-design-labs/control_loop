@@ -72,7 +72,7 @@ def extract_specific_cells(csv_path, start_row, end_row, col):
         for _ in range(start_row - 1):
             next(reader)
         # Extract the data from the specific column
-        data = [row[col] for row in reader][:(end_row - start_row + 1)] 
+        data = [row[col - 1] for row in reader][:(end_row - start_row + 1)] 
     return data
 
 def get_expected_weight(time_arg):
@@ -92,7 +92,7 @@ def loop():
     last_weight = m_0
     weight_drops_by_min = extract_specific_cells('feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4) * 1000
     while i in range(0, len(weight_drops_by_min)): 
-        arduino.write('2'.encode())
+        arduino.write('2'.encode()) # Switch units on the scale to keep it on
 
         current_time = time.time()
         elapsed_time = current_time - start_time
