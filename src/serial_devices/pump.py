@@ -1,26 +1,37 @@
 import serial
 import time
 
-class PumpController:
+class Pump:
     """
     Controls the pump connected to an Arduino.
     """
 
-    def __init__(self, port='/dev/ttyACM0', baudrate=57600):
+    def __init__(self, port: str='/dev/ttyACM0', baudrate: int=57600):
         self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        self.state = 0 # 0=OFF, 1=ON
 
-    def control_pump(self, turn_on):
+    def control(self, turn_on):
         """
         Sends command to Arduino to control the pump.
         """
+        self.state = turn_on
         command = '1' if turn_on else '0'
         self.arduino.write(command.encode())
-    def control_refill_pump(self):
+    
+    def toggle(self) -> None:
         """
-        Sends command to Arduino to control the refil pump.
+        Changes state of pump
         """
-        command = '2'
-        self.arduino.write(command.encode())
-        time.sleep(122)
-        command = '3'
-        self.arduino.write(command.encode())
+
+        self.arduino.write(not str(self.state.encode()))
+
+if __name__ == "__main__":
+    # example usage of Pump class
+    pump = Pump()
+
+    try:
+        while True:
+            pump.toggle()
+            time.sleep(5)
+    except KeyboardInterrupt:
+        print("Program terminated")
