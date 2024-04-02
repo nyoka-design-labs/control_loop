@@ -23,7 +23,7 @@ class Pump:
         Changes state of pump
         """
 
-        self.arduino.write(not str(self.state.encode()))
+        self.arduino.write(str(not self.state).encode())
 
 if __name__ == "__main__":
     # example usage of Pump class
