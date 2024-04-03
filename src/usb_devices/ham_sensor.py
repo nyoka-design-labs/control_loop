@@ -15,25 +15,31 @@ class Sensor:
         if (type != "do" and type != "ph"):
             raise ValueError("Invalid sensor type")
 
+        # initialie the Modbus client configuration
         self.client = ModbusClient.ModbusSerialClient(method='rtu', port='/dev/ttyUSB0', baudrate=19200, stopbits=2, bytesize=8, parity='N')
         self.mode = type
 
         self.client.connect()
 
-    def get_data(self) -> tuple:
+    def get_data(self) -> float:
         """
-        Read data from the sensor. DO sensor updates reading every 3s.
+        Read data from the sensor. DO sensor updates reading every 3s
         """
 
         if (self.mode == 'do'):
+            # Read holding registers from the sensor
             res = self.client.read_holding_registers(address=2089, count=10, slave=1)
 
+            # Combine the two registers to form a hex value
             hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
 
+            # Convert the hex value to a float value
             data = self.__calibrate_raw_values(str(hex_value))
         elif (self.mode == 'ph'):
+            # Placeholder for pH sensor implementation
             pass
 
+        # Round the data to 3 decimal places and return it
         return round(data, 3)
 
     def close(self):
@@ -41,7 +47,7 @@ class Sensor:
 
     def __calibrate_raw_values(self, value: str) -> float:
         """
-        Convert raw hex value to calibrated float.
+        Convert raw hex value to float using IEEE 754 standard.
         """
 
         # Convert hex to binary string, remove '0b' prefix, and pad to 32 bits
