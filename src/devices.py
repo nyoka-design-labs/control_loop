@@ -1,5 +1,6 @@
 from usb_devices.scale import Scale
 from usb_devices.ham_sensor import Sensor
+import time
 
 def get_measurement():
     """
@@ -16,6 +17,7 @@ def get_measurement():
     temperature = sensor.get_temp()
 
     return {
+        'time': time.time(), # time of measurement
         'weight': weight,
         'do': do,
         'temp': temperature
