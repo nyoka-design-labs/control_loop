@@ -3,7 +3,7 @@ import math
 
 def exponential_func(t: int, c1: int) -> float:
     """
-    Returns the expected volume at elapsed time t.
+    Returns the expected volume at elapsed time t. Assuming 1 ml = 1 g.
     """
 
     # target concentration constants
