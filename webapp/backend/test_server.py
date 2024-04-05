@@ -1,7 +1,16 @@
 import json
 import asyncio
-import datetime
+import time
 import websockets
+
+import sys
+sys.path.append("../../src")
+
+from devices import get_measurement
+
+INTERVAL = 3
+
+# scale = Scale(0x0922, 0x8003)
 
 # Dummy function to simulate pump actions
 # can be manipulated to send arduino the stop command
@@ -10,18 +19,17 @@ async def pump_action(action):
 
 # Task to send weight data
 async def send_weight(websocket, start_time, stop_event):
-    weight_data = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] # Simulate getting weight data by switching out for call to get_current_weight
-    i = 0
     while not stop_event.is_set():
-        now = datetime.datetime.now()
-        elapsed_time = (now - start_time).total_seconds()  # Calculate time elapsed in seconds
+        # now = datetime.datetime.now()
+        data = get_measurement()
+        elapsed_time = data['time'] - start_time
         data = json.dumps({
-            "weight": weight_data[i],
-            "time": elapsed_time
+            "weight": data['weight'],
+            "do": data['do'],
+            "time": round(elapsed_time, 0)
         })
         await websocket.send(data)
-        i = (i + 1) % len(weight_data)
-        await asyncio.sleep(1)
+        await asyncio.sleep(INTERVAL)
 
 # Handle incoming messages and manage tasks
 async def handler(websocket):
@@ -34,7 +42,7 @@ async def handler(websocket):
         elif message == "stop_pump":
             await pump_action("stopped")
         elif message == "show_weight" and weight_task is None:
-            start_time = datetime.datetime.now()  # Capture the time when "Show Weight" is pressed
+            start_time = time.time()  # Capture the time when "Show Weight" is pressed
             if weight_task is None:
                 stop_event = asyncio.Event()
                 # Start sending weight data if not already doing so, pass start_time to send_weight

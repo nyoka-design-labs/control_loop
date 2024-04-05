@@ -14,7 +14,7 @@ def get_measurement():
     # get data from devices
     weight = scale.get_weight()
     do = sensor.get_data()
-    temperature = sensor.get_temp()
+    temperature = None
 
     return {
         'time': time.time(), # time of measurement
