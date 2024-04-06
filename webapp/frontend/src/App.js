@@ -58,6 +58,19 @@ function App() {
     ],
   };
 
+  const tempData = {
+    labels: weightData.map((data) => data.time), // Use the time from each data point as labels
+    datasets: [
+      {
+        label: 'Weight Over Time',
+        data: weightData.map((data) => data.temp),
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1,
+      },
+    ],
+  };
+
   const chartOptions = {
     plugins: {
       legend: {
@@ -106,6 +119,7 @@ function App() {
         </tab>
         <tab eventKey="temp" title="Temperature">
           <h3>Temperature page</h3>
+          <Line data={tempData} options={chartOptions} />
         </tab>
       </Tabs>
     </div>
