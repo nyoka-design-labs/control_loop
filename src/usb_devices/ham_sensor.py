@@ -41,6 +41,22 @@ class Sensor:
 
         # Round the data to 3 decimal places and return it
         return round(data, 3)
+    
+    def get_temp(self) -> float:
+        """
+        Read temperature data from the sensor.
+        """
+
+        # Read holding registers from the sensor
+        res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+
+        # Combine the two registers to form a hex value
+        hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+
+        # Convert the hex value to a float value
+        data = self.__calibrate_raw_values(str(hex_value))
+
+        return round(data, 3)
 
     def close(self):
         self.client.close()
@@ -65,7 +81,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            print(sensor.get_data())
+            print(f"Data: {sensor.get_data()}, Temperature: {sensor.get_temp()}")
             time.sleep(1)
     except KeyboardInterrupt:
         sensor.close()

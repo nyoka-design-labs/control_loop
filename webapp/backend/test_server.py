@@ -10,8 +10,6 @@ from devices import get_measurement
 
 INTERVAL = 3
 
-# scale = Scale(0x0922, 0x8003)
-
 # Dummy function to simulate pump actions
 # can be manipulated to send arduino the stop command
 async def pump_action(action):
@@ -26,6 +24,7 @@ async def send_weight(websocket, start_time, stop_event):
         data = json.dumps({
             "weight": data['weight'],
             "do": data['do'],
+            "temp": data['temp'],
             "time": round(elapsed_time, 0)
         })
         await websocket.send(data)
