@@ -4,11 +4,6 @@ Adafruit_MCP4725 dac;
 
 #define DAC_RESOLUTION(9)
 
-// voltage range from 0-5
-const int LOW_SPEED = 1;
-const int MEDIUM_SPEED = 2;
-const int HIGH_SPEED = 4;
-
 const int PUMP_RELAY = 11; // Pump control (on/off) pin
 const int PUMP_DIRECTION_RELAY = 10; // Pump direction pin
 const int SCALE_RELAY = 12; // Relay control pin
@@ -56,16 +51,10 @@ void loop() {
       case 3: { // toggle pump direction
         break;
       }
-      case 4: { // low pump rate
-        dac.setVoltage((LOW_SPEED*4095)/5, false);
-        break;
-      }
-      case 5: { // medium pump rate
-        dac.setVoltage((MEDIUM_SPEED*4095)/5, false);
-        break;
-      }
-      case 6: { // high pump rate
-        dac.setVoltage((HIGH_SPEED*4095)/5, false);
+      case 4: { // control pump speed (arg1: speed control, arg2: desired voltage (0-5))
+        float voltage = Serial.parseFloat();
+
+        dac.setVoltage((voltage*4095)/5, false);
         break;
       }
     }

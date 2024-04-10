@@ -19,7 +19,7 @@ def exponential_func(t: int, c1: int) -> float:
 
     v2 = (v1*X_t(t) - v1*c1) / (c2 - X_t(t)) # L
 
-    return v2
+    return v2, c2
 
 def add_to_csv(data: list, csv_path: str):
     with open('test.csv', 'a', newline='') as csvfile:
@@ -35,3 +35,20 @@ def extract_specific_cells(csv_path, start_row, end_row, col):
         # Extract the data from the specific column
         data = [row[col - 1] for row in reader][:(end_row - start_row + 1)] 
     return data
+
+if __name__ == "__main__":
+    import matplotlib.pyplot as plt
+
+    t_values = range(1, 501)
+    c1 = 0
+    v2_values = []
+    for t in t_values:
+        v, c2 = exponential_func(t, c1)
+        v2_values += [v]
+        c1 = c2
+
+    plt.plot(t_values, v2_values)
+    plt.xlabel('Time (t)')
+    plt.ylabel('Volume (v2)')
+    plt.title('Exponential Function')
+    plt.show()
