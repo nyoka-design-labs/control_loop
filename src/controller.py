@@ -41,4 +41,17 @@ class Controller:
 
             # Wait for the next interval before the next iteration
             time.sleep(INTERVAL)
+
+    def pH_loop(self, ph: float):
+        """
+        Main control loop for the pH controller. Loops indefinitely.
+        """
+    
+
+        if (ph < 6.7):
+            # turn on pump
+            self.pump.control(True)
+        else:
+            # turn off pump
+            self.pump.control(False)
         
