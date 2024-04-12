@@ -1,10 +1,12 @@
 from usb_devices.scale import Scale
 from usb_devices.ham_sensor import Sensor
 import time
+from utils import add_to_csv
 
 # initialize devices
-scale = Scale(0x0922, 0x8003)
-sensor = Sensor(type="do")
+# scale = Scale(0x0922, 0x8003)
+sensor = Sensor(type="do", port="/dev/ttyUSB0")
+sensor_ph = Sensor(type="ph", port="/dev/ttyUSB1")
 
 def get_measurement():
     """
@@ -12,13 +14,21 @@ def get_measurement():
     """
 
     # get data from devices
-    weight = scale.get_weight()
-    do = sensor.get_data()
-    temperature = sensor.get_temp()
+    # weight = scale.get_weight()
+    do = sensor.get_data() + 9.5
+    ph = sensor_ph.get_data()*0.977 + 0.147
+    temperature = sensor_ph.get_temp()
+    t = time.time()
+
+    # add_to_csv([do, ph, temperature, t], "../../tests/data.csv")
 
     return {
-        'time': time.time(), # time of measurement
-        'weight': weight,
+        'time': t, # time of measurement
+        # 'weight': weight,
         'do': do,
+        'ph': ph,
         'temp': temperature
     }
+
+if __name__ == "__main__":
+    print(get_measurement())

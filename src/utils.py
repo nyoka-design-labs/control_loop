@@ -37,18 +37,21 @@ def extract_specific_cells(csv_path, start_row, end_row, col):
     return data
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
+    # import matplotlib.pyplot as plt
 
-    t_values = range(1, 501)
-    c1 = 0
-    v2_values = []
-    for t in t_values:
-        v, c2 = exponential_func(t, c1)
-        v2_values += [v]
-        c1 = c2
+    # t_values = range(1, 501)
+    # c1 = 0
+    # v2_values = []
+    # for t in t_values:
+    #     v, c2 = exponential_func(t, c1)
+    #     v2_values += [v]
+    #     c1 = c2
 
-    plt.plot(t_values, v2_values)
-    plt.xlabel('Time (t)')
-    plt.ylabel('Volume (v2)')
-    plt.title('Exponential Function')
-    plt.show()
+    # plt.plot(t_values, v2_values)
+    # plt.xlabel('Time (t)')
+    # plt.ylabel('Volume (v2)')
+    # plt.title('Exponential Function')
+    # plt.show()
+    d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
+    data = list(map(lambda x: float(x)*1000, d))
+    print(data)

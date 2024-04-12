@@ -7,7 +7,7 @@ class Sensor:
     Class representing the Hamilton sensors.
     """
 
-    def __init__(self, type: str):
+    def __init__(self, type: str, port):
         """
         Initialize the sensor.
         """
@@ -16,7 +16,8 @@ class Sensor:
             raise ValueError("Invalid sensor type")
 
         # initialie the Modbus client configuration
-        self.client = ModbusClient.ModbusSerialClient(method='rtu', port='/dev/ttyUSB0', baudrate=19200, stopbits=2, bytesize=8, parity='N')
+        self.client = ModbusClient.ModbusSerialClient(method='rtu', port=port, baudrate=19200, stopbits=2, bytesize=8, parity='N')
+
         self.mode = type
 
         self.client.connect()
@@ -26,18 +27,27 @@ class Sensor:
         Read data from the sensor. DO sensor updates reading every 3s
         """
 
+        data = None
+
         if (self.mode == 'do'):
             # Read holding registers from the sensor
             res = self.client.read_holding_registers(address=2089, count=10, slave=1)
 
-            # Combine the two registers to form a hex value
-            hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+            try:
+                # Combine the two registers to form a hex value
+                hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+                data = self.__calibrate_raw_values(str(hex_value))
+            except AttributeError:
+                data = 0
 
             # Convert the hex value to a float value
-            data = self.__calibrate_raw_values(str(hex_value))
+                
         elif (self.mode == 'ph'):
-            # Placeholder for pH sensor implementation
-            pass
+            res = self.client.read_holding_registers(address=2089, count=10, slave=1)
+
+            hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+
+            data = self.__calibrate_raw_values(str(hex_value))
 
         # Round the data to 3 decimal places and return it
         return round(data, 3)
@@ -76,7 +86,7 @@ class Sensor:
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    sensor = Sensor(type="do")
+    sensor = Sensor(type="ph")
     sensor.client.connect()
 
     try:
