@@ -16,7 +16,8 @@ def get_measurement():
     # get data from devices
     # weight = scale.get_weight()
     do = sensor.get_data() + 9.5
-    ph = sensor_ph.get_data()*0.977 + 0.147
+    ph_reading = sensor_ph.get_reading()*0.977 + 0.147
+    ph = sensor_ph.get_data()
     temperature = sensor_ph.get_temp()
     t = time.time()
 
@@ -26,9 +27,14 @@ def get_measurement():
         'time': t, # time of measurement
         # 'weight': weight,
         'do': do,
+        'ph_reading': ph_reading, # ph reading adjusts true value for tare
         'ph': ph,
         'temp': temperature
     }
+
+def tare(sensor_type: str, value: float):
+    if (sensor_type == "ph"):
+        sensor_ph.tare_ph(value)
 
 if __name__ == "__main__":
     print(get_measurement())

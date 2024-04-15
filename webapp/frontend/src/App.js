@@ -4,6 +4,10 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto'; // Necessary for Chart.js v3 and react-chartjs-2
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// function func() {
+//   console.log("Hello there");
+// }
+
 function App() {
   const [currentWeight, setCurrentWeight] = useState('---');
   const [currentDO, setCurrentDO] = useState('---')
@@ -118,6 +122,14 @@ function App() {
     }
   };
 
+  const tarePH = () => {
+    if (ws) {
+      ws.send("tare_ph");
+      ws.send(document.getElementById('ph').value);
+      console.log(document.getElementById('ph').value);
+    }
+  };
+
   return (
     <div className="App container mt-5">
       <h1>Scale Control Panel</h1>
@@ -126,6 +138,8 @@ function App() {
         <Button variant="danger" onClick={handleStopPump} className="me-2">Stop Pump</Button>
         <Button variant="info" onClick={handleShowWeight} className="me-2">Show Weight</Button>
         <Button variant="secondary" onClick={handleHideWeight} className="me-2">Stop Weight</Button>
+        <input type='text' id='ph'/>
+        <Button onClick={tarePH}>Tare pH</Button>
       </div>
       <Tabs defaultActiveKey="weight" id="uncontrolled-tab-example" className="mb-3">
         <Tab eventKey="weight" title="Current Weight">

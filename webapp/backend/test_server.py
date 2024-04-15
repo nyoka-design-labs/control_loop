@@ -6,13 +6,13 @@ import websockets
 import sys
 sys.path.append("../../src")
 
-from devices import get_measurement
+from devices import get_measurement, tare
 # from controller import Controller
 # from utils import extract_specific_cells
 
 INTERVAL = 3 # change interval
 
-# t = extract_specific_cells('feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
+# t = extract_specific_cells('../../tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
 # target = list(map(lambda x: float(x)*1000, t))
 
 # ph_control = Controller()
@@ -46,7 +46,7 @@ async def send_weight(websocket, start_time, stop_event):
         data = json.dumps({
             # "weight": data['weight'],
             "do": data['do'],
-            "ph": data['ph'],
+            "ph": data['ph_reading'],
             "temp": data['temp'],
             "time": round(elapsed_time, 0)
         })
@@ -75,6 +75,10 @@ async def handler(websocket):
             if weight_task is not None:
                 weight_task.cancel()
                 weight_task = None
+        elif message == "tare_ph":
+            tare_value = await websocket.recv()
+            tare("ph", float(tare_value))
+            print(tare_value)
 
 async def main():
     async with websockets.serve(handler, "localhost", 8765):
