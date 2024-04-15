@@ -19,12 +19,22 @@ class Sensor:
         self.client = ModbusClient.ModbusSerialClient(method='rtu', port=port, baudrate=19200, stopbits=2, bytesize=8, parity='N')
 
         self.mode = type
+        self.tare_constant = 0
 
         self.client.connect()
 
+    def get_reading(self) -> float:
+        """
+        Returns adjusted reading for tare.
+        """
+
+        if (self.mode != "ph"): return -1
+
+        return self.get_data() + self.tare_constant
+
     def get_data(self) -> float:
         """
-        Read data from the sensor. DO sensor updates reading every 3s
+        Read data from the sensor.
         """
 
         data = None
@@ -33,10 +43,10 @@ class Sensor:
             # Read holding registers from the sensor
             res = self.client.read_holding_registers(address=2089, count=10, slave=1)
 
-            try:
+            try: # checks if probe is connected
                 # Combine the two registers to form a hex value
                 hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-                data = self.__calibrate_raw_values(str(hex_value))
+                data = self.__convert_raw_value(str(hex_value))
             except AttributeError:
                 data = 0
 
@@ -47,7 +57,7 @@ class Sensor:
 
             hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
 
-            data = self.__calibrate_raw_values(str(hex_value))
+            data = self.__convert_raw_value(str(hex_value))
 
         # Round the data to 3 decimal places and return it
         return round(data, 3)
@@ -64,14 +74,23 @@ class Sensor:
         hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
 
         # Convert the hex value to a float value
-        data = self.__calibrate_raw_values(str(hex_value))
+        data = self.__convert_raw_value(str(hex_value))
 
         return round(data, 3)
+    
+    def tare_ph(self, tare: float) -> None:
+        """
+        Updates the tare constant.
+        """
+        if (self.mode != "ph"): return
+
+        curr_reading = self.get_data()
+        self.tare_constant = tare - curr_reading
 
     def close(self):
         self.client.close()
 
-    def __calibrate_raw_values(self, value: str) -> float:
+    def __convert_raw_value(self, value: str) -> float:
         """
         Convert raw hex value to float using IEEE 754 standard.
         """
