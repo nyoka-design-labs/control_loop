@@ -6,7 +6,7 @@ class Pump:
     Controls the pump connected to an Arduino.
     """
 
-    def __init__(self, type = 'ph', port: str='/dev/ttyACM1', baudrate: int=57600):
+    def __init__(self, type = 'ph', port: str='/dev/ttyACM0', baudrate: int=57600):
 
         # if (type != "do" and type != "ph"):
         #     raise ValueError("Invalid sensor type")
