@@ -10,7 +10,7 @@ from devices import get_measurement, tare
 from controller import Controller
 from utils import extract_specific_cells
 
-INTERVAL = 10 # change interval
+INTERVAL = 60 # change interval
 
 # t = extract_specific_cells('../../tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
 # target = list(map(lambda x: float(x)*1000, t))
@@ -47,7 +47,6 @@ async def send_weight(websocket, start_time, stop_event, start, last_weight, tar
 
             i += 1
 
-            # last_weight = expected_weight
 
 
         ph_control.pH_loop(data["ph"])
@@ -80,7 +79,7 @@ async def handler(websocket):
             start_time = time.time()  # Capture the time when "Show Weight" is pressed
 
             start = False
-            m0 = 556 # change this when running
+            m0 = 1792 # change this when running
             last_weight = m0
             t = extract_specific_cells('../../tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
             target = list(map(lambda x: float(x)*1000, t))
