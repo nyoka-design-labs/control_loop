@@ -15,18 +15,18 @@ def get_measurement():
 
     # get data from devices
     weight = scale.get_weight()
-    do = sensor.get_data() + 9.5
-    ph_reading = sensor_ph.get_reading()*0.9772 + 0.1987
-    ph = sensor_ph.get_data()*0.9772 + 0.1987
+    do = sensor.get_data() + 21.15
+    ph_reading = sensor_ph.get_reading()*0.9712 + 0.2219 + 0.227 #*0.9772 + 0.1987
+    ph = sensor_ph.get_data()*0.9712 + 0.2219 + 0.227 
     temperature = sensor_ph.get_temp()
     t = time.time()
 
-    # add_to_csv([do, ph, temperature, t], "../../tests/data.csv")
+    add_to_csv([weight, do, ph, ph_reading, temperature, t], "../../tests/first_run.csv")
 
     return {
         'time': t, # time of measurement
         'weight': weight,
-        'do': do,
+        'do': round(do, 3),
         'ph_reading': round(ph_reading, 3), # ph reading adjusts true value for tare
         'ph': round(ph, 3),
         'temp': temperature

@@ -22,7 +22,7 @@ def exponential_func(t: int, c1: int) -> float:
     return v2, c2
 
 def add_to_csv(data: list, csv_path: str):
-    with open('test.csv', 'a', newline='') as csvfile:
+    with open('first_run.csv', 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(data)
 
@@ -54,4 +54,4 @@ if __name__ == "__main__":
     # plt.show()
     d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
     data = list(map(lambda x: float(x)*1000, d))
-    print(data)
+    print(sum(data))
