@@ -32,6 +32,31 @@ class _Sensor:
         data = self.__convert_raw_value(str(hex_value))
 
         return round(data, 3)
+    
+    def get_temp(self) -> float:
+        """
+        Read temperature data from the sensor.
+        """
+
+        # Read holding registers from the sensor
+        res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+
+        # Combine the two registers to form a hex value
+        hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+
+        # Convert the hex value to a float value
+        data = self.__convert_raw_value(str(hex_value))
+
+        return round(data, 3)
+    
+    def tare_ph(self, tare: float) -> None:
+        """
+        Updates the tare constant.
+        """
+        if (self.mode != "ph"): return
+
+        curr_reading = self.get_data()
+        self.tare_constant = tare - curr_reading
 
     def close(self):
         self.client.close()

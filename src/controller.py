@@ -56,7 +56,7 @@ class Controller:
 
     def __pH_balance(self, ph: float):
         """
-        Main control loop for the pH controller. Loops indefinitely.
+        Main control loop for the pH controller.
         """
     
         if (ph < 6.7):
@@ -65,4 +65,3 @@ class Controller:
         else:
             # turn off pump
             self.pH_pump.control(False)
-        

@@ -19,6 +19,7 @@ def get_measurement():
     ph_reading = ph_sensor.get_tared_ph()
     ph = ph_sensor.get_ph()
     temperature = do_sensor.get_temperature()
+
     t = time.time()
 
     add_to_csv([weight, do, ph, ph_reading, temperature, t], "../../tests/first_run.csv")

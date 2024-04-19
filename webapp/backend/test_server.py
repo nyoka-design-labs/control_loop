@@ -35,7 +35,7 @@ async def send_weight(websocket, start_time, stop_event, control):
 async def handler(websocket):
     weight_task = None
     control = Controller()
-
+  
     async for message in websocket:
         print(f"Received command: {message}")
 
