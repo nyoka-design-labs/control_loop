@@ -49,22 +49,27 @@ const SystemControlPanel = () => {
   // Handlers for WebSocket commands
   const handleFeedPumpToggle = () => {
     websocket && websocket.send("start_pump");
+    console.log('start_pump');
   };
 
   const handleBasePumpToggle = () => {
     websocket && websocket.send("stop_pump");
+    console.log('stop_pump');
   };
 
   const handleStartControlLoop = () => {
     websocket && websocket.send("start_control");
+    console.log('start_control');
   };
 
   const handleStopControlLoop = () => {
     websocket && websocket.send("stop_control");
+    console.log('stop_control');
   };
 
   const handleStartDataCollection = () => {
     websocket && websocket.send("start_collection");
+    console.log('start_collection');
   };
 
   const tarePH = () => {
