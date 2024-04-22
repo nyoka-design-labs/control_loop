@@ -1,5 +1,6 @@
 import usb.core
 import sys
+import serial
 import time
 
 class Scale:
@@ -41,11 +42,33 @@ class Scale:
             sys.exit("Data not read")
 
         return data[4] + (256 * data[5])
+    
+class USS_Scale:
+    """
+    """
+
+    def __init__(self) -> None:
+        self.conn = serial.Serial(
+            port=f'/dev/ttyUSB0',
+            baudrate=9600,
+            parity=serial.PARITY_NONE,
+            stopbits=serial.STOPBITS_ONE,
+            bytesize=serial.EIGHTBITS,
+            timeout=None
+        )
+
+    def get_weight(self):
+        """
+        """
+
+        self.conn.reset_input_buffer()  # Flush the input buffer to remove old data
+        data = self.conn.readline().decode().strip()  # Read the latest line and decode from bytes to string
+        return float(data[3:-1]) # slice represents 5 digit value including tenths digit
 
 
 if __name__ == "__main__":
     # example usage of Scale class
-    scale = Scale(0x0922, 0x8003)
+    scale = USS_Scale()
 
     try:
         while True:
