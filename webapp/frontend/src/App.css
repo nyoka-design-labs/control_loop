@@ -66,4 +66,18 @@
   }
 }
 
+.button-status-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Or any other value for space between rows */
+}
 
+.status-box {
+  border: 3px solid black; /* Adds a black border around the status box */
+  color: inherit; /* Uses the color set dynamically in the component */
+  font-size: 16px; /* Sets a larger font size */
+  font-weight: bold; /* Makes the font bold */
+  padding: 5px; /* Adds some padding inside the status box */
+  margin: 10px; /* Adds slight space around the box */
+  display: inline-block; /* Ensures the box does not stretch */
+}
