@@ -1,4 +1,5 @@
 import csv
+import os
 import math
 
 def exponential_func(t: int, c1: int) -> float:
@@ -21,9 +22,16 @@ def exponential_func(t: int, c1: int) -> float:
 
     return v2, c2
 
-def add_to_csv(data: list, csv_path: str):
-    with open('first_run.csv', 'a', newline='') as csvfile:
+def add_to_csv(data: list, csv_path: str, header: list):
+    file_exists = os.path.isfile(csv_path)
+    
+    with open(csv_path, 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
+        
+        # If the file is being created, write the header first
+        if not file_exists:
+            writer.writerow(header)
+        
         writer.writerow(data)
 
 def extract_specific_cells(csv_path, start_row, end_row, col):
