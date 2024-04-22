@@ -15,46 +15,66 @@ status = {
     "feed_pump_status": "0",
     "base_pump_status": "2"
 }
+
+data = {
+    "control_loop_status": "control_off",
+    "data_collection_status": "data_collection_off",
+    "feed_pump_status": "0",
+    "base_pump_status": "2"
+}
 INTERVAL = 5 # time in seconds before readings
 async def collect_data(websocket, start_time):
     data_path = 'data/data.csv'  # Replace with the actual path
     headers = ['weight', 'do', 'ph', 'temp', 'time']
+
     while True:
-        data = get_measurement()
+        if status["control_loop_status"] != "control_on":
+            data = configure_data(start_time)
+            add_to_csv(data, data_path, headers)
+            print(f"from data collection: {data}")
+            await websocket.send(data)
 
-        elapsed_time = data['time'] - start_time
-        data = json.dumps({
-            "type": 'data',
-            "weight": data['weight'],
-            "do": data['do'],
-            "ph": data['ph_reading'],
-            "temp": data['temp'],
-            "time": round(elapsed_time, 0), 
-        })
-
-        # add_to_csv(data, data_path, headers)
-        print(data)
-        await websocket.send(data)
         status["data_collection_status"] = "data_collection_on"
         await send_status_update(websocket)
         await asyncio.sleep(INTERVAL)
-        
+
 # Task to send weight data
-async def start_control(websocket, control):
-    
+async def start_control(websocket, control, start_time):
+    data_path = '/data/data.csv'  # Replace with the actual path
+    headers = ['type', 'weight', 'do', 'ph', 'temp', 'time', 'expected_weight']
+
     while True:
-        data = get_measurement()
         print("loop controlled")
-        control.ph_do_feed_loop(data)
+        data = get_measurement()
+        expected_weight = control.ph_do_feed_loop(data)
+        data = configure_data(start_time, expected_weight)
+        add_to_csv(data, data_path, headers)
+        print(f"from control: {data}")
         status["control_loop_status"] = "control_on"
         status["base_pump_status"] = str(control.pH_pump.state)
         status["feed_pump_status"] = str(control.feed_pump.state)
+
+        await websocket.send(data)
         await send_status_update(websocket)
         await asyncio.sleep(INTERVAL)
 
 async def send_status_update(websocket):
     """ Send the consolidated status object to the websocket client. """
     await websocket.send(json.dumps({"type": "status", **status}))
+
+def configure_data(start_time, expected_weight = 0):
+    data = get_measurement()
+    elapsed_time = data['time'] - start_time
+    data = json.dumps({
+        "type": 'data',
+        "weight": data['weight'],
+        "do": data['do'],
+        "ph": data['ph_reading'],
+        "temp": data['temp'],
+        "time": round(elapsed_time, 0), 
+        "expected_weight": expected_weight,
+    })
+    return data
 
 # Handle incoming messages and manage tasks
 async def handler(websocket):
@@ -97,7 +117,8 @@ async def handler(websocket):
 
             # Start control if not already started
             if control_task is None:
-                control_task = asyncio.create_task(start_control(websocket, control))
+                status["control_loop_status"] = "control_on"
+                control_task = asyncio.create_task(start_control(websocket, control, start_time))
                 print("Control loop started.")
 
         elif message == "stop_control":
@@ -106,6 +127,11 @@ async def handler(websocket):
                 control_task.cancel()
                 control_task = None
                 print("Control loop stopped.")
+            control.stop_loop()
+            status["control_loop_status"] = "control_off"
+            status["base_pump_status"] = str(control.pH_pump.state)
+            status["feed_pump_status"] = str(control.feed_pump.state)
+            await send_status_update(websocket)
         elif message.startswith("tare_ph:"):
             # Split the message by the colon to get the value
             _, tare_value = message.split(":")

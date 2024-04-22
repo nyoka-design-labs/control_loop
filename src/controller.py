@@ -16,7 +16,7 @@ class Controller:
     """
 
     def __init__(self, port: str='/dev/ttyACM0', baudrate: int=57600):
-        # self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         self.feed_pump = Pump(type="feed")
         self.pH_pump = Pump(type="ph")
         self.start_feed = False
@@ -38,7 +38,7 @@ class Controller:
 
         if (self.start_feed): # starts only when pH reaches target
             current_weight = data["weight"]
-            last_weight = self.__get_target_weight()
+            last_weight = last_weight - self.__get_target_weight()
             print(last_weight)
 
             if (current_weight >= last_weight):
@@ -54,7 +54,7 @@ class Controller:
         """
 
         # self.arduino.write(commands["switch_units"].encode()) # keeps scale on
-
+        
         if (data["ph"] > 6.75 and data["do"] >= 60):
             self.start_feed = True
             
@@ -62,28 +62,34 @@ class Controller:
             self.start_feed = False
 
         if (self.start_feed): # starts only when pH reaches target and Do is above 60
-            current_weight = data["weight"]
             last_weight = self.__get_target_weight()
+            current_weight = data["weight"]
             print(f"target_weight: {last_weight})")
 
             if (current_weight >= last_weight):
-                print(f"sent arduino keep feed on: {self.feed_pump.control(True).encode()}")
-                # self.arduino.write(self.control_pump.control(True).encode()) # turn on the pump
+                # print(f"sent arduino keep feed on: {self.feed_pump.control(True).encode()}")
+                self.arduino.write(self.control_pump.control(True).encode()) # turn on the pump
             elif (current_weight < last_weight):
-                print(f"sent arduino keep feed off: {self.feed_pump.control(False).encode()}")
-                # self.arduino.write(self.control_pump.control(False).encode()) # turn off the pump
+                # print(f"sent arduino keep feed off: {self.feed_pump.control(False).encode()}")
+                self.arduino.write(self.control_pump.control(False).encode()) # turn off the pump
 
         self.__pH_balance(data['ph']) # balances the pH
+        return last_weight
+    def stop_loop(self):
+        # self.feed_pump.control(False)
+        # self.pH_pump.control(False)
+        self.arduino.write(self.feed_pump.control(False).encode()) # turn OFF the feed pump
+        self.arduino.write(self.pH_pump.control(False).encode()) # turn OFF the base pump
 
     def toggle_feed(self):
-        status = self.feed_pump.toggle()
-        print(f"sent arduino: {status}")
-        # self.arduino.write(self.control_pump.toggle().encode())
+        # status = self.feed_pump.toggle()
+        # print(f"sent arduino: {status}")
+        self.arduino.write(self.control_pump.toggle().encode())
     
     def toggle_base(self):
-        status = self.pH_pump.toggle()
-        print(f"sent arduino: {status}")
-        # self.arduino.write(self.pH_pump.toggle().encode())
+        # status = self.pH_pump.toggle()
+        # print(f"sent arduino: {status}")
+        self.arduino.write(self.pH_pump.toggle().encode())
 
         
             
@@ -93,8 +99,8 @@ class Controller:
         """
         t = self.target[self.index]
         self.index += 1
-        # return t
-        return 1000
+        return t
+        # return 1000
 
     def __pH_balance(self, ph: float):
         """
@@ -103,10 +109,10 @@ class Controller:
     
         if (ph < 6.7):
             # turn on pump
-            print(f"sent arduino: {self.pH_pump.control(True).encode()}")
-            # self.arduino.write(self.pH_pump.control(True).encode())
+            # print(f"sent arduino: {self.pH_pump.control(True).encode()}")
+            self.arduino.write(self.pH_pump.control(True).encode())
 
         else:
             # turn off pump
-            print(f"sent arduino: {self.pH_pump.control(False).encode()}")
-            # self.arduino.write(self.pH_pump.control(False).encode())
+            # print(f"sent arduino: {self.pH_pump.control(False).encode()}")
+            self.arduino.write(self.pH_pump.control(False).encode())

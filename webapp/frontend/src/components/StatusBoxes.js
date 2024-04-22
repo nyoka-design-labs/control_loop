@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useData } from '../DataContext';
 import '../App.css';
 
 const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
   const [status, setStatus] = useState(offMessage);
   const { websocket } = useData();
-  let statusTimeout;
+  const statusTimeout = useRef();
 
   useEffect(() => {
     const handleMessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'status') {
         if (data[key] === "1" || data[key] === "3" || data[key] === "control_on" || data[key] === "data_collection_on") {
-          clearTimeout(statusTimeout);
+          clearTimeout(statusTimeout.current);
           setStatus(onMessage);
           if (shouldTimeout) {
-            statusTimeout = setTimeout(() => {
+            statusTimeout.current = setTimeout(() => {
               setStatus(offMessage);
             }, 60000); // 1 minute timeout
           }
         } else if (data[key] === "0" || data[key] === "2" || data[key] === "control_off" || data[key] === "data_collection_off") {
           setStatus(offMessage);
-          clearTimeout(statusTimeout);
+          clearTimeout(statusTimeout.current);
         }
       }
     };
@@ -34,9 +34,9 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
       if (websocket) {
         websocket.removeEventListener('message', handleMessage);
       }
-      clearTimeout(statusTimeout);
+      clearTimeout(statusTimeout.current);
     };
-  }, [websocket]);
+  }, [websocket, key, onMessage, offMessage, shouldTimeout]); // Added all dependencies to useEffect to adhere to linting rules
 
   return (
     <div className={`status-box`} style={{ color: status.includes("ON") ? 'green' : 'red' }}>

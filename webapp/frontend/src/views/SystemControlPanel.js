@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import { Button, Tab, Tabs } from 'react-bootstrap';
-import { Line } from 'react-chartjs-2';
 import { useData } from '../DataContext';
 import { useControlLoopButton, useDataCollectionButton, useToggleFeedPumpButton, useToggleBasePumpButton } from '../components/Buttons';
 import { useFeedPumpStatus, useBasePumpStatus, useControlLoopStatus, useDataCollectionStatus } from '../components/StatusBoxes';
@@ -39,15 +37,19 @@ const SystemControlPanel = () => {
       <Tabs defaultActiveKey="weight" id="uncontrolled-tab-example" className="mb-3">
         <Tab eventKey="weight" title="Weight">
           <h3>Weight: {currentMeasurements.weight} g</h3>
-          <Chart systemData={systemData} label="Weight" color="rgb(75, 192, 192)" />
+          <h3>Expected Weight: {currentMeasurements.expected_weight} g</h3>
+          <Chart systemData={systemData} label="Weight" actualColor="rgb(75, 192, 192)"
+          expectedDataKey="expected_weight" expectedColor="rgb(255, 99, 132)" />
         </Tab>
         <Tab eventKey="do" title="DO">
           <h3>DO: {currentMeasurements.do} %</h3>
-          <Chart systemData={systemData} label="Weight" color="rgb(75, 192, 192)" />
+          <Chart systemData={systemData} label="do" color="rgb(75, 192, 192)" 
+          expectedDataKey="do" expectedColor="rgb(75, 192, 192)"/>
         </Tab>
         <Tab eventKey="temp" title="Temperature">
           <h3>Temp: {currentMeasurements.temp} °C</h3>
-          <Chart systemData={systemData} label="Temperature" color="rgb(75, 192, 192)" />
+          <Chart systemData={systemData} label="Temperature" color="rgb(75, 192, 192)" 
+          expectedDataKey="Temperature" expectedColor="rgb(75, 192, 192)"/>
         </Tab>
         <Tab eventKey="ph" title="pH">
           <div className="mb-3">
@@ -56,7 +58,8 @@ const SystemControlPanel = () => {
             <input type='text' id='ph'/>
             <Button variant="primary" onClick={tarePH} className="custom-padding">Tare pH</Button>
           </div>
-          <Chart systemData={systemData} label="PH" color="rgb(75, 192, 192)" />
+          <Chart systemData={systemData} label="PH" color="rgb(75, 192, 192)" 
+          expectedDataKey="PH" expectedColor="rgb(75, 192, 192)"/>
         </Tab>
       </Tabs>
 

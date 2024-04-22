@@ -9,7 +9,8 @@ export const DataProvider = ({ children }) => {
         weight: '---',
         do: '---',
         ph: '---',
-        temp: '---'
+        temp: '---',
+        expected_weight: "---"
       });
       
 
@@ -24,7 +25,8 @@ export const DataProvider = ({ children }) => {
                     weight: data.weight,
                     do: data.do,
                     ph: data.ph,
-                    temp: data.temp
+                    temp: data.temp,
+                    expected_weight: data.expected_weight
                   });
             }
         };
