@@ -1,6 +1,6 @@
 import { Button, Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
-import { useTogglePumpButton, useStateToggleButton } from '../components/Buttons';
+import { useTogglePumpButton, useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
 import { useFeedPumpStatus, useBasePumpStatus, useControlLoopStatus, useDataCollectionStatus, useBufferPumpStatus, useLysatePumpStatus } from '../components/StatusBoxes';
 import { Chart } from '../components/Charts';
 import '../App.css';
@@ -10,8 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const SystemControlPanel = () => {
   const { websocket, systemData, currentMeasurements } = useData();
   
-  const controlLoopButton = useStateToggleButton("Start Control Loop", "Stop Control Loop", "start_control", "stop_control");
-  const dataCollectionButton = useStateToggleButton("Start Data Collection", "Stop Data Collection", "start_collection", "stop_collection");
+  const controlLoopButton = useControlLoopButton();
+  const dataCollectionButton = useDataCollectionButton();
   const toggleFeedPumpButton = useTogglePumpButton("Toggle Feed Pump", "toggle_feed");
   const toggleBasePumpButton = useTogglePumpButton("Toggle Base Pump", "toggle_base");
   const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer");

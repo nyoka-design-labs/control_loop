@@ -31,8 +31,9 @@ async def collect_data(websocket, start_time):
 
     while True:
         if status["control_loop_status"] != "control_on":
-            data = configure_data(start_time)
-            add_to_csv(data, data_path, headers)
+            data = get_measurement()
+            data = configure_data(start_time, data)
+            # add_to_csv(data, data_path, headers)
             print(f"from data collection: {data}")
             await websocket.send(data)
 
@@ -47,10 +48,10 @@ async def start_control(websocket, control, start_time):
 
     while True:
         print("loop controlled")
-        # data = get_measurement()
+        data = get_measurement()
         expected_weight = control.ph_do_feed_loop(data)
-        data = configure_data(start_time, expected_weight)
-        add_to_csv(data, data_path, headers)
+        data = configure_data(start_time, data, expected_weight)
+        # add_to_csv(data, data_path, headers)
         print(f"from control: {data}")
         status["control_loop_status"] = "control_on"
         status["base_pump_status"] = str(control.pH_pump.state)
@@ -66,8 +67,7 @@ async def send_status_update(websocket):
     """ Send the consolidated status object to the websocket client. """
     await websocket.send(json.dumps({"type": "status", **status}))
 
-def configure_data(start_time, expected_weight = 0):
-    data = get_measurement()
+def configure_data(start_time, data, expected_weight = 0):
     elapsed_time = data['time'] - start_time
     data = json.dumps({
         "type": 'data',
@@ -115,12 +115,12 @@ async def handler(websocket):
             await send_status_update(websocket)
 
         elif message == "toggle_buffer":
-            control.toggle_base()
+            control.toggle_buffer()
             status["buffer_pump_status"] = str(control.buffer_pump.state)
             await send_status_update(websocket)
 
         elif message == "toggle_lysate":
-            control.toggle_base()
+            control.toggle_lysate()
             status["lysate_pump_status"] = str(control.lysate_pump.state)
             await send_status_update(websocket)
 

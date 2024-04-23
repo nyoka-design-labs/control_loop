@@ -10,6 +10,7 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
   useEffect(() => {
     const handleMessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log(data)
       if (data.type === 'status') {
         if (data[key] === "1" || data[key] === "3" || data[key] === "5" || data[key] === "7" || data[key] === "control_on" || data[key] === "data_collection_on" ) {
           clearTimeout(statusTimeout.current);
