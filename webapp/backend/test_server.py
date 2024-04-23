@@ -13,7 +13,9 @@ status = {
     "control_loop_status": "control_off",
     "data_collection_status": "data_collection_off",
     "feed_pump_status": "0",
-    "base_pump_status": "2"
+    "base_pump_status": "2",
+    "buffer_pump_status": "4",
+    "lysate_pump_status": "6"
 }
 
 data = {
@@ -53,6 +55,8 @@ async def start_control(websocket, control, start_time):
         status["control_loop_status"] = "control_on"
         status["base_pump_status"] = str(control.pH_pump.state)
         status["feed_pump_status"] = str(control.feed_pump.state)
+        status["buffer_pump_status"] = str(control.buffer_pump.state)
+        status["lysate_pump_status"] = str(control.lysate_pump.state)
 
         await websocket.send(data)
         await send_status_update(websocket)
@@ -108,6 +112,16 @@ async def handler(websocket):
         elif message == "toggle_base":
             control.toggle_base()
             status["base_pump_status"] = str(control.pH_pump.state)
+            await send_status_update(websocket)
+
+        elif message == "toggle_buffer":
+            control.toggle_base()
+            status["buffer_pump_status"] = str(control.buffer_pump.state)
+            await send_status_update(websocket)
+
+        elif message == "toggle_lysate":
+            control.toggle_base()
+            status["lysate_pump_status"] = str(control.lysate_pump.state)
             await send_status_update(websocket)
 
         elif message == "start_control":

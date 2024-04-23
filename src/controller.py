@@ -19,6 +19,8 @@ class Controller:
         self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         self.feed_pump = Pump(type="feed")
         self.pH_pump = Pump(type="ph")
+        self.buffer_pump = Pump(type="buffer")
+        self.lysate_pump = Pump(type="lysate_pump")
         self.start_feed = False
 
         t = extract_specific_cells('/Users/mba_sam/Github/Nyoka Design Labs/control_loop/tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
@@ -91,7 +93,15 @@ class Controller:
         # print(f"sent arduino: {status}")
         self.arduino.write(self.pH_pump.toggle().encode())
 
-        
+    def toggle_buffer(self):
+        # status = self.pH_pump.toggle()
+        # print(f"sent arduino: {status}")
+        self.arduino.write(self.buffer_pump.toggle().encode())
+
+    def toggle_lysate(self):
+        # status = self.pH_pump.toggle()
+        # print(f"sent arduino: {status}")
+        self.arduino.write(self.lysate_pump.toggle().encode())
             
     def __get_target_weight(self) -> float:
         """
