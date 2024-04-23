@@ -119,19 +119,21 @@ class PH(_Sensor):
 
         super().__init__(port)
         self.tare_constant = 0
-
+        # self.i = 0
+        # self.ph_data = [6.5, 6.75, 6.71, 6.69, 6.70, ]/
     def get_ph(self) -> float:
         """
         Read data from the sensor.
         """
-
+        # ph = self.ph_data[self.i]
+        # self.i += 1
         return round(self.callibration_func(self.__get_raw_ph()), 3)
+        # return ph
     
     def get_tared_ph(self) -> float:
         """
         Returns adjusted reading for tare.
         """
-
         data = self.callibration_func(self.__get_raw_ph() + self.tare_constant)
 
         return round(data, 3)
