@@ -85,41 +85,44 @@ export const useDataCollectionButton = () => {
     return dataCollectionButton;
   };
 
+  export const useTogglePumpButton = (buttonLabel, sendCommand) => {
+    const { websocket } = useData();
 
-export const useToggleFeedPumpButton = () => {
-    const { websocket } = useData();
-  
-    const handleFeedPumpToggle = () => {
-      if (websocket) {
-        websocket.send("toggle_feed");
-        console.log('toggle_feed');
-      }
+    const handleToggle = () => {
+        if (websocket) {
+            websocket.send(sendCommand);
+            console.log(sendCommand);
+        }
     };
-  
-    const toggleFeedPumpButton = (
-      <Button variant="secondary" onClick={handleFeedPumpToggle} className="me-2">
-        Toggle Feed Pump
-      </Button>
+
+    const togglePumpButton = (
+        <Button variant="secondary" onClick={handleToggle} className="me-2">
+            {buttonLabel}
+        </Button>
     );
-  
-    return toggleFeedPumpButton;
-  };
-  
-  export const useToggleBasePumpButton = () => {
-    const { websocket } = useData();
-  
-    const handleBasePumpToggle = () => {
+
+    return togglePumpButton;
+};
+
+export const useStateToggleButton = (buttonLabelOn, buttonLabelOff, sendCommandOn, sendCommandOff, defaultRunningState = false) => {
+  const [isRunning, setIsRunning] = useState(defaultRunningState);
+  const { websocket } = useData();
+
+  const toggleState = () => {
+      const commandToSend = isRunning ? sendCommandOff : sendCommandOn;
       if (websocket) {
-        websocket.send("toggle_base");
-        console.log('toggle_base');
+          websocket.send(commandToSend);
+          console.log(commandToSend);
+          setIsRunning(!isRunning);
       }
-    };
-  
-    const toggleBasePumpButton = (
-      <Button variant="secondary" onClick={handleBasePumpToggle} className="me-2">
-        Toggle Base Pump
-      </Button>
-    );
-  
-    return toggleBasePumpButton;
   };
+
+  return (
+      <Button
+          variant={isRunning ? "danger" : "success"}
+          onClick={toggleState}
+          className="me-2">
+          {isRunning ? buttonLabelOff : buttonLabelOn}
+      </Button>
+  );
+};
