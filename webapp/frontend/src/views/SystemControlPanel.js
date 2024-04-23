@@ -1,7 +1,7 @@
 import { Button, Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
-import { useControlLoopButton, useDataCollectionButton, useToggleFeedPumpButton, useToggleBasePumpButton } from '../components/Buttons';
-import { useFeedPumpStatus, useBasePumpStatus, useControlLoopStatus, useDataCollectionStatus } from '../components/StatusBoxes';
+import { useTogglePumpButton, useStateToggleButton } from '../components/Buttons';
+import { useFeedPumpStatus, useBasePumpStatus, useControlLoopStatus, useDataCollectionStatus, useBufferPumpStatus, useLysatePumpStatus } from '../components/StatusBoxes';
 import { Chart } from '../components/Charts';
 import '../App.css';
 import 'chart.js/auto';
@@ -10,13 +10,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const SystemControlPanel = () => {
   const { websocket, systemData, currentMeasurements } = useData();
   
-  const controlLoopButton = useControlLoopButton();
-  const dataCollectionButton = useDataCollectionButton();
-  const toggleFeedPumpButton = useToggleFeedPumpButton();
-  const toggleBasePumpButton = useToggleBasePumpButton();
+  const controlLoopButton = useStateToggleButton("Start Control Loop", "Stop Control Loop", "start_control", "stop_control");
+  const dataCollectionButton = useStateToggleButton("Start Data Collection", "Stop Data Collection", "start_collection", "stop_collection");
+  const toggleFeedPumpButton = useTogglePumpButton("Toggle Feed Pump", "toggle_feed");
+  const toggleBasePumpButton = useTogglePumpButton("Toggle Base Pump", "toggle_base");
+  const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer");
+  const toggleLysatePumpButton = useTogglePumpButton("Toggle Lysate Pump", "toggle_lysate");
 
   const feedPumpStatus = useFeedPumpStatus();
   const basePumpStatus = useBasePumpStatus();
+  const bufferPumpStatus = useBufferPumpStatus();
+  const lysatePumpStatus = useLysatePumpStatus();
   const controlLoopStatus = useControlLoopStatus();
   const dataCollectionStatus = useDataCollectionStatus();
 
@@ -65,6 +69,14 @@ const SystemControlPanel = () => {
 
       <div className="right-aligned-buttons">
         <div className="mb-3">
+          <div className="button-status-container">
+            {toggleBufferPumpButton}
+            {bufferPumpStatus}
+          </div>
+          <div className="button-status-container">
+            {toggleLysatePumpButton}
+            {lysatePumpStatus}
+          </div>
           <div className="button-status-container">
             {toggleFeedPumpButton}
             {feedPumpStatus}
