@@ -67,7 +67,7 @@ class USS_Scale:
 
 if __name__ == "__main__":
     # example usage of Scale class
-    scale = USS_Scale(port="/dev/ttyUSB0")
+    scale = USS_Scale(port="/dev/ttyUSB2")
 
     try:
         while True:

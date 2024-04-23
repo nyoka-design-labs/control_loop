@@ -70,6 +70,7 @@ class DO(_Sensor):
         """
 
         super().__init__(port)
+        self.callibration_func = lambda x: x
 
     def get_do(self) -> float:
         """
@@ -135,6 +136,22 @@ class PH(_Sensor):
         Returns adjusted reading for tare.
         """
         data = self.callibration_func(self.__get_raw_ph() + self.tare_constant)
+
+        return round(data, 3)
+    
+    def get_temp(self) -> float:
+        """
+        Read temperature data from the sensor.
+        """
+
+        # Read holding registers from the sensor
+        res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+
+        # Combine the two registers to form a hex value
+        hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+
+        # Convert the hex value to a float value
+        data = self.convert_raw_value(str(hex_value))
 
         return round(data, 3)
     

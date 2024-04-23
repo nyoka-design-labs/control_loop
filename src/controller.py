@@ -15,16 +15,16 @@ class Controller:
     Represents a controller in the control loop.
     """
 
-    def __init__(self, port: str='/dev/ttyACM0', baudrate: int=57600):
+    def __init__(self, port: str='/dev/ttyACM0', baudrate: int=9600):
         self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         self.feed_pump = Pump(type="feed")
         self.pH_pump = Pump(type="ph")
         self.buffer_pump = Pump(type="buffer")
-        self.lysate_pump = Pump(type="lysate_pump")
+        self.lysate_pump = Pump(type="lysate")
         self.start_feed = False
         self.pause_feed = False
 
-        t = extract_specific_cells('/Users/mba_sam/Github/Nyoka Design Labs/control_loop/tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
+        t = extract_specific_cells('../../tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
         
         self.target = list(map(lambda x: float(x)*1000, t))
         self.index = 0
