@@ -1,5 +1,6 @@
 import pymodbus.client as ModbusClient
 import struct
+import time
 
 class _Sensor:
     """
@@ -29,7 +30,7 @@ class _Sensor:
         hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
 
         # Convert the hex value to a float value
-        data = self.__convert_raw_value(str(hex_value))
+        data = self.convert_raw_value(str(hex_value))
 
         return round(data, 3)
     
@@ -45,7 +46,7 @@ class _Sensor:
     def close(self):
         self.client.close()
 
-    def __convert_raw_value(self, value: str) -> float:
+    def convert_raw_value(self, value: str) -> float:
         """
         Convert raw hex value to float using IEEE 754 standard.
         """
@@ -99,7 +100,7 @@ class DO(_Sensor):
         try: # checks if probe is connected
             # Combine the two registers to form a hex value
             hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-            data = self.__convert_raw_value(str(hex_value))
+            data = self.convert_raw_value(str(hex_value))
         except AttributeError:
             data = 0
 
@@ -166,20 +167,19 @@ class PH(_Sensor):
         hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
 
         # Convert the hex value to a float value
-        data = self.__convert_raw_value(str(hex_value))
+        data = self.convert_raw_value(str(hex_value))
 
         return data
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    # sensor = Sensor(type="ph")
-    # sensor.client.connect()
+    sensor = PH(port="/dev/ttyUSB0")
+    sensor.client.connect()
 
-    # try:
-    #     while True:
-    #         print(f"Data: {sensor.get_data()}, Temperature: {sensor.get_temp()}")
-    #         time.sleep(1)
-    # except KeyboardInterrupt:
-    #     sensor.close()
-    #     print("\nProgram terminated")
-    pass
+    try:
+        while True:
+            print(f"Data: {sensor.get_ph()}, Temperature: {sensor.get_temp()}")
+            time.sleep(1)
+    except KeyboardInterrupt:
+        sensor.close()
+        print("\nProgram terminated")

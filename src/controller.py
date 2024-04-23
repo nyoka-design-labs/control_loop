@@ -20,6 +20,7 @@ class Controller:
         self.feed_pump = Pump(type="feed")
         self.pH_pump = Pump(type="ph")
         self.start_feed = False
+        self.pause_feed = False
 
         t = extract_specific_cells('/Users/mba_sam/Github/Nyoka Design Labs/control_loop/tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
         
@@ -55,9 +56,11 @@ class Controller:
 
         # self.arduino.write(commands["switch_units"].encode()) # keeps scale on
         
-        if (data["ph"] > 6.75 and data["do"] >= 60):
+        if (data["ph"] > 6.75):
             self.start_feed = True
             
+        if (data["do"] >= 60):
+            self.start_feed = True
         elif (data["do"] < 20):
             self.start_feed = False
 
@@ -75,6 +78,7 @@ class Controller:
 
         self.__pH_balance(data['ph']) # balances the pH
         return last_weight
+    
     def stop_loop(self):
         # self.feed_pump.control(False)
         # self.pH_pump.control(False)
@@ -91,8 +95,6 @@ class Controller:
         # print(f"sent arduino: {status}")
         self.arduino.write(self.pH_pump.toggle().encode())
 
-        
-            
     def __get_target_weight(self) -> float:
         """
         Returns the target weight for the current iteration.
@@ -101,6 +103,9 @@ class Controller:
         self.index += 1
         return t
         # return 1000
+
+    def __mass_control(self, weight: float):
+        pass
 
     def __pH_balance(self, ph: float):
         """

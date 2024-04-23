@@ -45,7 +45,7 @@ async def start_control(websocket, control, start_time):
 
     while True:
         print("loop controlled")
-        data = get_measurement()
+        # data = get_measurement()
         expected_weight = control.ph_do_feed_loop(data)
         data = configure_data(start_time, expected_weight)
         add_to_csv(data, data_path, headers)
