@@ -60,25 +60,28 @@ class Controller:
         
         if (data["ph"] > 6.75):
             self.start_feed = True
-            
-        if (data["do"] >= 60):
-            self.start_feed = True
-        elif (data["do"] < 20):
-            self.start_feed = False
 
         if (self.start_feed): # starts only when pH reaches target and Do is above 60
-            last_weight = self.__get_target_weight()
-            current_weight = data["weight"]
-            print(f"target_weight: {last_weight})")
+            if (data["do"] >= 60):
+                self.pause_feed = False
+            elif (data["do"] < 20):
+                self.pause_feed = True
 
-            if (current_weight >= last_weight):
-                # print(f"sent arduino keep feed on: {self.feed_pump.control(True).encode()}")
-                self.arduino.write(self.control_pump.control(True).encode()) # turn on the pump
-            elif (current_weight < last_weight):
-                # print(f"sent arduino keep feed off: {self.feed_pump.control(False).encode()}")
-                self.arduino.write(self.control_pump.control(False).encode()) # turn off the pump
+            if (self.pause_feed == False):
+                last_weight = self.__get_target_weight()
+                current_weight = data["weight"]
+                print(f"target_weight: {last_weight})")
+
+                if (current_weight >= last_weight):
+                    # print(f"sent arduino keep feed on: {self.feed_pump.control(True).encode()}")
+                    self.arduino.write(self.control_pump.control(True).encode()) # turn on the pump
+                elif (current_weight < last_weight):
+                    # print(f"sent arduino keep feed off: {self.feed_pump.control(False).encode()}")
+                    self.arduino.write(self.control_pump.control(False).encode()) # turn off the pump
 
         self.__pH_balance(data['ph']) # balances the pH
+        self.__buffer_control(None)
+        self.__lysate_control(None)
         return last_weight
     
     def stop_loop(self):
@@ -116,8 +119,15 @@ class Controller:
         return t
         # return 1000
 
-    def __mass_control(self, weight: float):
-        pass
+    def __buffer_control(self, weight: float):
+        if (weight < 1200):
+            self.buffer_pump.control(True)
+
+    def __lysate_control(self, weight: float):
+        if (weight < 250):
+            self.lysate_pump.control(False)
+        else:
+            self.lysate_pump.control(True)
 
     def __pH_balance(self, ph: float):
         """

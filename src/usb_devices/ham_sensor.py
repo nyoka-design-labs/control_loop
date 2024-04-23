@@ -175,13 +175,13 @@ class PH(_Sensor):
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    sensor = PH(port="/dev/ttyUSB0")
+    sensor = DO(port="/dev/ttyUSB0")
     sensor.client.connect()
 
     try:
         while True:
-            print(f"Data: {sensor.get_ph()}, Temperature: {sensor.get_temp()}")
-            time.sleep(1)
+            print(f"Data: {sensor.get_do()}, Temperature: {sensor.get_temp()}")
+            time.sleep(3)
     except KeyboardInterrupt:
         sensor.close()
         print("\nProgram terminated")
