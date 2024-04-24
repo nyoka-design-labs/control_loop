@@ -10,7 +10,7 @@ const sharedState = {
     setIsDataCollectionRunning: () => {}
   };
 
-export const useControlLoopButton = () => {
+export const useControlLoopButton = (startCommand, stopCommand) => {
     const [isControlLoopRunning, setIsControlLoopRunning] = useState(sharedState.isControlLoopRunning);
     const { websocket } = useData();
 
@@ -20,8 +20,8 @@ export const useControlLoopButton = () => {
 
     const handleStartControlLoop = () => {
         if (!isControlLoopRunning && websocket) {
-        websocket.send("start_control");
-        console.log('start_control');
+        websocket.send(startCommand);
+        console.log(startCommand);
         setIsControlLoopRunning(true);
         sharedState.setIsDataCollectionRunning(true);
         }
@@ -29,8 +29,8 @@ export const useControlLoopButton = () => {
 
     const handleStopControlLoop = () => {
         if (isControlLoopRunning && websocket) {
-        websocket.send("stop_control");
-        console.log('stop_control');
+        websocket.send(stopCommand);
+        console.log(stopCommand);
         sharedState.setIsControlLoopRunning(false);
         }
     };
@@ -48,7 +48,7 @@ export const useControlLoopButton = () => {
     return controlLoopButton; // Returns the button component
 };
 
-export const useDataCollectionButton = () => {
+export const useDataCollectionButton = (startCommand, stopCommand) => {
     const [isDataCollectionRunning, setIsDataCollectionRunning] = useState(sharedState.isDataCollectionRunning);
     const { websocket } = useData();
 
@@ -58,16 +58,16 @@ export const useDataCollectionButton = () => {
   
     const handleStartDataCollection = () => {
       if (!isDataCollectionRunning && websocket) {
-        websocket.send("start_collection");
-        console.log('start_collection');
+        websocket.send(startCommand);
+        console.log(startCommand);
         setIsDataCollectionRunning(true);
       }
     };
   
     const handleStopDataCollection = () => {
       if (isDataCollectionRunning && !sharedState.isControlLoopRunning && websocket) { // need to ensure data collection cannot be stopped when control loop is running how ot make this change
-        websocket.send("stop_collection");
-        console.log('stop_collection');
+        websocket.send(stopCommand);
+        console.log(stopCommand);
         setIsDataCollectionRunning(false);
       }
     };

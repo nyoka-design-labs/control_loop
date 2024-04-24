@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Offcanvas } from 'react-bootstrap';
 import SystemControlPanel from './views/SystemControlPanel';
+import ConcentrationControlPanel from './views/ConcentrationControlPanel';
 import Devices from './views/Devices';
 import { DataProvider } from './DataContext';
 import './App.css';
@@ -26,12 +27,13 @@ function App() {
                         <div className="nav flex-column">
                             <Button variant="dark" onClick={() => selectTab('SystemControl')}>System Control Panel</Button>
                             <Button variant="dark" onClick={() => selectTab('devices')}>Devices</Button>
-                        </div>
+                            <Button variant="dark" onClick={() => selectTab('ConcentrationControlPanel')}>Concentration Control Panel</Button>                        </div>
                     </Offcanvas.Body>
                 </Offcanvas>
                 <div className="main-content mt-4">
                     {activeTab === 'SystemControl' && <SystemControlPanel />}
                     {activeTab === 'devices' && <Devices />}
+                    {activeTab === 'ConcentrationControlPanel' && <ConcentrationControlPanel />}
                 </div>
             </div>
         </DataProvider>

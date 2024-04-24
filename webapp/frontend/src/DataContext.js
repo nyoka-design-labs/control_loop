@@ -10,7 +10,9 @@ export const DataProvider = ({ children }) => {
         do: '---',
         ph: '---',
         temp: '---',
-        expected_weight: "---"
+        expected_weight: "---",
+        buffer_weight: "---",
+        lysate_weight: "---"
       });
       
 
@@ -26,7 +28,10 @@ export const DataProvider = ({ children }) => {
                     do: data.do,
                     ph: data.ph,
                     temp: data.temp,
-                    expected_weight: data.expected_weight
+                    expected_weight: data.expected_weight,
+                    buffer_weight: data.buffer_weight,
+                    lysate_weight: data.lysate_weight
+                    
                   });
             }
         };
