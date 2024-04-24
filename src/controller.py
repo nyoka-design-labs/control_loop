@@ -16,7 +16,7 @@ class Controller:
     """
 
     def __init__(self, port: str='/dev/ttyACM0', baudrate: int=9600):
-        # self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         self.feed_pump = Pump(type="feed")
         self.pH_pump = Pump(type="ph")
         self.buffer_pump = Pump(type="buffer")
@@ -50,6 +50,11 @@ class Controller:
                 self.arduino.write(self.feed_pump.control(False).encode()) # turn off the pump
 
         self.__pH_balance(data['ph']) # balances the pH
+
+    def loop2(self, data: dict):
+
+        self.__buffer_control(data['weight_buff'])
+        self.__lysate_control(data['weight_lys'])
 
     def ph_do_feed_loop(self, data: dict):
         """

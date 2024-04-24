@@ -62,8 +62,15 @@ class USS_Scale:
         """
 
         self.conn.reset_input_buffer()  # Flush the input buffer to remove old data
-        data = self.conn.readline().decode().strip()  # Read the latest line and decode from bytes to string
-        return float(data[1:-1]) # slice represents 5 digit value including tenths digit
+        reading = self.conn.readline().decode().strip()  # Read the latest line and decode from bytes to string
+
+        try:
+            data = float(reading[1:-1])
+        except ValueError:
+            # data not properly read from scale
+            data = -1
+
+        return data
 
 if __name__ == "__main__":
     # example usage of Scale class
