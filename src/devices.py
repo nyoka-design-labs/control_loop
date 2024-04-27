@@ -2,6 +2,7 @@ from usb_devices.scale import Scale, USS_Scale
 from usb_devices.ham_sensor import PH, DO
 import time
 from utils import add_to_csv
+import datetime
 
 # initialize devices
 scale1 = USS_Scale(port="/dev/ttyUSB2")
@@ -27,6 +28,8 @@ def get_measurement():
     temperature = ph_sensor.get_temp()
 
     t = time.time()
+
+    add_to_csv([datetime.datetime.now(), weight_buff, weight_lys, do, ph, temperature], "data.csv", ['time', 'weight_buff', 'weight_lys', 'do', 'ph', 'temp'])
 
     return {
         'time': t, # time of measurement

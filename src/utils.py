@@ -1,6 +1,8 @@
 import csv
 import os
 import math
+import serial.tools.list_ports
+import usb.core
 
 def exponential_func(t: int, c1: int) -> float:
     """
@@ -22,10 +24,12 @@ def exponential_func(t: int, c1: int) -> float:
 
     return v2, c2
 
-def add_to_csv(data: list, csv_path: str, header: list):
-    file_exists = os.path.isfile(csv_path)
+def add_to_csv(data: list, file_name: str, header: list):
+    curr_dir = os.path.dirname(__file__)
+    csv_dir = curr_dir + f"../data/{file_name}"
+    file_exists = os.path.isfile(csv_dir)
     
-    with open(csv_path, 'a', newline='') as csvfile:
+    with open(csv_dir, 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
         
         # If the file is being created, write the header first
@@ -43,6 +47,13 @@ def extract_specific_cells(csv_path, start_row, end_row, col):
         # Extract the data from the specific column
         data = [row[col - 1] for row in reader][:(end_row - start_row + 1)] 
     return data
+
+def find_usb_serial_port(vendor_id, product_id):
+    ports = serial.tools.list_ports.comports()
+    for port in ports:
+        if port.vid == vendor_id and port.pid == product_id:
+            return port.device
+    return None
 
 if __name__ == "__main__":
     # import matplotlib.pyplot as plt
