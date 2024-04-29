@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const ConcentrationControlPanel = () => {
   const { websocket, systemData, currentMeasurements } = useData();
   
-  const controlLoopButton = useControlLoopButton("start_concentration_control", "stop_concentration_control");
+  const controlLoopButton = useControlLoopButton("start_control", "stop_control");
   const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection");
   const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer");
   const toggleLysatePumpButton = useTogglePumpButton("Toggle Lysate Pump", "toggle_lysate");
