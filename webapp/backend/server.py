@@ -8,7 +8,8 @@ sys.path.append("../../src")
 
 from devices import get_measurement, tare
 from controller import Controller
-from utils import add_to_csv
+from utils import add_to_csv, read_csv_file
+
 status = {
     "control_loop_status": "control_off",
     "data_collection_status": "data_collection_off",
@@ -24,7 +25,22 @@ data = {
     "feed_pump_status": "0",
     "base_pump_status": "2"
 }
+
 INTERVAL = 15 # time in seconds between readings
+
+async def load_data(websocket):
+    data = read_csv_file("data.csv")
+    start_time = data[0][4]
+    
+    for row in data:
+        row_dict = {"weight_buff": row[0],
+                     "weight_lys": row[1],
+                       "time": row[2]}
+        
+        added_data = configure_data(start_time, row_dict)
+
+        await websocket.send(added_data)
+
 async def collect_data(websocket, start_time, control):
     data_path = 'data/data.csv'  # Replace with the actual path
     headers = ['weight', 'do', 'ph', 'temp', 'time']
@@ -75,7 +91,7 @@ def configure_data(start_time, data, expected_weight = 0):
         # "do": data['do'],
         # "ph": data['ph_reading'],
         # "temp": data['temp'],
-        "time": round(elapsed_time, 0), 
+        "time": round(elapsed_time, 0),
         # "expected_weight": expected_weight,
     })
     return data
@@ -86,6 +102,9 @@ async def handler(websocket):
     collection_task = None
     start_time = time.time()
     control = Controller()
+
+    if (True):
+        asyncio.create_task(load_data(websocket))
   
     async for message in websocket:
         print(f"Received command: {message}")

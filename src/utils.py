@@ -35,6 +35,17 @@ def add_to_csv(data: list, csv_path: str, header: list):
         
         writer.writerow(data)
 
+def read_csv_file(file_name: str):
+    data = []
+    curr_directory = os.path.dirname(__file__)
+    file_path = curr_directory + f"../data/{file_name}"
+
+    with open(file_path, 'r', newline='') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        for row in csv_reader:
+            data.append(row)
+    return data
+
 def extract_specific_cells(csv_path, start_row, end_row, col):
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
