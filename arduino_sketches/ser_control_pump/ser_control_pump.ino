@@ -19,35 +19,67 @@ void setup() {
   delay(RELAY_DELAY);
   digitalWrite(RELAY_PIN, LOW);
   delay(RELAY_DELAY);
-  digitalWrite(RELAY_PIN, HIGH);
-  
+
+  digitalWrite(feedPumpPin, HIGH);
+  delay(RELAY_DELAY);
+//  digitalWrite(basePumpPin, HIGH);
+//  delay(RELAY_DELAY);
+//
+//  digitalWrite(feedPumpPin, LOW);
+//  delay(RELAY_DELAY);
+//  digitalWrite(basePumpPin, LOW);
+//  delay(RELAY_DELAY);
 }
 
 void loop() {
-  digitalWrite(feedPumpPin, HIGH);
-  digitalWrite(feedPumpPin, LOW);
-  digitalWrite(feedPumpPin, HIGH);
+//  digitalWrite(feedPumpPin, HIGH);
+//  digitalWrite(feedPumpPin, LOW);
+//  digitalWrite(feedPumpPin, HIGH);
 
   if (Serial.available() > 0) {
     char command = Serial.read(); // Read the incoming byte
     Serial.println(command);
     if (command == '1') {
-      digitalWrite(feedPumpPin, HIGH); // Turn on feed pump
-    } else if (command == '0') {
-      digitalWrite(feedPumpPin, LOW); // Turn off feed pump
-    } else if (command == '2') {
+      delay(RELAY_DELAY);
+      digitalWrite(feedPumpPin, LOW); // Turn on feed pump (for some reason setting the pin low turns pump on)
+      delay(RELAY_DELAY);
+    } 
+    
+    else if (command == '0') {
+      delay(RELAY_DELAY);
+      digitalWrite(feedPumpPin, HIGH); // Turn off feed pump
+      delay(RELAY_DELAY);
+    } 
+    
+    else if (command == '2') {
+      delay(RELAY_DELAY);
       digitalWrite(basePumpPin, LOW); // turn off base pump
-    } else if (command == '3') {
+      delay(RELAY_DELAY);
+    } 
+    
+    else if (command == '3') {
+      delay(RELAY_DELAY);
       digitalWrite(basePumpPin, HIGH); // turn on base pump
-    } else if (command == '4') {
+      delay(RELAY_DELAY);
+    } 
+    
+    else if (command == '4') {
       digitalWrite(bufferPumpPin, LOW); // turn off buffer pump
-    } else if (command == '5') {
+    } 
+    
+    else if (command == '5') {
       digitalWrite(bufferPumpPin, HIGH); // turn on buffer pump
-    } else if (command == '6') {
+    } 
+    
+    else if (command == '6') {
       digitalWrite(lysatePumpPin, LOW); // turn off lysate pump
-    } else if (command == '7') {
+    } 
+    
+    else if (command == '7') {
       digitalWrite(lysatePumpPin, HIGH); // turn on lysate pump
-    } else if (command == '8') {
+    } 
+    
+    else if (command == '8') {
       delay(RELAY_DELAY);
       digitalWrite(RELAY_PIN, LOW);
       delay(RELAY_DELAY);

@@ -89,6 +89,20 @@ class Controller:
         # self.__lysate_control(None)
         return last_weight
     
+    def do_feed_loop(self, data: dict):
+        """
+        DO only control loop for the controller. Loops indefinitely.
+        """
+        
+        if (data["do"] >= 60):
+                self.arduino.write(self.feed_pump.control(True).encode()) # turn off the pump
+        elif (data["do"] < 20):
+                self.arduino.write(self.feed_pump.control(False).encode()) # turn off the pump
+            
+
+        self.__pH_balance(data['ph']) # balances the pH
+
+    
     def stop_loop(self):
         print(f"before stopping loop: feed = {self.feed_pump.state}, pH = {self.pH_pump.state} ")
         state_feed = self.feed_pump.control(False)
@@ -104,12 +118,13 @@ class Controller:
     def toggle_feed(self):
         status = self.feed_pump.toggle()
         print(f"sent arduino: {status}")
-        # self.arduino.write(self.control_pump.toggle().encode())
+        self.arduino.write(status.encode())
+    
     
     def toggle_base(self):
         status = self.pH_pump.toggle()
         print(f"sent arduino: {status}")
-        # self.arduino.write(self.pH_pump.toggle().encode())
+        self.arduino.write(status.encode())
 
     def toggle_buffer(self):
         status = self.buffer_pump.toggle()
@@ -150,12 +165,12 @@ class Controller:
         if (ph < 6.7):
             # turn on pump
             print(f"sent arduino: {self.pH_pump.control(True).encode()}")
-            # self.arduino.write(self.pH_pump.control(True).encode())
+            self.arduino.write(self.pH_pump.control(True).encode())
 
         else:
             # turn off pump
             print(f"sent arduino: {self.pH_pump.control(False).encode()}")
-            # self.arduino.write(self.pH_pump.control(False).encode())
+            self.arduino.write(self.pH_pump.control(False).encode())
 
 if __name__ == "__main__":
     control = Controller()

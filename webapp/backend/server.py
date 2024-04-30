@@ -29,17 +29,21 @@ data = {
 INTERVAL = 15 # time in seconds between readings
 
 async def load_data(websocket):
-    data = read_csv_file("data.csv")
-    start_time = data[0][4]
+    data = read_csv_file("DO_ferementation_30-04-2024.csv")
+    start_time = data[1][6]
+    data = data[1:]
     
     for row in data:
-        row_dict = {"weight_buff": row[0],
-                     "weight_lys": row[1],
-                       "time": row[2]}
+        row_dict = {"feed_weight": row[0],
+                     "do": row[2],
+                     "ph_reading": row[3],
+                     "temp": row[4],
+                       "time": row[5]}
         
         added_data = configure_data(start_time, row_dict)
 
         await websocket.send(added_data)
+    return start_time
 
 async def collect_data(websocket, start_time, control):
     data_path = 'data/data.csv'  # Replace with the actual path
@@ -47,7 +51,7 @@ async def collect_data(websocket, start_time, control):
 
     while True:
         if status["control_loop_status"] != "control_on":
-            data = get_measurement()
+            data = get_measurement(start_time)
             control.arduino.write("8".encode())
             data = configure_data(start_time, data)
             print(f"from data collection: {data}")
@@ -61,11 +65,11 @@ async def collect_data(websocket, start_time, control):
 async def start_control(websocket, control, start_time):
     while True:
         print("loop controlled")
-        data = get_measurement()
+        data = get_measurement(start_time)
         control.arduino.write("8".encode())
         # expected_weight = control.ph_do_feed_loop(data)
         expected_weight = 0
-        control.loop2(data)
+        control.do_feed_loop(data)
         data = configure_data(start_time, data, expected_weight)
         print(f"from control: {data}")
         status["control_loop_status"] = "control_on"
@@ -83,15 +87,15 @@ async def send_status_update(websocket):
     await websocket.send(json.dumps({"type": "status", **status}))
 
 def configure_data(start_time, data, expected_weight = 0):
-    elapsed_time = data['time'] - start_time
+    # elapsed_time = data['time'] - start_time
     data = json.dumps({
         "type": 'data',
-        "buffer_weight": data['weight_buff'],
-        "lysate_weight": data['weight_lys'],
-        # "do": data['do'],
-        # "ph": data['ph_reading'],
-        # "temp": data['temp'],
-        "time": round(elapsed_time, 0),
+        "weight": data['feed_weight'],
+        # "base_weight": data['base_weight'],
+        "do": data['do'],
+        "ph": data['ph_reading'],
+        "temp": data['temp'],
+        "time": round(float(data['time']), 0),
         # "expected_weight": expected_weight,
     })
     return data
@@ -103,8 +107,24 @@ async def handler(websocket):
     start_time = time.time()
     control = Controller()
 
-    if (True):
-        asyncio.create_task(load_data(websocket))
+    if (False):
+        # start_time = asyncio.create_task(load_data(websocket))
+        data = read_csv_file("DO_ferementation_30-04-2024.csv")
+        start_time = float(data[1][6])
+        data = data[1:]
+        
+        for row in data:
+            row_dict = {"feed_weight": row[0],
+                        "do": row[2],
+                        "ph_reading": row[3],
+                        "temp": row[4],
+                        "time": row[5]}
+            
+            added_data = configure_data(start_time, row_dict)
+
+            await websocket.send(added_data)
+        
+
   
     async for message in websocket:
         print(f"Received command: {message}")
