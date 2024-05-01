@@ -24,14 +24,15 @@ data = {
     "feed_pump_status": "0",
     "base_pump_status": "2"
 }
-INTERVAL = 5 # time in seconds between readings
-async def collect_data(websocket, start_time):
+INTERVAL = 15 # time in seconds between readings
+async def collect_data(websocket, start_time, control):
     data_path = 'data/data.csv'  # Replace with the actual path
     headers = ['weight', 'do', 'ph', 'temp', 'time']
 
     while True:
         if status["control_loop_status"] != "control_on":
             data = get_measurement()
+            control.arduino.write("8".encode())
             data = configure_data(start_time, data)
             print(f"from data collection: {data}")
             await websocket.send(data)
@@ -45,6 +46,7 @@ async def start_control(websocket, control, start_time):
     while True:
         print("loop controlled")
         data = get_measurement()
+        control.arduino.write("8".encode())
         # expected_weight = control.ph_do_feed_loop(data)
         expected_weight = 0
         control.loop2(data)
@@ -70,11 +72,11 @@ def configure_data(start_time, data, expected_weight = 0):
         "type": 'data',
         "buffer_weight": data['weight_buff'],
         "lysate_weight": data['weight_lys'],
-        "do": data['do'],
-        "ph": data['ph_reading'],
-        "temp": data['temp'],
+        # "do": data['do'],
+        # "ph": data['ph_reading'],
+        # "temp": data['temp'],
         "time": round(elapsed_time, 0), 
-        "expected_weight": expected_weight,
+        # "expected_weight": expected_weight,
     })
     return data
 
@@ -90,7 +92,7 @@ async def handler(websocket):
 
         if message == "start_collection":
             if collection_task is None:
-                collection_task = asyncio.create_task(collect_data(websocket, start_time))
+                collection_task = asyncio.create_task(collect_data(websocket, start_time, control))
                 print("created collection task")
             print("data collection started")
 
@@ -124,7 +126,7 @@ async def handler(websocket):
 
         elif message == "start_control":
             if collection_task is None:
-                collection_task = asyncio.create_task(collect_data(websocket, start_time))
+                collection_task = asyncio.create_task(collect_data(websocket, start_time, control))
                 print("Data collection started as part of control loop.")
 
             # Start control if not already started
@@ -143,6 +145,8 @@ async def handler(websocket):
             status["control_loop_status"] = "control_off"
             status["base_pump_status"] = str(control.pH_pump.state)
             status["feed_pump_status"] = str(control.feed_pump.state)
+            status["buffer_pump_status"] = str(control.buffer_pump.state)
+            status["lysate_pump_status"] = str(control.lysate_pump.state)
             await send_status_update(websocket)
         elif message.startswith("tare_ph:"):
             # Split the message by the colon to get the value

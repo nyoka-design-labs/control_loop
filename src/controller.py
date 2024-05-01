@@ -7,7 +7,7 @@ import time
 INTERVAL = 60 # time in between readings
 
 # commands correspons to the arduino control sketch
-commands = {"switch_units": "5",
+commands = {"switch_units": "8",
             "speed_control": "3"}
 
 class Controller:
@@ -24,9 +24,9 @@ class Controller:
         self.start_feed = False
         self.pause_feed = False
 
-        t = extract_specific_cells('../../tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
+        # t = extract_specific_cells('../../tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
         
-        self.target = list(map(lambda x: float(x)*1000, t))
+        # self.target = list(map(lambda x: float(x)*1000, t))
         self.index = 0
     
     def loop(self, data: dict):
@@ -52,7 +52,7 @@ class Controller:
         self.__pH_balance(data['ph']) # balances the pH
 
     def loop2(self, data: dict):
-
+        # self.arduino.write(commands["switch_units"].encode())
         self.__buffer_control(data['weight_buff'])
         self.__lysate_control(data['weight_lys'])
 
@@ -93,9 +93,13 @@ class Controller:
         print(f"before stopping loop: feed = {self.feed_pump.state}, pH = {self.pH_pump.state} ")
         state_feed = self.feed_pump.control(False)
         ph_state = self.pH_pump.control(False)
+        buffer_state = self.buffer_pump.control(False)
+        lysate_state = self.lysate_pump.control(False)
         print(f"after stopping loop: feed = {state_feed}, pH = {ph_state} ")
-        # self.arduino.write(self.feed_pump.control(False).encode()) # turn OFF the feed pump
-        # self.arduino.write(self.pH_pump.control(False).encode()) # turn OFF the base pump
+        self.arduino.write(state_feed.encode()) # turn OFF the feed pump
+        self.arduino.write(ph_state.encode()) # turn OFF the base pump
+        self.arduino.write(buffer_state.encode()) # turn OFF the feed pump
+        self.arduino.write(lysate_state.encode()) # turn OFF the base pump
 
     def toggle_feed(self):
         status = self.feed_pump.toggle()
@@ -110,12 +114,12 @@ class Controller:
     def toggle_buffer(self):
         status = self.buffer_pump.toggle()
         print(f"sent arduino: {status}")
-        # self.arduino.write(self.buffer_pump.toggle().encode())
+        self.arduino.write(status.encode())
 
     def toggle_lysate(self):
         status = self.lysate_pump.toggle()
         print(f"sent arduino: {status}")
-        # self.arduino.write(self.lysate_pump.toggle().encode())
+        self.arduino.write(status.encode())
             
     def __get_target_weight(self) -> float:
         """
@@ -128,13 +132,15 @@ class Controller:
 
     def __buffer_control(self, weight: float):
         if (weight < 1200):
-            self.buffer_pump.control(True)
+            self.arduino.write(self.buffer_pump.control(True).encode())
+        else:
+            self.arduino.write(self.buffer_pump.control(False).encode())
 
     def __lysate_control(self, weight: float):
         if (weight < 250):
-            self.lysate_pump.control(False)
+            self.arduino.write(self.lysate_pump.control(False).encode())
         else:
-            self.lysate_pump.control(True)
+            self.arduino.write(self.lysate_pump.control(True).encode())
 
     def __pH_balance(self, ph: float):
         """
@@ -150,3 +156,9 @@ class Controller:
             # turn off pump
             print(f"sent arduino: {self.pH_pump.control(False).encode()}")
             # self.arduino.write(self.pH_pump.control(False).encode())
+
+if __name__ == "__main__":
+    control = Controller()
+    control.arduino.write(control.buffer_pump.control(True).encode())
+    time.sleep(2)
+    control.arduino.write(control.buffer_pump.control(False).encode())

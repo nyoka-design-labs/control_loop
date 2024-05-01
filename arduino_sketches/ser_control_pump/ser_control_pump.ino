@@ -2,6 +2,7 @@ const int feedPumpPin = 11; // Pump control pin
 const int basePumpPin = 10;
 const int bufferPumpPin = 9;
 const int lysatePumpPin = 8;
+const int RELAY_PIN = 12;
 
 const int RELAY_DELAY = 500;
 
@@ -12,9 +13,21 @@ void setup() {
   pinMode(bufferPumpPin, OUTPUT);
   pinMode(lysatePumpPin, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(RELAY_PIN, OUTPUT);
+
+  digitalWrite(RELAY_PIN, HIGH);
+  delay(RELAY_DELAY);
+  digitalWrite(RELAY_PIN, LOW);
+  delay(RELAY_DELAY);
+  digitalWrite(RELAY_PIN, HIGH);
+  
 }
 
 void loop() {
+  digitalWrite(feedPumpPin, HIGH);
+  digitalWrite(feedPumpPin, LOW);
+  digitalWrite(feedPumpPin, HIGH);
+
   if (Serial.available() > 0) {
     char command = Serial.read(); // Read the incoming byte
     Serial.println(command);
@@ -34,6 +47,16 @@ void loop() {
       digitalWrite(lysatePumpPin, LOW); // turn off lysate pump
     } else if (command == '7') {
       digitalWrite(lysatePumpPin, HIGH); // turn on lysate pump
+    } else if (command == '8') {
+      delay(RELAY_DELAY);
+      digitalWrite(RELAY_PIN, LOW);
+      delay(RELAY_DELAY);
+      digitalWrite(RELAY_PIN, HIGH);
+      delay(RELAY_DELAY);
+      // switch back to grams
+      digitalWrite(RELAY_PIN, LOW);
+      delay(RELAY_DELAY);
+      digitalWrite(RELAY_PIN, HIGH);
     }
   }
 }

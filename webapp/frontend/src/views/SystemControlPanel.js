@@ -10,8 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const SystemControlPanel = () => {
   const { websocket, systemData, currentMeasurements } = useData();
   
-  const controlLoopButton = useControlLoopButton();
-  const dataCollectionButton = useDataCollectionButton();
+  const controlLoopButton = useControlLoopButton("start_control", "stop_control");
+  const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection");
   const toggleFeedPumpButton = useTogglePumpButton("Toggle Feed Pump", "toggle_feed");
   const toggleBasePumpButton = useTogglePumpButton("Toggle Base Pump", "toggle_base");
   const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer");
