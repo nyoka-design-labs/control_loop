@@ -1,32 +1,30 @@
-import { Button, Tab, Tabs } from 'react-bootstrap';
+import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
 import { useTogglePumpButton, useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
-import { useFeedPumpStatus, useBasePumpStatus, useControlLoopStatus, useDataCollectionStatus, useBufferPumpStatus, useLysatePumpStatus } from '../components/StatusBoxes';
+import { useFeedPumpStatus, useBasePumpStatus, useControlLoopStatus, useDataCollectionStatus } from '../components/StatusBoxes';
 import { Chart } from '../components/Charts';
 import '../App.css';
 import 'chart.js/auto';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const SystemControlPanel = () => {
+const FermentationControlPanel = () => {
   const { systemData, currentMeasurements } = useData();
+  const fermentationLoopIdentifier = 'fermentation_loop';
   
-  const controlLoopButton = useControlLoopButton("start_control", "stop_control");
-  const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection");
-  const toggleFeedPumpButton = useTogglePumpButton("Toggle Feed Pump", "toggle_feed");
-  const toggleBasePumpButton = useTogglePumpButton("Toggle Base Pump", "toggle_base");
-  const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer");
-  const toggleLysatePumpButton = useTogglePumpButton("Toggle Lysate Pump", "toggle_lysate");
+  const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", fermentationLoopIdentifier);
+  const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", fermentationLoopIdentifier, isControlLoopRunning);
+  const toggleFeedPumpButton = useTogglePumpButton("Toggle Feed Pump", "toggle_feed", fermentationLoopIdentifier);
+  const toggleBasePumpButton = useTogglePumpButton("Toggle Base Pump", "toggle_base", fermentationLoopIdentifier);
+  
 
   const feedPumpStatus = useFeedPumpStatus();
   const basePumpStatus = useBasePumpStatus();
-  const bufferPumpStatus = useBufferPumpStatus();
-  const lysatePumpStatus = useLysatePumpStatus();
   const controlLoopStatus = useControlLoopStatus();
   const dataCollectionStatus = useDataCollectionStatus();
 
   return (
     <div className="App container mt-5">
-      <h1>System Control Panel</h1>
+      <h1>Fermentaion Control Panel</h1>
       <div className="mb-3">
         <div className="button-status-container">
           {dataCollectionButton}
@@ -62,14 +60,6 @@ const SystemControlPanel = () => {
       <div className="right-aligned-buttons">
         <div className="mb-3">
           <div className="button-status-container">
-            {toggleBufferPumpButton}
-            {bufferPumpStatus}
-          </div>
-          <div className="button-status-container">
-            {toggleLysatePumpButton}
-            {lysatePumpStatus}
-          </div>
-          <div className="button-status-container">
             {toggleFeedPumpButton}
             {feedPumpStatus}
           </div>
@@ -87,4 +77,4 @@ const SystemControlPanel = () => {
   );
 };
 
-export default SystemControlPanel;
+export default FermentationControlPanel;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Offcanvas } from 'react-bootstrap';
-import SystemControlPanel from './views/SystemControlPanel';
+import FermentationControlPanel from './views/FermentationControlPanel';
 import ConcentrationControlPanel from './views/ConcentrationControlPanel';
 import Devices from './views/Devices';
 import { DataProvider } from './DataContext';
@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
     const [showOffcanvas, setShowOffcanvas] = useState(false);
-    const [activeTab, setActiveTab] = useState('SystemControl');
+    const [activeTab, setActiveTab] = useState('FermentationControl');
 
     const selectTab = (tabName) => {
         setActiveTab(tabName);
@@ -25,13 +25,13 @@ function App() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <div className="nav flex-column">
-                            <Button variant="dark" onClick={() => selectTab('SystemControl')}>System Control Panel</Button>
+                            <Button variant="dark" onClick={() => selectTab('FermentationControl')}>Fermentaion Control Panel</Button>
                             <Button variant="dark" onClick={() => selectTab('devices')}>Devices</Button>
                             <Button variant="dark" onClick={() => selectTab('ConcentrationControlPanel')}>Concentration Control Panel</Button>                        </div>
                     </Offcanvas.Body>
                 </Offcanvas>
                 <div className="main-content mt-4">
-                    {activeTab === 'SystemControl' && <SystemControlPanel />}
+                    {activeTab === 'FermentationControl' && <FermentationControlPanel />}
                     {activeTab === 'devices' && <Devices />}
                     {activeTab === 'ConcentrationControlPanel' && <ConcentrationControlPanel />}
                 </div>
