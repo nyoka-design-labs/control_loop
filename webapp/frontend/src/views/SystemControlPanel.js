@@ -8,7 +8,7 @@ import 'chart.js/auto';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SystemControlPanel = () => {
-  const { websocket, systemData, currentMeasurements } = useData();
+  const { systemData, currentMeasurements } = useData();
   
   const controlLoopButton = useControlLoopButton("start_control", "stop_control");
   const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection");
@@ -23,11 +23,6 @@ const SystemControlPanel = () => {
   const lysatePumpStatus = useLysatePumpStatus();
   const controlLoopStatus = useControlLoopStatus();
   const dataCollectionStatus = useDataCollectionStatus();
-
-  const tarePH = () => {
-    const phValue = document.getElementById('ph').value;
-    websocket && websocket.send(`tare_ph:${phValue}`);
-  };
 
   return (
     <div className="App container mt-5">
@@ -58,9 +53,6 @@ const SystemControlPanel = () => {
         <Tab eventKey="ph" title="pH">
           <div className="mb-3">
             <h3>pH: {currentMeasurements.ph}</h3>
-            
-            <input type='text' id='ph'/>
-            <Button variant="primary" onClick={tarePH} className="custom-padding">Tare pH</Button>
           </div>
           <Chart systemData={systemData} label="PH" color="rgb(75, 192, 192)" 
           expectedDataKey="PH" expectedColor="rgb(75, 192, 192)"/>
