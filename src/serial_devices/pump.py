@@ -6,40 +6,42 @@ class Pump:
     Controls the pump connected to an Arduino.
     """
 
-    def __init__(self, type = 'ph', port: str='/dev/ttyACM0', baudrate: int=57600):
+    def __init__(self, type: str):
+        # Map each pump type to its off state code
+        state_codes = {
+            "feed": 0,   # 0=OFF, 1=ON
+            "ph": 2,     # 2=OFF, 3=ON
+            "buffer": 4, # 4=OFF, 5=ON
+            "lysate": 6  # 6=OFF, 7=ON
+        }
+        if type not in state_codes:
+            raise ValueError("Invalid pump mode")
 
-        # if (type != "do" and type != "ph"):
-        #     raise ValueError("Invalid sensor type")
-        
+        self.state = state_codes[type]
+        self.mode = type
 
-        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
-        self.state = 0 # 0=OFF, 1=ON
-        # self.mode = type
-
-    def control(self, turn_on):
+    def control(self, turn_on: bool) -> str:
         """
-        Sends command to Arduino to control the pump.
+        Adjusts the pump state based on the command to turn on or off.
         """
-        self.state = turn_on
-        command = '1' if turn_on else '0'
-        self.arduino.write(command.encode())
-        # if self.mode == 'do':
-           
-        # if self.mode == 'ph':
-        #     self.state = turn_on
-        #     command = '3' if turn_on else '4'
-        #     self.arduino.write(command.encode())
+
+        if turn_on and self.state % 2 == 0:  # Check if current state is even (OFF), then turn ON
+            self.state += 1
+        elif not turn_on and self.state % 2 != 0:  # Check if current state is odd (ON), then turn OFF
+            self.state -= 1
+
+        return str(self.state)
     
-    def toggle(self) -> None:
+    def toggle(self) -> str:
         """
         Changes state of pump
         """
-
-        self.arduino.write(str(not self.state).encode())
+        self.state = self.state ^ 1 # XOR to toggle state
+        return str(self.state)
 
 if __name__ == "__main__":
     # example usage of Pump class
-    pump = Pump()
+    pump = Pump(type="feed")
 
     try:
         while True:

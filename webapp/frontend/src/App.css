@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -28,6 +28,35 @@
   color: #61dafb;
 }
 
+/* Styles for sidebar button spacing */
+.offcanvas-body .btn {
+  margin-bottom: 10px; /* Adds space between buttons */
+  width: 100%; /* Optional: Makes buttons full width */
+}
+.custom-padding {
+  padding: 10px 20px; /* Example padding: 10px top and bottom, 20px left and right */
+}
+
+/* App.css */
+.right-aligned-buttons {
+  position: absolute;
+  right: 0;
+  top: 50px; /* Adjust based on your header height */
+}
+
+.right-aligned-buttons .btn {
+  display: block; /* Stack buttons vertically */
+  margin-bottom: 10px; /* Space out buttons */
+}
+
+@media (max-width: 576px) {
+  .right-aligned-buttons {
+    position: static;
+    margin-top: 20px;
+  }
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +64,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.button-status-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Or any other value for space between rows */
+}
+
+.status-box {
+  border: 3px solid black; /* Adds a black border around the status box */
+  color: inherit; /* Uses the color set dynamically in the component */
+  font-size: 16px; /* Sets a larger font size */
+  font-weight: bold; /* Makes the font bold */
+  padding: 5px; /* Adds some padding inside the status box */
+  margin: 10px; /* Adds slight space around the box */
+  display: inline-block; /* Ensures the box does not stretch */
 }

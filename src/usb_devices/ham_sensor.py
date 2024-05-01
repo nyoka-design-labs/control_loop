@@ -2,65 +2,21 @@ import pymodbus.client as ModbusClient
 import struct
 import time
 
-class Sensor:
+class _Sensor:
     """
     Class representing the Hamilton sensors.
     """
 
-    def __init__(self, type: str, port):
+    def __init__(self, port: str):
         """
         Initialize the sensor.
         """
 
-        if (type != "do" and type != "ph"):
-            raise ValueError("Invalid sensor type")
-
         # initialie the Modbus client configuration
         self.client = ModbusClient.ModbusSerialClient(method='rtu', port=port, baudrate=19200, stopbits=2, bytesize=8, parity='N')
-
-        self.mode = type
-        self.tare_constant = 0
+        self.callibration_func = lambda x: x # default callibration function (ie. no callibration)
 
         self.client.connect()
-
-    def get_reading(self) -> float:
-        """
-        Returns adjusted reading for tare.
-        """
-
-        if (self.mode != "ph"): return -1
-
-        return self.get_data() + self.tare_constant
-
-    def get_data(self) -> float:
-        """
-        Read data from the sensor.
-        """
-
-        data = None
-
-        if (self.mode == 'do'):
-            # Read holding registers from the sensor
-            res = self.client.read_holding_registers(address=2089, count=10, slave=1)
-
-            try: # checks if probe is connected
-                # Combine the two registers to form a hex value
-                hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-                data = self.__convert_raw_value(str(hex_value))
-            except AttributeError:
-                data = 0
-
-            # Convert the hex value to a float value
-                
-        elif (self.mode == 'ph'):
-            res = self.client.read_holding_registers(address=2089, count=10, slave=1)
-
-            hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-
-            data = self.__convert_raw_value(str(hex_value))
-
-        # Round the data to 3 decimal places and return it
-        return round(data, 3)
     
     def get_temp(self) -> float:
         """
@@ -74,7 +30,7 @@ class Sensor:
         hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
 
         # Convert the hex value to a float value
-        data = self.__convert_raw_value(str(hex_value))
+        data = self.convert_raw_value(str(hex_value))
 
         return round(data, 3)
     
@@ -90,7 +46,7 @@ class Sensor:
     def close(self):
         self.client.close()
 
-    def __convert_raw_value(self, value: str) -> float:
+    def convert_raw_value(self, value: str) -> float:
         """
         Convert raw hex value to float using IEEE 754 standard.
         """
@@ -102,16 +58,111 @@ class Sensor:
         # Unpack the bytes to a float
         float_value = struct.unpack('>f', bytes_value)[0]
         return float_value
+    
+class DO(_Sensor):
+    """
+    Class representing the dissolved oxygen sensor.
+    """
+
+    def __init__(self, port):
+        """
+        Initialize the sensor.
+        """
+
+        super().__init__(port)
+        self.callibration_func = lambda x: x
+
+    def get_do(self) -> float:
+        """
+        Read DO from the sensor.
+        """
+
+        return round(self.callibration_func(self.__get_raw_do()), 3)
+    
+    def callibrate(self) -> None:
+        """
+        Calibrate DO sensor by adding a constant offset to be at 100%.
+        """
+
+        diff = 100 - self.__get_raw_do()
+
+        self.callibration_func = lambda x: x + diff
+    
+    def __get_raw_do(self) -> float:
+        """
+        Returns the raw DO value.
+        """
+
+        data = None
+
+        # Read holding registers from the sensor
+        res = self.client.read_holding_registers(address=2089, count=10, slave=1)
+
+        try: # checks if probe is connected
+            # Combine the two registers to form a hex value
+            hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+            data = self.convert_raw_value(str(hex_value))
+        except AttributeError:
+            data = 0
+
+        # Convert the hex value to a float value
+        return data
+    
+class PH(_Sensor):
+    """
+    Class representing the pH sensor.
+    """
+
+    def __init__(self, port):
+        """
+        Initialize the sensor.
+        """
+
+        super().__init__(port)
+        
+    def get_ph(self) -> float:
+        """
+        Read data from the sensor.
+        """
+    
+        return round(self.callibration_func(self.__get_raw_ph()), 3)
+    
+    def callibrate(self, setpoint4: int, setpoint7: int) -> None:
+        """
+        Calibrate the sensor using a linear function (y = b0 + b1*x).
+        """
+
+        b1 = (7 - 4) / (setpoint7 - setpoint4) # slope paramater
+
+        b0 = 4 - b1*setpoint4 # intercept parameter
+
+        self.callibration_func = lambda x: b0 + b1*x
+
+    def __get_raw_ph(self) -> float:
+        """
+        Returns the raw pH value.
+        """
+
+        # Read holding registers from the sensor
+        res = self.client.read_holding_registers(address=2089, count=10, slave=1)
+
+        # Combine the two registers to form a hex value
+        hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+
+        # Convert the hex value to a float value
+        data = self.convert_raw_value(str(hex_value))
+
+        return data
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    sensor = Sensor(type="ph")
+    sensor = DO(port="/dev/ttyUSB0")
     sensor.client.connect()
 
     try:
         while True:
-            print(f"Data: {sensor.get_data()}, Temperature: {sensor.get_temp()}")
-            time.sleep(1)
+            print(f"Data: {sensor.get_do()}, Temperature: {sensor.get_temp()}")
+            time.sleep(3)
     except KeyboardInterrupt:
         sensor.close()
         print("\nProgram terminated")

@@ -1,3 +1,4 @@
+import serial
 from serial_devices.pump import Pump
 from devices import get_measurement
 from utils import *
@@ -6,7 +7,7 @@ import time
 INTERVAL = 60 # time in between readings
 
 # commands correspons to the arduino control sketch
-commands = {"switch_units": "2",
+commands = {"switch_units": "8",
             "speed_control": "3"}
 
 class Controller:
@@ -14,44 +15,150 @@ class Controller:
     Represents a controller in the control loop.
     """
 
-    def __init__(self):
-        self.pump = Pump()
+    def __init__(self, port: str='/dev/ttyACM0', baudrate: int=9600):
+        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        self.feed_pump = Pump(type="feed")
+        self.pH_pump = Pump(type="ph")
+        self.buffer_pump = Pump(type="buffer")
+        self.lysate_pump = Pump(type="lysate")
+        self.start_feed = False
+        self.pause_feed = False
+
+        # t = extract_specific_cells('../../tests/feed_data_v0-2_u-0.1_m0-1000.csv', 6, 1217, 4)
+        
+        # self.target = list(map(lambda x: float(x)*1000, t))
+        self.index = 0
     
-    def loop(self):
+    def loop(self, data: dict):
         """
         Main control loop for the controller. Loops indefinitely.
         """
 
-        start_time = time.time()
+        # self.arduino.write(commands["switch_units"].encode()) # keeps scale on
 
-        while True:
-            self.pump.arduino.write(commands["switch_units"].encode()) # Switch units on the scale to keep it on
+        if (data["ph"] > 6.75):
+            self.start_feed = True
 
-            data = get_measurement()
+        if (self.start_feed): # starts only when pH reaches target
+            current_weight = data["weight"]
+            last_weight = last_weight - self.__get_target_weight()
+            print(last_weight)
 
-            elapsed_time = data['time'] - start_time
+            if (current_weight >= last_weight):
+                self.arduino.write(self.feed_pump.control(True).encode()) # turn on the pump
+            elif (current_weight < last_weight):
+                self.arduino.write(self.feed_pump.control(False).encode()) # turn off the pump
 
-            expected_weight = exponential_func(elapsed_time+INTERVAL, 0) # weight at the next interval
-            weight_difference = expected_weight - data['weight']
+        self.__pH_balance(data['ph']) # balances the pH
 
-            if data['weight'] >= expected_weight:
-                self.pump.control(True) # Turn on the pump
-            else:
-                self.pump.control(False) # Turn off the pump
+    def loop2(self, data: dict):
+        # self.arduino.write(commands["switch_units"].encode())
+        self.__buffer_control(data['weight_buff'])
+        self.__lysate_control(data['weight_lys'])
 
-            # Wait for the next interval before the next iteration
-            time.sleep(INTERVAL)
-
-    def pH_loop(self, ph: float):
+    def ph_do_feed_loop(self, data: dict):
         """
-        Main control loop for the pH controller. Loops indefinitely.
+        Main control loop for the controller. Loops indefinitely.
+        """
+
+        # self.arduino.write(commands["switch_units"].encode()) # keeps scale on
+        
+        if (data["ph"] > 6.75):
+            self.start_feed = True
+
+        if (self.start_feed): # starts only when pH reaches target and Do is above 60
+            if (data["do"] >= 60):
+                self.pause_feed = False
+            elif (data["do"] < 20):
+                self.pause_feed = True
+            print(f"In feed loop: pause{self.pause_feed}, feed{self.start_feed}")
+            if (self.pause_feed == False):
+                last_weight = self.__get_target_weight()
+                current_weight = data["weight"]
+                print(f"target_weight: {last_weight})")
+
+                if (current_weight >= last_weight):
+                    print(f"sent arduino keep feed on: {self.feed_pump.control(True).encode()}")
+                    # self.arduino.write(self.control_pump.control(True).encode()) # turn on the pump
+                elif (current_weight < last_weight):
+                    print(f"sent arduino keep feed off: {self.feed_pump.control(False).encode()}")
+                    # self.arduino.write(self.control_pump.control(False).encode()) # turn off the pump
+
+        # self.__pH_balance(data['ph']) # balances the pH
+        # self.__buffer_control(None)
+        # self.__lysate_control(None)
+        return last_weight
+    
+    def stop_loop(self):
+        print(f"before stopping loop: feed = {self.feed_pump.state}, pH = {self.pH_pump.state} ")
+        state_feed = self.feed_pump.control(False)
+        ph_state = self.pH_pump.control(False)
+        buffer_state = self.buffer_pump.control(False)
+        lysate_state = self.lysate_pump.control(False)
+        print(f"after stopping loop: feed = {state_feed}, pH = {ph_state} ")
+        self.arduino.write(state_feed.encode()) # turn OFF the feed pump
+        self.arduino.write(ph_state.encode()) # turn OFF the base pump
+        self.arduino.write(buffer_state.encode()) # turn OFF the feed pump
+        self.arduino.write(lysate_state.encode()) # turn OFF the base pump
+
+    def toggle_feed(self):
+        status = self.feed_pump.toggle()
+        print(f"sent arduino: {status}")
+        # self.arduino.write(self.control_pump.toggle().encode())
+    
+    def toggle_base(self):
+        status = self.pH_pump.toggle()
+        print(f"sent arduino: {status}")
+        # self.arduino.write(self.pH_pump.toggle().encode())
+
+    def toggle_buffer(self):
+        status = self.buffer_pump.toggle()
+        print(f"sent arduino: {status}")
+        self.arduino.write(status.encode())
+
+    def toggle_lysate(self):
+        status = self.lysate_pump.toggle()
+        print(f"sent arduino: {status}")
+        self.arduino.write(status.encode())
+            
+    def __get_target_weight(self) -> float:
+        """
+        Returns the target weight for the current iteration.
+        """
+        t = self.target[self.index]
+        self.index += 1
+        # return t
+        return 1000
+
+    def __buffer_control(self, weight: float):
+        if (weight < 1200):
+            self.arduino.write(self.buffer_pump.control(True).encode())
+        else:
+            self.arduino.write(self.buffer_pump.control(False).encode())
+
+    def __lysate_control(self, weight: float):
+        if (weight < 250):
+            self.arduino.write(self.lysate_pump.control(False).encode())
+        else:
+            self.arduino.write(self.lysate_pump.control(True).encode())
+
+    def __pH_balance(self, ph: float):
+        """
+        Main control loop for the pH controller.
         """
     
-
         if (ph < 6.7):
             # turn on pump
-            self.pump.control(True)
+            print(f"sent arduino: {self.pH_pump.control(True).encode()}")
+            # self.arduino.write(self.pH_pump.control(True).encode())
+
         else:
             # turn off pump
-            self.pump.control(False)
-        
+            print(f"sent arduino: {self.pH_pump.control(False).encode()}")
+            # self.arduino.write(self.pH_pump.control(False).encode())
+
+if __name__ == "__main__":
+    control = Controller()
+    control.arduino.write(control.buffer_pump.control(True).encode())
+    time.sleep(2)
+    control.arduino.write(control.buffer_pump.control(False).encode())

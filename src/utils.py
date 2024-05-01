@@ -1,5 +1,7 @@
 import csv
+import os
 import math
+import serial.tools.list_ports
 
 def exponential_func(t: int, c1: int) -> float:
     """
@@ -21,9 +23,16 @@ def exponential_func(t: int, c1: int) -> float:
 
     return v2, c2
 
-def add_to_csv(data: list, csv_path: str):
-    with open('first_run.csv', 'a', newline='') as csvfile:
+def add_to_csv(data: list, csv_path: str, header: list):
+    file_exists = os.path.isfile(csv_path)
+    
+    with open(csv_path, 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
+        
+        # If the file is being created, write the header first
+        if not file_exists:
+            writer.writerow(header)
+    
         writer.writerow(data)
 
 def extract_specific_cells(csv_path, start_row, end_row, col):
@@ -35,6 +44,13 @@ def extract_specific_cells(csv_path, start_row, end_row, col):
         # Extract the data from the specific column
         data = [row[col - 1] for row in reader][:(end_row - start_row + 1)] 
     return data
+
+def func(vid, pid):
+    ports = serial.tools.list_ports.comports()
+
+    for port in ports:
+        if port.vid == vid and port.pid == pid:
+            return port.device
 
 if __name__ == "__main__":
     # import matplotlib.pyplot as plt
@@ -52,6 +68,7 @@ if __name__ == "__main__":
     # plt.ylabel('Volume (v2)')
     # plt.title('Exponential Function')
     # plt.show()
-    d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
-    data = list(map(lambda x: float(x)*1000, d))
-    print(sum(data))
+    # d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
+    # data = list(map(lambda x: float(x)*1000, d))
+    # print(sum(data))
+    print(func(0x0922, 0x8003))
