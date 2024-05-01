@@ -34,7 +34,7 @@ def add_to_csv(data: list, file_name: str, header: list):
         # If the file is being created, write the header first
         if not file_exists:
             writer.writerow(header)
-        
+    
         writer.writerow(data)
 
 def read_csv_file(file_name: str):
