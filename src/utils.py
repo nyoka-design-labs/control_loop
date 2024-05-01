@@ -35,8 +35,19 @@ def add_to_csv(data: list, file_name: str, header: list):
         # If the file is being created, write the header first
         if not file_exists:
             writer.writerow(header)
-        
+    
         writer.writerow(data)
+
+def read_csv_file(file_name: str):
+    data = []
+    curr_directory = os.path.dirname(__file__)
+    file_path = curr_directory + f"/../data/{file_name}"
+
+    with open(file_path, 'r', newline='') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        for row in csv_reader:
+            data.append(row)
+    return data
 
 def extract_specific_cells(csv_path, start_row, end_row, col):
     with open(csv_path, 'r') as file:
@@ -50,6 +61,7 @@ def extract_specific_cells(csv_path, start_row, end_row, col):
 
 def find_usb_serial_port(vendor_id, product_id):
     ports = serial.tools.list_ports.comports()
+
     for port in ports:
         if port.vid == vendor_id and port.pid == product_id:
             return port.device
@@ -71,6 +83,7 @@ if __name__ == "__main__":
     # plt.ylabel('Volume (v2)')
     # plt.title('Exponential Function')
     # plt.show()
-    d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
-    data = list(map(lambda x: float(x)*1000, d))
-    print(sum(data))
+    # d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
+    # data = list(map(lambda x: float(x)*1000, d))
+    # print(sum(data))
+    print(find_usb_serial_port(0x0922, 0x8003))

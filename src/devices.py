@@ -5,36 +5,38 @@ from utils import add_to_csv
 import datetime
 
 # initialize devices
-scale1 = USS_Scale(port="/dev/ttyUSB2")
-scale2 = USS_Scale(port="/dev/ttyUSB3")
+scale2 = USS_Scale(port="/dev/ttyUSB0")
+scale1 = Scale(pid=0x8003, vid=0x0922)
 # scale3 = USS_Scale(port="/dev/ttyUSB4")
-do_sensor = DO(port="/dev/ttyUSB0")
+do_sensor = DO(port="/dev/ttyUSB2")
 ph_sensor = PH(port="/dev/ttyUSB1")
 
-i = 0
-
-def get_measurement():
+def get_measurement(start_time: time.time):
     """
     Get the current measurement from all the devices.
     """
-    
+  
     # get data from devices
-    weight_buff = scale1.get_weight()
-    weight_lys = scale2.get_weight()
+    feed_weight = scale1.get_weight()
+    base_weight = scale2.get_weight()
 
-    do = do_sensor.get_do()
+    # do = do_sensor.get_do()
+    do = 60
     ph_reading = ph_sensor.get_tared_ph()
     ph = ph_sensor.get_ph()
     temperature = ph_sensor.get_temp()
 
-    t = time.time()
+    t = time.time()-start_time
+
+    add_to_csv([feed_weight, base_weight, do, ph, temperature, t, start_time], "DO_ferementation_30-04-2024.csv", header = ['feed_weight', 'base_weight','do', 'ph', 'temperature', 'time', 'start_time'])
+
 
     add_to_csv([datetime.datetime.now(), weight_buff, weight_lys, do, ph, temperature], "data.csv", ['time', 'weight_buff', 'weight_lys', 'do', 'ph', 'temp'])
 
     return {
         'time': t, # time of measurement
-        'weight_buff': weight_buff,
-        'weight_lys': weight_lys,
+        'feed_weight': feed_weight,
+        'base_weight': base_weight,
         'do': do,
         'ph_reading': ph_reading, # ph reading adjusts true value for tare
         'ph': ph,

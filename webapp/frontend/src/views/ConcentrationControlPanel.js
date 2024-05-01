@@ -1,16 +1,16 @@
-import { Button, Tab, Tabs } from 'react-bootstrap';
+import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
 import { useTogglePumpButton, useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
-import { useFeedPumpStatus, useBasePumpStatus, useControlLoopStatus, useDataCollectionStatus, useBufferPumpStatus, useLysatePumpStatus } from '../components/StatusBoxes';
+import { useControlLoopStatus, useDataCollectionStatus, useBufferPumpStatus, useLysatePumpStatus } from '../components/StatusBoxes';
 import { Chart } from '../components/Charts';
 import '../App.css';
 import 'chart.js/auto';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ConcentrationControlPanel = () => {
-  const { websocket, systemData, currentMeasurements } = useData();
+  const { systemData, currentMeasurements } = useData();
   
-  const controlLoopButton = useControlLoopButton("start_concentration_control", "stop_concentration_control");
+  const controlLoopButton = useControlLoopButton("start_control", "stop_control");
   const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection");
   const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer");
   const toggleLysatePumpButton = useTogglePumpButton("Toggle Lysate Pump", "toggle_lysate");

@@ -24,6 +24,7 @@ class Pump:
         """
         Adjusts the pump state based on the command to turn on or off.
         """
+
         if turn_on and self.state % 2 == 0:  # Check if current state is even (OFF), then turn ON
             self.state += 1
         elif not turn_on and self.state % 2 != 0:  # Check if current state is odd (ON), then turn OFF
