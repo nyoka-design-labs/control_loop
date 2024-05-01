@@ -119,49 +119,13 @@ class PH(_Sensor):
         """
 
         super().__init__(port)
-        self.tare_constant = 0
-        # self.i = 0
-        # self.ph_data = [6.5, 6.75, 6.71, 6.69, 6.70, ]/
+        
     def get_ph(self) -> float:
         """
         Read data from the sensor.
         """
-        # ph = self.ph_data[self.i]
-        # self.i += 1
+    
         return round(self.callibration_func(self.__get_raw_ph()), 3)
-        # return ph
-    
-    def get_tared_ph(self) -> float:
-        """
-        Returns adjusted reading for tare.
-        """
-        data = self.callibration_func(self.__get_raw_ph() + self.tare_constant)
-
-        return round(data, 3)
-    
-    def get_temp(self) -> float:
-        """
-        Read temperature data from the sensor.
-        """
-
-        # Read holding registers from the sensor
-        res = self.client.read_holding_registers(address=2409, count=10, slave=1)
-
-        # Combine the two registers to form a hex value
-        hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-
-        # Convert the hex value to a float value
-        data = self.convert_raw_value(str(hex_value))
-
-        return round(data, 3)
-    
-    def update_tare_constant(self, tare: float) -> None:
-        """
-        Updates the tare constant.
-        """
-
-        curr_reading = self.__get_raw_ph()
-        self.tare_constant = tare - curr_reading
     
     def callibrate(self, setpoint4: int, setpoint7: int) -> None:
         """

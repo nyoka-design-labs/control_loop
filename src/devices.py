@@ -10,8 +10,6 @@ scale2 = USS_Scale(port="/dev/ttyUSB3")
 do_sensor = DO(port="/dev/ttyUSB0")
 ph_sensor = PH(port="/dev/ttyUSB1")
 
-i = 0
-
 def get_measurement():
     """
     Get the current measurement from all the devices.

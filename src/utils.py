@@ -31,7 +31,7 @@ def add_to_csv(data: list, csv_path: str, header: list):
         # If the file is being created, write the header first
         if not file_exists:
             writer.writerow(header)
-        
+    
         writer.writerow(data)
 
 def extract_specific_cells(csv_path, start_row, end_row, col):
