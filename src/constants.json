@@ -51,8 +51,8 @@
                 "dymo_scale"
             ],
             "data_type": [
-                "lysate_weight",
-                "buffer_weight"
+                "weight_buff",
+                "weight_lys"
             ]
         },
         {

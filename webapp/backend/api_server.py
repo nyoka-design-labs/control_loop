@@ -4,7 +4,25 @@ import json
 from manager_server import execute_command
 import manager_server
 
-async def handle_client(websocket, path):
+async def handle_client(websocket):
+
+    if (False):
+        # start_time = asyncio.create_task(load_data(websocket))
+        data = read_csv_file("DO_ferementation_30-04-2024.csv")
+        start_time = float(data[1][6])
+        data = data[1:]
+        
+        for row in data:
+            row_dict = {"feed_weight": row[0],
+                        "do": row[2],
+                        "ph_reading": row[3],
+                        "temp": row[4],
+                        "time": row[5]}
+            
+            added_data = configure_data(start_time, row_dict)
+
+            await websocket.send(added_data)
+
     async for message in websocket:
         data = json.loads(message)
         command = data.get("command")
