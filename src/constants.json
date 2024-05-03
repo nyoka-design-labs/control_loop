@@ -10,7 +10,7 @@
             "name": "uss_scale",
             "product_id": "12345",
             "vendor_id": "67890",
-            "port": "/dev/ttyUSB0"
+            "port": ""
         },
         {
             "name": "uss_scale",
@@ -49,6 +49,10 @@
             "devices": [
                 "uss_scale",
                 "dymo_scale"
+            ],
+            "data_type": [
+                "lysate_weight",
+                "buffer_weight"
             ]
         },
         {

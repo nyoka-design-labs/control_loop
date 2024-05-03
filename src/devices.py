@@ -4,6 +4,7 @@ import time
 from utils import add_to_csv
 import json
 import serial.tools.list_ports
+from exceptions import SerialPortNotFoundException
 
 # initialize devices
 # scale2 = USS_Scale(port="/dev/ttyUSB0")
@@ -25,18 +26,34 @@ class DeviceManager:
     """
 
     def __init__(self, loop_id: str) -> None:
-        # names = self.__get_all_device_names()
+        self.loop_id = loop_id
+        names = self.__get_loop_devices()
 
-        # self.devices = list(filter(lambda x: x in names, devs))
-        # self.loop_id = loop_id
-        # self.devices = self.__get_loop_devices()
-        # map(lambda x: self.__find_usb_serial_port(x), self.devices)
+        try:
+            # finds the serial port for each device and creates dict
+            dev2port = {name: self.__find_usb_serial_port(name) for name in names}
+        except SerialPortNotFoundException as e:
+            print(e)
+            return
+
+        self.devices = []
+        for name, port in dev2port.items():
+            # calling all device constructors
+            self.devices.append(DEV_CONTRUCTORS[name](port))
+
         print(self.__get_occupied_ports())
 
     def get_measurement(self):
-        pass
+        """
+        Get the current measurement from all the devices.
+        """
 
-    def __find_usb_serial_port(self, device_name: str) -> str:
+        # collect data from each device
+        devices_data = list(map(lambda dev: dev(), self.devices))
+
+        return dict(zip(self.__get_loop_data_type(), devices_data))
+
+    def __find_usb_serial_port(self, device_name: str) -> str | SerialPortNotFoundException:
         """
         Returns the serial port to use for the device.
         """
@@ -46,24 +63,23 @@ class DeviceManager:
         f = open("constants.json")
         devs = json.load(f)['devices']
 
-        for dev in devs:
+        for idx, dev in enumerate(devs):
             if dev['name'] == device_name and dev["port"] == "":
                 # find active serial ports
                 ser_ports = set(filter(lambda x: x.vid == dev['vid'] and x.pid == dev['pid'], ports))
                 # find occupied ports
                 occ_ports = self.__get_occupied_ports()
-                # choose port that is not beign used
+                # choose port that is not being used
                 chosen_port = (ser_ports - occ_ports).pop()
-                break
+                # update the current device port
+                self.update_device_port(chosen_port, idx)
+                return chosen_port
 
-        # for port in ports:
-        #     if port.vid == vendor_id and port.pid == product_id:
-        #         return port.device
-        return None
+        raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
 
     def __get_loop_devices(self) -> list:
         """
-        Gets the devices in the loop.
+        Gets the devices in the specified loop.
         """
 
         f = open("constants.json")
@@ -71,6 +87,16 @@ class DeviceManager:
         f.close()
 
         return list(filter(lambda x: x['name'] == self.loop_id, loops))[0]['devices']
+    
+    def __get_loop_data_type(self) -> list:
+        """
+        """
+
+        f = open("constants.json")
+        loops = json.load(f)['loop']
+        f.close()
+
+        return list(filter(lambda x: x['name'] == self.loop_id, loops))[0]['data_type']
 
     def __get_all_device_names(self) -> set:
         """
@@ -83,7 +109,7 @@ class DeviceManager:
 
         return [devs[i]['name'] for i in range(len(devs))]
     
-    def __get_occupied_ports(self) -> list:
+    def __get_occupied_ports(self) -> set:
         """
         """
 
@@ -91,17 +117,15 @@ class DeviceManager:
         devs = json.load(f)['devices']
         f.close()
 
-        return list(map(lambda x: x['port'], filter(lambda x: x['port'] != "", devs)))
+        return set(map(lambda x: x['port'], filter(lambda x: x['port'] != "", devs)))
     
-    def update_device_port(self):
-        with open("test.json", "r+") as f:
+    def update_device_port(self, port: str, idx: int) -> None:
+        with open("constants.json", "r+") as f:
             file_data = json.load(f)
-            # file_data["person"].append({"name": "Mervin", "age": 20, "city": "New York"})
-            # f.seek(0)
-            # json.dump(file_data, f, indent = 4)
-            file_data["person"][0]["name"] = "Mervin"
+            file_data["devices"][idx]["port"] = port
             f.seek(0)
             json.dump(file_data, f, indent = 4)
+            f.close()
 
 
 # def get_measurement(start_time: time.time):
