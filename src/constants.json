@@ -1,0 +1,44 @@
+{
+    "devices": [
+        {
+            "name": "uss_scale1",
+            "product_id": "12345",
+            "vendor_id": "67890",
+            "port": ""
+        },
+        {
+            "name": "dymo_scale",
+            "product_id": "54321",
+            "vendor_id": "09876",
+            "port": ""
+        },
+        {
+            "name": "ph_sensor",
+            "product_id": "98765",
+            "vendor_id": "43210",
+            "port": ""
+        },
+        {
+            "name": "do_sensor",
+            "product_id": "56789",
+            "vendor_id": "01234",
+            "port": ""
+        }
+    ],
+    "loop_id": [
+        {
+            "loop_id": "concentration_loop",
+            "devices": [
+                "uss_scale1",
+                "dymo_scale"
+            ]
+        },
+        {
+            "name": "fermentation_loop",
+            "devices": [
+                "ph_sensor",
+                "do_sensor"
+            ]
+        }
+    ]
+}

@@ -2,6 +2,8 @@ import json
 import asyncio
 import time
 import websockets
+import controllers as c
+
 
 INTERVAL = 5
 controllers = {}
@@ -9,7 +11,8 @@ controllers = {}
 async def control_task(controlToRun, websocket):
     while True:
 
-        status = controlToRun()
+        status, data = controlToRun()
+        await websocket.send(data)
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
 
@@ -31,9 +34,10 @@ async def send_status_update(websocket, status):
 def get_controller(loop_id):
     # Initialize controller and device manager if they don't exist for this loop
     if loop_id not in controllers:
+        controller, device_manager = c.create_controller(loop_id)
         controllers[loop_id] = {
-            "controller": Controller(),  # Replace with appropriate constructor arguments
-            "device_manager": DeviceManager()  # Replace with appropriate constructor arguments
+            "controller": controller,  # Replace with appropriate constructor arguments
+            "device_manager": device_manager  # Replace with appropriate constructor arguments
         }
     return controllers[loop_id]
 
@@ -57,7 +61,7 @@ def control(loop_id, command, websocket):
         result = "Invalid control command"
 
 
-def collection(loop_id, command):
+def collection(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
     if command == "start_collection":
         if controller_info["collection_task"] is None: # if data collection is not already happening then start it
