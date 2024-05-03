@@ -33,15 +33,6 @@ class _Sensor:
         data = self.convert_raw_value(str(hex_value))
 
         return round(data, 3)
-    
-    def tare_ph(self, tare: float) -> None:
-        """
-        Updates the tare constant.
-        """
-        if (self.mode != "ph"): return
-
-        curr_reading = self.get_data()
-        self.tare_constant = tare - curr_reading
 
     def close(self):
         self.client.close()

@@ -59,7 +59,7 @@ def extract_specific_cells(csv_path, start_row, end_row, col):
         data = [row[col - 1] for row in reader][:(end_row - start_row + 1)] 
     return data
 
-def find_usb_serial_port(vendor_id, product_id):
+def find_usb_serial_port(vendor_id: hex, product_id: hex):
     ports = serial.tools.list_ports.comports()
 
     for port in ports:
@@ -86,4 +86,4 @@ if __name__ == "__main__":
     # d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
     # data = list(map(lambda x: float(x)*1000, d))
     # print(sum(data))
-    print(find_usb_serial_port(0x0922, 0x8003))
+    print(find_usb_serial_port(0x1a86, 0x7523))
