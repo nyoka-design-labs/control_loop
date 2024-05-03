@@ -45,9 +45,11 @@ class Scale:
     
 class USS_Scale:
     """
+    Represents the US Solids scales.
     """
 
     def __init__(self, port) -> None:
+        self.port = port
         self.conn = serial.Serial(
             port=port,
             baudrate=9600,
@@ -57,8 +59,12 @@ class USS_Scale:
             timeout=None
         )
 
-    def get_weight(self):
+    def __call__(self, *args, **kwds) -> float:
+        return self.get_weight()
+
+    def get_weight(self) -> float:
         """
+        Read the weight from the scale.
         """
 
         self.conn.reset_input_buffer()  # Flush the input buffer to remove old data

@@ -15,6 +15,7 @@ class _Sensor:
         # initialie the Modbus client configuration
         self.client = ModbusClient.ModbusSerialClient(method='rtu', port=port, baudrate=19200, stopbits=2, bytesize=8, parity='N')
         self.callibration_func = lambda x: x # default callibration function (ie. no callibration)
+        self.port = port
 
         self.client.connect()
     
@@ -33,15 +34,6 @@ class _Sensor:
         data = self.convert_raw_value(str(hex_value))
 
         return round(data, 3)
-    
-    def tare_ph(self, tare: float) -> None:
-        """
-        Updates the tare constant.
-        """
-        if (self.mode != "ph"): return
-
-        curr_reading = self.get_data()
-        self.tare_constant = tare - curr_reading
 
     def close(self):
         self.client.close()
@@ -71,6 +63,9 @@ class DO(_Sensor):
 
         super().__init__(port)
         self.callibration_func = lambda x: x
+
+    def __call__(self, *args, **kwds) -> float:
+        return self.get_do()
 
     def get_do(self) -> float:
         """
@@ -119,6 +114,9 @@ class PH(_Sensor):
         """
 
         super().__init__(port)
+
+    def __call__(self, *args, **kwds) -> float:
+        return self.get_ph()
         
     def get_ph(self) -> float:
         """
