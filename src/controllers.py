@@ -1,7 +1,6 @@
 import serial
 from serial_devices.pump import Pump
-import DeviceManager
-
+from DeviceManager import DeviceManager
 #CONSTANTS
 port = '/dev/ttyACM0'
 baudrate = 9600
@@ -21,12 +20,13 @@ def create_controller(loop_id):
 class Controller:
 
     def __init__(self):
-        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        # self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        pass
 
 
     def pump_control(self, state: float):
         print(f"sent arduino: {state}")
-        self.arduino.write(state.encode())
+        # self.arduino.write(state.encode())
 
 
 
@@ -54,7 +54,6 @@ class ConcentrationController(Controller):
     def start_control(self):
        return self.concentration_loop(self)
     
-
 
     def concentration_loop(self):
         data = self.device_manager.get_measurement()
@@ -99,8 +98,8 @@ class FermentationController(Controller):
 
     def __init__(self, dm: DeviceManager):
         super.__init__()
-        self.feed_pump = Pump(type="1")
-        self.base_pump = Pump(type="2")
+        self.feed_pump = Pump(type="feed_pump")
+        self.base_pump = Pump(type="base_pump")
         self.device_manager = dm
         self.start_feed = False
 
@@ -114,8 +113,27 @@ class FermentationController(Controller):
         }
 
     def start_control(self):
-        return self.do_feed_loop(self)
+        return self.test_loop(self)
 
+    def test_loop(self):
+        data = self.device_manager.get_measurement()
+
+        if data['feed_weight'] >= 50:
+            super.pump_control(self.feed_pump.control(True)) # turn on the pump
+        elif data['feed_weight'] < 50:
+            super.pump_control(self.feed_pump.control(False)) # turn on the pump
+
+
+
+
+        self.status.update({
+            "control_loop_status": "control_on",
+            "data_collection_status": "data_collection_on",
+            "feed_pump_status": str(self.feed_pump.state),
+            "base_pump_status": str(self.base_pump.state)
+        })
+
+        return self.status, data
 
 
     def do_feed_loop(self):
@@ -166,3 +184,11 @@ class FermentationController(Controller):
         })
 
         return self.status, data
+
+
+if __name__ == "__main__":
+    d = DeviceManager("fermentation_loop")
+    c = FermentationController(d)
+    while True:
+        print(c.start_control())
+        time.sleep(3)
