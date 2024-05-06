@@ -1,6 +1,7 @@
 import serial
 from serial_devices.pump import Pump
 from DeviceManager import DeviceManager
+import time
 #CONSTANTS
 port = '/dev/ttyACM0'
 baudrate = 9600
@@ -73,15 +74,15 @@ class ConcentrationController(Controller):
 
     def __buffer_control(self, weight: float):
         if (weight < 1200):
-            super.pump_control(self.buffer_pump.control(True))
+            self.pump_control(self.buffer_pump.control(True))
         else:
-            super.pump_control(self.buffer_pump.control(False))
+            self.pump_control(self.buffer_pump.control(False))
 
     def __lysate_control(self, weight: float):
         if (weight < 250):
-            super.pump_control(self.lysate_pump.control(False))
+            self.pump_control(self.lysate_pump.control(False))
         else:
-            super.pump_control(self.lysate_pump.control(True))
+            self.pump_control(self.lysate_pump.control(True))
 
     def start_collection(self):
         data = self.device_manager.get_measurement()
@@ -97,9 +98,9 @@ class FermentationController(Controller):
     """
 
     def __init__(self, dm: DeviceManager):
-        super.__init__()
-        self.feed_pump = Pump(type="feed_pump")
-        self.base_pump = Pump(type="base_pump")
+        super().__init__()
+        self.feed_pump = Pump(type="feed")
+        self.base_pump = Pump(type="base")
         self.device_manager = dm
         self.start_feed = False
 
@@ -113,15 +114,15 @@ class FermentationController(Controller):
         }
 
     def start_control(self):
-        return self.test_loop(self)
+        return self.test_loop()
 
     def test_loop(self):
         data = self.device_manager.get_measurement()
 
         if data['feed_weight'] >= 50:
-            super.pump_control(self.feed_pump.control(True)) # turn on the pump
+            self.pump_control(self.feed_pump.control(True)) # turn on the pump
         elif data['feed_weight'] < 50:
-            super.pump_control(self.feed_pump.control(False)) # turn on the pump
+            self.pump_control(self.feed_pump.control(False)) # turn on the pump
 
 
 
@@ -143,10 +144,10 @@ class FermentationController(Controller):
         data = self.device_manager.get_measurement()
 
         if (data["do"] >= 60):
-                super.pump_control(self.feed_pump.control(True)) # turn on the pump
+                self.pump_control(self.feed_pump.control(True)) # turn on the pump
 
         elif (data["do"] < 20):
-                super.pump_control(self.feed_pump.control(False)) # turn off the pump
+                self.pump_control(self.feed_pump.control(False)) # turn off the pump
         
         self.__pH_balance(data['ph']) # balances the pH
 
@@ -170,11 +171,11 @@ class FermentationController(Controller):
     
         if (ph < 6.7):
             # turn on pump
-            super.pump_control(self.base_pump.control(True))
+            self.pump_control(self.base_pump.control(True))
 
         else:
             # turn off pump
-            super.pump_control(self.base_pump.control(False))
+            self.pump_control(self.base_pump.control(False))
 
 
     def start_collection(self):

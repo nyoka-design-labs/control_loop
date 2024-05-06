@@ -37,6 +37,21 @@ class DeviceManager:
         # print(self.__find_usb_serial_port())
         # self.__find_usb_serial_port("uss_scale")
 
+    def delete(self) -> None:
+        """
+        Closes all the devices.
+        """
+
+        with open("constants.json", "r+") as f:
+            file_data = json.load(f)
+
+            for dev in file_data["devices"]:
+                dev["port"] = ""
+                
+            f.seek(0)
+            json.dump(file_data, f, indent = 4)
+            f.close()
+
     def get_measurement(self):
         """
         Get the current measurement from all the devices.
@@ -44,9 +59,6 @@ class DeviceManager:
 
         # collect data from each device
         devices_data = list(map(lambda dev: dev(), self.devices))
-
-        print(devices_data)
-        print(self.__get_loop_data_type())
 
         return dict(zip(self.__get_loop_data_type(), devices_data))
 
@@ -130,6 +142,5 @@ class DeviceManager:
 
 if __name__ == "__main__":
     dm = DeviceManager("fermentation_loop")
-    while True:
-        print(dm.get_measurement())
-        time.sleep(10)
+    print(dm.get_measurement())
+    dm.delete()

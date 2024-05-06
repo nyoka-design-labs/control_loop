@@ -2,6 +2,10 @@ import json
 import asyncio
 import time
 import websockets
+
+import sys
+sys.path.append("../../src")
+
 import controllers as c
 
 

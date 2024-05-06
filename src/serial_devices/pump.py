@@ -10,7 +10,7 @@ class Pump:
         # Map each pump type to its off state code
         state_codes = {
             "feed": 0,   # 0=OFF, 1=ON
-            "ph": 2,     # 2=OFF, 3=ON
+            "base": 2,     # 2=OFF, 3=ON
             "buffer": 4, # 4=OFF, 5=ON
             "lysate": 6  # 6=OFF, 7=ON
         }
