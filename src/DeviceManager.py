@@ -37,7 +37,7 @@ class DeviceManager:
         # print(self.__find_usb_serial_port())
         # self.__find_usb_serial_port("uss_scale")
 
-    def __del__(self) -> None:
+    def delete(self) -> None:
         """
         Closes all the devices.
         """
@@ -59,9 +59,6 @@ class DeviceManager:
 
         # collect data from each device
         devices_data = list(map(lambda dev: dev(), self.devices))
-
-        print(devices_data)
-        print(self.__get_loop_data_type())
 
         return dict(zip(self.__get_loop_data_type(), devices_data))
 
@@ -145,6 +142,5 @@ class DeviceManager:
 
 if __name__ == "__main__":
     dm = DeviceManager("fermentation_loop")
-    while True:
-        print(dm.get_measurement())
-        time.sleep(10)
+    print(dm.get_measurement())
+    dm.delete()

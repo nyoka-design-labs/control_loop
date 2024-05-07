@@ -1,7 +1,6 @@
 import asyncio
 import websockets
 import json
-from manager_server import execute_command
 import manager_server
 
 async def handle_client(websocket):

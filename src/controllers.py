@@ -75,15 +75,15 @@ class ConcentrationController(Controller):
 
     def __buffer_control(self, weight: float):
         if (weight < 1200):
-            super.pump_control(self.buffer_pump.control(True))
+            self.pump_control(self.buffer_pump.control(True))
         else:
-            super.pump_control(self.buffer_pump.control(False))
+            self.pump_control(self.buffer_pump.control(False))
 
     def __lysate_control(self, weight: float):
         if (weight < 250):
-            super.pump_control(self.lysate_pump.control(False))
+            self.pump_control(self.lysate_pump.control(False))
         else:
-            super.pump_control(self.lysate_pump.control(True))
+            self.pump_control(self.lysate_pump.control(True))
 
     def start_collection(self):
         data = self.device_manager.get_measurement()
@@ -100,8 +100,8 @@ class FermentationController(Controller):
 
     def __init__(self, dm: DeviceManager):
         super().__init__()
-        self.feed_pump = Pump(type="feed_pump")
-        self.base_pump = Pump(type="base_pump")
+        self.feed_pump = Pump(type="feed")
+        self.base_pump = Pump(type="base")
         self.device_manager = dm
         self.start_feed = False
 
@@ -115,8 +115,8 @@ class FermentationController(Controller):
         }
 
     def start_control(self):
-        return self.test_loop(self)
-    
+        return self.test_loop()
+
     def test_loop(self):
         data = self.device_manager.get_measurement()
 
