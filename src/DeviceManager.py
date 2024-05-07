@@ -3,6 +3,7 @@ from usb_devices.ham_sensor import PH, DO
 import time
 from utils import add_to_csv
 import json
+import os
 import serial.tools.list_ports
 from exceptions import SerialPortNotFoundException
 
@@ -13,12 +14,16 @@ DEV_CONTRUCTORS = {
     "ph_sensor": PH
 }
 
+curr_directory = os.path.dirname(__file__)
+CONSTANTS_DIR = f"{curr_directory}/constants.json"
+
 class DeviceManager:
     """
     Represents a device manager.
     """
 
     def __init__(self, loop_id: str) -> None:
+        self.delete()
         self.loop_id = loop_id
         names = self.__get_loop_devices()
 
@@ -34,33 +39,36 @@ class DeviceManager:
             # calling all device constructors
             self.devices.append(DEV_CONTRUCTORS[name](port))
 
-        # print(self.__find_usb_serial_port())
-        # self.__find_usb_serial_port("uss_scale")
-
     def delete(self) -> None:
         """
         Closes all the devices.
         """
 
-        with open("constants.json", "r+") as f:
+        with open(CONSTANTS_DIR, "r+") as f:
             file_data = json.load(f)
 
-            for dev in file_data["devices"]:
-                dev["port"] = ""
+            for idx in range(len(file_data["devices"])):
+                file_data["devices"][idx]["port"] = ""
                 
-            f.seek(0)
-            json.dump(file_data, f, indent = 4)
             f.close()
 
-    def get_measurement(self):
+        with open(CONSTANTS_DIR, "w") as f:
+            json.dump(file_data, f, indent=4)
+            f.close()
+
+    def get_measurement(self, save_data=False) -> dict:
         """
         Get the current measurement from all the devices.
         """
 
         # collect data from each device
         devices_data = list(map(lambda dev: dev(), self.devices))
+        data_headers = self.__get_loop_data_type()
 
-        return dict(zip(self.__get_loop_data_type(), devices_data))
+        if save_data:
+            add_to_csv(devices_data, "data.csv", data_headers)
+
+        return dict(zip(data_headers, devices_data))
 
     
     def __find_usb_serial_port(self, device_name: str) -> str | SerialPortNotFoundException:
@@ -72,7 +80,7 @@ class DeviceManager:
 
         ports = serial.tools.list_ports.comports()
 
-        f = open("constants.json")
+        f = open(CONSTANTS_DIR)
         devs = json.load(f)['devices']
 
         for idx, dev in enumerate(devs):
@@ -82,10 +90,15 @@ class DeviceManager:
                 ser_ports = set(map(lambda x: x.device, ser_ports))
                 # find occupied ports
                 occ_ports = self.__get_occupied_ports()
-                # choose port that is not being used
-                chosen_port = (ser_ports - occ_ports).pop()
+
+                try:
+                    # choose port that is not being used
+                    chosen_port = (ser_ports - occ_ports).pop()
+                except:
+                    raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
+                
                 # update the current device port
-                self.update_device_port(chosen_port, idx)
+                self.__update_device_port(chosen_port, idx)
                 return chosen_port
 
         raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
@@ -95,7 +108,7 @@ class DeviceManager:
         Gets the devices in the specified loop.
         """
 
-        f = open("constants.json")
+        f = open(CONSTANTS_DIR)
         loops = json.load(f)['loop']
         f.close()
 
@@ -103,9 +116,10 @@ class DeviceManager:
     
     def __get_loop_data_type(self) -> list:
         """
+        Gets the data type for the specified loop.
         """
 
-        f = open("constants.json")
+        f = open(CONSTANTS_DIR)
         loops = json.load(f)['loop']
         f.close()
 
@@ -116,7 +130,7 @@ class DeviceManager:
         Gets all the device names from the constants file.
         """
 
-        f = open("constants.json")
+        f = open(CONSTANTS_DIR)
         devs = json.load(f)['devices']
         f.close()
 
@@ -124,16 +138,17 @@ class DeviceManager:
     
     def __get_occupied_ports(self) -> set:
         """
+        Gets all the occupied ports from the constants file.
         """
 
-        f = open("constants.json")
+        f = open(CONSTANTS_DIR)
         devs = json.load(f)['devices']
         f.close()
 
         return set(map(lambda x: x['port'], filter(lambda x: x['port'] != "", devs)))
     
-    def update_device_port(self, port: str, idx: int) -> None:
-        with open("constants.json", "r+") as f:
+    def __update_device_port(self, port: str, idx: int) -> None:
+        with open(CONSTANTS_DIR, "r+") as f:
             file_data = json.load(f)
             file_data["devices"][idx]["port"] = port
             f.seek(0)
@@ -143,4 +158,3 @@ class DeviceManager:
 if __name__ == "__main__":
     dm = DeviceManager("fermentation_loop")
     print(dm.get_measurement())
-    dm.delete()
