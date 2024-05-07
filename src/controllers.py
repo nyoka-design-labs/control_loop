@@ -25,9 +25,18 @@ class Controller:
         self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         pass
 
+<<<<<<< Updated upstream
     def pump_control(self, state: str):
         print(f"sent arduino: {state}")
         self.arduino.write(state.encode())
+=======
+
+    def pump_control(self, state: str):
+        print(f"sent arduino: {state}")
+        self.arduino.write(state.encode())
+
+
+>>>>>>> Stashed changes
 
 class ConcentrationController(Controller):
     """
@@ -66,9 +75,7 @@ class ConcentrationController(Controller):
             "lysate_pump_status": str(self.lysate_pump.state)
         })
 
-        return self.status, data
-
-    
+        return self.status
 
     def __buffer_control(self, weight: float):
         if (weight < 1200):
@@ -89,6 +96,18 @@ class ConcentrationController(Controller):
         })
 
         return self.status, data
+    
+    def stop_control(self):
+        self.pump_control(self.buffer_pump.control(False))
+        self.pump_control(self.lysate_pump.control(False))
+
+        self.status.update({
+            "control_loop_status": "control_off",
+            "feed_pump_status": str(self.buffer_pump.state),
+            "base_pump_status": str(self.lysate_pump.state)
+        })
+
+        return self.status
 
 class FermentationController(Controller):
     """
@@ -116,6 +135,7 @@ class FermentationController(Controller):
     def start_control(self):
         return self.test_loop()
 
+<<<<<<< Updated upstream
     def test_loop(self):
         data = self.device_manager.get_measurement()
 
@@ -162,6 +182,8 @@ class FermentationController(Controller):
             "base_pump_status": str(self.base_pump.state)
         })
 
+=======
+>>>>>>> Stashed changes
 
     def do_feed_loop(self):
         """
@@ -179,12 +201,15 @@ class FermentationController(Controller):
 
         self.status.update({
             "control_loop_status": "control_on",
-            "data_collection_status": "data_collection_on",
             "feed_pump_status": str(self.feed_pump.state),
             "base_pump_status": str(self.base_pump.state)
         })
 
+<<<<<<< Updated upstream
         return self.status, data
+=======
+        return self.status
+>>>>>>> Stashed changes
 
     
     def __pH_balance(self, ph: float):
@@ -203,11 +228,24 @@ class FermentationController(Controller):
 
     def start_collection(self):
         data = self.device_manager.get_measurement()
+
         self.status.update({
             "data_collection_status": "data_collection_on"
         })
 
         return self.status, data
+    
+    def stop_control(self):
+        self.pump_control(self.feed_pump.control(False))
+        self.pump_control(self.base_pump.control(False))
+
+        self.status.update({
+            "control_loop_status": "control_off",
+            "feed_pump_status": str(self.feed_pump.state),
+            "base_pump_status": str(self.base_pump.state)
+        })
+
+        return self.status
 
 
 if __name__ == "__main__":

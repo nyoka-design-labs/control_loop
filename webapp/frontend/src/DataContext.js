@@ -21,10 +21,11 @@ export const DataProvider = ({ children }) => {
         ws.onopen = () => console.log("WebSocket connection established");
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
+            console.log("Data Recieved:", data);
             if (data.type === 'data') {
                 setSystemData(prevData => [...prevData, data]);
                 setCurrentMeasurements({
-                    weight: data.weight,
+                    weight: data.feed_weight,
                     do: data.do,
                     ph: data.ph,
                     temp: data.temp,

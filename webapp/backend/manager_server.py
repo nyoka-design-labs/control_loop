@@ -4,7 +4,7 @@ import time
 import websockets
 
 import sys
-sys.path.append("../../src")
+sys.path.append("/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src")
 
 import controllers as c
 
@@ -12,21 +12,21 @@ import controllers as c
 INTERVAL = 5
 controllers = {}
 
-async def control_task(controlToRun, websocket):
+async def control_task(controller, websocket):
     while True:
-
-        status, data = controlToRun()
-        await websocket.send(data)
+        print("loop controlled")
+        status = controller.start_control()
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
 
 
-async def collection_task(collectionToRun, websocket):
+async def collection_task(controller, websocket):
 
       while True:
-
-        status, data = collectionToRun()
-        await websocket.send(data)
+        print(f"data being collected")
+        status, data = controller.start_collection()
+        print(f"data sent: {data}")
+        await websocket.send(json.dumps(data))
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
 
@@ -47,36 +47,47 @@ def get_controller(loop_id):
 
 def control(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
+
     if command == "start_control":
-        if controller_info["control_task"] is None:
-            controller_info["control_task"] = asyncio.create_task(control_task(controller_info["controller"].start_control(), websocket))
+        if "control_task" not in controller_info:
+            controller_info["control_task"] = asyncio.create_task(control_task(controller_info["controller"], websocket))
     
-        if controller_info["collection_task"] is None: # if data collection is not already happening then start it
-            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"].start_collection(), websocket))
+        if "collection_task" not in controller_info: # if data collection is not already happening then start it
+            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket))
 
     elif command == "stop_control":
-        if controller_info["control_task"] is not None:
+        if "control_task" in controller_info:
+            status = controller_info["controller"].stop_control()
+            send_status_update(websocket, status)
             controller_info["control_task"].cancel()
             controller_info["control_task"] = None
+            del controller_info["control_task"]
 
         controller_info["controller"].stop_control()
 
     else:
-        result = "Invalid control command"
+        print("Invalid control command")
 
 
 def collection(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
     if command == "start_collection":
-        if controller_info["collection_task"] is None: # if data collection is not already happening then start it
-            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"].start_collection(), websocket))
+        if "collection_task" not in controller_info: # if data collection is not already happening then start it
+            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket))
 
     elif command == "stop_collection":
-        if controller_info["collection_task"] is not None:
+        if "collection_task" in controller_info:
+            status = controller_info["controller"].status
+            status.update({
+            "data_collection_status": "data_collection_off"
+            })
+            send_status_update(websocket, status)
             controller_info["collection_task"].cancel()
             controller_info["collection_task"] = None
+            del controller_info["collection_task"]
+
     else:
-        result = "Invalid collection command"
+        print("Invalid control command")
 
 def toggle(loop_id, command, websocket):
     controller_info = get_controller(loop_id)

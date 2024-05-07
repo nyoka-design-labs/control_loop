@@ -26,16 +26,16 @@ async def handle_client(websocket):
         data = json.loads(message)
         command = data.get("command")
         loop_id = data.get("loopID")
-        
+        print(f"commmand recieved: {data.get('command')}")
         if "control" in command:
-            status, data = manager_server.control(loop_id, command, websocket)
+            manager_server.control(loop_id, command, websocket)
         elif "collection" in command:
-            status, data = manager_server.collection(loop_id, command, websocket)
+            manager_server.collection(loop_id, command, websocket)
         elif "toggle" in command:
-            status, data = manager_server.toggle(loop_id, command, websocket)
+            manager_server.toggle(loop_id, command, websocket)
         
         # Send the response back to the client
-        await websocket.send(data, status)
+        # await websocket.send(data, status)
 
 
 async def main():

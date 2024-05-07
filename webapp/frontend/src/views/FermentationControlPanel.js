@@ -33,9 +33,9 @@ const FermentationControlPanel = () => {
       </div>
       <Tabs defaultActiveKey="weight" id="uncontrolled-tab-example" className="mb-3">
         <Tab eventKey="weight" title="Weight">
-          <h3>Weight: {currentMeasurements.weight} g</h3>
+          <h3>Feed Weight: {currentMeasurements.weight} g</h3>
           <h3>Expected Weight: {currentMeasurements.expected_weight} g</h3>
-          <Chart systemData={systemData} label="Weight" actualColor="rgb(75, 192, 192)"
+          <Chart systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)"
           expectedDataKey="expected_weight" expectedColor="rgb(255, 99, 132)" />
         </Tab>
         <Tab eventKey="do" title="DO">
