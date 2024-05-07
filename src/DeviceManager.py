@@ -23,6 +23,7 @@ class DeviceManager:
     """
 
     def __init__(self, loop_id: str) -> None:
+        self.start_time = None
         self.delete()
         self.loop_id = loop_id
         names = self.__get_loop_devices()
@@ -61,16 +62,24 @@ class DeviceManager:
         Get the current measurement from all the devices.
         """
 
+        if self.start_time is None:
+            self.start_time = time.time()
+            time = 0
+        else:
+            time = (time.time() - self.start_time) / 3600
+
         # collect data from each device
         devices_data = list(map(lambda dev: dev(), self.devices))
         data_headers = self.__get_loop_data_type()
+
+        devices_data.append(time)
+        data_headers.append("time")
 
         if save_data:
             add_to_csv(devices_data, "data.csv", data_headers)
 
         return dict(zip(data_headers, devices_data))
 
-    
     def __find_usb_serial_port(self, device_name: str) -> str | SerialPortNotFoundException:
         """
         Returns the serial port to use for the device.

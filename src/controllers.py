@@ -22,15 +22,12 @@ def create_controller(loop_id):
 class Controller:
 
     def __init__(self):
-        # self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         pass
 
-
-    def pump_control(self, state: float):
+    def pump_control(self, state: str):
         print(f"sent arduino: {state}")
-        # self.arduino.write(state.encode())
-
-
+        self.arduino.write(state.encode())
 
 class ConcentrationController(Controller):
     """
@@ -104,6 +101,8 @@ class FermentationController(Controller):
         self.base_pump = Pump(type="base")
         self.device_manager = dm
         self.start_feed = False
+        self.rpm_volts = 0.1
+        self.increment_counter = 0
 
         self.status = {
             "type": "status",
@@ -125,9 +124,6 @@ class FermentationController(Controller):
         elif data['feed_weight'] < 50:
             self.pump_control(self.feed_pump.control(False)) # turn on the pump
 
-
-
-
         self.status.update({
             "control_loop_status": "control_on",
             "data_collection_status": "data_collection_on",
@@ -136,6 +132,35 @@ class FermentationController(Controller):
         })
 
         return self.status, data
+    
+    def new_loop(self):
+        data = self.device_manager.get_measurement()
+
+        if data['do'] < 50:
+            self.start_feed = True
+
+        if self.start_feed and self.increment_counter == 20:
+            self.pump_control(self.feed_pump.control(True))
+
+            if data['do'] >= 20:
+                self.rpm_volts += 0.01
+                self.pump_control(f"9 {self.rpm_volts}")
+            else:
+                self.rpm_volts -= 0.01
+                self.pump_control(f"9 {self.rpm_volts}")
+
+            self.increment_counter = 0
+        
+        self.increment_counter += 1
+
+        self.__pH_balance(data['ph'])
+
+        self.status.update({
+            "control_loop_status": "control_on",
+            "data_collection_status": "data_collection_on",
+            "feed_pump_status": str(self.feed_pump.state),
+            "base_pump_status": str(self.base_pump.state)
+        })
 
 
     def do_feed_loop(self):
@@ -158,9 +183,6 @@ class FermentationController(Controller):
             "feed_pump_status": str(self.feed_pump.state),
             "base_pump_status": str(self.base_pump.state)
         })
-
-        self.__pH_balance(data['ph']) # balances the pH
-
 
         return self.status, data
 
