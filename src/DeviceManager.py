@@ -37,6 +37,21 @@ class DeviceManager:
         # print(self.__find_usb_serial_port())
         # self.__find_usb_serial_port("uss_scale")
 
+    def __del__(self) -> None:
+        """
+        Closes all the devices.
+        """
+
+        with open("constants.json", "r+") as f:
+            file_data = json.load(f)
+
+            for dev in file_data["devices"]:
+                dev["port"] = ""
+                
+            f.seek(0)
+            json.dump(file_data, f, indent = 4)
+            f.close()
+
     def get_measurement(self):
         """
         Get the current measurement from all the devices.

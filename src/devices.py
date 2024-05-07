@@ -66,7 +66,7 @@ class DeviceManager:
         for idx, dev in enumerate(devs):
             if dev['name'] == device_name and dev["port"] == "":
                 # find active serial ports
-                ser_ports = set(filter(lambda x: x.vid == dev['vid'] and x.pid == dev['pid'], ports))
+                ser_ports = set(filter(lambda x: x.vid == int(dev['vid']) and x.pid == int(dev['pid']), ports))
                 # find occupied ports
                 occ_ports = self.__get_occupied_ports()
                 # choose port that is not being used
