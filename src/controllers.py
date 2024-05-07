@@ -25,18 +25,9 @@ class Controller:
         self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         pass
 
-<<<<<<< Updated upstream
     def pump_control(self, state: str):
         print(f"sent arduino: {state}")
         self.arduino.write(state.encode())
-=======
-
-    def pump_control(self, state: str):
-        print(f"sent arduino: {state}")
-        self.arduino.write(state.encode())
-
-
->>>>>>> Stashed changes
 
 class ConcentrationController(Controller):
     """
@@ -133,25 +124,8 @@ class FermentationController(Controller):
         }
 
     def start_control(self):
-        return self.test_loop()
+        return self.new_loop(self)
 
-<<<<<<< Updated upstream
-    def test_loop(self):
-        data = self.device_manager.get_measurement()
-
-        if data['feed_weight'] >= 50:
-            self.pump_control(self.feed_pump.control(True)) # turn on the pump
-        elif data['feed_weight'] < 50:
-            self.pump_control(self.feed_pump.control(False)) # turn on the pump
-
-        self.status.update({
-            "control_loop_status": "control_on",
-            "data_collection_status": "data_collection_on",
-            "feed_pump_status": str(self.feed_pump.state),
-            "base_pump_status": str(self.base_pump.state)
-        })
-
-        return self.status, data
     
     def new_loop(self):
         data = self.device_manager.get_measurement()
@@ -181,9 +155,10 @@ class FermentationController(Controller):
             "feed_pump_status": str(self.feed_pump.state),
             "base_pump_status": str(self.base_pump.state)
         })
+         
+        return self.status
 
-=======
->>>>>>> Stashed changes
+
 
     def do_feed_loop(self):
         """
@@ -204,12 +179,7 @@ class FermentationController(Controller):
             "feed_pump_status": str(self.feed_pump.state),
             "base_pump_status": str(self.base_pump.state)
         })
-
-<<<<<<< Updated upstream
-        return self.status, data
-=======
         return self.status
->>>>>>> Stashed changes
 
     
     def __pH_balance(self, ph: float):
