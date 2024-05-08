@@ -38,7 +38,12 @@ class DeviceManager:
         self.devices = []
         for name, port in dev2port.items():
             # calling all device constructors
-            self.devices.append(DEV_CONTRUCTORS[name](port))
+            if name == "dymo_scale":
+                self.devices.append(DEV_CONTRUCTORS[name](0x0922, 0x8003))
+            else:
+                self.devices.append(DEV_CONTRUCTORS[name](port))
+
+        # self.devices = [USS_Scale(port="/dev/ttyUSB0"), Scale(0x0922, 0x8003)]
 
     def delete(self) -> None:
         """
@@ -57,26 +62,30 @@ class DeviceManager:
             json.dump(file_data, f, indent=4)
             f.close()
 
-    def get_measurement(self, save_data=False) -> dict:
+    def get_measurement(self, save_data=True) -> dict:
         """
         Get the current measurement from all the devices.
         """
 
         if self.start_time is None:
             self.start_time = time.time()
-            time = 0
+            elapsed_time = 0
         else:
-            time = (time.time() - self.start_time) / 3600
+            elapsed_time = (time.time() - self.start_time) / 3600
 
         # collect data from each device
         devices_data = list(map(lambda dev: dev(), self.devices))
         data_headers = self.__get_loop_data_type()
 
-        devices_data.append(time)
+        devices_data.append(round(elapsed_time, 3))
         data_headers.append("time")
+        data_headers.append("type")
+        devices_data.append("data")
+        data_headers.append("start_time")
+        devices_data.append(self.start_time)
 
         if save_data:
-            add_to_csv(devices_data, "data.csv", data_headers)
+            add_to_csv(devices_data, "05-08-2024_concentration_data.csv", data_headers)
 
         return dict(zip(data_headers, devices_data))
 
@@ -84,6 +93,9 @@ class DeviceManager:
         """
         Returns the serial port to use for the device.
         """
+
+        if device_name == "dymo_scale":
+            return ""
 
         func = lambda x: str(hex(x))[2:].zfill(4)
 
@@ -111,6 +123,19 @@ class DeviceManager:
                 return chosen_port
 
         raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
+
+        # if device_name == "uss_scale":
+        #     chosen_port = "/dev/ttyUSB0"
+        #     self.__update_device_port(chosen_port, 0)
+        #     return chosen_port
+        # elif device_name == "do_probe":
+        #     chosen_port = "/dev/ttyUSB1"
+        #     self.__update_device_port(chosen_port, 5)
+        #     return chosen_port
+        # elif device_name == "ph_probe":
+        #     chosen_port = "/dev/ttyUSB2"
+        #     self.__update_device_port(chosen_port, 6)
+        #     return chosen_port
 
     def __get_loop_devices(self) -> list:
         """
@@ -165,5 +190,5 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("fermentation_loop")
+    dm = DeviceManager("concentration_loop")
     print(dm.get_measurement())

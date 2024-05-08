@@ -29,7 +29,7 @@ class Pump:
             self.state += 1
         elif not turn_on and self.state % 2 != 0:  # Check if current state is odd (ON), then turn OFF
             self.state -= 1
-
+        print(f"state from pump: {self.state}")
         return str(self.state)
     
     def toggle(self) -> str:

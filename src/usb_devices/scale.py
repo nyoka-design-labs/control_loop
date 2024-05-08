@@ -38,10 +38,14 @@ class Scale:
         try:
             self.dev.reset()
             data = self.dev.read(self.ep_address, self.ep_packet_size)
+            data = data[4] + (256 * data[5])
         except:
-            sys.exit("Data not read")
+            data = -1
 
-        return data[4] + (256 * data[5])
+        return data
+    
+    def __call__(self, *args, **kwds) -> float:
+        return self.get_weight()
     
 class USS_Scale:
     """
@@ -80,8 +84,7 @@ class USS_Scale:
 
 if __name__ == "__main__":
     # example usage of Scale class
-    scale = USS_Scale(port="/dev/ttyUSB2")
-    scale2 = USS_Scale(port="/dev/ttyUSB2")
+    scale = Scale(vid=0x0922, pid=0x8003)
 
     try:
         while True:

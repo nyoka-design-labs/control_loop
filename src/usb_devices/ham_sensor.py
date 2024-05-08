@@ -72,7 +72,7 @@ class DO(_Sensor):
         Read DO from the sensor.
         """
 
-        return round(self.callibration_func(self.__get_raw_do()), 3)
+        return round(self.callibration_func(self.__get_raw_do() - 4.098), 3)
     
     def callibrate(self) -> None:
         """
@@ -114,6 +114,7 @@ class PH(_Sensor):
         """
 
         super().__init__(port)
+        self.callibrate(4.037, 7.019)
 
     def __call__(self, *args, **kwds) -> float:
         return self.get_ph()
@@ -150,7 +151,7 @@ class PH(_Sensor):
         # Convert the hex value to a float value
         data = self.convert_raw_value(str(hex_value))
 
-        return data
+        return 1.006*data - 0.01622
 
 if __name__ == "__main__":
     # example usage of Sensor class

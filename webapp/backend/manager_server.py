@@ -3,26 +3,49 @@ import asyncio
 import time
 import websockets
 
-import sys
-sys.path.append("/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src")
 
+import sys
+sys.path.append("/home/sam/Desktop/control_loop/src")
+from utils import read_csv_file
 import controllers as c
 
-
-INTERVAL = 5
+load = False
+INTERVAL = 15
 controllers = {}
 
 async def control_task(controller, websocket):
     while True:
         print("loop controlled")
         status = controller.start_control()
+        # print(status)
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
 
 
 async def collection_task(controller, websocket):
+      global load
+      if (load):
+        # start_time = asyncio.create_task(load_data(websocket))
+        data = read_csv_file("05-07-2024_fermentation_data2.csv")
+        start_time = float(data[1][7])
+        data = data[1:]
+        controller.device_manager.start_time = start_time
+        for row in data:
+            row_dict = {"feed_weight": row[1],
+                        "do": row[2],
+                        "ph": row[3],
+                        "temp": row[4],
+                        "time": row[5],
+                        "type": "data"}
+
+            
+            # added_data = configure_data(start_time, row_dict)
+            load = False
+
+            await websocket.send(json.dumps(row_dict))
 
       while True:
+        controller.pump_control("8")
         print(f"data being collected")
         status, data = controller.start_collection()
         print(f"data sent: {data}")
@@ -45,7 +68,7 @@ def get_controller(loop_id):
         }
     return controllers[loop_id]
 
-def control(loop_id, command, websocket):
+async def control(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
 
     if command == "start_control":
@@ -58,7 +81,8 @@ def control(loop_id, command, websocket):
     elif command == "stop_control":
         if "control_task" in controller_info:
             status = controller_info["controller"].stop_control()
-            send_status_update(websocket, status)
+            print(status)
+            await send_status_update(websocket, status)
             controller_info["control_task"].cancel()
             controller_info["control_task"] = None
             del controller_info["control_task"]
@@ -69,7 +93,7 @@ def control(loop_id, command, websocket):
         print("Invalid control command")
 
 
-def collection(loop_id, command, websocket):
+async def collection(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
     if command == "start_collection":
         if "collection_task" not in controller_info: # if data collection is not already happening then start it
@@ -81,7 +105,7 @@ def collection(loop_id, command, websocket):
             status.update({
             "data_collection_status": "data_collection_off"
             })
-            send_status_update(websocket, status)
+            await send_status_update(websocket, status)
             controller_info["collection_task"].cancel()
             controller_info["collection_task"] = None
             del controller_info["collection_task"]
@@ -89,9 +113,21 @@ def collection(loop_id, command, websocket):
     else:
         print("Invalid control command")
 
-def toggle(loop_id, command, websocket):
+async def toggle(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
-    device_name = command.split("_")[1]  # Assuming command format is "toggle_<deviceName>"
-    status = controller_info["device_manager"].toggle(device_name)
+
+    if command == "toggle_base":
+        controller_info["controller"].toggle_base()
+
+    if command == "toggle_feed":
+        controller_info["controller"].toggle_feed()
+   
+    if command == "toggle_buffer":
+        controller_info["controller"].toggle_buffer()
+
+    if command == "toggle_lysate":
+        controller_info["controller"].toggle_lysate()
+
+    status = controller_info["controller"].status
     
-    send_status_update(websocket, status)
+    await send_status_update(websocket, status)

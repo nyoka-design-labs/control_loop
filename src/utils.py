@@ -26,7 +26,7 @@ def exponential_func(t: int, c1: int) -> float:
 
 def add_to_csv(data: list, file_name: str, header: list):
     curr_dir = os.path.dirname(__file__)
-    csv_dir = curr_dir + f"../data/{file_name}"
+    csv_dir = f"/home/sam/Desktop/control_loop/data/{file_name}"
     file_exists = os.path.isfile(csv_dir)
     
     with open(csv_dir, 'a', newline='') as csvfile:
@@ -41,7 +41,7 @@ def add_to_csv(data: list, file_name: str, header: list):
 def read_csv_file(file_name: str):
     data = []
     curr_directory = os.path.dirname(__file__)
-    file_path = curr_directory + f"/../data/{file_name}"
+    file_path = f"/home/sam/Desktop/control_loop/data/{file_name}"
 
     with open(file_path, 'r', newline='') as csv_file:
         csv_reader = csv.reader(csv_file)

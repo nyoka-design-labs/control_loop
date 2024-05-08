@@ -30,6 +30,7 @@ void setup() {
   delay(RELAY_DELAY);
   digitalWrite(RELAY_PIN, LOW);
   delay(RELAY_DELAY);
+  digitalWrite(RELAY_PIN, HIGH);
 
 //  digitalWrite(feedPumpPin, HIGH);
 //  delay(RELAY_DELAY);
@@ -51,27 +52,27 @@ void loop() {
     char command = Serial.read(); // Read the incoming byte
     Serial.println(command);
     if (command == '1') {
-      delay(RELAY_DELAY);
-      digitalWrite(feedPumpPin, LOW); // Turn on feed pump (for some reason setting the pin low turns pump on)
-      delay(RELAY_DELAY);
+//      delay(RELAY_DELAY);
+      digitalWrite(feedPumpPin, HIGH); // Turn on feed pump (for some reason setting the pin low turns pump on)
+//      delay(RELAY_DELAY);
     } 
     
     else if (command == '0') {
-      delay(RELAY_DELAY);
-      digitalWrite(feedPumpPin, HIGH); // Turn off feed pump
-      delay(RELAY_DELAY);
+//      delay(RELAY_DELAY);
+      digitalWrite(feedPumpPin, LOW); // Turn off feed pump
+//      delay(RELAY_DELAY);
     } 
     
     else if (command == '2') {
-      delay(RELAY_DELAY);
+//      delay(RELAY_DELAY);
       digitalWrite(basePumpPin, LOW); // turn off base pump
-      delay(RELAY_DELAY);
+//      delay(RELAY_DELAY);
     } 
     
     else if (command == '3') {
-      delay(RELAY_DELAY);
+//      delay(RELAY_DELAY);
       digitalWrite(basePumpPin, HIGH); // turn on base pump
-      delay(RELAY_DELAY);
+//      delay(RELAY_DELAY);
     } 
     
     else if (command == '4') {
@@ -101,11 +102,26 @@ void loop() {
       delay(RELAY_DELAY);
       digitalWrite(RELAY_PIN, HIGH);
     }
+    else if (command == 'a') {
+      
+      delay(RELAY_DELAY);
+      digitalWrite(RELAY_PIN, LOW);
+      delay(RELAY_DELAY);
+      digitalWrite(RELAY_PIN, HIGH);
+      delay(RELAY_DELAY);
+    }
 
     else if (command == '9') {
         float voltage = Serial.parseFloat();
-
-        dac.setVoltage((voltage*4221)/5, false);
+        delay(RELAY_DELAY);
+        digitalWrite(feedPumpPin, HIGH); // Turn off feed pump
+        delay(RELAY_DELAY);
+        dac.setVoltage((voltage*4095)/5, false);
+        delay(RELAY_DELAY);
+        digitalWrite(feedPumpPin, LOW); // Turn on feed pump (for some reason setting the pin low turns pump on)
+        delay(RELAY_DELAY);
+        
+        delay(500);
     }
   }
 }

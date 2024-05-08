@@ -35,9 +35,9 @@ class ConcentrationController(Controller):
     """
 
     def __init__(self, dm: DeviceManager):
-        super.__init__()
-        self.buffer_pump = Pump(type="3")
-        self.lysate_pump = Pump(type="4")
+        super().__init__()
+        self.buffer_pump = Pump(type="buffer")
+        self.lysate_pump = Pump(type="lysate")
         self.device_manager = dm
 
         self.status = {
@@ -51,13 +51,13 @@ class ConcentrationController(Controller):
 
 
     def start_control(self):
-       return self.concentration_loop(self)
+       return self.concentration_loop()
     
 
     def concentration_loop(self):
         data = self.device_manager.get_measurement()
-        self.__buffer_control(data['weight_buff'])
-        self.__lysate_control(data['weight_lys'])
+        self.__buffer_control(data['buffer_weight'])
+        self.__lysate_control(data['lysate_weight'])
 
         self.status.update({
             "control_loop_status": "control_on",
@@ -69,7 +69,7 @@ class ConcentrationController(Controller):
         return self.status
 
     def __buffer_control(self, weight: float):
-        if (weight < 1200):
+        if (weight < 800):
             self.pump_control(self.buffer_pump.control(True))
         else:
             self.pump_control(self.buffer_pump.control(False))
@@ -99,6 +99,18 @@ class ConcentrationController(Controller):
         })
 
         return self.status
+    
+    def toggle_buffer(self):
+        self.pump_control(self.buffer_pump.toggle())
+        self.status.update({
+            "buffer_pump_status": str(self.buffer_pump.state)
+        })
+
+    def toggle_lysate(self):
+        self.pump_control(self.lysate_pump.toggle())
+        self.status.update({
+            "lysate_pump_status": str(self.lysate_pump.state)
+        })
 
 class FermentationController(Controller):
     """
@@ -111,7 +123,9 @@ class FermentationController(Controller):
         self.base_pump = Pump(type="base")
         self.device_manager = dm
         self.start_feed = False
-        self.rpm_volts = 0.1
+        self.start_feed_2 = False
+        self.first_time = True
+        self.rpm_volts = 0.06
         self.increment_counter = 0
 
         self.status = {
@@ -124,28 +138,51 @@ class FermentationController(Controller):
         }
 
     def start_control(self):
-        return self.new_loop(self)
+        return self.do_feed_loop()
 
     
     def new_loop(self):
         data = self.device_manager.get_measurement()
 
-        if data['do'] < 50:
-            self.start_feed = True
+        if self.first_time:
+            self.pump_control(f"9 {round(self.rpm_volts, 2)}")
+            self.pump_control(self.feed_pump.control(False))
+            self.first_time = False
 
-        if self.start_feed and self.increment_counter == 20:
-            self.pump_control(self.feed_pump.control(True))
 
-            if data['do'] >= 20:
-                self.rpm_volts += 0.01
-                self.pump_control(f"9 {self.rpm_volts}")
-            else:
-                self.rpm_volts -= 0.01
-                self.pump_control(f"9 {self.rpm_volts}")
-
-            self.increment_counter = 0
+        # if data['do'] < 50:
+        # # if True:
+        #     self.start_feed = True
         
-        self.increment_counter += 1
+
+        # if self.start_feed:
+        if True:
+            if True: # change later
+
+                self.start_feed_2 = True
+            
+
+            if self.start_feed_2:
+                print("went into main loop")
+                self.pump_control(self.feed_pump.control(True))
+                time.sleep(1)
+                if self.increment_counter == 10:
+                    if data['do'] >= 20:
+                        print("incremented rpm")
+                        self.rpm_volts += 0.01
+                        
+                    else:
+                        print("decremented rpm")
+                        self.rpm_volts -= 0.01
+
+        
+                    self.pump_control(f"9 {round(self.rpm_volts, 2)}")
+                    
+
+                    self.increment_counter = 0
+                
+
+                self.increment_counter += 1
 
         self.__pH_balance(data['ph'])
 
@@ -165,12 +202,19 @@ class FermentationController(Controller):
         DO only control loop for the controller. Loops indefinitely.
         """
         data = self.device_manager.get_measurement()
+        # if data['do'] > 70:
+        print(f"increment counter:{self.increment_counter}")
 
-        if (data["do"] >= 60):
-                self.pump_control(self.feed_pump.control(True)) # turn on the pump
+        if self.increment_counter == 4:
+            print("4th increment")
+           
+            if (data["do"] >= 20):
+                    self.pump_control(self.feed_pump.control(True)) # turn on the pump
 
-        elif (data["do"] < 20):
-                self.pump_control(self.feed_pump.control(False)) # turn off the pump
+            elif (data["do"] < 20):
+                    self.pump_control(self.feed_pump.control(False)) # turn off the pump
+            self.increment_counter = 0
+        self.increment_counter += 1
         
         self.__pH_balance(data['ph']) # balances the pH
 
@@ -186,7 +230,7 @@ class FermentationController(Controller):
         """
         Main control loop for the pH controller.
         """
-    
+        print("ph being balanced")
         if (ph < 6.7):
             # turn on pump
             self.pump_control(self.base_pump.control(True))
@@ -216,10 +260,15 @@ class FermentationController(Controller):
         })
 
         return self.status
+    def toggle_base(self):
+        self.pump_control(self.base_pump.toggle())
+    def toggle_feed(self):
+        self.pump_control(self.feed_pump.toggle())
+        
 
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop")
+    d = DeviceManager("concentration_loop")
     c = FermentationController(d)
     while True:
         print(c.start_control())
