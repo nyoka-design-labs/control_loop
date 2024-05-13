@@ -27,6 +27,7 @@ async def handle_client(websocket):
 
     async for message in websocket:
         data = json.loads(message)
+<<<<<<< Updated upstream
         command = data.get("command")
         loop_id = data.get("loopID")
         print(f"commmand recieved: {data.get('command')}")
@@ -39,6 +40,20 @@ async def handle_client(websocket):
         
         # Send the response back to the client
         # await websocket.send(data, status)
+=======
+        command = data["command"]
+        loop_id = data["loopID"]
+
+        print(f"recieved command: {data['command']}")
+        print(f"loop ID: {data['loopID']}")
+        
+        if "control" in command:
+            manager_server.control(loop_id, command, websocket)
+        elif "collection" in command:
+            manager_server.collection(loop_id, command, websocket)
+        elif "toggle" in command:
+            manager_server.toggle(loop_id, command, websocket)
+>>>>>>> Stashed changes
 
 
 async def main():

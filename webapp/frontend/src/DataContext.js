@@ -35,6 +35,8 @@ export const DataProvider = ({ children }) => {
                     
                   });
             }
+
+            // console.log("system data", systemData);
         };
         ws.onclose = () => console.log("WebSocket connection closed");
         setWebsocket(ws);

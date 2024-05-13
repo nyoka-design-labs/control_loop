@@ -75,6 +75,7 @@ class DeviceManager:
 
         # collect data from each device
         devices_data = list(map(lambda dev: dev(), self.devices))
+<<<<<<< Updated upstream
         data_headers = self.__get_loop_data_type()
 
         devices_data.append(round(elapsed_time, 3))
@@ -88,6 +89,12 @@ class DeviceManager:
             add_to_csv(devices_data, "05-08-2024_concentration_data.csv", data_headers)
 
         return dict(zip(data_headers, devices_data))
+=======
+        devices_data = dict(zip(self.__get_loop_data_type(), devices_data))
+        devices_data["type"] = "data"
+
+        return devices_data
+>>>>>>> Stashed changes
 
     def __find_usb_serial_port(self, device_name: str) -> str | SerialPortNotFoundException:
         """
@@ -101,7 +108,11 @@ class DeviceManager:
 
         ports = serial.tools.list_ports.comports()
 
+<<<<<<< Updated upstream
         f = open(CONSTANTS_DIR)
+=======
+        f = open("/home/sam/Desktop/control_loop/src/constants.json")
+>>>>>>> Stashed changes
         devs = json.load(f)['devices']
 
         for idx, dev in enumerate(devs):
@@ -142,7 +153,11 @@ class DeviceManager:
         Gets the devices in the specified loop.
         """
 
+<<<<<<< Updated upstream
         f = open(CONSTANTS_DIR)
+=======
+        f = open("/home/sam/Desktop/control_loop/src/constants.json")
+>>>>>>> Stashed changes
         loops = json.load(f)['loop']
         f.close()
 
@@ -153,7 +168,11 @@ class DeviceManager:
         Gets the data type for the specified loop.
         """
 
+<<<<<<< Updated upstream
         f = open(CONSTANTS_DIR)
+=======
+        f = open("/home/sam/Desktop/control_loop/src/constants.json")
+>>>>>>> Stashed changes
         loops = json.load(f)['loop']
         f.close()
 
@@ -175,14 +194,23 @@ class DeviceManager:
         Gets all the occupied ports from the constants file.
         """
 
+<<<<<<< Updated upstream
         f = open(CONSTANTS_DIR)
+=======
+        f = open("/home/sam/Desktop/control_loop/src/constants.json")
+>>>>>>> Stashed changes
         devs = json.load(f)['devices']
         f.close()
 
         return set(map(lambda x: x['port'], filter(lambda x: x['port'] != "", devs)))
     
+<<<<<<< Updated upstream
     def __update_device_port(self, port: str, idx: int) -> None:
         with open(CONSTANTS_DIR, "r+") as f:
+=======
+    def update_device_port(self, port: str, idx: int) -> None:
+        with open("/home/sam/Desktop/control_loop/src/constants.json", "r+") as f:
+>>>>>>> Stashed changes
             file_data = json.load(f)
             file_data["devices"][idx]["port"] = port
             f.seek(0)
