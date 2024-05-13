@@ -15,22 +15,14 @@ controllers = {}
 
 async def control_task(controller, websocket):
     while True:
-<<<<<<< Updated upstream
         print("loop controlled")
         status = controller.start_control()
         # print(status)
-=======
-        print("loop being controlled")
-        status, data = controller.start_control()
-        print(f"from control: {status}")
-        # await websocket.send(json.dumps(data))
->>>>>>> Stashed changes
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
 
 
 async def collection_task(controller, websocket):
-<<<<<<< Updated upstream
       global load
       if (load):
         # start_time = asyncio.create_task(load_data(websocket))
@@ -57,14 +49,6 @@ async def collection_task(controller, websocket):
         print(f"data being collected")
         status, data = controller.start_collection()
         print(f"data sent: {data}")
-=======
-    
-      while True:
-        print("data being collected")
-        status, data = controller.start_collection()
-        print(f"from data collection: {status}")
-        print(f"from data collection: {data}")
->>>>>>> Stashed changes
         await websocket.send(json.dumps(data))
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
@@ -96,15 +80,11 @@ async def control(loop_id, command, websocket):
 
     elif command == "stop_control":
         if "control_task" in controller_info:
-<<<<<<< Updated upstream
             status = controller_info["controller"].stop_control()
             print(status)
             await send_status_update(websocket, status)
             controller_info["control_task"].cancel()
             controller_info["control_task"] = None
-=======
-            controller_info["control_task"].cancel()
->>>>>>> Stashed changes
             del controller_info["control_task"]
 
         controller_info["controller"].stop_control()
@@ -121,7 +101,6 @@ async def collection(loop_id, command, websocket):
 
     elif command == "stop_collection":
         if "collection_task" in controller_info:
-<<<<<<< Updated upstream
             status = controller_info["controller"].status
             status.update({
             "data_collection_status": "data_collection_off"
@@ -130,12 +109,6 @@ async def collection(loop_id, command, websocket):
             controller_info["collection_task"].cancel()
             controller_info["collection_task"] = None
             del controller_info["collection_task"]
-=======
-            controller_info["collection_task"].cancel()
-            del controller_info["collection_task"]
-    else:
-        result = "Invalid collection command"
->>>>>>> Stashed changes
 
     else:
         print("Invalid control command")

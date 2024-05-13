@@ -94,8 +94,8 @@ class ConcentrationController(Controller):
 
         self.status.update({
             "control_loop_status": "control_off",
-            "feed_pump_status": str(self.buffer_pump.state),
-            "base_pump_status": str(self.lysate_pump.state)
+            "buffer_pump_status": str(self.buffer_pump.state),
+            "lysate_pump_status": str(self.lysate_pump.state)
         })
 
         return self.status
@@ -144,17 +144,10 @@ class FermentationController(Controller):
     def new_loop(self):
         data = self.device_manager.get_measurement()
 
-<<<<<<< Updated upstream
         if self.first_time:
             self.pump_control(f"9 {round(self.rpm_volts, 2)}")
             self.pump_control(self.feed_pump.control(False))
             self.first_time = False
-=======
-        if data['weight'] >= 50:
-            self.pump_control(self.feed_pump.control(True)) # turn on the pump
-        elif data['weight'] < 50:
-            self.pump_control(self.feed_pump.control(False)) # turn on the pump
->>>>>>> Stashed changes
 
 
         # if data['do'] < 50:
