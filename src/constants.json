@@ -4,11 +4,7 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-<<<<<<< Updated upstream
-            "port": "/dev/ttyUSB0"
-=======
-            "port": "/dev/ttyUSB4"
->>>>>>> Stashed changes
+            "port": ""
         },
         {
             "name": "uss_scale",
@@ -44,12 +40,12 @@
             "name": "do_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "/dev/ttyUSB2"
+            "port": ""
         }
     ],
     "loop": [
         {
-            "name": "concentration_loop",
+            "loop_id": "concentration_loop",
             "devices": [
                 "dymo_scale",
                 "uss_scale"
@@ -60,7 +56,7 @@
             ]
         },
         {
-            "name": "fermentation_loop",
+            "loop_id": "fermentation_loop",
             "devices": [
                 "uss_scale",
                 "dymo_scale",
@@ -68,15 +64,21 @@
                 "ph_sensor"
             ],
             "data_type": [
-<<<<<<< Updated upstream
                 "base_weight",
                 "feed_weight",
                 "do",
                 "ph"
-=======
-                "weight",
-                "do"
->>>>>>> Stashed changes
+            ]
+        },
+        {
+            "loop_id": "test_loop",
+            "devices": [
+                "do_sensor",
+                "ph_sensor"
+            ],
+            "data_type": [
+                "do",
+                "ph"
             ]
         }
     ]
