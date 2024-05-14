@@ -27,6 +27,7 @@ class DeviceManager:
         self.delete()
         self.loop_id = loop_id
         names = self.__get_loop_devices()
+        print(f"names of all devices: {names}")
 
         try:
             # finds the serial port for each device and creates dict
@@ -100,6 +101,10 @@ class DeviceManager:
         func = lambda x: str(hex(x))[2:].zfill(4)
 
         ports = serial.tools.list_ports.comports()
+        ports = list(filter(lambda x: x.vid is not None and x.pid is not None, ports))
+        # for p in ports:
+        #     print(p.vid)
+        # print(f"all serial ports available:{ports}")
 
         f = open(CONSTANTS_DIR)
         devs = json.load(f)['devices']
@@ -107,8 +112,10 @@ class DeviceManager:
         for idx, dev in enumerate(devs):
             if dev['name'] == device_name and dev["port"] == "":
                 # find active serial ports
+                # print(f"name of the device throwing the error: {dev['name']}")
                 ser_ports = list(filter(lambda x: func(x.vid) == dev['vendor_id'] and func(x.pid) == dev['product_id'], ports))
                 ser_ports = set(map(lambda x: x.device, ser_ports))
+                # print(ser_ports)
                 # find occupied ports
                 occ_ports = self.__get_occupied_ports()
 
@@ -118,8 +125,9 @@ class DeviceManager:
                 except:
                     raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
                 
+                sorted_chosen_ports = sorted(chosen_port, key=lambda x: int(x.split('USB')[1]))
                 # update the current device port
-                self.__update_device_port(chosen_port, idx)
+                self.__update_device_port(sorted_chosen_ports, idx)
                 return chosen_port
 
         raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
@@ -146,7 +154,7 @@ class DeviceManager:
         loops = json.load(f)['loop']
         f.close()
 
-        return list(filter(lambda x: x['name'] == self.loop_id, loops))[0]['devices']
+        return list(filter(lambda x: x['loop_id'] == self.loop_id, loops))[0]['devices']
     
     def __get_loop_data_type(self) -> list:
         """
@@ -157,7 +165,7 @@ class DeviceManager:
         loops = json.load(f)['loop']
         f.close()
 
-        return list(filter(lambda x: x['name'] == self.loop_id, loops))[0]['data_type']
+        return list(filter(lambda x: x['loop_id'] == self.loop_id, loops))[0]['data_type']
 
     def __get_all_device_names(self) -> set:
         """
@@ -190,5 +198,7 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("concentration_loop")
-    print(dm.get_measurement())
+    dm = DeviceManager("test_loop")
+    while True:
+        print(dm.get_measurement())
+        time.sleep(5)
