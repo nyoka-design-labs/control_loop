@@ -36,8 +36,8 @@ class ConcentrationController(Controller):
 
     def __init__(self, dm: DeviceManager):
         super().__init__()
-        self.buffer_pump = Pump(type="buffer")
-        self.lysate_pump = Pump(type="lysate")
+        self.buffer_pump = Pump(type="whitePump1")
+        self.lysate_pump = Pump(type="whitePump2")
         self.device_manager = dm
 
         self.status = {
@@ -119,8 +119,8 @@ class FermentationController(Controller):
 
     def __init__(self, dm: DeviceManager):
         super().__init__()
-        self.feed_pump = Pump(type="feed")
-        self.base_pump = Pump(type="base")
+        self.feed_pump = Pump(type="blackPump1")
+        self.base_pump = Pump(type="blackPump2")
         self.device_manager = dm
         self.start_feed = False
         self.start_feed_2 = False

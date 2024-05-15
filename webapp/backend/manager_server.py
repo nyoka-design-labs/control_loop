@@ -45,7 +45,7 @@ async def collection_task(controller, websocket):
             await websocket.send(json.dumps(row_dict))
 
       while True:
-        controller.pump_control("8")
+        controller.pump_control("T")
         print(f"data being collected")
         status, data = controller.start_collection()
         print(f"data sent: {data}")
