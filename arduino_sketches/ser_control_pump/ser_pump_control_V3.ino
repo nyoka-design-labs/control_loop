@@ -27,6 +27,16 @@ void setup() {
     pinMode(whitePump3Pin, OUTPUT);
     dac.begin(0x60);
 
+    // set all pump pins to low
+    digitalWrite(blackPump1Pin, LOW);
+    digitalWrite(blackPump2Pin, LOW);
+    digitalWrite(blackPump3Pin, LOW);
+    digitalWrite(blackPump4Pin, LOW);
+    digitalWrite(blackPump5Pin, LOW);
+    digitalWrite(whitePump1Pin, LOW);
+    digitalWrite(whitePump2Pin, LOW);
+    digitalWrite(whitePump3Pin, LOW);
+
     // switch the units on dymo from lb to grams
     digitalWrite(dymoRelayPin, HIGH);
     delay(RELAY_DELAY);
@@ -39,10 +49,8 @@ void loop() {
     if (Serial.available() > 0) {
         String command = Serial.readStringUntil('\n');
         if (command.startsWith("R")) {
-            // Handle RPM setting for blackPump1
-            int rpm = command.substring(1).toInt(); // Extract RPM value from command
-            dac.setVoltage((rpm * 4095) / 5, false);
-            digitalWrite(blackPump1Pin, HIGH);
+            int voltage = command.substring(1).toInt(); // Extract RPM value from command
+            setRPM(voltage);
         }
         else if (command.startsWith("T")) {
             toggleRelayTwice();
@@ -50,12 +58,23 @@ void loop() {
         else if (command.startsWith("S")) {
             toggleRelayOnce();
         }
-         else {
+        else {
             // Handle regular pump commands
             int cmd = command.toInt(); // Convert command to integer
             handlePumpCommand(cmd);
         }
     }
+}
+
+void setRPM(int voltage) {
+    // Handle RPM setting for blackPump1
+    delay(RELAY_DELAY);
+    digitalWrite(blackPump1Pin, LOW);
+    delay(RELAY_DELAY);
+    dac.setVoltage((voltage * 4095) / 5, false);
+    delay(RELAY_DELAY);
+    digitalWrite(blackPump1Pin, HIGH);
+    delay(RELAY_DELAY);
 }
 
 void handlePumpCommand(int cmd) {
@@ -76,16 +95,16 @@ void handlePumpCommand(int cmd) {
 
 void toggleRelayTwice() {
     for (int i = 0; i < 2; i++) {
-        digitalWrite(RELAY_PIN, LOW);
+        digitalWrite(dymoRelayPin, LOW);
         delay(500);
-        digitalWrite(RELAY_PIN, HIGH);
+        digitalWrite(dymoRelayPin, HIGH);
         delay(500);
     }
 }
 
 void toggleRelayOnce() {
-    digitalWrite(RELAY_PIN, LOW);
+    digitalWrite(dymoRelayPin, LOW);
     delay(500);
-    digitalWrite(RELAY_PIN, HIGH);
+    digitalWrite(dymoRelayPin, HIGH);
     delay(500);
 }

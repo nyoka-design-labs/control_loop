@@ -4,9 +4,8 @@ Adafruit_MCP4725 dac;
 
 #define DAC_RESOLUTION  (9)
 
-const int blackPump1Pin = 12; // Pump control pin
-const int blackPump2Pin = 11;
-const int blackPump3Pin = 10;
+const int feedPumpPin = 12; // Pump control pin
+const int basePumpPin = 11;
 const int bufferPumpPin = 9;
 const int lysatePumpPin = 8;
 const int RELAY_PIN = 7;
@@ -17,17 +16,16 @@ const int RELAY_DELAY = 500;
 
 void setup() {
   Serial.begin(9600); // Initialize Serial communication
-  pinMode(blackPump1Pin, OUTPUT); // Initialize the pump control pin as an output
-  pinMode(blackPump2Pin, OUTPUT);
-  pinMode(blackPump3Pin, OUTPUT);
+  pinMode(feedPumpPin, OUTPUT); // Initialize the pump control pin as an output
+  pinMode(basePumpPin, OUTPUT);
   pinMode(bufferPumpPin, OUTPUT);
   pinMode(lysatePumpPin, OUTPUT);
+
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(RELAY_PIN, OUTPUT);
 
-  digitalWrite(blackPump1Pin, LOW);
-  digitalWrite(blackPump2Pin, LOW);
-  digitalWrite(blackPump3Pin, LOW);
+  digitalWrite(feedPumpPin, LOW);
+  digitalWrite(basePumpPin, LOW);
   digitalWrite(bufferPumpPin, LOW);
   digitalWrite(lysatePumpPin, LOW);
 
