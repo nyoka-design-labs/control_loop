@@ -4,11 +4,12 @@ Adafruit_MCP4725 dac;
 
 #define DAC_RESOLUTION  (9)
 
-const int feedPumpPin = 11; // Pump control pin
-const int basePumpPin = 10;
+const int blackPump1Pin = 12; // Pump control pin
+const int blackPump2Pin = 11;
+const int blackPump3Pin = 10;
 const int bufferPumpPin = 9;
 const int lysatePumpPin = 8;
-const int RELAY_PIN = 12;
+const int RELAY_PIN = 7;
 
 const int RELAY_DELAY = 500;
 
@@ -16,12 +17,19 @@ const int RELAY_DELAY = 500;
 
 void setup() {
   Serial.begin(9600); // Initialize Serial communication
-  pinMode(feedPumpPin, OUTPUT); // Initialize the pump control pin as an output
-  pinMode(basePumpPin, OUTPUT);
+  pinMode(blackPump1Pin, OUTPUT); // Initialize the pump control pin as an output
+  pinMode(blackPump2Pin, OUTPUT);
+  pinMode(blackPump3Pin, OUTPUT);
   pinMode(bufferPumpPin, OUTPUT);
   pinMode(lysatePumpPin, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(RELAY_PIN, OUTPUT);
+
+  digitalWrite(blackPump1Pin, LOW);
+  digitalWrite(blackPump2Pin, LOW);
+  digitalWrite(blackPump3Pin, LOW);
+  digitalWrite(bufferPumpPin, LOW);
+  digitalWrite(lysatePumpPin, LOW);
 
   dac.begin(0x60);
 
@@ -96,11 +104,11 @@ void loop() {
     else if (command == '9') {
         float voltage = Serial.parseFloat();
         delay(RELAY_DELAY);
-        digitalWrite(feedPumpPin, HIGH); // Turn off feed pump
+        digitalWrite(blackPump1Pin, LOW); // Turn off feed pump
         delay(RELAY_DELAY);
         dac.setVoltage((voltage*4095)/5, false);
         delay(RELAY_DELAY);
-        digitalWrite(feedPumpPin, LOW); // Turn on feed pump (for some reason setting the pin low turns pump on)
+        digitalWrite(blackPump1Pin, HIGH); // Turn on feed pump (for some reason setting the pin low turns pump on)
         delay(RELAY_DELAY);
     }
   }
