@@ -66,17 +66,6 @@ void loop() {
     }
 }
 
-void setRPM(int voltage) {
-    // Handle RPM setting for blackPump1
-    delay(RELAY_DELAY);
-    digitalWrite(blackPump1Pin, LOW);
-    delay(RELAY_DELAY);
-    dac.setVoltage((voltage * 4095) / 5, false);
-    delay(RELAY_DELAY);
-    digitalWrite(blackPump1Pin, HIGH);
-    delay(RELAY_DELAY);
-}
-
 void handlePumpCommand(int cmd) {
     int pin;
     switch (cmd) {
@@ -91,6 +80,17 @@ void handlePumpCommand(int cmd) {
         default: return; // Ignore unknown commands
     }
     digitalWrite(pin, cmd % 2 == 1 ? HIGH : LOW); // Odd commands turn ON, even commands turn OFF
+}
+
+void setRPM(int voltage) {
+    // Handle RPM setting for blackPump1
+    delay(RELAY_DELAY);
+    digitalWrite(blackPump1Pin, LOW);
+    delay(RELAY_DELAY);
+    dac.setVoltage((voltage * 4095) / 5, false);
+    delay(RELAY_DELAY);
+    digitalWrite(blackPump1Pin, HIGH);
+    delay(RELAY_DELAY);
 }
 
 void toggleRelayTwice() {
