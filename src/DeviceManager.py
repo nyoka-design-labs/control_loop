@@ -27,17 +27,20 @@ class DeviceManager:
         self.delete()
         self.loop_id = loop_id
         names = self.__get_loop_devices()
-        print(f"names of all devices: {names}")
-
+        dev2port = []
+        idt = 0
         try:
             # finds the serial port for each device and creates dict
-            dev2port = {name: self.__find_usb_serial_port(name) for name in names}
+            for name in names:
+                port = self.__find_usb_serial_port(name, idt)
+                dev2port.append((name, port))
+                idt += 1
         except SerialPortNotFoundException as e:
             print(e)
             return
 
         self.devices = []
-        for name, port in dev2port.items():
+        for name, port in dev2port:
             # calling all device constructors
             if name == "dymo_scale":
                 self.devices.append(DEV_CONTRUCTORS[name](0x0922, 0x8003))
@@ -77,7 +80,6 @@ class DeviceManager:
         # collect data from each device
         devices_data = list(map(lambda dev: dev(), self.devices))
         data_headers = self.__get_loop_data_type()
-
         devices_data.append(round(elapsed_time, 3))
         data_headers.append("time")
         data_headers.append("type")
@@ -90,7 +92,7 @@ class DeviceManager:
 
         return dict(zip(data_headers, devices_data))
 
-    def __find_usb_serial_port(self, device_name: str) -> str | SerialPortNotFoundException:
+    def __find_usb_serial_port(self, device_name: str, idt: int) -> str | SerialPortNotFoundException:
         """
         Returns the serial port to use for the device.
         """
@@ -102,32 +104,29 @@ class DeviceManager:
 
         ports = serial.tools.list_ports.comports()
         ports = list(filter(lambda x: x.vid is not None and x.pid is not None, ports))
-        # for p in ports:
-        #     print(p.vid)
-        # print(f"all serial ports available:{ports}")
 
         f = open(CONSTANTS_DIR)
         devs = json.load(f)['devices']
-
+        data_types = self.__get_loop_data_type()
         for idx, dev in enumerate(devs):
             if dev['name'] == device_name and dev["port"] == "":
                 # find active serial ports
-                # print(f"name of the device throwing the error: {dev['name']}")
                 ser_ports = list(filter(lambda x: func(x.vid) == dev['vendor_id'] and func(x.pid) == dev['product_id'], ports))
                 ser_ports = set(map(lambda x: x.device, ser_ports))
-                # print(ser_ports)
                 # find occupied ports
                 occ_ports = self.__get_occupied_ports()
 
                 try:
                     # choose port that is not being used
-                    chosen_port = (ser_ports - occ_ports).pop()
+                    avail_ports = (ser_ports - occ_ports)
+                    sorted_avail_ports = sorted(avail_ports, key=lambda x: int(x.split('USB')[1]))
+                    chosen_port = sorted_avail_ports[0]
                 except:
                     raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
                 
-                sorted_chosen_ports = sorted(chosen_port, key=lambda x: int(x.split('USB')[1]))
                 # update the current device port
-                self.__update_device_port(sorted_chosen_ports, idx)
+                self.__update_device_port(chosen_port, data_types[idt], idx)
+
                 return chosen_port
 
         raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
@@ -189,10 +188,11 @@ class DeviceManager:
 
         return set(map(lambda x: x['port'], filter(lambda x: x['port'] != "", devs)))
     
-    def __update_device_port(self, port: str, idx: int) -> None:
+    def __update_device_port(self, port: str, data_type: str, idx: int) -> None:
         with open(CONSTANTS_DIR, "r+") as f:
             file_data = json.load(f)
             file_data["devices"][idx]["port"] = port
+            file_data["devices"][idx]["data_type"] = data_type
             f.seek(0)
             json.dump(file_data, f, indent = 4)
             f.close()

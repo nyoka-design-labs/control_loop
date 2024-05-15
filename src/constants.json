@@ -4,43 +4,50 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": ""
+            "port": "/dev/ttyUSB2",
+            "data_type": "feed_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": ""
+            "port": "/dev/ttyUSB3",
+            "data_type": "base_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": ""
+            "port": "",
+            "data_type": ""
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": ""
+            "port": "",
+            "data_type": ""
         },
         {
             "name": "dymo_scale",
             "vendor_id": "0922",
             "product_id": "8003",
-            "port": ""
+            "port": "",
+            "data_type": ""
         },
         {
             "name": "ph_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": ""
+            "port": "/dev/ttyUSB1",
+            "data_type": "ph"
         },
         {
             "name": "do_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": ""
+            "port": "/dev/ttyUSB0",
+            "data_type": "do"
         }
     ],
     "loop": [
@@ -74,11 +81,15 @@
             "loop_id": "test_loop",
             "devices": [
                 "do_sensor",
-                "ph_sensor"
+                "ph_sensor",
+                "uss_scale",
+                "uss_scale"
             ],
             "data_type": [
                 "do",
-                "ph"
+                "ph",
+                "feed_weight",
+                "base_weight"
             ]
         }
     ]

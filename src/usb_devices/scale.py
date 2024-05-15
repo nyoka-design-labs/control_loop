@@ -84,11 +84,12 @@ class USS_Scale:
 
 if __name__ == "__main__":
     # example usage of Scale class
-    scale = Scale(vid=0x0922, pid=0x8003)
+    # scale = Scale(vid=0x0922, pid=0x8003)
+    uss_scale = USS_Scale("/dev/ttyUSB2")
 
     try:
         while True:
-            print(f"Weight: {scale.get_weight()} g")
+            print(f"Weight: {uss_scale.get_weight()} g")
             time.sleep(3)
     except KeyboardInterrupt:
         print("Program terminated")
