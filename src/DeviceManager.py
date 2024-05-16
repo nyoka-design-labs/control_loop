@@ -28,11 +28,14 @@ class DeviceManager:
         self.loop_id = loop_id
         names = self.__get_loop_devices()
         dev2port = []
+        data_types = self.__get_loop_data_type()
         idt = 0
         try:
             # finds the serial port for each device and creates dict
             for name in names:
-                port = self.__find_usb_serial_port(name, idt)
+                if data_types[idt] == "temp":
+                    idt += 1
+                port = self.__find_usb_serial_port(name, data_types[idt])
                 dev2port.append((name, port))
                 idt += 1
         except SerialPortNotFoundException as e:
@@ -66,20 +69,51 @@ class DeviceManager:
             json.dump(file_data, f, indent=4)
             f.close()
 
-    def get_measurement(self, save_data=True) -> dict:
-        """
-        Get the current measurement from all the devices.
-        """
+    # def get_measurement(self, save_data=False) -> dict:
+    #     """
+    #     Get the current measurement from all the devices.
+    #     """
 
+    #     if self.start_time is None:
+    #         self.start_time = time.time()
+    #         elapsed_time = 0
+    #     else:
+    #         elapsed_time = (time.time() - self.start_time) / 3600
+
+    #     # collect data from each device
+    #     devices_data = list(map(lambda dev: dev(), self.devices))
+    #     data_headers = self.__get_loop_data_type()
+    #     devices_data.append(round(elapsed_time, 3))
+    #     data_headers.append("time")
+    #     data_headers.append("type")
+    #     devices_data.append("data")
+    #     data_headers.append("start_time")
+    #     devices_data.append(self.start_time)
+
+    #     if save_data:
+    #         add_to_csv(devices_data, "05-08-2024_concentration_data.csv", data_headers)
+
+    #     return dict(zip(data_headers, devices_data))
+    def get_measurement(self, save_data=True) -> dict:
         if self.start_time is None:
             self.start_time = time.time()
             elapsed_time = 0
         else:
             elapsed_time = (time.time() - self.start_time) / 3600
 
-        # collect data from each device
-        devices_data = list(map(lambda dev: dev(), self.devices))
+        # Collect data from each device
+        devices_data = []
+        for dev in self.devices:
+            result = dev()
+            print(result)
+            if isinstance(result, tuple):
+                
+                print(devices_data.extend(result))  # This handles multiple return values
+            else:
+                devices_data.append(result)
+        print(devices_data)
         data_headers = self.__get_loop_data_type()
+        print(data_headers)
         devices_data.append(round(elapsed_time, 3))
         data_headers.append("time")
         data_headers.append("type")
@@ -92,7 +126,7 @@ class DeviceManager:
 
         return dict(zip(data_headers, devices_data))
 
-    def __find_usb_serial_port(self, device_name: str, idt: int) -> str | SerialPortNotFoundException:
+    def __find_usb_serial_port(self, device_name: str, data_type: str) -> str | SerialPortNotFoundException:
         """
         Returns the serial port to use for the device.
         """
@@ -107,7 +141,6 @@ class DeviceManager:
 
         f = open(CONSTANTS_DIR)
         devs = json.load(f)['devices']
-        data_types = self.__get_loop_data_type()
         for idx, dev in enumerate(devs):
             if dev['name'] == device_name and dev["port"] == "":
                 # find active serial ports
@@ -125,7 +158,7 @@ class DeviceManager:
                     raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
                 
                 # update the current device port
-                self.__update_device_port(chosen_port, data_types[idt], idx)
+                self.__update_device_port(chosen_port, data_type, idx)
 
                 return chosen_port
 
@@ -152,8 +185,10 @@ class DeviceManager:
         f = open(CONSTANTS_DIR)
         loops = json.load(f)['loop']
         f.close()
-
-        return list(filter(lambda x: x['loop_id'] == self.loop_id, loops))[0]['devices']
+        devices = list(filter(lambda x: x['loop_id'] == self.loop_id, loops))[0]['devices']
+        devices = list(filter(lambda dev: dev != "temp_sensor", devices))
+        # print(devices)
+        return devices
     
     def __get_loop_data_type(self) -> list:
         """

@@ -117,7 +117,7 @@ class PH(_Sensor):
         self.callibrate(4.037, 7.019)
 
     def __call__(self, *args, **kwds) -> float:
-        return self.get_ph()
+        return (self.get_ph(), self.get_temp())
         
     def get_ph(self) -> float:
         """
