@@ -128,6 +128,9 @@ async def toggle(loop_id, command, websocket):
     if command == "toggle_lysate":
         controller_info["controller"].toggle_lysate()
 
+    if command == "toggle_lactose":
+        controller_info["controller"].toggle_lactose()
+
     status = controller_info["controller"].status
     
     await send_status_update(websocket, status)

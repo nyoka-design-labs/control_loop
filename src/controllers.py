@@ -121,10 +121,12 @@ class FermentationController(Controller):
         super().__init__()
         self.feed_pump = Pump(name="blackPump1")
         self.base_pump = Pump(name="blackPump2")
+        self.lactose_pump = Pump(name="blackPump3")
         self.device_manager = dm
         self.start_feed = False
         self.start_feed_2 = False
         self.first_time = True
+        self.refil = False
         self.rpm_volts = 0.06
         self.increment_counter = 0
 
@@ -147,20 +149,48 @@ class FermentationController(Controller):
         self.status.update({
             "control_loop_status": self.update_control_status(control),
             "feed_pump_status": str(self.feed_pump.state),
-            "base_pump_status": str(self.base_pump.state)
+            "base_pump_status": str(self.base_pump.state),
+            "lactose_pump_status": str(self.lactose_pump.state)
         })
 
     def start_control(self):
-        return self.do_feed_loop()
+        return self.ph_feed_loop()
 
     def ph_feed_loop(self):
         data = self.device_manager.get_measurement()
 
-        if data['ph'] >= 6.7:
-            self.pump_control(self.feed_pump.control(True)) # turn on the pump
+        # gets the intial weight of the feed
+        if self.first_time:
+            self.feedweightinitial = data["feed_weight"]
+            self.first_time = False
 
-        elif data['ph'] < 6.7:
-            self.pump_control(self.feed_pump.control(False)) # turn on the pump
+        if not self.start_feed:
+            if data["ph"] >= 7:
+                self.start_feed = True
+            else:
+                self.__pH_balance(data["ph"])
+
+        if self.start_feed:
+            if data['ph'] >= 7:
+                self.pump_control(self.feed_pump.control(True)) # turn on the pump
+
+            elif data['ph'] < 7:
+                self.pump_control(self.feed_pump.control(False)) # turn on the pump
+            
+            if not self.refil:
+                if self.feedweightinitial - data["feed_weight"] >= 320:
+                    self.refil = True
+
+            if self.refil:
+                if self.increment_counter < 20: # interval size of 15s
+                    self.pump_control(self.lactose_pump.control(True))
+                    self.increment_counter += 1
+                else:
+                    self.pump_control(self.lactose_pump.control(False))
+                    self.refil = False
+                    self.increment_counter = 0
+                    self.feedweightinitial = data["feed_weight"]
+
 
 
         self.update_status(True)
@@ -246,7 +276,7 @@ class FermentationController(Controller):
         Main control loop for the pH controller.
         """
         print("ph being balanced")
-        if (ph < 6.7):
+        if (ph < 7):
             # turn on pump
             self.pump_control(self.base_pump.control(True))
 
@@ -286,8 +316,13 @@ class FermentationController(Controller):
             "feed_pump_status": str(self.feed_pump.state)
         })
         
-
-
+    def toggle_lactose(self):
+        self.pump_control(self.lactose_pump.toggle())
+        self.status.update({
+            "lactose_pump_status": str(self.lactose_pump.state)
+        })
+    
+        
 if __name__ == "__main__":
     d = DeviceManager("concentration_loop")
     c = FermentationController(d)

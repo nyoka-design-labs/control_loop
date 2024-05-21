@@ -1,7 +1,7 @@
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
 import { useTogglePumpButton, useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
-import { useFeedPumpStatus, useBasePumpStatus, useControlLoopStatus, useDataCollectionStatus } from '../components/StatusBoxes';
+import { useFeedPumpStatus, useBasePumpStatus, useLactosePumpStatus, useControlLoopStatus, useDataCollectionStatus } from '../components/StatusBoxes';
 import { Chart } from '../components/Charts';
 import '../App.css';
 import 'chart.js/auto';
@@ -15,10 +15,12 @@ const FermentationControlPanel = () => {
   const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", fermentationLoopIdentifier, isControlLoopRunning);
   const toggleFeedPumpButton = useTogglePumpButton("Toggle Feed Pump", "toggle_feed", fermentationLoopIdentifier);
   const toggleBasePumpButton = useTogglePumpButton("Toggle Base Pump", "toggle_base", fermentationLoopIdentifier);
+  const toggleLactosePumpButton = useTogglePumpButton("Toggle Lactose Pump", "toggle_lactose", fermentationLoopIdentifier);
   
 
   const feedPumpStatus = useFeedPumpStatus();
   const basePumpStatus = useBasePumpStatus();
+  const lactosePumpStatus = useLactosePumpStatus();
   const controlLoopStatus = useControlLoopStatus();
   const dataCollectionStatus = useDataCollectionStatus();
 
@@ -62,6 +64,10 @@ const FermentationControlPanel = () => {
           <div className="button-status-container">
             {toggleFeedPumpButton}
             {feedPumpStatus}
+          </div>
+          <div className="button-status-container">
+            {toggleLactosePumpButton}
+            {lactosePumpStatus}
           </div>
           <div className="button-status-container">
             {toggleBasePumpButton}

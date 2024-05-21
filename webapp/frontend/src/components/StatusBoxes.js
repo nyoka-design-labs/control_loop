@@ -12,7 +12,7 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
       const data = JSON.parse(event.data);
       // console.log(data)
       if (data.type === 'status') {
-        if (data[key] === "1" || data[key] === "3" || data[key] === "11" || data[key] === "13" || data[key] === "control_on" || data[key] === "data_collection_on" ) {
+        if (data[key] === "1" || data[key] === "3" || data[key] === "11" || data[key] === "13" || data[key] === "5" || data[key] === "control_on" || data[key] === "data_collection_on" ) {
           clearTimeout(statusTimeout.current);
           setStatus(onMessage);
           if (shouldTimeout) {
@@ -20,7 +20,7 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
               setStatus(offMessage);
             }, 15000); // timeout
           }
-        } else if (data[key] === "0" || data[key] === "2" || data[key] === "10" || data[key] === "12" || data[key] === "control_off" || data[key] === "data_collection_off") {
+        } else if (data[key] === "0" || data[key] === "2" || data[key] === "10" || data[key] === "12" || data[key] === "4" || data[key] === "control_off" || data[key] === "data_collection_off") {
           setStatus(offMessage);
           clearTimeout(statusTimeout.current);
         }
@@ -48,6 +48,7 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
 
 export const useFeedPumpStatus = () => useStatusBox("feed_pump_status", "ON", "OFF");
 export const useBasePumpStatus = () => useStatusBox("base_pump_status", "ON", "OFF");
+export const useLactosePumpStatus = () => useStatusBox("lactose_pump_status", "ON", "OFF");
 export const useBufferPumpStatus = () => useStatusBox("buffer_pump_status", "ON", "OFF");
 export const useLysatePumpStatus = () => useStatusBox("lysate_pump_status", "ON", "OFF");
 export const useControlLoopStatus = () => useStatusBox("control_loop_status", "ON", "OFF", true);
