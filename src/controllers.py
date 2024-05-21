@@ -157,7 +157,8 @@ class FermentationController(Controller):
         return self.ph_feed_loop()
 
     def ph_feed_loop(self):
-        data = self.device_manager.get_measurement()
+        # data = self.device_manager.get_measurement()
+        data = self.device_manager.test_get_measurement("test_data_1")
 
         # gets the intial weight of the feed
         if self.first_time:

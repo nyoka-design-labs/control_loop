@@ -3,6 +3,7 @@ import os
 import math
 import serial.tools.list_ports
 import usb.core
+import json
 
 def exponential_func(t: int, c1: int) -> float:
     """
@@ -24,6 +25,10 @@ def exponential_func(t: int, c1: int) -> float:
 
     return v2, c2
 
+def load_test_data(json_file):
+    with open(json_file, 'r') as file:
+        return json.load(file)
+    
 def add_to_csv(data: list, file_name: str, header: list):
     curr_dir = os.path.dirname(__file__)
     csv_dir = f"/home/sam/Desktop/control_loop/data/{file_name}"

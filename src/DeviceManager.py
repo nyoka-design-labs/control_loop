@@ -1,7 +1,7 @@
 from devices.scale import Scale, USS_Scale
 from devices.ham_sensor import PH, DO
 import time
-from utils import add_to_csv
+from utils import add_to_csv, load_test_data
 import json
 import os
 import serial.tools.list_ports
@@ -24,6 +24,8 @@ class DeviceManager:
     """
 
     def __init__(self, loop_id: str) -> None:
+        self.test_data = load_test_data('test_data.json')
+        self.index = {key: 0 for key in self.test_data.keys()}
         self.start_time = None
         self.delete()
         self.loop_id = loop_id
@@ -101,6 +103,18 @@ class DeviceManager:
             save_to_sheet(devices_data, data_headers, csv_name) ## WILL BE USED HERE
 
         return dict(zip(data_headers, devices_data))
+
+    def test_get_measurement(self, test_name):
+        if test_name not in self.data:
+            raise ValueError(f"No test data found for {test_name}")
+
+        if self.index[test_name] >= len(self.data[test_name]):
+            raise IndexError(f"No more data for {test_name}")
+
+        measurement = self.data[test_name][self.index[test_name]]
+        self.index[test_name] += 1
+        return measurement
+
 
     def __find_usb_serial_port(self, device_name: str, data_type: str) -> str | SerialPortNotFoundException:
         """
