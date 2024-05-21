@@ -7,8 +7,8 @@ import time
 import time
 
 sys.path.append("../src")
-from usb_devices.scale import Scale
-from serial_devices.pump import Pump
+from devices.scale import Scale
+from devices.pump import Pump
 from utils import add_to_csv, extract_specific_cells
 
 INTERVAL = 60 # time in between readings

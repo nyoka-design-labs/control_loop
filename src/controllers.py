@@ -1,5 +1,5 @@
 import serial
-from serial_devices.pump import Pump
+from devices.pump import Pump
 from DeviceManager import DeviceManager
 import time
 
@@ -137,9 +137,35 @@ class FermentationController(Controller):
             "base_pump_status": str(self.base_pump.state),
         }
 
+    def update_control_status(self, is_on: bool):
+        """Update the control status based on the boolean value provided."""
+        control = "control_on" if is_on else "control_off"
+        return control
+
+    def update_status(self, control: bool):
+
+        self.status.update({
+            "control_loop_status": self.update_control_status(control),
+            "feed_pump_status": str(self.feed_pump.state),
+            "base_pump_status": str(self.base_pump.state)
+        })
+
     def start_control(self):
         return self.do_feed_loop()
 
+    def ph_feed_loop(self):
+        data = self.device_manager.get_measurement()
+
+        if data['ph'] >= 6.7:
+            self.pump_control(self.feed_pump.control(True)) # turn on the pump
+
+        elif data['ph'] < 6.7:
+            self.pump_control(self.feed_pump.control(False)) # turn on the pump
+
+
+        self.update_status(True)
+
+        return self.status
     
     def new_loop(self):
         data = self.device_manager.get_measurement()
@@ -186,16 +212,9 @@ class FermentationController(Controller):
 
         self.__pH_balance(data['ph'])
 
-        self.status.update({
-            "control_loop_status": "control_on",
-            "data_collection_status": "data_collection_on",
-            "feed_pump_status": str(self.feed_pump.state),
-            "base_pump_status": str(self.base_pump.state)
-        })
+        self.update_status(True)
          
         return self.status
-
-
 
     def do_feed_loop(self):
         """
@@ -218,14 +237,10 @@ class FermentationController(Controller):
         
         self.__pH_balance(data['ph']) # balances the pH
 
-        self.status.update({
-            "control_loop_status": "control_on",
-            "feed_pump_status": str(self.feed_pump.state),
-            "base_pump_status": str(self.base_pump.state)
-        })
+        self.update_status(True)
+
         return self.status
 
-    
     def __pH_balance(self, ph: float):
         """
         Main control loop for the pH controller.

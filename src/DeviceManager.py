@@ -1,11 +1,12 @@
-from usb_devices.scale import Scale, USS_Scale
-from usb_devices.ham_sensor import PH, DO
+from devices.scale import Scale, USS_Scale
+from devices.ham_sensor import PH, DO
 import time
 from utils import add_to_csv
 import json
 import os
 import serial.tools.list_ports
 from exceptions import SerialPortNotFoundException
+from sheets import save_to_sheet
 
 DEV_CONTRUCTORS = {
     "uss_scale": USS_Scale,
@@ -105,24 +106,24 @@ class DeviceManager:
         devices_data = []
         for dev in self.devices:
             result = dev()
-            print(result)
+
             if isinstance(result, tuple):
                 
                 print(devices_data.extend(result))  # This handles multiple return values
             else:
                 devices_data.append(result)
-        print(devices_data)
+
         data_headers = self.__get_loop_data_type()
-        print(data_headers)
         devices_data.append(round(elapsed_time, 3))
         data_headers.append("time")
         data_headers.append("type")
         devices_data.append("data")
         data_headers.append("start_time")
         devices_data.append(self.start_time)
-
+        csv_name = "fermentation_05-21-2024"
         if save_data:
-            add_to_csv(devices_data, "05-08-2024_concentration_data.csv", data_headers)
+            add_to_csv(devices_data, f"{csv_name}.csv", data_headers)
+            save_to_sheet(devices_data, data_headers, csv_name) ## WILL BE USED HERE
 
         return dict(zip(data_headers, devices_data))
 

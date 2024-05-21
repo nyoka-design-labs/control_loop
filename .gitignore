@@ -2,3 +2,4 @@ __pycache__/
 env
 /.vscode
 *.csv
+src/sheets_access_key.json
