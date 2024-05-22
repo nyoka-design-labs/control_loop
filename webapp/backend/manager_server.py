@@ -9,7 +9,7 @@ sys.path.append("/home/sam/Desktop/control_loop/src")
 from resources.utils import read_csv_file, get_csv_name
 import controllers as c
 
-load_data = True
+load_data = False
 INTERVAL = 13
 controllers = {}
 

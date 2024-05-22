@@ -5,8 +5,8 @@ export const createChartData = (systemData, label, actualColor, expectedLabel, e
     const currentDataPoints = label === 'Temperature'
       ? systemData.map(data => parseFloat(data.temp))
       : systemData.map(data => data[label.toLowerCase()]);
-    console.log("Charts system Data:", systemData);
-    console.log("Charts Current data points:", currentDataPoints);
+    // console.log("Charts system Data:", systemData);
+    // console.log("Charts Current data points:", currentDataPoints);
     // console.log(currentDataPoints);
     const datasets = [
       {

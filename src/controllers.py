@@ -6,6 +6,7 @@ import time
 #CONSTANTS
 port = '/dev/ttyACM0'
 baudrate = 9600
+testing = False
 
 
 def create_controller(loop_id):
@@ -134,6 +135,7 @@ class FermentationController(Controller):
         self.refil = False
         self.rpm_volts = 0.06
         self.increment_counter = 0
+        self.test_data = None
 
         self.status = {
             "type": "status",
@@ -167,9 +169,13 @@ class FermentationController(Controller):
         return self.ph_feed_loop()
 
     def ph_feed_loop(self):
-        data = self.device_manager.get_measurement()
-        # data = self.device_manager.test_get_measurement("test_data_7")
-        # print(f"test data: {data}")
+
+        if testing:
+            data = self.device_manager.test_get_measurement("test_data_7")
+            self.test_data = data
+            print(f"test data: {data}")
+        else:
+            data = self.device_manager.get_measurement()
 
         # gets the intial weight of the feed
         if self.first_time:
@@ -196,7 +202,7 @@ class FermentationController(Controller):
                     self.refil = True
 
             if self.refil:
-                if self.increment_counter < 20: # interval size of 15s
+                if self.increment_counter < 5: # interval size of 15s
                     self.pump_control(self.lactose_pump.control(True))
                     self.increment_counter += 1
                 else:
@@ -300,8 +306,10 @@ class FermentationController(Controller):
 
 
     def start_collection(self):
-        data = self.device_manager.get_measurement()
-
+        if testing:
+            data = self.test_data
+        else:
+            data = self.device_manager.get_measurement()
         self.status.update({
             "data_collection_status": "data_collection_on"
         })
@@ -311,6 +319,7 @@ class FermentationController(Controller):
     def stop_control(self):
         self.pump_control(self.feed_pump.control(False))
         self.pump_control(self.base_pump.control(False))
+        self.pump_control(self.lactose_pump.control(False))
 
         self.status.update({
             "control_loop_status": "control_off",
