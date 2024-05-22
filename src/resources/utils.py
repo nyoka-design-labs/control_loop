@@ -32,15 +32,18 @@ def load_test_data(json_file):
 def add_to_csv(data: list, file_name: str, header: list):
     curr_dir = os.path.dirname(__file__)
     csv_dir = os.path.join(curr_dir, "..", "data", file_name)
+    
+    # Check if the file exists and if it is empty
     file_exists = os.path.isfile(csv_dir)
+    file_empty = os.path.getsize(csv_dir) == 0 if file_exists else True
     
     with open(csv_dir, 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
         
-        # If the file is being created, write the header first
-        if not file_exists:
+        # If the file doesn't exist or is empty, write the header
+        if file_empty:
             writer.writerow(header)
-    
+        
         writer.writerow(data)
 
 def read_csv_file(file_name: str):

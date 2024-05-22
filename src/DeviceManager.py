@@ -123,7 +123,11 @@ class DeviceManager:
 
         if save_data:
             add_to_csv(devices_data, f"{csv_name}.csv", data_headers)
-            save_to_sheet(devices_data, data_headers, csv_name) ## WILL BE USED HERE
+            try:
+                save_to_sheet(devices_data, data_headers, csv_name) ## WILL BE USED HERE
+            except:
+                print("data did not save to sheets")
+
 
         # print(data_headers)
         # print(devices_data)
