@@ -10,9 +10,9 @@ baudrate = 9600
 testing = False
 
 
-def create_controller(loop_id):
+def create_controller(loop_id, control_id):
     
-    dm = DeviceManager(loop_id)
+    dm = DeviceManager(loop_id, control_id)
 
     if loop_id == "concentration_loop":
         controller = ConcentrationController(dm)
@@ -125,7 +125,7 @@ class FermentationController(Controller):
 
     def __init__(self, dm: DeviceManager):
         super().__init__()
-        
+
         dm.control_id = "ph_mixed_feed_loop"
 
         self.feed_pump = Pump(name="blackPump1")

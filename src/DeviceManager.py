@@ -120,7 +120,7 @@ class DeviceManager:
 
 
 
-        csv_name = get_csv_name(self.loop_id)
+        csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
 
         if save_data:
             add_to_csv(devices_data, f"{csv_name}.csv", data_headers)
