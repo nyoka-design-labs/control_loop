@@ -41,6 +41,7 @@ def save_to_sheet(data, headers, sheet_name):
         None
     """
     # Emails to share the sheet with
+    # emails_to_share = ["samgupta.1738@gmail.com", "daniel@lightbynyoka.com", "tatiana@lightbynyoka.com", "svhahn1@gmail.com", "charf@lightbynyoka.com"]
     emails_to_share = ["samgupta.1738@gmail.com"]
 
     # Try to open the existing spreadsheet by name
