@@ -1,12 +1,12 @@
 from devices.scale import Scale, USS_Scale
 from devices.ham_sensor import PH, DO
 import time
-from utils import add_to_csv, load_test_data
+from resources.utils import add_to_csv, load_test_data
 import json
 import os
 import serial.tools.list_ports
-from exceptions import SerialPortNotFoundException
-from sheets import save_to_sheet
+from resources.exceptions import SerialPortNotFoundException
+from resources.google_api.sheets import save_to_sheet
 from datetime import datetime
 
 DEV_CONTRUCTORS = {
@@ -17,7 +17,8 @@ DEV_CONTRUCTORS = {
 }
 
 curr_directory = os.path.dirname(__file__)
-CONSTANTS_DIR = f"{curr_directory}/constants.json"
+CONSTANTS_DIR = f"{curr_directory}/resources/constants.json"
+test_data = load_test_data(curr_directory+'/resources/test_data.json')
 
 class DeviceManager:
     """
@@ -25,7 +26,7 @@ class DeviceManager:
     """
 
     def __init__(self, loop_id: str) -> None:
-        self.test_data = load_test_data(curr_directory+'/test_data.json')
+        self.test_data = test_data
         self.index = 0
         self.start_time = None
         self.delete()

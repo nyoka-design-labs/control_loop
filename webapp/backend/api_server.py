@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import json
 import manager_server
-from utils import read_csv_file
+from resources.utils import read_csv_file
 
 async def handle_client(websocket):
 

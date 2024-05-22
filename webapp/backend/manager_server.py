@@ -6,7 +6,7 @@ import websockets
 
 import sys
 sys.path.append("/home/sam/Desktop/control_loop/src")
-from utils import read_csv_file
+from resources.utils import read_csv_file
 import controllers as c
 
 load = False

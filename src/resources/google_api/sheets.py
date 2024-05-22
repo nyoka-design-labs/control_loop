@@ -10,7 +10,7 @@ SCOPES = [
 
 curr_directory = os.path.dirname(__file__)
 
-SERVICE_ACCOUNT_FILE = curr_directory + '/sheets_access_key.json'  # Update this path
+SERVICE_ACCOUNT_FILE = curr_directory + '/sheets_access_key.json'
 
 creds = Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
