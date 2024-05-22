@@ -18,7 +18,7 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
           if (shouldTimeout) {
             statusTimeout.current = setTimeout(() => {
               setStatus(offMessage);
-            }, 15000); // timeout
+            }, 20000); // timeout
           }
         } else if (data[key] === "0" || data[key] === "2" || data[key] === "10" || data[key] === "12" || data[key] === "4" || data[key] === "control_off" || data[key] === "data_collection_off") {
           setStatus(offMessage);

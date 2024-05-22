@@ -7,6 +7,7 @@ import os
 import serial.tools.list_ports
 from exceptions import SerialPortNotFoundException
 from sheets import save_to_sheet
+from datetime import datetime
 
 DEV_CONTRUCTORS = {
     "uss_scale": USS_Scale,
@@ -24,8 +25,8 @@ class DeviceManager:
     """
 
     def __init__(self, loop_id: str) -> None:
-        self.test_data = load_test_data('test_data.json')
-        self.index = {key: 0 for key in self.test_data.keys()}
+        self.test_data = load_test_data(curr_directory+'/test_data.json')
+        self.index = 0
         self.start_time = None
         self.delete()
         self.loop_id = loop_id
@@ -73,11 +74,7 @@ class DeviceManager:
             f.close()
 
     def get_measurement(self, save_data=True) -> dict:
-        if self.start_time is None:
-            self.start_time = time.time()
-            elapsed_time = 0
-        else:
-            elapsed_time = (time.time() - self.start_time) / 3600
+        
 
         # Collect data from each device
         devices_data = []
@@ -85,34 +82,54 @@ class DeviceManager:
             result = dev()
 
             if isinstance(result, tuple):
-                
-                print(devices_data.extend(result))  # This handles multiple return values
+                devices_data.extend(result)  # This handles multiple return values
             else:
                 devices_data.append(result)
 
         data_headers = self.__get_loop_data_type()
-        devices_data.append(round(elapsed_time, 3))
+
+        # elapsed time
+        if self.start_time is None:
+            self.start_time = time.time()
+            elapsed_time = 0
+        else:
+            elapsed_time = (time.time() - self.start_time) / 3600
+
         data_headers.append("time")
-        data_headers.append("type")
-        devices_data.append("data")
+        devices_data.append(round(elapsed_time, 6))
+        
+        # date
+        data_headers.append("date")
+        devices_data.append(datetime.now().strftime('%d-%m-%Y'))
+        
+        # time of day
+        data_headers.append("time_of_day")
+        devices_data.append(datetime.now().strftime('%H:%M:%S'))
+        
+        # start time
         data_headers.append("start_time")
         devices_data.append(self.start_time)
+
+        # type of information being sent to frontend
+        data_headers.append("type")
+        devices_data.append("data")
+
+
+
         csv_name = "fermentation_05-21-2024"
+
         if save_data:
             add_to_csv(devices_data, f"{csv_name}.csv", data_headers)
             save_to_sheet(devices_data, data_headers, csv_name) ## WILL BE USED HERE
 
+        # print(data_headers)
+        # print(devices_data)
+
         return dict(zip(data_headers, devices_data))
 
     def test_get_measurement(self, test_name):
-        if test_name not in self.data:
-            raise ValueError(f"No test data found for {test_name}")
-
-        if self.index[test_name] >= len(self.data[test_name]):
-            raise IndexError(f"No more data for {test_name}")
-
-        measurement = self.data[test_name][self.index[test_name]]
-        self.index[test_name] += 1
+        measurement = self.test_data[test_name][self.index]
+        self.index += 1
         return measurement
 
 
@@ -223,7 +240,8 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("test_loop")
+    dm = DeviceManager("fermentation_loop")
     while True:
+        # print(dm.test_get_measurement("test_data_1"))
         print(dm.get_measurement())
-        time.sleep(5)
+        time.sleep(3)

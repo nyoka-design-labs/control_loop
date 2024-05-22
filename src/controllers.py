@@ -23,11 +23,15 @@ class Controller:
 
     def __init__(self):
         self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
-        pass
+        # time.sleep(1)
+        # self.arduino.flush()
 
     def pump_control(self, state: str):
-        print(f"sent arduino: {state}")
-        self.arduino.write(state.encode())
+        print(f"sent arduino: {state.encode()}")
+        self.arduino.write((state + '\n').encode())
+        # self.arduino.flush()
+
+        time.sleep(1)
 
 class ConcentrationController(Controller):
     """
@@ -119,6 +123,7 @@ class FermentationController(Controller):
 
     def __init__(self, dm: DeviceManager):
         super().__init__()
+        
         self.feed_pump = Pump(name="blackPump1")
         self.base_pump = Pump(name="blackPump2")
         self.lactose_pump = Pump(name="blackPump3")
@@ -139,6 +144,10 @@ class FermentationController(Controller):
             "base_pump_status": str(self.base_pump.state),
         }
 
+        self.pump_control(self.feed_pump.control(False))
+        self.pump_control(self.lactose_pump.control(False))
+        self.pump_control(self.base_pump.control(False))
+
     def update_control_status(self, is_on: bool):
         """Update the control status based on the boolean value provided."""
         control = "control_on" if is_on else "control_off"
@@ -154,22 +163,26 @@ class FermentationController(Controller):
         })
 
     def start_control(self):
+
         return self.ph_feed_loop()
 
     def ph_feed_loop(self):
-        # data = self.device_manager.get_measurement()
-        data = self.device_manager.test_get_measurement("test_data_1")
+        data = self.device_manager.get_measurement()
+        # data = self.device_manager.test_get_measurement("test_data_7")
+        # print(f"test data: {data}")
 
         # gets the intial weight of the feed
         if self.first_time:
             self.feedweightinitial = data["feed_weight"]
+            print(self.feedweightinitial)
             self.first_time = False
 
         if not self.start_feed:
             if data["ph"] >= 7:
+                self.pump_control(self.base_pump.control(False))
                 self.start_feed = True
             else:
-                self.__pH_balance(data["ph"])
+                self.pump_control(self.base_pump.control(True))
 
         if self.start_feed:
             if data['ph'] >= 7:
@@ -325,8 +338,13 @@ class FermentationController(Controller):
     
         
 if __name__ == "__main__":
-    d = DeviceManager("concentration_loop")
+    d = DeviceManager("fermentation_loop")
     c = FermentationController(d)
+    stat = 2
     while True:
-        print(c.start_collection())
-        time.sleep(3)
+        stat = stat ^ 1
+        # print(c.pump_control(str(stat)))
+        # print(c.pump_control(str(1)))
+        print(c.start_control())
+
+        time.sleep(5)

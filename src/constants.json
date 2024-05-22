@@ -12,14 +12,14 @@
             "vendor_id": "1a86",
             "product_id": "7523",
             "port": "/dev/ttyUSB7",
-            "data_type": "base_weight"
+            "data_type": "lactose_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
-            "data_type": ""
+            "port": "/dev/ttyUSB8",
+            "data_type": "base_weight"
         },
         {
             "name": "uss_scale",

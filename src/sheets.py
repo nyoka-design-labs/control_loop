@@ -1,12 +1,16 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import os
 
 # Initialize the Sheets API
 SCOPES = [
     'https://www.googleapis.com/auth/spreadsheets',
     'https://www.googleapis.com/auth/drive'
 ]
-SERVICE_ACCOUNT_FILE = '/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/sheets_access_key.json'  # Update this path
+
+curr_directory = os.path.dirname(__file__)
+
+SERVICE_ACCOUNT_FILE = curr_directory + '/sheets_access_key.json'  # Update this path
 
 creds = Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
@@ -39,13 +43,12 @@ def save_to_sheet(data, headers, sheet_name):
         None
     """
     # Clean the data before saving
-    data = clean_data(data)
+    # data = clean_data(data)
     # emails_to_share = ["daniel@lightbynyoka.com", "charf@lightbynyoka.com"]
     emails_to_share = ["samgupta.1738@gmail.com"]
- 
+
     # Try to open the existing spreadsheet
     spreadsheet = client.open(sheet_name)
-    print(f"Opened existing sheet: {sheet_name}")
     
 
     # Check existing permissions and share only with new emails
@@ -61,8 +64,6 @@ def save_to_sheet(data, headers, sheet_name):
                 role='writer'
             )
             print(f"Shared the sheet with: {email}")
-        else:
-            print(f"Sheet already shared with: {email}")
 
     # Select the first sheet
     sheet = spreadsheet.sheet1
@@ -77,19 +78,13 @@ def save_to_sheet(data, headers, sheet_name):
         print("Inserted headers")
 
     # Append the new data after the existing data
-    start_row = len(existing_data) + 1 if existing_data else 2
-    for row in data:
-        sheet.insert_row(row, start_row)
-        start_row += 1
+    sheet.append_row(data)
 
-    print("Appended data to the sheet")
+    print("Added data to the sheet")
 
 if __name__ == "__main__":
-    data = [
-        ["John Doe", "john@example.com", "1234567890"],
-        ["Jane Smith", "jane@example.com", "0987654321"]
-    ]
-    headers = ["Name", "Email", "Phone"]
+    data = [100.254, 6.805, 21.567, 238.9, 0.0, 0.0, 0, 'data', 1716397226.4900506]
+    headers = ['do', 'ph', 'temp', 'feed_weight', 'lactose_weight', 'base_weight', 'time', 'type', 'start_time']
     sheet_name = "Contact Information"
     
 

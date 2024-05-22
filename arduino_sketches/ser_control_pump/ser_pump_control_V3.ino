@@ -28,14 +28,14 @@ void setup() {
     dac.begin(0x60);
 
     // set all pump pins to low
-    digitalWrite(blackPump1Pin, LOW);
-    digitalWrite(blackPump2Pin, LOW);
-    digitalWrite(blackPump3Pin, LOW);
-    digitalWrite(blackPump4Pin, LOW);
-    digitalWrite(blackPump5Pin, LOW);
-    digitalWrite(whitePump1Pin, LOW);
-    digitalWrite(whitePump2Pin, LOW);
-    digitalWrite(whitePump3Pin, LOW);
+//    digitalWrite(blackPump1Pin, LOW);
+//    digitalWrite(blackPump2Pin, LOW);
+//    digitalWrite(blackPump3Pin, LOW);
+//    digitalWrite(blackPump4Pin, LOW);
+//    digitalWrite(blackPump5Pin, LOW);
+//    digitalWrite(whitePump1Pin, LOW);
+//    digitalWrite(whitePump2Pin, LOW);
+//    digitalWrite(whitePump3Pin, LOW);
 
     // switch the units on dymo from lb to grams
     digitalWrite(dymoRelayPin, HIGH);
@@ -68,6 +68,7 @@ void loop() {
 
 void handlePumpCommand(int cmd) {
     int pin;
+    Serial.print(cmd);
     switch (cmd) {
         case 0: case 1: pin = blackPump1Pin; break;
         case 2: case 3: pin = blackPump2Pin; break;

@@ -10,7 +10,7 @@ from utils import read_csv_file
 import controllers as c
 
 load = False
-INTERVAL = 15
+INTERVAL = 13
 controllers = {}
 
 async def control_task(controller, websocket):
