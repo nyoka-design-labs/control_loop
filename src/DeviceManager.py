@@ -1,7 +1,7 @@
 from devices.scale import Scale, USS_Scale
 from devices.ham_sensor import PH, DO
 import time
-from resources.utils import add_to_csv, load_test_data
+from resources.utils import add_to_csv, load_test_data, get_csv_name
 import json
 import os
 import serial.tools.list_ports
@@ -119,7 +119,7 @@ class DeviceManager:
 
 
 
-        csv_name = "fermentation_05-21-2024"
+        csv_name = get_csv_name(self.loop_id)
 
         if save_data:
             add_to_csv(devices_data, f"{csv_name}.csv", data_headers)

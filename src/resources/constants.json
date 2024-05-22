@@ -60,7 +60,8 @@
             "data_type": [
                 "buffer_weight",
                 "lysate_weight"
-            ]
+            ],
+            "csv_name": "concentration_05-24-2024"
         },
         {
             "loop_id": "fermentation_loop",
@@ -78,7 +79,8 @@
                 "feed_weight",
                 "lactose_weight",
                 "base_weight"
-            ]
+            ],
+            "csv_name": "fermentation_05-23-2024"
         },
         {
             "loop_id": "test_loop",

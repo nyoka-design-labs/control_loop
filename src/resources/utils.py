@@ -76,6 +76,22 @@ def find_usb_serial_port(vendor_id: hex, product_id: hex):
             return port.device
     return None
 
+def get_csv_name(loop_id):
+    curr_dir = os.path.dirname(__file__)
+    json_path = os.path.join(curr_dir, "constants.json")
+    # Load the JSON data from the given path
+    with open(json_path, 'r') as file:
+        data = json.load(file)
+
+    # Iterate through each entry in the "loop" list
+    for loop in data["loop"]:
+        if loop.get("loop_id") == loop_id:
+            # Return the 'csv_name' if the loop_id matches and 'csv_name' exists
+            return loop.get("csv_name", "No CSV name provided")
+
+    # Return a message if the loop_id is not found
+    return "Loop ID not found"
+
 if __name__ == "__main__":
     # import matplotlib.pyplot as plt
 

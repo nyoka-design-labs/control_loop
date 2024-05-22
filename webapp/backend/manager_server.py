@@ -6,13 +6,28 @@ import websockets
 
 import sys
 sys.path.append("/home/sam/Desktop/control_loop/src")
-from resources.utils import read_csv_file
+from resources.utils import read_csv_file, get_csv_name
 import controllers as c
 
-load_data = False
+
 INTERVAL = 13
 controllers = {}
-csv_name = "fermentation_05-21-2024"
+
+async def load_previous_data(controller: c, websocket: websockets, loop_id: str):
+    csv_name = get_csv_name(loop_id)
+    data = read_csv_file(f"{csv_name}.csv")
+    start_time = float(data[1][7])
+    data = data[1:]
+    controller.device_manager.start_time = start_time
+    for row in data:
+        row_dict = {"feed_weight": row[1],
+                    "do": row[2],
+                    "ph": row[3],
+                    "temp": row[4],
+                    "time": row[5],
+                    "type": "data"}
+
+        await websocket.send(json.dumps(row_dict))
 
 async def control_task(controller, websocket):
     while True:
@@ -22,25 +37,9 @@ async def control_task(controller, websocket):
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
 
-async def load_previous_data(csv_name: str, controller: c, websocket: websockets, load=load_data):
-    if (load):
-        # start_time = asyncio.create_task(load_data(websocket))
-        data = read_csv_file(f"{csv_name}.csv")
-        start_time = float(data[1][7])
-        data = data[1:]
-        controller.device_manager.start_time = start_time
-        for row in data:
-            row_dict = {"feed_weight": row[1],
-                        "do": row[2],
-                        "ph": row[3],
-                        "temp": row[4],
-                        "time": row[5],
-                        "type": "data"}
-
-            await websocket.send(json.dumps(row_dict))
-
-async def collection_task(controller, websocket):
-      await load_previous_data(csv_name, controller, websocket)
+async def collection_task(controller, websocket, loop_id):
+      
+    #   await load_previous_data(csv_name, controller, websocket, loop_id)
 
       while True:
         controller.pump_control("T")
