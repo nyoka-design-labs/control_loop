@@ -1,7 +1,7 @@
 from devices.scale import Scale, USS_Scale
 from devices.ham_sensor import PH, DO
 import time
-from resources.utils import add_to_csv, load_test_data, get_csv_name
+from resources.utils import add_to_csv, load_test_data, get_csv_name, get_control_constant
 import json
 import os
 import serial.tools.list_ports
@@ -27,12 +27,13 @@ class DeviceManager:
     Represents a device manager.
     """
 
-    def __init__(self, loop_id: str) -> None:
+    def __init__(self, loop_id: str, control_id: str) -> None:
         self.test_data = test_data
         self.index = 0
         self.start_time = None
         self.delete()
         self.loop_id = loop_id
+        self.control_id = control_id
         names = self.__get_loop_devices()
         dev2port = []
         data_types = self.__get_loop_data_type()
@@ -195,13 +196,14 @@ class DeviceManager:
         """
         Gets the devices in the specified loop.
         """
-
-        f = open(CONSTANTS_DIR)
-        loops = json.load(f)['loop']
-        f.close()
-        devices = list(filter(lambda x: x['loop_id'] == self.loop_id, loops))[0]['devices']
+        
+        # f = open(CONSTANTS_DIR)
+        # loops = json.load(f)['loop']
+        # f.close()
+        # chosen_loop = filter(lambda x: x['loop_id'] == self.loop_id, loops)
+        devices = get_control_constant(self.loop_id, self.control_id, "devices")
         devices = list(filter(lambda dev: dev != "temp_sensor", devices))
-        # print(devices)
+        print(devices)
         return devices
     
     def __get_loop_data_type(self) -> list:
@@ -209,11 +211,11 @@ class DeviceManager:
         Gets the data type for the specified loop.
         """
 
-        f = open(CONSTANTS_DIR)
-        loops = json.load(f)['loop']
-        f.close()
+        # f = open(CONSTANTS_DIR)
+        # loops = json.load(f)['loop']
+        # f.close()
 
-        return list(filter(lambda x: x['loop_id'] == self.loop_id, loops))[0]['data_type']
+        return list(get_control_constant(self.loop_id, self.control_id, "data_type"))
 
     def __get_all_device_names(self) -> set:
         """

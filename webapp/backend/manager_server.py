@@ -6,7 +6,7 @@ import websockets
 
 import sys
 sys.path.append("/home/sam/Desktop/control_loop/src")
-from resources.utils import read_csv_file, get_csv_name
+from resources.utils import read_csv_file, get_csv_name, get_loop_constant
 import controllers as c
 
 load_data = False
@@ -67,7 +67,9 @@ async def send_status_update(websocket, status):
 def get_controller(loop_id):
     # Initialize controller and device manager if they don't exist for this loop
     if loop_id not in controllers:
-        controller, device_manager = c.create_controller(loop_id)
+        control_id = get_loop_constant(loop_id=loop_id, const="chosen_control")
+        
+        controller, device_manager = c.create_controller(loop_id, control_id)
         controllers[loop_id] = {
             "controller": controller,  # Replace with appropriate constructor arguments
             "device_manager": device_manager  # Replace with appropriate constructor arguments

@@ -65,22 +65,55 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "devices": [
-                "do_sensor",
-                "ph_sensor",
-                "uss_scale",
-                "uss_scale",
-                "uss_scale"
-            ],
-            "data_type": [
-                "do",
-                "ph",
-                "temp",
-                "feed_weight",
-                "lactose_weight",
-                "base_weight"
-            ],
-            "csv_name": "fermentation_05-23-2024"
+            "chosen_control": "ph_mixed_feed_loop",
+            "controllers": [
+                {
+                    "controller_id": "do_der_loop",
+                    "notes": "when the derivative is positive for 5 consecutaive windows feed is turned on. ph is balanced",
+                    "devices": [
+                        "do_sensor",
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "do",
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "base_weight"
+                    ],
+                    "csv_name": "fermentation_05-23-2024", 
+                    "ph_balance_sp": 6.7, 
+                    "deriv_window": 20
+                
+                },
+                {
+                    "controller_id": "ph_mixed_feed_loop",
+                    "notes": "base is added until ph reaches 7 then feed is triggered. feed is based on ph. on = ph >= 7, off = ph < 7",
+                    "devices": [
+                        "do_sensor",
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "do",
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "lactose_weight",
+                        "base_weight"
+                    ],
+                    "csv_name": "fermentation_05-23-2024", 
+                    "feed_ph_sp": 7, 
+                    "refill_mass": 320
+                
+                }
+            
+            ]
+           
         },
         {
             "loop_id": "test_loop",

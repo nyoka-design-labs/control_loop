@@ -4,6 +4,7 @@ import math
 import serial.tools.list_ports
 import usb.core
 import json
+import numpy as np
 
 def exponential_func(t: int, c1: int) -> float:
     """
@@ -57,6 +58,44 @@ def read_csv_file(file_name: str):
             data.append(row)
     return data
 
+def isDerPositive(derivatives, num_points=5):
+    """
+    Checks if the last `num_points` values in the list of derivatives are positive.
+    
+    Args:
+        derivatives (list): The list of derivatives.
+        num_points (int): The number of last values to check.
+        
+    Returns:
+        bool: True if all the last `num_points` values are positive, False otherwise.
+    """
+    if len(derivatives) < num_points:
+        return False
+    
+    last_values = derivatives[-num_points:]
+    return all(value > 0 for value in last_values)
+
+def calculate_derivative(key, loop_id, num_points=40):
+    csv_name = get_csv_name(loop_id)
+    data = read_csv_file(csv_name)
+    do_values = [float(row[f"{key}"]) for row in data]
+    derivatives = []
+
+    for i in range(len(do_values)):
+        if i < num_points:
+            # Not enough data points to calculate the derivative
+            derivatives.append(None)
+        else:
+            # Calculate the derivative using the past num_points
+            y = do_values[i-num_points:i]
+            x = list(range(num_points))
+            # Fit a linear line to the data points
+            poly = np.polyfit(x, y, 1)
+            # The slope of the line is the derivative
+            derivative = poly[0]
+            derivatives.append(derivative)
+
+    return derivatives
 
 def extract_specific_cells(csv_path, start_row, end_row, col):
     with open(csv_path, 'r') as file:
@@ -88,6 +127,41 @@ def get_csv_name(loop_id):
         if loop.get("loop_id") == loop_id:
             # Return the 'csv_name' if the loop_id matches and 'csv_name' exists
             return loop.get("csv_name", "No CSV name provided")
+
+    # Return a message if the loop_id is not found
+    return "Loop ID not found"
+
+def get_control_constant(loop_id: str, control_id: str, const: str):
+    curr_dir = os.path.dirname(__file__)
+    json_path = os.path.join(curr_dir, "constants.json")
+    # Load the JSON data from the given path
+    with open(json_path, 'r') as file:
+        data = json.load(file)
+
+    # Iterate through each entry in the "loop" list
+    for loop in data["loop"]:
+        if loop.get("loop_id") == loop_id:
+            for controller in loop["controllers"]:
+                if controller.get("controller_id") == control_id:
+                    # Return the 'csv_name' if the loop_id matches and 'csv_name' exists
+                    return controller.get(f"{const}", f"No {const} provided")
+            return "Control ID not found"
+
+    # Return a message if the loop_id is not found
+    return "Loop ID not found"
+
+def get_loop_constant(loop_id: str, const: str):
+    curr_dir = os.path.dirname(__file__)
+    json_path = os.path.join(curr_dir, "constants.json")
+    # Load the JSON data from the given path
+    with open(json_path, 'r') as file:
+        data = json.load(file)
+
+    # Iterate through each entry in the "loop" list
+    for loop in data["loop"]:
+        if loop.get("loop_id") == loop_id:
+            # Return the 'csv_name' if the loop_id matches and 'csv_name' exists
+            return loop.get(f"{const}", f"No {const} provided")
 
     # Return a message if the loop_id is not found
     return "Loop ID not found"

@@ -2,6 +2,7 @@ import serial
 from devices.pump import Pump
 from DeviceManager import DeviceManager
 import time
+from resources.utils import calculate_derivative, isDerPositive, get_loop_constant, get_control_constant
 
 #CONSTANTS
 port = '/dev/ttyACM0'
@@ -125,6 +126,8 @@ class FermentationController(Controller):
     def __init__(self, dm: DeviceManager):
         super().__init__()
         
+        dm.control_id = "ph_mixed_feed_loop"
+
         self.feed_pump = Pump(name="blackPump1")
         self.base_pump = Pump(name="blackPump2")
         self.lactose_pump = Pump(name="blackPump3")
@@ -136,6 +139,7 @@ class FermentationController(Controller):
         self.rpm_volts = 0.06
         self.increment_counter = 0
         self.test_data = None
+        self.loop_id = "fermentation_loop"
 
         self.status = {
             "type": "status",
@@ -169,13 +173,10 @@ class FermentationController(Controller):
         return self.ph_feed_loop()
 
     def ph_feed_loop(self):
-
-        if testing:
-            data = self.device_manager.test_get_measurement("test_data_7")
-            self.test_data = data
-            print(f"test data: {data}")
-        else:
-            data = self.device_manager.get_measurement()
+        '''
+        control_id = ph_mixed_feed_loop
+        '''
+        data = self.__get_data()
 
         # gets the intial weight of the feed
         if self.first_time:
@@ -216,6 +217,22 @@ class FermentationController(Controller):
         self.update_status(True)
 
         return self.status
+    
+    def do_der_loop(self):
+        '''
+        control_id = do_der_loop
+        '''
+        data = self.__get_data()
+
+        deriv_window = get_control_constant(self.loop_id, control_id="do_der_loop", const="deriv_window")
+        derivs = calculate_derivative("do", self.loop_id, deriv_window)
+
+        if isDerPositive(derivs):
+            self.pump_control(self.feed_pump.control(True))
+        else:
+            self.pump_control(self.feed_pump.control(False))
+
+        self.__pH_balance(data["ph"], "do_der_loop")
     
     def new_loop(self):
         data = self.device_manager.get_measurement()
@@ -291,12 +308,14 @@ class FermentationController(Controller):
 
         return self.status
 
-    def __pH_balance(self, ph: float):
+    def __pH_balance(self, ph: float, control_id: str):
         """
         Main control loop for the pH controller.
         """
-        print("ph being balanced")
-        if (ph < 7):
+        
+        ph_sp = get_control_constant(self.loop_id, control_id,"ph_balance_sp")
+        print(f"ph being balanced at {ph_sp}")
+        if (ph < ph_sp):
             # turn on pump
             self.pump_control(self.base_pump.control(True))
 
@@ -304,12 +323,9 @@ class FermentationController(Controller):
             # turn off pump
             self.pump_control(self.base_pump.control(False))
 
-
     def start_collection(self):
-        if testing:
-            data = self.test_data
-        else:
-            data = self.device_manager.get_measurement()
+        data = self.__get_data(data_col=True)
+        
         self.status.update({
             "data_collection_status": "data_collection_on"
         })
@@ -345,7 +361,20 @@ class FermentationController(Controller):
             "lactose_pump_status": str(self.lactose_pump.state)
         })
     
-        
+    def __get_data(self, data_col=False):
+        if data_col:
+            if testing:
+                data = self.test_data
+            else:
+                data = self.device_manager.get_measurement()
+        else:
+            if testing:
+                data = self.device_manager.test_get_measurement("test_data_7")
+                self.test_data = data
+                print(f"test data: {data}")
+            else:
+                data = self.device_manager.get_measurement()
+
 if __name__ == "__main__":
     d = DeviceManager("fermentation_loop")
     c = FermentationController(d)
