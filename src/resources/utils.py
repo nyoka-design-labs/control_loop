@@ -53,10 +53,11 @@ def read_csv_file(file_name: str):
     file_path = f"/home/sam/Desktop/control_loop/data/{file_name}"
 
     with open(csv_dir, 'r', newline='') as csv_file:
-        csv_reader = csv.reader(csv_file)
+        csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             data.append(row)
     return data
+
 
 def extract_specific_cells(csv_path, start_row, end_row, col):
     with open(csv_path, 'r') as file:

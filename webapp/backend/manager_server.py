@@ -16,18 +16,25 @@ controllers = {}
 async def load_previous_data(controller: c, websocket: websockets, loop_id: str):
     csv_name = get_csv_name(loop_id)
     data = read_csv_file(f"{csv_name}.csv")
-    start_time = float(data[1][7])
-    data = data[1:]
-    controller.device_manager.start_time = start_time
-    for row in data:
-        row_dict = {"feed_weight": row[1],
-                    "do": row[2],
-                    "ph": row[3],
-                    "temp": row[4],
-                    "time": row[5],
-                    "type": "data"}
-
-        await websocket.send(json.dumps(row_dict))
+    
+    # Make sure there is data and a header was found and read
+    if data:
+        start_time = float(data[0]["start_time"])  # Update 'YourStartTimeColumnName' with the actual column name
+        
+        # Store the start time in the controller's device manager
+        controller.device_manager.start_time = start_time
+        
+        # Iterate over rows starting from the first actual data row
+        for row in data:
+            row_dict = {
+                "feed_weight": row["feed_weight"],
+                "do": row["do"],
+                "ph": row["ph"],
+                "temp": row["temp"],
+                "time": row["time"],
+                "type": "data"
+            }
+            await websocket.send(json.dumps(row_dict))
 
 async def control_task(controller, websocket):
     while True:
