@@ -82,7 +82,7 @@ async def control(loop_id, command, websocket):
             controller_info["control_task"] = asyncio.create_task(control_task(controller_info["controller"], websocket))
     
         if "collection_task" not in controller_info: # if data collection is not already happening then start it
-            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket))
+            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket, loop_id))
 
     elif command == "stop_control":
         if "control_task" in controller_info:
@@ -103,7 +103,7 @@ async def collection(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
     if command == "start_collection":
         if "collection_task" not in controller_info: # if data collection is not already happening then start it
-            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket))
+            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket, loop_id))
 
     elif command == "stop_collection":
         if "collection_task" in controller_info:
