@@ -9,7 +9,7 @@ sys.path.append("/home/sam/Desktop/control_loop/src")
 from resources.utils import read_csv_file, get_csv_name
 import controllers as c
 
-
+load_data = True
 INTERVAL = 13
 controllers = {}
 
@@ -45,10 +45,12 @@ async def control_task(controller, websocket):
         await asyncio.sleep(INTERVAL)
 
 async def collection_task(controller, websocket, loop_id):
-      
-    #   await load_previous_data(csv_name, controller, websocket, loop_id)
+    global load_data
+    if load_data:
+        await load_previous_data(controller, websocket, loop_id)
+        load_data = False
 
-      while True:
+    while True:
         controller.pump_control("T")
         print(f"data being collected")
         status, data = controller.start_collection()

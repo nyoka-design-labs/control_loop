@@ -50,7 +50,6 @@ def read_csv_file(file_name: str):
     data = []
     curr_dir = os.path.dirname(__file__)
     csv_dir = os.path.join(curr_dir, "..", "data", file_name)
-    file_path = f"/home/sam/Desktop/control_loop/data/{file_name}"
 
     with open(csv_dir, 'r', newline='') as csv_file:
         csv_reader = csv.DictReader(csv_file)
