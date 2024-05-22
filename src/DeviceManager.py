@@ -17,8 +17,10 @@ DEV_CONTRUCTORS = {
 }
 
 curr_directory = os.path.dirname(__file__)
-CONSTANTS_DIR = f"{curr_directory}/resources/constants.json"
-test_data = load_test_data(curr_directory+'/resources/test_data.json')
+# CONSTANTS_DIR = f"{curr_directory}/resources/constants.json"
+CONSTANTS_DIR = os.path.join(curr_directory, "resources", "constants.json")
+TEST_DATA_DIR = os.path.join(curr_directory, "resources", "test_data.json")
+test_data = load_test_data(TEST_DATA_DIR)
 
 class DeviceManager:
     """

@@ -9,9 +9,10 @@ sys.path.append("/home/sam/Desktop/control_loop/src")
 from resources.utils import read_csv_file
 import controllers as c
 
-load = False
+load_data = False
 INTERVAL = 13
 controllers = {}
+csv_name = "fermentation_05-21-2024"
 
 async def control_task(controller, websocket):
     while True:
@@ -21,12 +22,10 @@ async def control_task(controller, websocket):
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
 
-
-async def collection_task(controller, websocket):
-      global load
-      if (load):
+async def load_previous_data(csv_name: str, controller: c, websocket: websockets, load=load_data):
+    if (load):
         # start_time = asyncio.create_task(load_data(websocket))
-        data = read_csv_file("05-07-2024_fermentation_data2.csv")
+        data = read_csv_file(f"{csv_name}.csv")
         start_time = float(data[1][7])
         data = data[1:]
         controller.device_manager.start_time = start_time
@@ -38,11 +37,10 @@ async def collection_task(controller, websocket):
                         "time": row[5],
                         "type": "data"}
 
-            
-            # added_data = configure_data(start_time, row_dict)
-            load = False
-
             await websocket.send(json.dumps(row_dict))
+
+async def collection_task(controller, websocket):
+      await load_previous_data(csv_name, controller, websocket)
 
       while True:
         controller.pump_control("T")
