@@ -137,7 +137,8 @@ class FermentationController(Controller):
         self.start_feed = False
         self.start_feed_2 = False
         self.first_time = True
-        self.refil = False
+        self.refill = False
+        self.refill_increment = 0
         self.rpm_volts = 0.06
         self.increment_counter = 0
         self.test_data = None
@@ -217,7 +218,7 @@ class FermentationController(Controller):
 
     def __ph_mixed_feed_control(self):
         '''
-        control_id = ph_mixed_feed_loop
+        control_id = ph_mixed_feed_control
         '''
         data = self.__get_data()
         refill_mass = get_control_constant(self.loop_id, self.control_name, "refill_mass")
@@ -244,17 +245,16 @@ class FermentationController(Controller):
             elif data['ph'] < feed_ph_sp:
                 self.pump_control(self.feed_pump.control(False)) # turn on the pump
             
-            if not self.refil:
+            if not self.refill and self.has_refilled:
                 if self.feedweightinitial - data["feed_weight"] >= refill_mass:
-                    self.refil = True
+                    self.refill = True
 
-            if self.refil:
+            if self.refill:
                 if self.increment_counter < refill_count: # interval size of 15s
                     self.pump_control(self.lactose_pump.control(True))
                     self.increment_counter += 1
                 else:
                     self.pump_control(self.lactose_pump.control(False))
-                    self.refil = False
                     self.increment_counter = 0
                     self.feedweightinitial = data["feed_weight"]
 
@@ -266,7 +266,14 @@ class FermentationController(Controller):
         '''
         control_id = do_der_control
         '''
+        # gets the intial weight of the feed
+        if self.first_time:
+            self.feedweightinitial = data["feed_weight"]
+            print(self.feedweightinitial)
+            self.first_time = False
+
         data = self.__get_data()
+        self.__pH_balance(data["ph"], self.control_name)
 
         if not hasattr(self, 'derivs'):
             self.derivs = []
@@ -284,15 +291,31 @@ class FermentationController(Controller):
 
             if isDerPositive(self.derivs):
                     print("the last 5 derivatives were positive feed started",isDerPositive(self.derivs))
+                    self.feedweightinitial = data["feed_weight"]
                     self.start_feed = True
             
         if self.start_feed:
 
             self.pump_control(self.feed_pump.control(True))
+
+            if not self.refill:
+                    if self.feedweightinitial - data["feed_weight"] >= refill_mass:
+                        refill_mass = get_control_constant(self.loop_id, self.control_name, "refill_mass")
+                        refill_count = get_control_constant(self.loop_id, self.control_name, "refill_count")
+                        self.refill = True
+
+            if self.refill:
+                if self.refill_increment < refill_count: # interval size of 15s
+                    print("refilling feed")
+                    self.pump_control(self.lactose_pump.control(True))
+                    self.refill_increment += 1
+                else: 
+                    print("done refilling")
+                    self.pump_control(self.lactose_pump.control(False))
+            else:
+                self.pump_control(self.lactose_pump.control(False))
         else:
             self.pump_control(self.feed_pump.control(False))
-
-        self.__pH_balance(data["ph"], self.control_name)
         
         self.__update_status(True)
 

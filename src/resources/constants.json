@@ -87,6 +87,7 @@
                         "do_sensor",
                         "ph_sensor",
                         "uss_scale",
+                        "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
@@ -94,11 +95,14 @@
                         "ph",
                         "temp",
                         "feed_weight",
+                        "lactose_weight",
                         "base_weight"
                     ],
                     "csv_name": "fermentation_do_der_loop_05-23-2024",
                     "ph_balance_sp": 6.7,
-                    "deriv_window": 5
+                    "deriv_window": 5, 
+                    "refill_mass": 300,
+                    "refill_count": 20
                 },
                 {
                     "controller_id": "ph_mixed_feed_control",
