@@ -66,7 +66,8 @@ def save_to_sheet(data, headers, sheet_name):
 
     # Get all existing data from the sheet
     existing_data = sheet.get_all_values()
-
+    print(f"headers from the sheet: {existing_data[0]}")
+    print(f"headers given: {headers}")
     # Check if headers are present, insert them if they are not
     if not existing_data or existing_data[0] != headers:
         sheet.insert_row(headers, 1)

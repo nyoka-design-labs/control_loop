@@ -34,16 +34,18 @@ class DeviceManager:
         self.delete()
         self.loop_id = loop_id
         self.control_id = control_id
+        self.data_types = self.__init_data_types()
+        self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
+
         names = self.__get_loop_devices()
         dev2port = []
-        data_types = self.__get_loop_data_type()
         idt = 0
         try:
             # finds the serial port for each device and creates dict
             for name in names:
-                if data_types[idt] == "temp":
+                if self.data_types[idt] == "temp":
                     idt += 1
-                port = self.__find_usb_serial_port(name, data_types[idt])
+                port = self.__find_usb_serial_port(name, self.data_types[idt])
                 dev2port.append((name, port))
                 idt += 1
         except SerialPortNotFoundException as e:
@@ -59,7 +61,16 @@ class DeviceManager:
                 self.devices.append(DEV_CONTRUCTORS[name](port))
 
         # self.devices = [USS_Scale(port="/dev/ttyUSB0"), Scale(0x0922, 0x8003)]
-
+    def __init_data_types(self):
+        data_types = self.__get_loop_data_type()
+        data_types.append("time")
+        data_types.append("date")
+        data_types.append("time_of_day")
+        data_types.append("start_time")
+        data_types.append("type")
+        
+        return data_types
+        
     def delete(self) -> None:
         """
         Closes all the devices.
@@ -90,7 +101,7 @@ class DeviceManager:
             else:
                 devices_data.append(result)
 
-        data_headers = self.__get_loop_data_type()
+        data_headers = self.data_types
 
         # elapsed time
         if self.start_time is None:
@@ -99,33 +110,28 @@ class DeviceManager:
         else:
             elapsed_time = (time.time() - self.start_time) / 3600
 
-        data_headers.append("time")
         devices_data.append(round(elapsed_time, 6))
         
         # date
-        data_headers.append("date")
         devices_data.append(datetime.now().strftime('%d-%m-%Y'))
         
         # time of day
-        data_headers.append("time_of_day")
         devices_data.append(datetime.now().strftime('%H:%M:%S'))
         
         # start time
-        data_headers.append("start_time")
         devices_data.append(self.start_time)
 
         # type of information being sent to frontend
-        data_headers.append("type")
         devices_data.append("data")
 
 
 
-        csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
+        
 
         if save_data:
-            add_to_csv(devices_data, f"{csv_name}.csv", data_headers)
+            add_to_csv(devices_data, f"{self.csv_name}.csv", data_headers)
             try:
-                save_to_sheet(devices_data, data_headers, csv_name) ## WILL BE USED HERE
+                save_to_sheet(devices_data, data_headers, self.csv_name) ## WILL BE USED HERE
             except Exception as e:
                 print("data did not save to sheets")
 
@@ -249,7 +255,7 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("fermentation_loop")
+    dm = DeviceManager("fermentation_loop", "ph_mixed_feed_loop")
     while True:
         # print(dm.test_get_measurement("test_data_1"))
         print(dm.get_measurement())

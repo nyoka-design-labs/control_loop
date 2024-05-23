@@ -10,7 +10,7 @@ from resources.utils import read_csv_file, get_csv_name, get_loop_constant
 import controllers as c
 
 load_data = False
-INTERVAL = 13
+INTERVAL = get_loop_constant("server_consts", "interval") - 9
 controllers = {}
 
 async def load_previous_data(controller: c, websocket: websockets, loop_id: str):

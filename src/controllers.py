@@ -7,7 +7,7 @@ from resources.utils import calculate_derivative, isDerPositive, get_loop_consta
 #CONSTANTS
 port = '/dev/ttyACM0'
 baudrate = 9600
-testing = False
+testing = True
 
 
 def create_controller(loop_id, control_id):
@@ -126,7 +126,6 @@ class FermentationController(Controller):
     def __init__(self, dm: DeviceManager):
         super().__init__()
 
-        dm.control_id = "ph_mixed_feed_loop"
 
         self.feed_pump = Pump(name="blackPump1")
         self.base_pump = Pump(name="blackPump2")
@@ -140,6 +139,7 @@ class FermentationController(Controller):
         self.increment_counter = 0
         self.test_data = None
         self.loop_id = "fermentation_loop"
+        self.control_id = get_loop_constant(self.loop_id, "chosen_control")
 
         self.status = {
             "type": "status",
@@ -177,6 +177,8 @@ class FermentationController(Controller):
         control_id = ph_mixed_feed_loop
         '''
         data = self.__get_data()
+        refill_mass = get_control_constant(self.loop_id, self.control_id, "refill_mass")
+        feed_ph_sp = get_control_constant(self.loop_id, self.control_id, "feed_ph_sp")
 
         # gets the intial weight of the feed
         if self.first_time:
@@ -192,14 +194,14 @@ class FermentationController(Controller):
                 self.pump_control(self.base_pump.control(True))
 
         if self.start_feed:
-            if data['ph'] >= 7:
+            if data['ph'] >= feed_ph_sp:
                 self.pump_control(self.feed_pump.control(True)) # turn on the pump
 
-            elif data['ph'] < 7:
+            elif data['ph'] < feed_ph_sp:
                 self.pump_control(self.feed_pump.control(False)) # turn on the pump
             
             if not self.refil:
-                if self.feedweightinitial - data["feed_weight"] >= 320:
+                if self.feedweightinitial - data["feed_weight"] >= refill_mass:
                     self.refil = True
 
             if self.refil:
@@ -313,7 +315,7 @@ class FermentationController(Controller):
         Main control loop for the pH controller.
         """
         
-        ph_sp = get_control_constant(self.loop_id, control_id,"ph_balance_sp")
+        ph_sp = get_control_constant(self.loop_id, control_id, "ph_balance_sp")
         print(f"ph being balanced at {ph_sp}")
         if (ph < ph_sp):
             # turn on pump
@@ -365,18 +367,23 @@ class FermentationController(Controller):
         if data_col:
             if testing:
                 data = self.test_data
+                return data
             else:
                 data = self.device_manager.get_measurement()
+                return data
         else:
             if testing:
                 data = self.device_manager.test_get_measurement("test_data_7")
                 self.test_data = data
                 print(f"test data: {data}")
+                return data
             else:
                 data = self.device_manager.get_measurement()
+                return data
+
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop")
+    d = DeviceManager("fermentation_loop", "ph_mixed_feed_loop")
     c = FermentationController(d)
     stat = 2
     while True:

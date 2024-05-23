@@ -52,6 +52,10 @@
     ],
     "loop": [
         {
+            "loop_id": "server_consts",
+            "interval": 15
+        },
+        {
             "loop_id": "concentration_loop",
             "devices": [
                 "dymo_scale",
@@ -83,10 +87,9 @@
                         "feed_weight",
                         "base_weight"
                     ],
-                    "csv_name": "fermentation_05-23-2024", 
-                    "ph_balance_sp": 6.7, 
-                    "deriv_window": 20
-                
+                    "csv_name": "fermentation_do_der_loop_05-23-2024",
+                    "ph_balance_sp": 6.7,
+                    "deriv_window": 5
                 },
                 {
                     "controller_id": "ph_mixed_feed_loop",
@@ -106,14 +109,12 @@
                         "lactose_weight",
                         "base_weight"
                     ],
-                    "csv_name": "fermentation_05-23-2024", 
-                    "feed_ph_sp": 7, 
-                    "refill_mass": 320
-                
+                    "csv_name": "fermentation_ph_mixed_feed_05-23-2024",
+                    "feed_ph_sp": 7,
+                    "refill_mass": 320,
+                    "refill_count": 20
                 }
-            
             ]
-           
         },
         {
             "loop_id": "test_loop",
