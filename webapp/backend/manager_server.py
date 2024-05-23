@@ -40,7 +40,7 @@ async def control_task(controller, websocket):
     while True:
         print("loop controlled")
         status = controller.start_control()
-        # print(status)
+        print(status)
         await send_status_update(websocket, status)
         await asyncio.sleep(INTERVAL)
 

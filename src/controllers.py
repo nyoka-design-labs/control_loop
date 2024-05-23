@@ -268,12 +268,12 @@ class FermentationController(Controller):
         control_id = do_der_control
         '''
         # gets the intial weight of the feed
+        data = self.__get_data()
         if self.first_time:
             self.feedweightinitial = data["feed_weight"]
             print(self.feedweightinitial)
             self.first_time = False
 
-        data = self.__get_data()
         self.__pH_balance(data["ph"], self.control_name)
 
         if not hasattr(self, 'derivs'):
@@ -306,28 +306,11 @@ class FermentationController(Controller):
                     self.switch_feeds = True
 
             if self.switch_feeds:
+                self.pump_control(self.feed_pump.control(False))
                 self.pump_control(self.lactose_pump.control(True))
             else:
                 self.pump_control(self.feed_pump.control(True))
 
-
-            # if not self.refill:
-            #     if self.feedweightinitial - data["feed_weight"] >= refill_mass:
-            #         refill_count = get_control_constant(self.loop_id, self.control_name, "refill_count")
-            #         self.refill = True
-            #     else:
-            #         self.pump_control(self.feed_pump.control(True))
-
-            # if self.refill:
-            #     if self.refill_increment < refill_count: # interval size of 15s
-            #         print("refilling feed")
-            #         self.pump_control(self.lactose_pump.control(True))
-            #         self.refill_increment += 1
-            #     else: 
-            #         print("done refilling")
-            #         self.pump_control(self.lactose_pump.control(False))
-            # else:
-            #     self.pump_control(self.lactose_pump.control(False))
         else:
             self.pump_control(self.feed_pump.control(False))
         
@@ -425,7 +408,7 @@ class FermentationController(Controller):
                 return data
         else:
             if testing:
-                data = self.device_manager.test_get_measurement("do_der_test_2")
+                data = self.device_manager.test_get_measurement("do_der_test_1")
                 self.test_data = data
                 print(f"test data: {data}")
                 return data
@@ -456,6 +439,6 @@ if __name__ == "__main__":
         # print(c.pump_control(str(stat)))
         # print(c.pump_control(str(1)))
         # print(c.start_control())
-        c.start_control()
+        print(c.start_control())
 
         time.sleep(5)

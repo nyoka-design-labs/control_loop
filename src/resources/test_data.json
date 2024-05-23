@@ -113,7 +113,25 @@
         {"do": 96, "ph": 9.1, "feed_weight": 1000, "time": 0.10833333, "type": "data"},
         {"do": 97, "ph": 9.2, "feed_weight": 1000, "time": 0.1125, "type": "data"},
         {"do": 98, "ph": 9.3, "feed_weight": 1000, "time": 0.11666667, "type": "data"},
-        {"do": 99, "ph": 9.4, "feed_weight": 1000, "time": 0.12083333, "type": "data"}
+        {"do": 99, "ph": 9.4, "feed_weight": 1000, "time": 0.12083333, "type": "data"},
+        {"do": 96, "ph": 9.1, "feed_weight": 1000, "time": 0.10833333, "type": "data"},
+        {"do": 97, "ph": 9.2, "feed_weight": 1000, "time": 0.1125, "type": "data"},
+        {"do": 98, "ph": 9.3, "feed_weight": 1000, "time": 0.11666667, "type": "data"},
+        {"do": 99, "ph": 9.4, "feed_weight": 1000, "time": 0.12083333, "type": "data"},
+        {"do": 69, "ph": 9.6, "feed_weight": 700, "time": 0.12916667, "type": "data"},
+        {"do": 70, "ph": 9.7, "feed_weight": 700, "time": 0.13333333, "type": "data"},
+        {"do": 71, "ph": 9.8, "feed_weight": 700, "time": 0.1375, "type": "data"},
+        {"do": 72, "ph": 9.9, "feed_weight": 700, "time": 0.14166667, "type": "data"},
+        {"do": 73, "ph": 10.0, "feed_weight": 700, "time": 0.14583333, "type": "data"},
+        {"do": 62, "ph": 10.1, "feed_weight": 700, "time": 0.15, "type": "data"}, 
+        {"do": 61, "ph": 10.2, "feed_weight": 55, "time": 0.15416667, "type": "data"},
+        {"do": 69, "ph": 9.6, "feed_weight": 700, "time": 0.12916667, "type": "data"},
+        {"do": 70, "ph": 9.7, "feed_weight": 55, "time": 0.13333333, "type": "data"},
+        {"do": 71, "ph": 9.8, "feed_weight": 700, "time": 0.1375, "type": "data"},
+        {"do": 72, "ph": 9.9, "feed_weight": 55, "time": 0.14166667, "type": "data"},
+        {"do": 73, "ph": 10.0, "feed_weight": 700, "time": 0.14583333, "type": "data"},
+        {"do": 62, "ph": 10.1, "feed_weight": 700, "time": 0.15, "type": "data"}, 
+        {"do": 61, "ph": 10.2, "feed_weight": 99, "time": 0.15416667, "type": "data"}
     ],
 
     "do_der_test_2": [
