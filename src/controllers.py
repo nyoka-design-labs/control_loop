@@ -138,6 +138,7 @@ class FermentationController(Controller):
         self.start_feed_2 = False
         self.first_time = True
         self.refill = False
+        self.switch_feeds = False
         self.refill_increment = 0
         self.rpm_volts = 0.06
         self.increment_counter = 0
@@ -296,24 +297,37 @@ class FermentationController(Controller):
             
         if self.start_feed:
 
-            self.pump_control(self.feed_pump.control(True))
+            # self.pump_control(self.feed_pump.control(True))
 
-            if not self.refill:
-                    if self.feedweightinitial - data["feed_weight"] >= refill_mass:
-                        refill_mass = get_control_constant(self.loop_id, self.control_name, "refill_mass")
-                        refill_count = get_control_constant(self.loop_id, self.control_name, "refill_count")
-                        self.refill = True
+            refill_mass = get_control_constant(self.loop_id, self.control_name, "refill_mass")
 
-            if self.refill:
-                if self.refill_increment < refill_count: # interval size of 15s
-                    print("refilling feed")
-                    self.pump_control(self.lactose_pump.control(True))
-                    self.refill_increment += 1
-                else: 
-                    print("done refilling")
-                    self.pump_control(self.lactose_pump.control(False))
+            if not self.switch_feeds:
+                if self.feedweightinitial - data["feed_weight"] >= refill_mass:
+                    self.switch_feeds = True
+
+            if self.switch_feeds:
+                self.pump_control(self.lactose_pump.control(True))
             else:
-                self.pump_control(self.lactose_pump.control(False))
+                self.pump_control(self.feed_pump.control(True))
+
+
+            # if not self.refill:
+            #     if self.feedweightinitial - data["feed_weight"] >= refill_mass:
+            #         refill_count = get_control_constant(self.loop_id, self.control_name, "refill_count")
+            #         self.refill = True
+            #     else:
+            #         self.pump_control(self.feed_pump.control(True))
+
+            # if self.refill:
+            #     if self.refill_increment < refill_count: # interval size of 15s
+            #         print("refilling feed")
+            #         self.pump_control(self.lactose_pump.control(True))
+            #         self.refill_increment += 1
+            #     else: 
+            #         print("done refilling")
+            #         self.pump_control(self.lactose_pump.control(False))
+            # else:
+            #     self.pump_control(self.lactose_pump.control(False))
         else:
             self.pump_control(self.feed_pump.control(False))
         
