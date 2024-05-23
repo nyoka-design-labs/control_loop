@@ -57,22 +57,31 @@
         },
         {
             "loop_id": "concentration_loop",
-            "devices": [
-                "dymo_scale",
-                "uss_scale"
-            ],
-            "data_type": [
-                "buffer_weight",
-                "lysate_weight"
-            ],
-            "csv_name": "concentration_05-24-2024"
+            "chosen_control": "concentration_loop",
+            "controllers": [
+                {
+                    "controller_id": "concentration_loop",
+                    "notes": "basic concentration loop",
+                    "devices": [
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "buffer_weight",
+                        "lysate_weight"
+                    ],
+                    "csv_name": "concentration_05-24-2024",
+                    "buffer_sp": 1200,
+                    "lysate_sp": 250
+                }
+            ]
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "ph_mixed_feed_loop",
+            "chosen_control": "ph_mixed_feed_control",
             "controllers": [
                 {
-                    "controller_id": "do_der_loop",
+                    "controller_id": "do_der_control",
                     "notes": "when the derivative is positive for 5 consecutaive windows feed is turned on. ph is balanced",
                     "devices": [
                         "do_sensor",
@@ -92,7 +101,7 @@
                     "deriv_window": 5
                 },
                 {
-                    "controller_id": "ph_mixed_feed_loop",
+                    "controller_id": "ph_mixed_feed_control",
                     "notes": "base is added until ph reaches 7 then feed is triggered. feed is based on ph. on = ph >= 7, off = ph < 7",
                     "devices": [
                         "do_sensor",

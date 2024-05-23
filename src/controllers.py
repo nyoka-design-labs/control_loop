@@ -154,25 +154,64 @@ class FermentationController(Controller):
         self.pump_control(self.lactose_pump.control(False))
         self.pump_control(self.base_pump.control(False))
 
-    def update_control_status(self, is_on: bool):
-        """Update the control status based on the boolean value provided."""
-        control = "control_on" if is_on else "control_off"
-        return control
+    def start_control(self):
+        control_name = get_loop_constant(self.loop_id, "chosen_control")
+        
+        if control_name:
+            control_method = getattr(self, f"_{self.__class__.__name__}__{control_name}", None)
+            if control_method:
+                return control_method()
+            else:
+                raise AttributeError(f"Method {control_name} not found in class.")
+        else:
+            raise ValueError(f"No control method found for loop_id: {self.loop_id}")
 
-    def update_status(self, control: bool):
+    # def start_control(self):
+    #     value_for_func_2_run = get_loop_constant(self.loop_id, "chosen_control")
+
+    #     return self.__ph_mixed_feed_control()
+    
+    def stop_control(self):
+        self.pump_control(self.feed_pump.control(False))
+        self.pump_control(self.base_pump.control(False))
+        self.pump_control(self.lactose_pump.control(False))
 
         self.status.update({
-            "control_loop_status": self.update_control_status(control),
+            "control_loop_status": "control_off",
             "feed_pump_status": str(self.feed_pump.state),
-            "base_pump_status": str(self.base_pump.state),
+            "base_pump_status": str(self.base_pump.state)
+        })
+
+        return self.status
+    
+    def start_collection(self):
+        data = self.__get_data(data_col=True)
+        
+        self.status.update({
+            "data_collection_status": "data_collection_on"
+        })
+
+        return self.status, data
+    
+    def toggle_base(self):
+        self.pump_control(self.base_pump.toggle())
+        self.status.update({
+            "base_pump_status": str(self.base_pump.state)
+        })
+        
+    def toggle_feed(self):
+        self.pump_control(self.feed_pump.toggle())
+        self.status.update({
+            "feed_pump_status": str(self.feed_pump.state)
+        })
+        
+    def toggle_lactose(self):
+        self.pump_control(self.lactose_pump.toggle())
+        self.status.update({
             "lactose_pump_status": str(self.lactose_pump.state)
         })
 
-    def start_control(self):
-
-        return self.ph_feed_loop()
-
-    def ph_feed_loop(self):
+    def __ph_mixed_feed_control(self):
         '''
         control_id = ph_mixed_feed_loop
         '''
@@ -214,13 +253,11 @@ class FermentationController(Controller):
                     self.increment_counter = 0
                     self.feedweightinitial = data["feed_weight"]
 
-
-
-        self.update_status(True)
+        self.__update_status(True)
 
         return self.status
     
-    def do_der_loop(self):
+    def __do_der_control(self):
         '''
         control_id = do_der_loop
         '''
@@ -236,7 +273,7 @@ class FermentationController(Controller):
 
         self.__pH_balance(data["ph"], "do_der_loop")
     
-    def new_loop(self):
+    def __new_control(self):
         data = self.device_manager.get_measurement()
 
         if self.first_time:
@@ -244,19 +281,15 @@ class FermentationController(Controller):
             self.pump_control(self.feed_pump.control(False))
             self.first_time = False
 
-
         # if data['do'] < 50:
         # # if True:
         #     self.start_feed = True
         
-
         # if self.start_feed:
         if True:
             if True: # change later
-
                 self.start_feed_2 = True
             
-
             if self.start_feed_2:
                 print("went into main loop")
                 self.pump_control(self.feed_pump.control(True))
@@ -270,22 +303,17 @@ class FermentationController(Controller):
                         print("decremented rpm")
                         self.rpm_volts -= 0.01
 
-        
                     self.pump_control(f"9 {round(self.rpm_volts, 2)}")
-                    
-
                     self.increment_counter = 0
                 
-
                 self.increment_counter += 1
 
         self.__pH_balance(data['ph'])
-
-        self.update_status(True)
+        self.__update_status(True)
          
         return self.status
 
-    def do_feed_loop(self):
+    def __do_feed_control(self):
         """
         DO only control loop for the controller. Loops indefinitely.
         """
@@ -306,7 +334,7 @@ class FermentationController(Controller):
         
         self.__pH_balance(data['ph']) # balances the pH
 
-        self.update_status(True)
+        self.__update_status(True)
 
         return self.status
 
@@ -324,44 +352,6 @@ class FermentationController(Controller):
         else:
             # turn off pump
             self.pump_control(self.base_pump.control(False))
-
-    def start_collection(self):
-        data = self.__get_data(data_col=True)
-        
-        self.status.update({
-            "data_collection_status": "data_collection_on"
-        })
-
-        return self.status, data
-    
-    def stop_control(self):
-        self.pump_control(self.feed_pump.control(False))
-        self.pump_control(self.base_pump.control(False))
-        self.pump_control(self.lactose_pump.control(False))
-
-        self.status.update({
-            "control_loop_status": "control_off",
-            "feed_pump_status": str(self.feed_pump.state),
-            "base_pump_status": str(self.base_pump.state)
-        })
-
-        return self.status
-    def toggle_base(self):
-        self.pump_control(self.base_pump.toggle())
-        self.status.update({
-            "base_pump_status": str(self.base_pump.state)
-        })
-    def toggle_feed(self):
-        self.pump_control(self.feed_pump.toggle())
-        self.status.update({
-            "feed_pump_status": str(self.feed_pump.state)
-        })
-        
-    def toggle_lactose(self):
-        self.pump_control(self.lactose_pump.toggle())
-        self.status.update({
-            "lactose_pump_status": str(self.lactose_pump.state)
-        })
     
     def __get_data(self, data_col=False):
         if data_col:
@@ -380,7 +370,20 @@ class FermentationController(Controller):
             else:
                 data = self.device_manager.get_measurement()
                 return data
+            
+    def __update_control_status(self, is_on: bool):
+        """Update the control status based on the boolean value provided."""
+        control = "control_on" if is_on else "control_off"
+        return control
 
+    def __update_status(self, control: bool):
+
+        self.status.update({
+            "control_loop_status": self.__update_control_status(control),
+            "feed_pump_status": str(self.feed_pump.state),
+            "base_pump_status": str(self.base_pump.state),
+            "lactose_pump_status": str(self.lactose_pump.state)
+        })
 
 if __name__ == "__main__":
     d = DeviceManager("fermentation_loop", "ph_mixed_feed_loop")
