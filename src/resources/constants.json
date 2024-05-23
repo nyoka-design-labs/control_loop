@@ -12,13 +12,13 @@
             "vendor_id": "1a86",
             "product_id": "7523",
             "port": "/dev/ttyUSB7",
-            "data_type": "lactose_weight"
+            "data_type": "base_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB8",
+            "port": "",
             "data_type": "base_weight"
         },
         {
@@ -78,7 +78,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "ph_mixed_feed_control",
+            "chosen_control": "do_der_control",
             "controllers": [
                 {
                     "controller_id": "do_der_control",

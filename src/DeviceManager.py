@@ -199,7 +199,7 @@ class DeviceManager:
         # chosen_loop = filter(lambda x: x['loop_id'] == self.loop_id, loops)
         devices = get_control_constant(self.loop_id, self.control_id, "devices")
         devices = list(filter(lambda dev: dev != "temp_sensor", devices))
-        print(devices)
+        # print(devices)
         return devices
     
     def __get_loop_data_type(self) -> list:
@@ -245,8 +245,8 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("fermentation_loop", "do_der_loop")
+    dm = DeviceManager("fermentation_loop", "do_der_control")
     while True:
-        # print(dm.test_get_measurement("test_data_1"))
-        print(dm.get_measurement())
+        print(dm.test_get_measurement("do_der_test_1"))
+        # print(dm.get_measurement())
         time.sleep(3)

@@ -7,7 +7,7 @@ from resources.utils import calculate_derivative, isDerPositive, get_loop_consta
 #CONSTANTS
 port = '/dev/ttyACM0'
 baudrate = 9600
-testing = True
+testing = False
 
 
 def create_controller(loop_id, control_id):
@@ -220,9 +220,9 @@ class FermentationController(Controller):
         control_id = ph_mixed_feed_loop
         '''
         data = self.__get_data()
-        refill_mass = get_control_constant(self.loop_id, self.control_id, "refill_mass")
-        feed_ph_sp = get_control_constant(self.loop_id, self.control_id, "feed_ph_sp")
-        refill_count = get_control_constant(self.loop_id, self.control_id, "refill_count")
+        refill_mass = get_control_constant(self.loop_id, self.control_name, "refill_mass")
+        feed_ph_sp = get_control_constant(self.loop_id, self.control_name, "feed_ph_sp")
+        refill_count = get_control_constant(self.loop_id, self.control_name, "refill_count")
 
         # gets the intial weight of the feed
         if self.first_time:
@@ -264,7 +264,7 @@ class FermentationController(Controller):
     
     def __do_der_control(self):
         '''
-        control_id = do_der_loop
+        control_id = do_der_control
         '''
         data = self.__get_data()
 
@@ -275,15 +275,19 @@ class FermentationController(Controller):
             deriv_window = get_control_constant(self.loop_id, control_id=self.control_name, const="deriv_window")
             self.increment_counter += 1
             if self.increment_counter < deriv_window:
+                print("not enough points", self.increment_counter)
                 pass
             else:
                 self.derivs.append(calculate_derivative("do", self.loop_id, deriv_window)) 
+                print(self.derivs)
                 self.increment_counter = 0
 
             if isDerPositive(self.derivs):
+                    print("the last 5 derivatives were positive feed started",isDerPositive(self.derivs))
                     self.start_feed = True
             
         if self.start_feed:
+
             self.pump_control(self.feed_pump.control(True))
         else:
             self.pump_control(self.feed_pump.control(False))
@@ -384,7 +388,7 @@ class FermentationController(Controller):
                 return data
         else:
             if testing:
-                data = self.device_manager.test_get_measurement("test_data_7")
+                data = self.device_manager.test_get_measurement("do_der_test_2")
                 self.test_data = data
                 print(f"test data: {data}")
                 return data
@@ -407,13 +411,14 @@ class FermentationController(Controller):
         })
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop", "ph_mixed_feed_loop")
+    d = DeviceManager("fermentation_loop", "do_der_control")
     c = FermentationController(d)
     stat = 2
     while True:
         stat = stat ^ 1
         # print(c.pump_control(str(stat)))
         # print(c.pump_control(str(1)))
-        print(c.start_control())
+        # print(c.start_control())
+        c.start_control()
 
         time.sleep(5)

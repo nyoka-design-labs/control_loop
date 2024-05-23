@@ -95,8 +95,8 @@ def isDerPositive(derivatives, num_points=5):
     return all(value > 0 for value in last_values)
 
 def calculate_derivative(key, loop_id, num_points=10):
-    csv_name = get_csv_name(loop_id)
-    data = read_csv_file(csv_name)
+    csv_name = get_control_constant(loop_id, "do_der_control", "csv_name")
+    data = read_csv_file(f"{csv_name}.csv")
     do_values = [float(row[f"{key}"]) for row in data]
     time_values = [float(row["time"]) for row in data]
 
