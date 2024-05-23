@@ -1,7 +1,7 @@
 from devices.scale import Scale, USS_Scale
 from devices.ham_sensor import PH, DO
 import time
-from resources.utils import add_to_csv, load_test_data, get_csv_name, get_control_constant
+from resources.utils import add_to_csv, load_test_data, get_control_constant, add_test_data_to_csv
 import json
 import os
 import serial.tools.list_ports
@@ -110,23 +110,15 @@ class DeviceManager:
         else:
             elapsed_time = (time.time() - self.start_time) / 3600
 
-        devices_data.append(round(elapsed_time, 6))
-        
+        devices_data.append(round(elapsed_time, 8))
         # date
         devices_data.append(datetime.now().strftime('%d-%m-%Y'))
-        
         # time of day
         devices_data.append(datetime.now().strftime('%H:%M:%S'))
-        
         # start time
         devices_data.append(self.start_time)
-
         # type of information being sent to frontend
         devices_data.append("data")
-
-
-
-        
 
         if save_data:
             add_to_csv(devices_data, f"{self.csv_name}.csv", data_headers)
@@ -135,15 +127,13 @@ class DeviceManager:
             except Exception as e:
                 print("data did not save to sheets")
 
-
-        # print(data_headers)
-        # print(devices_data)
-
         return dict(zip(data_headers, devices_data))
 
     def test_get_measurement(self, test_name):
         measurement = self.test_data[test_name][self.index]
         self.index += 1
+        add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
+
         return measurement
 
 
@@ -255,7 +245,7 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("fermentation_loop", "ph_mixed_feed_loop")
+    dm = DeviceManager("fermentation_loop", "do_der_loop")
     while True:
         # print(dm.test_get_measurement("test_data_1"))
         print(dm.get_measurement())

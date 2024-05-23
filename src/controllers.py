@@ -268,15 +268,31 @@ class FermentationController(Controller):
         '''
         data = self.__get_data()
 
-        deriv_window = get_control_constant(self.loop_id, control_id="do_der_loop", const="deriv_window")
-        derivs = calculate_derivative("do", self.loop_id, deriv_window)
+        if not hasattr(self, 'derivs'):
+            self.derivs = []
+                
+        if not self.start_feed:
+            deriv_window = get_control_constant(self.loop_id, control_id=self.control_name, const="deriv_window")
+            self.increment_counter += 1
+            if self.increment_counter < deriv_window:
+                pass
+            else:
+                self.derivs.append(calculate_derivative("do", self.loop_id, deriv_window)) 
+                self.increment_counter = 0
 
-        if isDerPositive(derivs):
+            if isDerPositive(self.derivs):
+                    self.start_feed = True
+            
+        if self.start_feed:
             self.pump_control(self.feed_pump.control(True))
         else:
             self.pump_control(self.feed_pump.control(False))
 
-        self.__pH_balance(data["ph"], "do_der_loop")
+        self.__pH_balance(data["ph"], self.control_name)
+        
+        self.__update_status(True)
+
+        return self.status
     
     def __new_control(self):
         data = self.device_manager.get_measurement()

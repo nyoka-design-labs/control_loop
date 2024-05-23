@@ -47,6 +47,25 @@ def add_to_csv(data: list, file_name: str, header: list):
         
         writer.writerow(data)
 
+def add_test_data_to_csv(data, file_name: str):
+    curr_dir = os.path.dirname(__file__)
+    csv_dir = os.path.join(curr_dir, "..", "data", file_name)
+    
+    # Check if the file exists and if it is empty
+    file_exists = os.path.isfile(csv_dir)
+    file_empty = os.path.getsize(csv_dir) == 0 if file_exists else True
+
+    with open(csv_dir, 'a', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        
+        # If the file is empty or doesn't exist, write the header first
+        if not file_exists or file_empty:
+            headers = list(data.keys())
+            writer.writerow(headers)
+        
+        # Write the data
+        writer.writerow(data.values())
+
 def read_csv_file(file_name: str):
     data = []
     curr_dir = os.path.dirname(__file__)
@@ -75,27 +94,24 @@ def isDerPositive(derivatives, num_points=5):
     last_values = derivatives[-num_points:]
     return all(value > 0 for value in last_values)
 
-def calculate_derivative(key, loop_id, num_points=40):
+def calculate_derivative(key, loop_id, num_points=10):
     csv_name = get_csv_name(loop_id)
     data = read_csv_file(csv_name)
     do_values = [float(row[f"{key}"]) for row in data]
-    derivatives = []
+    time_values = [float(row["time"]) for row in data]
 
-    for i in range(len(do_values)):
-        if i < num_points:
-            # Not enough data points to calculate the derivative
-            derivatives.append(None)
-        else:
-            # Calculate the derivative using the past num_points
-            y = do_values[i-num_points:i]
-            x = list(range(num_points))
-            # Fit a linear line to the data points
-            poly = np.polyfit(x, y, 1)
-            # The slope of the line is the derivative
-            derivative = poly[0]
-            derivatives.append(derivative)
+    if len(do_values) < num_points:
+        raise ValueError("Not enough data points to calculate the derivative")
 
-    return derivatives
+    # Calculate the derivative using the last num_points
+    y = do_values[-num_points:]
+    x = time_values[-num_points:]
+    # Fit a linear line to the data points
+    poly = np.polyfit(x, y, 1)
+    # The slope of the line is the derivative
+    derivative = poly[0]
+
+    return derivative
 
 def extract_specific_cells(csv_path, start_row, end_row, col):
     with open(csv_path, 'r') as file:
@@ -185,4 +201,9 @@ if __name__ == "__main__":
     # d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
     # data = list(map(lambda x: float(x)*1000, d))
     # print(sum(data))
-    print(find_usb_serial_port(0x1a86, 0x7523))
+    # print(find_usb_serial_port(0x1a86, 0x7523))
+    test_data = {"do": 70, "ph": 6.5, "feed_weight": 1000, "time": 0, "type": "data"}
+    file_name = "test_data.csv"
+    
+    # Add test data to CSV
+    add_test_data_to_csv(test_data, file_name)
