@@ -130,7 +130,10 @@ class FermentationController(Controller):
         self.feed_pump = Pump(name="blackPump1")
         self.base_pump = Pump(name="blackPump2")
         self.lactose_pump = Pump(name="blackPump3")
+
         self.device_manager = dm
+        self.loop_id = "fermentation_loop"
+
         self.start_feed = False
         self.start_feed_2 = False
         self.first_time = True
@@ -138,8 +141,9 @@ class FermentationController(Controller):
         self.rpm_volts = 0.06
         self.increment_counter = 0
         self.test_data = None
-        self.loop_id = "fermentation_loop"
-        self.control_id = get_loop_constant(self.loop_id, "chosen_control")
+
+        
+        self.control_name = get_loop_constant(self.loop_id, "chosen_control")
 
         self.status = {
             "type": "status",
@@ -155,8 +159,8 @@ class FermentationController(Controller):
         self.pump_control(self.base_pump.control(False))
 
     def start_control(self):
-        control_name = get_loop_constant(self.loop_id, "chosen_control")
-        
+        control_name = self.control_name
+                
         if control_name:
             control_method = getattr(self, f"_{self.__class__.__name__}__{control_name}", None)
             if control_method:
