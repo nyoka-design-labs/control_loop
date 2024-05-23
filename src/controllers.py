@@ -160,7 +160,7 @@ class FermentationController(Controller):
 
     def start_control(self):
         control_name = self.control_name
-                
+
         if control_name:
             control_method = getattr(self, f"_{self.__class__.__name__}__{control_name}", None)
             if control_method:
@@ -222,6 +222,7 @@ class FermentationController(Controller):
         data = self.__get_data()
         refill_mass = get_control_constant(self.loop_id, self.control_id, "refill_mass")
         feed_ph_sp = get_control_constant(self.loop_id, self.control_id, "feed_ph_sp")
+        refill_count = get_control_constant(self.loop_id, self.control_id, "refill_count")
 
         # gets the intial weight of the feed
         if self.first_time:
@@ -248,7 +249,7 @@ class FermentationController(Controller):
                     self.refil = True
 
             if self.refil:
-                if self.increment_counter < 5: # interval size of 15s
+                if self.increment_counter < refill_count: # interval size of 15s
                     self.pump_control(self.lactose_pump.control(True))
                     self.increment_counter += 1
                 else:
