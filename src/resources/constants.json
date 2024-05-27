@@ -88,7 +88,7 @@
                         "ph_sensor",
                         "uss_scale",
                         "uss_scale",
-                        "uss_scale", 
+                        "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
@@ -97,7 +97,7 @@
                         "temp",
                         "feed_weight",
                         "lactose_weight",
-                        "base_weight", 
+                        "base_weight",
                         "acid_weight"
                     ],
                     "csv_name": "fermentation_feed_control_loop_05-28-2024",

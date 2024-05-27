@@ -190,5 +190,42 @@
         {"do": 62, "ph": 10.1, "feed_weight": 700, "time": 0.15, "type": "data"}, 
         {"do": 61, "ph": 10.2, "feed_weight": 99, "time": 0.15416667, "type": "data"}
         
-    ]
+    ],
+
+    
+        "feed_control_test_data_1": [
+            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},
+            {"do": 30, "ph": 7.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
+            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
+            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
+            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
+            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"}
+        ],
+        "feed_control_test_data_2": [
+            {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},
+            {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
+            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
+            {"do": 30, "ph": 7.3, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},
+            {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}  
+        ],
+        "feed_control_test_data_3": [
+            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},  
+            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
+            {"do": 30, "ph": 7.3, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
+            {"do": 30, "ph": 7.9, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
+            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},  
+            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"}, 
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
+            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}, 
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
+            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}
+        ]
+    
+    
 }

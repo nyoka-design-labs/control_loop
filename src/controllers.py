@@ -24,13 +24,15 @@ def create_controller(loop_id, control_id):
 class Controller:
 
     def __init__(self):
-        self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        if not testing:
+            self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         # time.sleep(1)
         # self.arduino.flush()
 
     def pump_control(self, state: str):
         print(f"sent arduino: {state.encode()}")
-        self.arduino.write((state + '\n').encode())
+        if not testing:
+            self.arduino.write((state + '\n').encode())
         # self.arduino.flush()
 
         time.sleep(1)
@@ -145,6 +147,7 @@ class FermentationController(Controller):
         self.increment_counter = 0
         self.test_data = None
         self.last_base_addition = None
+        self.ready_to_start_feed = False
 
         
         self.control_name = get_loop_constant(self.loop_id, "chosen_control")
@@ -161,9 +164,7 @@ class FermentationController(Controller):
             "base_pump_status": str(self.base_pump.state)
         }
 
-        self.pump_control(self.feed_pump.control(False))
-        self.pump_control(self.lactose_pump.control(False))
-        self.pump_control(self.base_pump.control(False))
+        self.stop_control()
 
     def start_control(self):
         control_name = self.control_name
@@ -390,18 +391,26 @@ class FermentationController(Controller):
     def __feed_control(self):
             data = self.__get_data()
             self.__pH_balance(data["ph"], self.control_name)
-
+            
             current_time = time.time()  # Get the current time
 
             if not self.start_feed:
-                if self.status["base_pump_status"] == self.base_pump.return_on_off_states(True):
-                    self.last_base_addition = current_time  # Update the last base addition time
+                if not self.ready_to_start_feed:
+                    if self.status["base_pump_status"] == str(self.base_pump.return_on_off_states(True)):
+                        print(f"updated last base addition time {current_time}")
+                        self.last_base_addition = current_time  # Update the last base addition time
 
-                if self.last_base_addition and (current_time - self.last_base_addition) >= 600:
-                    # 10 minutes (600 seconds) have passed since the last base addition
+                    if self.last_base_addition and (current_time - self.last_base_addition) >= 25:
+                        # 10 minutes (600 seconds) have passed since the last base addition
+                        print(f"ready to feed set to true {(current_time - self.last_base_addition)}")
+                        self.ready_to_start_feed = True
+
+                if self.ready_to_start_feed and self.status["base_pump_status"] == str(self.base_pump.return_on_off_states(True)):
+                    # Feed starts when base is added for the first time after the 10-minute period
+                    print("start feed set to true")
                     self.start_feed = True
 
-            if self.start_feed:
+            if self.start_feed: 
                 self.pump_control(self.feed_pump.control(True))
             else:
                 self.pump_control(self.feed_pump.control(False))
@@ -443,7 +452,8 @@ class FermentationController(Controller):
             self.pump_control(self.base_pump.control(False))
             self.pump_control(self.acid_pump.control(False))
 
-    
+        self.__update_status(True)
+
     def __get_data(self, data_col=False):
         if data_col:
             if testing:
@@ -454,7 +464,7 @@ class FermentationController(Controller):
                 return data
         else:
             if testing:
-                data = self.device_manager.test_get_measurement("do_der_test_1")
+                data = self.device_manager.test_get_measurement("feed_control_test_data_3")
                 self.test_data = data
                 print(f"test data: {data}")
                 return data
@@ -480,7 +490,7 @@ class FermentationController(Controller):
 
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop", "do_der_control")
+    d = DeviceManager("fermentation_loop", "feed_control")
     c = FermentationController(d)
     stat = 2
     while True:
@@ -488,6 +498,6 @@ if __name__ == "__main__":
         # print(c.pump_control(str(stat)))
         # print(c.pump_control(str(1)))
         # print(c.start_control())
-        print(c.start_control())
+        c.start_control()
 
         time.sleep(5)
