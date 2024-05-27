@@ -394,11 +394,13 @@ class FermentationController(Controller):
 
             if not self.start_feed:
                 if not self.ready_to_start_feed:
+                    no_base_window = get_control_constant(self.loop_id, self.control_name, "no_base_window")
+                    
                     if self.status["base_pump_status"] == str(self.base_pump.return_on_off_states(True)):
                         print(f"updated last base addition time {current_time}")
                         self.last_base_addition = current_time  # Update the last base addition time
 
-                    if self.last_base_addition and (current_time - self.last_base_addition) >= 25:
+                    if self.last_base_addition and (current_time - self.last_base_addition) >= no_base_window:
                         # 10 minutes (600 seconds) have passed since the last base addition
                         print(f"ready to feed set to true {(current_time - self.last_base_addition)}")
                         self.ready_to_start_feed = True
