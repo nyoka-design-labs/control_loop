@@ -22,6 +22,9 @@ export const createChartData = (systemData, label, actualColor, expectedLabel, e
       const expectedDataPoints = expectedLabel === 'Temperature'
       ? systemData.map(data => parseFloat(data.temp))
       : systemData.map(data => data[expectedLabel.toLowerCase()]);
+      // console.log("Charts expected Data Points:", expectedDataPoints);
+      // console.log("Charts expected label:", expectedLabel);
+      // console.log("Charts system data label:", systemData);
       datasets.push({
         label: `${expectedLabel}`,
         data: expectedDataPoints,

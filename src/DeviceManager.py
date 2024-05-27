@@ -247,6 +247,6 @@ class DeviceManager:
 if __name__ == "__main__":
     dm = DeviceManager("fermentation_loop", "do_der_control")
     while True:
-        print(dm.test_get_measurement("do_der_test_1"))
-        # print(dm.get_measurement())
+        # print(dm.test_get_measurement("do_der_test_1"))
+        print(dm.get_measurement())
         time.sleep(3)

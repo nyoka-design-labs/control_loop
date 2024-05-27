@@ -6,15 +6,16 @@ import websockets
 
 import sys
 sys.path.append("/home/sam/Desktop/control_loop/src")
-from resources.utils import read_csv_file, get_csv_name, get_loop_constant
+from resources.utils import read_csv_file, get_csv_name, get_loop_constant, get_control_constant
 import controllers as c
 
-load_data = False
-INTERVAL = get_loop_constant("server_consts", "interval") - 9
+load_data = True
+INTERVAL = get_loop_constant("server_consts", "interval")
 controllers = {}
 
 async def load_previous_data(controller: c, websocket: websockets, loop_id: str):
-    csv_name = get_csv_name(loop_id)
+    control_id = get_loop_constant(loop_id=loop_id, const="chosen_control")
+    csv_name = get_control_constant(loop_id, control_id, "csv_name")
     data = read_csv_file(f"{csv_name}.csv")
     
     # Make sure there is data and a header was found and read
@@ -31,6 +32,7 @@ async def load_previous_data(controller: c, websocket: websockets, loop_id: str)
                 "do": row["do"],
                 "ph": row["ph"],
                 "temp": row["temp"],
+                "lactose_weight": row["lactose_weight"],
                 "time": row["time"],
                 "type": "data"
             }
