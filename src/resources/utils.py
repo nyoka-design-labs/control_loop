@@ -6,6 +6,17 @@ import usb.core
 import json
 import numpy as np
 
+#################################################### Port Funcs ####################################################
+def find_usb_serial_port(vendor_id: hex, product_id: hex):
+    ports = serial.tools.list_ports.comports()
+
+    for port in ports:
+        if port.vid == vendor_id and port.pid == product_id:
+            return port.device
+    return None
+
+
+#################################################### Math Funcs ####################################################
 def exponential_func(t: int, c1: int) -> float:
     """
     Returns the expected volume at elapsed time t. Assuming 1 ml = 1 g.
@@ -26,6 +37,45 @@ def exponential_func(t: int, c1: int) -> float:
 
     return v2, c2
 
+
+def isDerPositive(derivatives, num_points=5):
+    """
+    Checks if the last `num_points` values in the list of derivatives are positive.
+    
+    Args:
+        derivatives (list): The list of derivatives.
+        num_points (int): The number of last values to check.
+        
+    Returns:
+        bool: True if all the last `num_points` values are positive, False otherwise.
+    """
+    if len(derivatives) < num_points:
+        return False
+    
+    last_values = derivatives[-num_points:]
+    return all(value > 0 for value in last_values)
+
+def calculate_derivative(key, loop_id, num_points=10):
+    csv_name = get_control_constant(loop_id, "do_der_control", "csv_name")
+    data = read_csv_file(f"{csv_name}.csv")
+    do_values = [float(row[f"{key}"]) for row in data]
+    time_values = [float(row["time"]) for row in data]
+
+    if len(do_values) < num_points:
+        raise ValueError("Not enough data points to calculate the derivative")
+
+    # Calculate the derivative using the last num_points
+    y = do_values[-num_points:]
+    x = time_values[-num_points:]
+    # Fit a linear line to the data points
+    poly = np.polyfit(x, y, 1)
+    # The slope of the line is the derivative
+    derivative = poly[0]
+
+    return derivative
+
+
+#################################################### JSON/CSV Funcs ####################################################
 def load_test_data(json_file):
     with open(json_file, 'r') as file:
         return json.load(file)
@@ -76,43 +126,6 @@ def read_csv_file(file_name: str):
         for row in csv_reader:
             data.append(row)
     return data
-
-def isDerPositive(derivatives, num_points=5):
-    """
-    Checks if the last `num_points` values in the list of derivatives are positive.
-    
-    Args:
-        derivatives (list): The list of derivatives.
-        num_points (int): The number of last values to check.
-        
-    Returns:
-        bool: True if all the last `num_points` values are positive, False otherwise.
-    """
-    if len(derivatives) < num_points:
-        return False
-    
-    last_values = derivatives[-num_points:]
-    return all(value > 0 for value in last_values)
-
-def calculate_derivative(key, loop_id, num_points=10):
-    csv_name = get_control_constant(loop_id, "do_der_control", "csv_name")
-    data = read_csv_file(f"{csv_name}.csv")
-    do_values = [float(row[f"{key}"]) for row in data]
-    time_values = [float(row["time"]) for row in data]
-
-    if len(do_values) < num_points:
-        raise ValueError("Not enough data points to calculate the derivative")
-
-    # Calculate the derivative using the last num_points
-    y = do_values[-num_points:]
-    x = time_values[-num_points:]
-    # Fit a linear line to the data points
-    poly = np.polyfit(x, y, 1)
-    # The slope of the line is the derivative
-    derivative = poly[0]
-
-    return derivative
-
 def extract_specific_cells(csv_path, start_row, end_row, col):
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
@@ -122,31 +135,8 @@ def extract_specific_cells(csv_path, start_row, end_row, col):
         # Extract the data from the specific column
         data = [row[col - 1] for row in reader][:(end_row - start_row + 1)] 
     return data
-
-def find_usb_serial_port(vendor_id: hex, product_id: hex):
-    ports = serial.tools.list_ports.comports()
-
-    for port in ports:
-        if port.vid == vendor_id and port.pid == product_id:
-            return port.device
-    return None
-
-def get_csv_name(loop_id):
-    curr_dir = os.path.dirname(__file__)
-    json_path = os.path.join(curr_dir, "constants.json")
-    # Load the JSON data from the given path
-    with open(json_path, 'r') as file:
-        data = json.load(file)
-
-    # Iterate through each entry in the "loop" list
-    for loop in data["loop"]:
-        if loop.get("loop_id") == loop_id:
-            # Return the 'csv_name' if the loop_id matches and 'csv_name' exists
-            return loop.get("csv_name", "No CSV name provided")
-
-    # Return a message if the loop_id is not found
-    return "Loop ID not found"
-
+                
+#################################################### Control Loop Funcs ####################################################
 def get_control_constant(loop_id: str, control_id: str, const: str):
     curr_dir = os.path.dirname(__file__)
     json_path = os.path.join(curr_dir, "constants.json")
@@ -181,29 +171,29 @@ def get_loop_constant(loop_id: str, const: str):
 
     # Return a message if the loop_id is not found
     return "Loop ID not found"
+                    
 
+def update_control_constant(loop_id, control_name, constant_name, new_value):
+    curr_dir = os.path.dirname(__file__)
+    json_file_path = os.path.join(curr_dir, "constants.json")
+
+    # Read the JSON file
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
+
+    # Locate the specific controller to update
+    for loop in data['loop']:
+        if loop['loop_id'] == loop_id:
+            for controller in loop['controllers']:
+                if controller['controller_id'] == control_name:
+                    # Update the specified constant value
+                    controller[constant_name] = new_value
+                    print(f"Updated {constant_name} for {control_name} in loop {loop_id} to {new_value}")
+
+                    # Write the updated JSON back to the file
+                    with open(json_file_path, 'w') as file:
+                        json.dump(data, file, indent=4)
+                    return
+                
 if __name__ == "__main__":
-    # import matplotlib.pyplot as plt
-
-    # t_values = range(1, 501)
-    # c1 = 0
-    # v2_values = []
-    # for t in t_values:
-    #     v, c2 = exponential_func(t, c1)
-    #     v2_values += [v]
-    #     c1 = c2
-
-    # plt.plot(t_values, v2_values)
-    # plt.xlabel('Time (t)')
-    # plt.ylabel('Volume (v2)')
-    # plt.title('Exponential Function')
-    # plt.show()
-    # d = extract_specific_cells("../tests/feed_data_v0-2_u-0.1_m0-1000.csv", 6, 1217, 4)
-    # data = list(map(lambda x: float(x)*1000, d))
-    # print(sum(data))
-    # print(find_usb_serial_port(0x1a86, 0x7523))
-    test_data = {"do": 70, "ph": 6.5, "feed_weight": 1000, "time": 0, "type": "data"}
-    file_name = "test_data.csv"
-    
-    # Add test data to CSV
-    add_test_data_to_csv(test_data, file_name)
+    pass

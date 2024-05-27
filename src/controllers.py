@@ -2,13 +2,12 @@ import serial
 from devices.pump import Pump
 from DeviceManager import DeviceManager
 import time
-from resources.utils import calculate_derivative, isDerPositive, get_loop_constant, get_control_constant
+from resources.utils import calculate_derivative, isDerPositive, get_loop_constant, get_control_constant, update_control_constant
 from resources.google_api.sheets import save_dict_to_sheet
 #CONSTANTS
 port = '/dev/ttyACM0'
 baudrate = 9600
 testing = True
-
 
 def create_controller(loop_id, control_id):
     
@@ -26,14 +25,11 @@ class Controller:
     def __init__(self):
         if not testing:
             self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
-        # time.sleep(1)
-        # self.arduino.flush()
 
     def pump_control(self, state: str):
         print(f"sent arduino: {state.encode()}")
         if not testing:
             self.arduino.write((state + '\n').encode())
-        # self.arduino.flush()
 
         time.sleep(1)
 
@@ -136,6 +132,7 @@ class FermentationController(Controller):
 
         self.device_manager = dm
         self.loop_id = "fermentation_loop"
+        self.control_name = get_loop_constant(self.loop_id, "chosen_control")
 
         self.start_feed = False
         self.start_feed_2 = False
@@ -150,7 +147,6 @@ class FermentationController(Controller):
         self.ready_to_start_feed = False
 
         
-        self.control_name = get_loop_constant(self.loop_id, "chosen_control")
         self.csv_name = get_control_constant(self.loop_id, self.control_name, "csv_name")
 
         self.status = {
@@ -161,7 +157,8 @@ class FermentationController(Controller):
             "feed_pump_status": str(self.feed_pump.state),
             "lactose_pump_status": str(self.lactose_pump.state),
             "acid_pump_status": str(self.acid_pump.state),
-            "base_pump_status": str(self.base_pump.state)
+            "base_pump_status": str(self.base_pump.state), 
+            "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
         }
 
         self.stop_control()
@@ -216,6 +213,7 @@ class FermentationController(Controller):
         self.status.update({
             "lactose_pump_status": str(self.lactose_pump.state)
         })
+
     def toggle_acid(self):
         self.pump_control(self.acid_pump.toggle())
         self.status.update({
@@ -390,7 +388,7 @@ class FermentationController(Controller):
 
     def __feed_control(self):
             data = self.__get_data()
-            self.__pH_balance(data["ph"], self.control_name)
+            self.__pH_balance(data["ph"])
             
             current_time = time.time()  # Get the current time
 
@@ -410,9 +408,17 @@ class FermentationController(Controller):
                     print("start feed set to true")
                     self.start_feed = True
 
-            if self.start_feed: 
-                self.pump_control(self.feed_pump.control(True))
+            switch_feed = True if get_control_constant(self.loop_id, self.control_name, "feed_media")=="Lactose" else False
+            print(switch_feed)
+            if self.start_feed:
+                if not switch_feed: 
+                    self.pump_control(self.feed_pump.control(True))
+                    self.pump_control(self.lactose_pump.control(False))
+                else:
+                    self.pump_control(self.lactose_pump.control(True))
+                    self.pump_control(self.feed_pump.control(False))
             else:
+                self.pump_control(self.lactose_pump.control(False))
                 self.pump_control(self.feed_pump.control(False))
 
             self.__update_status(True)
@@ -426,14 +432,25 @@ class FermentationController(Controller):
 
             return data, self.status
 
+    def switch_feed_media(self):
+        """
+        Switch the feed media between 'Glucose' and 'Lactose'.
+        """
+        control_name = self.control_name
+        current_value = get_control_constant(self.loop_id, control_name, "feed_media")
+        new_value = 'Lactose' if current_value == 'Glucose' else 'Glucose'
+        update_control_constant(self.loop_id, control_name, "feed_media", new_value)
+        self.status.update({
+            "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
+        })
 
-    def __pH_balance(self, ph: float, control_id: str):
+    def __pH_balance(self, ph: float):
         """
         Main control loop for the pH controller.
         """
         
-        ph_base_sp = get_control_constant(self.loop_id, control_id, "ph_balance_base_sp")
-        ph_acid_sp = get_control_constant(self.loop_id, control_id, "ph_balance_acid_sp")
+        ph_base_sp = get_control_constant(self.loop_id, self.control_name, "ph_balance_base_sp")
+        ph_acid_sp = get_control_constant(self.loop_id, self.control_name, "ph_balance_acid_sp")
         print(f"ph being balanced at {ph_base_sp} and {ph_acid_sp}")
 
         if (ph <= ph_base_sp):
@@ -458,13 +475,14 @@ class FermentationController(Controller):
         if data_col:
             if testing:
                 data = self.test_data
+                # data = self.device_manager.test_get_measurement("feed_control_test_data_1")
                 return data
             else:
                 data = self.device_manager.get_measurement()
                 return data
         else:
             if testing:
-                data = self.device_manager.test_get_measurement("feed_control_test_data_3")
+                data = self.device_manager.test_get_measurement("feed_control_test_data_1")
                 self.test_data = data
                 print(f"test data: {data}")
                 return data
@@ -484,10 +502,9 @@ class FermentationController(Controller):
             "feed_pump_status": str(self.feed_pump.state),
             "base_pump_status": str(self.base_pump.state),
             "lactose_pump_status": str(self.lactose_pump.state),
-            "acid_pump_status": str(self.acid_pump.state)
+            "acid_pump_status": str(self.acid_pump.state),
+            "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
         })
-
-
 
 if __name__ == "__main__":
     d = DeviceManager("fermentation_loop", "feed_control")

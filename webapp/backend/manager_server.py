@@ -13,7 +13,7 @@ sys.path.append(SRC_DIR)
 from resources.utils import read_csv_file, get_loop_constant, get_control_constant
 import controllers as c
 
-load_data = True
+load_data = False
 INTERVAL = get_loop_constant("server_consts", "interval")
 controllers = {}
 
@@ -84,8 +84,9 @@ async def control_task(controller, websocket):
     try:
         while True:
             print("loop controlled")
-            status = controller.start_control()
-            print(status)
+            data, status = controller.start_control()
+            print(f"data sent from control: {data}")
+            await websocket.send(json.dumps(data))
             await send_status_update(websocket, status)
             await asyncio.sleep(INTERVAL)
     except asyncio.CancelledError:
@@ -101,13 +102,13 @@ async def collection_task(controller, websocket, loop_id):
             load_data = False
 
         while True:
-            
             controller.pump_control("T")
             print(f"data being collected")
             if controller.status["control_loop_status"] == "control_off":
                 status, data = controller.start_collection(False)
-                print(f"data sent: {data}")
+                print(f"data sent from collect: {data}")
                 await websocket.send(json.dumps(data))
+                await send_status_update(websocket, status)
             
             status = controller.start_collection(True)
             await send_status_update(websocket, status)
@@ -157,6 +158,9 @@ async def toggle(loop_id, command, websocket):
         
     if command == "toggle_acid":
         controller_info["controller"].toggle_acid()
+    
+    if command == "toggle_feed_media":
+        controller_info["controller"].switch_feed_media()
 
     status = controller_info["controller"].status
     
