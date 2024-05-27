@@ -2,16 +2,57 @@ import json
 import asyncio
 import time
 import websockets
-
-
+import os
 import sys
-sys.path.append("/home/sam/Desktop/control_loop/src")
-from resources.utils import read_csv_file, get_csv_name, get_loop_constant, get_control_constant
+
+
+curr_directory = os.path.dirname(__file__)
+SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
+sys.path.append(SRC_DIR)
+
+from resources.utils import read_csv_file, get_loop_constant, get_control_constant
 import controllers as c
 
 load_data = True
 INTERVAL = get_loop_constant("server_consts", "interval")
 controllers = {}
+
+async def control(loop_id, command, websocket):
+    controller_info = get_controller(loop_id)
+
+    if command == "start_control":
+        if "control_task" not in controller_info:
+            controller_info["control_task"] = asyncio.create_task(control_task(controller_info["controller"], websocket))
+    
+        if "collection_task" not in controller_info: # if data collection is not already happening then start it
+            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket, loop_id))
+
+    elif command == "stop_control":
+        if "control_task" in controller_info:
+            controller_info["control_task"].cancel()
+            await controller_info["control_task"]  # Ensure cancellation is handled properly
+            del controller_info["control_task"]
+
+        controller_info["controller"].stop_control()
+
+    else:
+        print("Invalid control command")
+
+
+async def collection(loop_id, command, websocket):
+    controller_info = get_controller(loop_id)
+    if command == "start_collection":
+        if "collection_task" not in controller_info: # if data collection is not already happening then start it
+            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket, loop_id))
+
+    elif command == "stop_collection":
+        if "collection_task" in controller_info:
+            controller_info["collection_task"].cancel()
+            await controller_info["collection_task"]  # Ensure cancellation is handled properly
+            del controller_info["collection_task"]
+
+    else:
+        print("Invalid control command")
 
 async def load_previous_data(controller: c, websocket: websockets, loop_id: str):
     control_id = get_loop_constant(loop_id=loop_id, const="chosen_control")
@@ -33,34 +74,52 @@ async def load_previous_data(controller: c, websocket: websockets, loop_id: str)
                 "ph": row["ph"],
                 "temp": row["temp"],
                 "lactose_weight": row["lactose_weight"],
+                "acid_weight": row["acid_weight"],
                 "time": row["time"],
                 "type": "data"
             }
             await websocket.send(json.dumps(row_dict))
 
 async def control_task(controller, websocket):
-    while True:
-        print("loop controlled")
-        status = controller.start_control()
-        print(status)
+    try:
+        while True:
+            print("loop controlled")
+            status = controller.start_control()
+            print(status)
+            await send_status_update(websocket, status)
+            await asyncio.sleep(INTERVAL)
+    except asyncio.CancelledError:
+        print("Control task was cancelled")
+        status = controller.stop_control()
         await send_status_update(websocket, status)
-        await asyncio.sleep(INTERVAL)
 
 async def collection_task(controller, websocket, loop_id):
-    global load_data
-    if load_data:
-        await load_previous_data(controller, websocket, loop_id)
-        load_data = False
+    try: 
+        global load_data
+        if load_data:
+            await load_previous_data(controller, websocket, loop_id)
+            load_data = False
 
-    while True:
-        controller.pump_control("T")
-        print(f"data being collected")
-        status, data = controller.start_collection()
-        print(f"data sent: {data}")
-        await websocket.send(json.dumps(data))
+        while True:
+            
+            controller.pump_control("T")
+            print(f"data being collected")
+            if controller.status["control_loop_status"] == "control_off":
+                status, data = controller.start_collection(False)
+                print(f"data sent: {data}")
+                await websocket.send(json.dumps(data))
+            
+            status = controller.start_collection(True)
+            await send_status_update(websocket, status)
+            await asyncio.sleep(INTERVAL)
+    
+    except asyncio.CancelledError:
+        print("Collection task was cancelled")
+        status = controller.status
+        status.update({
+            "data_collection_status": "data_collection_off"
+        })
         await send_status_update(websocket, status)
-        await asyncio.sleep(INTERVAL)
-
 
 async def send_status_update(websocket, status):
     """ Send the consolidated status object to the websocket client. """
@@ -77,51 +136,6 @@ def get_controller(loop_id):
             "device_manager": device_manager  # Replace with appropriate constructor arguments
         }
     return controllers[loop_id]
-
-async def control(loop_id, command, websocket):
-    controller_info = get_controller(loop_id)
-
-    if command == "start_control":
-        if "control_task" not in controller_info:
-            controller_info["control_task"] = asyncio.create_task(control_task(controller_info["controller"], websocket))
-    
-        if "collection_task" not in controller_info: # if data collection is not already happening then start it
-            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket, loop_id))
-
-    elif command == "stop_control":
-        if "control_task" in controller_info:
-            status = controller_info["controller"].stop_control()
-            print(status)
-            await send_status_update(websocket, status)
-            controller_info["control_task"].cancel()
-            controller_info["control_task"] = None
-            del controller_info["control_task"]
-
-        controller_info["controller"].stop_control()
-
-    else:
-        print("Invalid control command")
-
-
-async def collection(loop_id, command, websocket):
-    controller_info = get_controller(loop_id)
-    if command == "start_collection":
-        if "collection_task" not in controller_info: # if data collection is not already happening then start it
-            controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket, loop_id))
-
-    elif command == "stop_collection":
-        if "collection_task" in controller_info:
-            status = controller_info["controller"].status
-            status.update({
-            "data_collection_status": "data_collection_off"
-            })
-            await send_status_update(websocket, status)
-            controller_info["collection_task"].cancel()
-            controller_info["collection_task"] = None
-            del controller_info["collection_task"]
-
-    else:
-        print("Invalid control command")
 
 async def toggle(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
@@ -140,6 +154,9 @@ async def toggle(loop_id, command, websocket):
 
     if command == "toggle_lactose":
         controller_info["controller"].toggle_lactose()
+        
+    if command == "toggle_acid":
+        controller_info["controller"].toggle_acid()
 
     status = controller_info["controller"].status
     

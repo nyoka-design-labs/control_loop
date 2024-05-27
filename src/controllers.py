@@ -3,11 +3,11 @@ from devices.pump import Pump
 from DeviceManager import DeviceManager
 import time
 from resources.utils import calculate_derivative, isDerPositive, get_loop_constant, get_control_constant
-
+from resources.google_api.sheets import save_dict_to_sheet
 #CONSTANTS
 port = '/dev/ttyACM0'
 baudrate = 9600
-testing = False
+testing = True
 
 
 def create_controller(loop_id, control_id):
@@ -130,6 +130,7 @@ class FermentationController(Controller):
         self.feed_pump = Pump(name="blackPump1")
         self.base_pump = Pump(name="blackPump2")
         self.lactose_pump = Pump(name="blackPump3")
+        self.acid_pump = Pump(name="whitePump1")
 
         self.device_manager = dm
         self.loop_id = "fermentation_loop"
@@ -143,9 +144,11 @@ class FermentationController(Controller):
         self.rpm_volts = 0.06
         self.increment_counter = 0
         self.test_data = None
+        self.last_base_addition = None
 
         
         self.control_name = get_loop_constant(self.loop_id, "chosen_control")
+        self.csv_name = get_control_constant(self.loop_id, self.control_name, "csv_name")
 
         self.status = {
             "type": "status",
@@ -153,7 +156,9 @@ class FermentationController(Controller):
             "control_loop_status": "control_off",
             "data_collection_status": "data_collection_off",
             "feed_pump_status": str(self.feed_pump.state),
-            "base_pump_status": str(self.base_pump.state),
+            "lactose_pump_status": str(self.lactose_pump.state),
+            "acid_pump_status": str(self.acid_pump.state),
+            "base_pump_status": str(self.base_pump.state)
         }
 
         self.pump_control(self.feed_pump.control(False))
@@ -171,33 +176,27 @@ class FermentationController(Controller):
                 raise AttributeError(f"Method {control_name} not found in class.")
         else:
             raise ValueError(f"No control method found for loop_id: {self.loop_id}")
-
-    # def start_control(self):
-    #     value_for_func_2_run = get_loop_constant(self.loop_id, "chosen_control")
-
-    #     return self.__ph_mixed_feed_control()
     
     def stop_control(self):
         self.pump_control(self.feed_pump.control(False))
         self.pump_control(self.base_pump.control(False))
         self.pump_control(self.lactose_pump.control(False))
+        self.pump_control(self.acid_pump.control(False))
 
-        self.status.update({
-            "control_loop_status": "control_off",
-            "feed_pump_status": str(self.feed_pump.state),
-            "base_pump_status": str(self.base_pump.state)
-        })
+        self.__update_status(False)
 
         return self.status
     
-    def start_collection(self):
-        data = self.__get_data(data_col=True)
-        
+    def start_collection(self, control_status: bool):
         self.status.update({
             "data_collection_status": "data_collection_on"
         })
 
-        return self.status, data
+        if control_status:
+            return self.status
+        else:
+            data = self.__get_data(data_col=True)
+            return self.status, data
     
     def toggle_base(self):
         self.pump_control(self.base_pump.toggle())
@@ -215,6 +214,11 @@ class FermentationController(Controller):
         self.pump_control(self.lactose_pump.toggle())
         self.status.update({
             "lactose_pump_status": str(self.lactose_pump.state)
+        })
+    def toggle_acid(self):
+        self.pump_control(self.acid_pump.toggle())
+        self.status.update({
+            "acid_pump_status": str(self.acid_pump.state)
         })
 
     def __ph_mixed_feed_control(self):
@@ -383,20 +387,62 @@ class FermentationController(Controller):
 
         return self.status
 
+    def __feed_control(self):
+            data = self.__get_data()
+            self.__pH_balance(data["ph"], self.control_name)
+
+            current_time = time.time()  # Get the current time
+
+            if not self.start_feed:
+                if self.status["base_pump_status"] == self.base_pump.return_on_off_states(True):
+                    self.last_base_addition = current_time  # Update the last base addition time
+
+                if self.last_base_addition and (current_time - self.last_base_addition) >= 600:
+                    # 10 minutes (600 seconds) have passed since the last base addition
+                    self.start_feed = True
+
+            if self.start_feed:
+                self.pump_control(self.feed_pump.control(True))
+            else:
+                self.pump_control(self.feed_pump.control(False))
+
+            self.__update_status(True)
+            
+            status = self.status.copy()
+            status.pop("type", None)  # Remove the "type" key if it exists in the status data
+            combined_data = data.copy()  # Create a copy of the original data
+            combined_data.update(status)
+
+            save_dict_to_sheet(combined_data, self.csv_name)
+
+            return data, self.status
+
+
     def __pH_balance(self, ph: float, control_id: str):
         """
         Main control loop for the pH controller.
         """
         
-        ph_sp = get_control_constant(self.loop_id, control_id, "ph_balance_sp")
-        print(f"ph being balanced at {ph_sp}")
-        if (ph < ph_sp):
-            # turn on pump
-            self.pump_control(self.base_pump.control(True))
+        ph_base_sp = get_control_constant(self.loop_id, control_id, "ph_balance_base_sp")
+        ph_acid_sp = get_control_constant(self.loop_id, control_id, "ph_balance_acid_sp")
+        print(f"ph being balanced at {ph_base_sp} and {ph_acid_sp}")
 
-        else:
-            # turn off pump
+        if (ph <= ph_base_sp):
+            # turn on base pump
+            self.pump_control(self.base_pump.control(True))
+            # turn off acid pump
+            self.pump_control(self.acid_pump.control(False))
+
+        elif (ph >= ph_acid_sp):
+            # turn on acid pump
+            self.pump_control(self.acid_pump.control(True))
+            # turn off base pump
             self.pump_control(self.base_pump.control(False))
+        else:
+            # turn off both pumps
+            self.pump_control(self.base_pump.control(False))
+            self.pump_control(self.acid_pump.control(False))
+
     
     def __get_data(self, data_col=False):
         if data_col:
@@ -427,8 +473,11 @@ class FermentationController(Controller):
             "control_loop_status": self.__update_control_status(control),
             "feed_pump_status": str(self.feed_pump.state),
             "base_pump_status": str(self.base_pump.state),
-            "lactose_pump_status": str(self.lactose_pump.state)
+            "lactose_pump_status": str(self.lactose_pump.state),
+            "acid_pump_status": str(self.acid_pump.state)
         })
+
+
 
 if __name__ == "__main__":
     d = DeviceManager("fermentation_loop", "do_der_control")

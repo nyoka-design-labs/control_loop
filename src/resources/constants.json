@@ -4,21 +4,21 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB6",
+            "port": "",
             "data_type": "feed_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB7",
+            "port": "",
             "data_type": "lactose_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB8",
+            "port": "",
             "data_type": "base_weight"
         },
         {
@@ -39,14 +39,14 @@
             "name": "ph_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "/dev/ttyUSB5",
+            "port": "",
             "data_type": "ph"
         },
         {
             "name": "do_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "/dev/ttyUSB4",
+            "port": "",
             "data_type": "do"
         }
     ],
@@ -78,8 +78,32 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "do_der_control",
+            "chosen_control": "feed_control",
             "controllers": [
+                {
+                    "controller_id": "feed_control",
+                    "notes": "when the derivative is positive for 5 consecutaive windows feed is turned on. ph is balanced",
+                    "devices": [
+                        "do_sensor",
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale",
+                        "uss_scale", 
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "do",
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "lactose_weight",
+                        "base_weight", 
+                        "acid_weight"
+                    ],
+                    "csv_name": "fermentation_feed_control_loop_05-28-2024",
+                    "ph_balance_base_sp": 7,
+                    "ph_balance_acid_sp": 7.02
+                },
                 {
                     "controller_id": "do_der_control",
                     "notes": "when the derivative is positive for 5 consecutaive windows feed is turned on. ph is balanced",

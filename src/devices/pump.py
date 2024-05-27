@@ -51,6 +51,12 @@ class Pump:
             return f"R{rpm}"
         else:
             raise NotImplementedError("RPM control is only implemented for blackPump1")
+    def return_on_off_states(self, needed_state: bool):
+        if needed_state:
+            return self.pump_names[self.name][1]
+        else:
+            return self.pump_names[self.name][0]
+
 
 
 if __name__ == "__main__":
