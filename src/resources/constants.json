@@ -53,7 +53,9 @@
     "loop": [
         {
             "loop_id": "server_consts",
-            "interval": 15
+            "interval": 15,
+            "testing": "True",
+            "load_data": "False"
         },
         {
             "loop_id": "concentration_loop",
@@ -70,7 +72,11 @@
                         "buffer_weight",
                         "lysate_weight"
                     ],
-                    "csv_name": "concentration_05-24-2024",
+                    "pumps": {
+                        "buffer_pump": "whitePump1",
+                        "lysate_pump": "whitePump2"
+                    },
+                    "csv_name": "concentration_05-28-2024",
                     "buffer_sp": 1200,
                     "lysate_sp": 250
                 }
@@ -78,7 +84,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "feed_control",
+            "chosen_control": "3_phase_feed_control",
             "controllers": [
                 {
                     "controller_id": "feed_control",
@@ -100,9 +106,47 @@
                         "base_weight",
                         "acid_weight"
                     ],
+                    "pumps": {
+                        "feed_pump": "blackPump1",
+                        "lactose_pump": "blackPump3",
+                        "base_pump": "blackPump2",
+                        "acid_pump": "whitePump3"
+                    },
                     "csv_name": "fermentation_feed_control_loop_05-28-2024",
                     "ph_balance_base_sp": 7,
                     "ph_balance_acid_sp": 7.02,
+                    "no_base_window": 600,
+                    "feed_media": "Glucose"
+                },
+                {
+                    "controller_id": "3_phase_feed_control",
+                    "notes": "manages pH and feeding in three phases. Phase 1 uses the base pump to maintain pH until it reaches 7.02. Phase 2 engages both base and acid pumps, activates the feed pump, and starts Phase 3 at 5:00 AM on May 30, switching to the lactose pump for feeding based on pH levels.",
+                    "devices": [
+                        "do_sensor",
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale",
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "do",
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "lactose_weight",
+                        "base_weight",
+                        "acid_weight"
+                    ],
+                    "pumps": {
+                        "feed_pump": "blackPump1",
+                        "lactose_pump": "blackPump3",
+                        "base_pump": "blackPump2",
+                        "acid_pump": "whitePump3"
+                    },
+                    "csv_name": "fermentation_feed_control_loop_05-28-2024",
+                    "ph_balance_base_sp": 7,
+                    "ph_balance_acid_sp": 7,
                     "no_base_window": 600,
                     "feed_media": "Glucose"
                 },

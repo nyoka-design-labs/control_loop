@@ -191,41 +191,115 @@
         {"do": 61, "ph": 10.2, "feed_weight": 99, "time": 0.15416667, "type": "data"}
         
     ],
-
     
-        "feed_control_test_data_1": [
-            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},
-            {"do": 30, "ph": 7.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
-            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
-            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
-            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
-            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"}
-        ],
-        "feed_control_test_data_2": [
-            {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},
-            {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
-            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
-            {"do": 30, "ph": 7.3, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},
-            {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}  
-        ],
-        "feed_control_test_data_3": [
-            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},  
-            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
-            {"do": 30, "ph": 7.3, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
-            {"do": 30, "ph": 7.9, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
-            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},  
-            {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"}, 
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
-            {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}, 
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
-            {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}
-        ]
+    "feed_control_test_data_1": [
+        {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},
+        {"do": 30, "ph": 7.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
+        {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
+        {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
+        {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
+        {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"}
+    ],
+    "feed_control_test_data_2": [
+        {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},
+        {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
+        {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
+        {"do": 30, "ph": 7.3, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},
+        {"do": 30, "ph": 6.8, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"},
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}  
+    ],
+    "feed_control_test_data_3": [
+        {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 0, "type": "data"},  
+        {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 15, "type": "data"},
+        {"do": 30, "ph": 7.3, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 30, "type": "data"},
+        {"do": 30, "ph": 7.9, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 45, "type": "data"},
+        {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 60, "type": "data"},  
+        {"do": 30, "ph": 7.2, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 75, "type": "data"}, 
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
+        {"do": 30, "ph": 7.0, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}, 
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"},
+        {"do": 30, "ph": 7.1, "temp": 37.0, "feed_weight": 400.0, "lactose_weight": 900.0, "base_weight": 850.0, "time": 90, "type": "data"}
+    ],
+    "concentration_test_data_1": [
+        {"buffer_weight": 1400, "lysate_weight": 200, "time": 0, "type": "data"},
+        {"buffer_weight": 200, "lysate_weight": 251, "time": 15, "type": "data"},
+        {"buffer_weight": 300, "lysate_weight": 245, "time": 30, "type": "data"},
+        {"buffer_weight": 1250, "lysate_weight": 235, "time": 45, "type": "data"},
+        {"buffer_weight": 900, "lysate_weight": 350, "time": 60, "type": "data"},
+        {"buffer_weight": 1200, "lysate_weight": 300, "time": 75, "type": "data"},
+        {"buffer_weight": 1201, "lysate_weight": 200, "time": 90, "type": "data"},
+        {"buffer_weight": 30, "lysate_weight": 200, "time": 105, "type": "data"}
+    ], 
+    "3_phase_control_test_data": [
+  
+        {"ph": 6.8, "time": 0, "type": "data"},
+        {"ph": 6.9, "time": 900, "type": "data"},
+        {"ph": 7.0, "time": 1800, "type": "data"},
+        {"ph": 7.02, "time": 2700, "type": "data"},
+
+       
+        {"ph": 7.05, "time": 3600, "type": "data"},
+        {"ph": 7.03, "time": 4500, "type": "data"},
+        {"ph": 7.06, "time": 5400, "type": "data"},
+        
+
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 5, "time": 7200, "type": "data"},
+        {"ph": 6, "time": 6300, "type": "data"},
+        {"ph": 7, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 5, "time": 7200, "type": "data"},
+        {"ph": 6, "time": 6300, "type": "data"},
+        {"ph": 7, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+        {"ph": 7.05, "time": 6300, "type": "data"},
+        {"ph": 7.08, "time": 7200, "type": "data"},
+
+ 
+        {"ph": 7.1, "time": 8100, "type": "data"},  
+        {"ph": 6.9, "time": 9000, "type": "data"},  
+        {"ph": 7.05, "time": 9900, "type": "data"}  
+    ]
     
     
 }

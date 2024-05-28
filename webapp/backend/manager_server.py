@@ -13,8 +13,9 @@ sys.path.append(SRC_DIR)
 from resources.utils import read_csv_file, get_loop_constant, get_control_constant
 import controllers as c
 
-load_data = False
+load_data = eval(get_loop_constant(loop_id="server_consts", const="load_data"))
 INTERVAL = get_loop_constant("server_consts", "interval")
+testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 controllers = {}
 
 async def control(loop_id, command, websocket):
@@ -109,9 +110,6 @@ async def collection_task(controller, websocket, loop_id):
                 print(f"data sent from collect: {data}")
                 await websocket.send(json.dumps(data))
                 await send_status_update(websocket, status)
-            
-            status = controller.start_collection(True)
-            await send_status_update(websocket, status)
             await asyncio.sleep(INTERVAL)
     
     except asyncio.CancelledError:
@@ -131,7 +129,7 @@ def get_controller(loop_id):
     if loop_id not in controllers:
         control_id = get_loop_constant(loop_id=loop_id, const="chosen_control")
         
-        controller, device_manager = c.create_controller(loop_id, control_id)
+        controller, device_manager = c.create_controller(loop_id, control_id, testing)
         controllers[loop_id] = {
             "controller": controller,  # Replace with appropriate constructor arguments
             "device_manager": device_manager  # Replace with appropriate constructor arguments
@@ -141,27 +139,33 @@ def get_controller(loop_id):
 async def toggle(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
 
-    if command == "toggle_base":
-        controller_info["controller"].toggle_base()
+    # controller_info["controller"].toggle_pump(command.split('_')[1] + "_pump")
 
-    if command == "toggle_feed":
-        controller_info["controller"].toggle_feed()
+    # if command == "toggle_base":
+    #     controller_info["controller"].toggle_base()
+
+    # if command == "toggle_feed":
+    #     controller_info["controller"].toggle_feed()
    
-    if command == "toggle_buffer":
-        controller_info["controller"].toggle_buffer()
+    # if command == "toggle_buffer":
+    #     controller_info["controller"].toggle_buffer()
 
-    if command == "toggle_lysate":
-        controller_info["controller"].toggle_lysate()
+    # if command == "toggle_lysate":
+    #     controller_info["controller"].toggle_lysate()
 
-    if command == "toggle_lactose":
-        controller_info["controller"].toggle_lactose()
+    # if command == "toggle_lactose":
+    #     controller_info["controller"].toggle_lactose()
         
-    if command == "toggle_acid":
-        controller_info["controller"].toggle_acid()
+    # if command == "toggle_acid":
+    #     controller_info["controller"].toggle_acid()
     
     if command == "toggle_feed_media":
         controller_info["controller"].switch_feed_media()
+    else:
+        controller_info["controller"].toggle_pump(command.split('_')[1] + "_pump")
 
     status = controller_info["controller"].status
+
+    
     
     await send_status_update(websocket, status)

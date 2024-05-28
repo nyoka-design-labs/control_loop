@@ -26,7 +26,7 @@ class DeviceManager:
     Represents a device manager.
     """
 
-    def __init__(self, loop_id: str, control_id: str) -> None:
+    def __init__(self, loop_id: str, control_id: str, testing: bool=False) -> None:
         self.test_data = test_data
         self.index = 0
         self.start_time = None
@@ -39,27 +39,28 @@ class DeviceManager:
         names = self.__get_loop_devices()
         dev2port = []
         idt = 0
-        try:
-            # finds the serial port for each device and creates dict
-            for name in names:
-                if self.data_types[idt] == "temp":
+        if not testing:
+            try:
+                # finds the serial port for each device and creates dict
+                for name in names:
+                    if self.data_types[idt] == "temp":
+                        idt += 1
+                    port = self.__find_usb_serial_port(name, self.data_types[idt])
+                    dev2port.append((name, port))
                     idt += 1
-                port = self.__find_usb_serial_port(name, self.data_types[idt])
-                dev2port.append((name, port))
-                idt += 1
-        except SerialPortNotFoundException as e:
-            print(e)
-            return
+            except SerialPortNotFoundException as e:
+                print(e)
+                return
 
-        self.devices = []
-        for name, port in dev2port:
-            # calling all device constructors
-            if name == "dymo_scale":
-                self.devices.append(DEV_CONTRUCTORS[name](0x0922, 0x8003))
-            else:
-                self.devices.append(DEV_CONTRUCTORS[name](port))
+            self.devices = []
+            for name, port in dev2port:
+                # calling all device constructors
+                if name == "dymo_scale":
+                    self.devices.append(DEV_CONTRUCTORS[name](0x0922, 0x8003))
+                else:
+                    self.devices.append(DEV_CONTRUCTORS[name](port))
 
-        self.devices = [USS_Scale(port="/dev/ttyUSB0"), Scale(0x0922, 0x8003)]
+        # self.devices = [USS_Scale(port="/dev/ttyUSB0"), Scale(0x0922, 0x8003)]
     def __init_data_types(self):
         data_types = self.__get_loop_data_type()
         data_types.append("time")
