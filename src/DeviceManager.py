@@ -1,7 +1,7 @@
 from devices.scale import Scale, USS_Scale
 from devices.ham_sensor import PH, DO
 import time
-from resources.utils import add_to_csv, load_test_data, get_control_constant, add_test_data_to_csv
+from resources.utils import add_to_csv, load_test_data, get_control_constant, add_test_data_to_csv, get_loop_constant
 import json
 import os
 import serial.tools.list_ports
@@ -20,7 +20,7 @@ curr_directory = os.path.dirname(__file__)
 CONSTANTS_DIR = os.path.join(curr_directory, "resources", "constants.json")
 TEST_DATA_DIR = os.path.join(curr_directory, "resources", "test_data.json")
 test_data = load_test_data(TEST_DATA_DIR)
-
+testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 class DeviceManager:
     """
     Represents a device manager.
@@ -50,7 +50,7 @@ class DeviceManager:
                     idt += 1
             except SerialPortNotFoundException as e:
                 print(e)
-                return
+                
 
             self.devices = []
             for name, port in dev2port:
@@ -245,7 +245,7 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("fermentation_loop", "do_der_control")
+    dm = DeviceManager("fermentation_loop", "3_phase_feed_control")
     while True:
         # print(dm.test_get_measurement("do_der_test_1"))
         print(dm.get_measurement())

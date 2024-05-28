@@ -9,7 +9,7 @@ from datetime import datetime
 port = '/dev/ttyACM0'
 baudrate = 9600
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
-
+devices = eval(get_loop_constant(loop_id="server_consts", const="devices_connected"))
 def create_controller(loop_id, control_id, testing: bool=False):
     
     dm = DeviceManager(loop_id, control_id, testing)
@@ -24,12 +24,12 @@ def create_controller(loop_id, control_id, testing: bool=False):
 class Controller:
 
     def __init__(self):
-        if not testing:
+        if devices:
             self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
 
     def pump_control(self, state: str):
         print(f"sent arduino: {state.encode()}")
-        if not testing:
+        if devices:
             self.arduino.write((state + '\n').encode())
 
         time.sleep(1)
@@ -439,7 +439,7 @@ class FermentationController(Controller):
 
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 5, 28, 13, 56, 0)  # 5:00 AM May 30, 2024
+        phase3_start_time = datetime(2024, 5, 28, 16, 10, 0)  # 5:00 AM May 30, 2024
 
         # Phase 1: Maintain pH using only base
         if not self.start_feed:

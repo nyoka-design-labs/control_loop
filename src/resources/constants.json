@@ -26,7 +26,7 @@
             "vendor_id": "1a86",
             "product_id": "7523",
             "port": "",
-            "data_type": ""
+            "data_type": "acid_weight"
         },
         {
             "name": "dymo_scale",
@@ -54,8 +54,9 @@
         {
             "loop_id": "server_consts",
             "interval": 15,
-            "testing": "False",
-            "load_data": "False"
+            "testing": "True",
+            "load_data": "False",
+            "devices_connected": "True"
         },
         {
             "loop_id": "concentration_loop",
@@ -110,7 +111,7 @@
                         "feed_pump": "blackPump1",
                         "lactose_pump": "blackPump3",
                         "base_pump": "blackPump2",
-                        "acid_pump": "whitePump3"
+                        "acid_pump": "whitePump2"
                     },
                     "csv_name": "fermentation_feed_control_loop_05-28-2024",
                     "ph_balance_base_sp": 7,
@@ -142,7 +143,7 @@
                         "feed_pump": "blackPump1",
                         "lactose_pump": "blackPump3",
                         "base_pump": "blackPump2",
-                        "acid_pump": "whitePump3"
+                        "acid_pump": "whitePump2"
                     },
                     "csv_name": "fermentation_3_phase_feed_control_loop_05-29-2024",
                     "ph_balance_base_sp": 7,
