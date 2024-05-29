@@ -2,6 +2,15 @@ import asyncio
 import websockets
 import json
 import manager_server
+import sys
+import os
+import traceback
+
+curr_directory = os.path.dirname(__file__)
+SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
+sys.path.append(SRC_DIR)
+
+from resources.logging_config import logger
 
 async def handle_client(websocket, path):
     async for message in websocket:
@@ -23,6 +32,7 @@ async def handle_client(websocket, path):
             print(f"WebSocket connection closed: {e.code} - {e.reason}")
         except Exception as e:
             print(f"An error occurred: {e}")
+            logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
 
 
 async def main():
