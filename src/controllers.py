@@ -208,7 +208,7 @@ class FermentationController(Controller):
         self.control_name = get_loop_constant(self.loop_id, "chosen_control")
         self.csv_name = get_control_constant(self.loop_id, self.control_name, "csv_name")
         
-        self.start_feed = False
+        self.start_feed = eval(get_control_constant(self.loop_id, self.control_name, "start_feed"))
         self.start_feed_2 = False
         self.first_time = True
         self.refill = False
@@ -448,13 +448,14 @@ class FermentationController(Controller):
 
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 5, 29, 5, 0, 0)  # 5:00 AM May 30, 2024
+        phase3_start_time = datetime(2024, 5, 30, 5, 0, 0)  # 5:00 AM May 30, 2024
 
         # Phase 1: Maintain pH using only base
         if not self.start_feed:
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             if data["ph"] >= 7.02:
                 self.start_feed = True
+                update_control_constant(self.loop_id, self.control_name, "start_feed", "True")
                 print("Transition to Phase 2")
 
         # Phase 2: Acid and base control, turn on feed pump

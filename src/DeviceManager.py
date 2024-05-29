@@ -1,7 +1,7 @@
 from devices.scale import Scale, USS_Scale
 from devices.ham_sensor import PH, DO
 import time
-from resources.utils import add_to_csv, load_test_data, get_control_constant, add_test_data_to_csv, get_loop_constant
+from resources.utils import *
 import json
 import os
 import serial.tools.list_ports
@@ -28,14 +28,15 @@ class DeviceManager:
 
     def __init__(self, loop_id: str, control_id: str, testing: bool=False) -> None:
         self.test_data = test_data
-        self.index = 0
-        self.start_time = None
         self.delete()
         self.loop_id = loop_id
         self.control_id = control_id
         self.data_types = self.__init_data_types()
         self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
-
+        
+        self.index = get_control_constant(self.loop_id, self.control_id, "test_data_index")
+        self.start_time = get_control_constant(loop_id, control_id, const="start_time")
+        
         names = self.__get_loop_devices()
         dev2port = []
         idt = 0
@@ -104,8 +105,10 @@ class DeviceManager:
         data_headers = self.data_types
 
         # elapsed time
-        if self.start_time is None:
+        if self.start_time <= 0:
             self.start_time = time.time()
+            update_control_constant(self.loop_id, self.control_id, "start_time", self.start_time)
+
             elapsed_time = 0
         else:
             elapsed_time = (time.time() - self.start_time) / 3600
@@ -128,18 +131,11 @@ class DeviceManager:
             #     print("data did not save to sheets")
 
         return dict(zip(data_headers, devices_data))
-
-    # def test_get_measurement(self, test_name):
-    #     measurement = self.test_data[test_name][self.index]
-    #     self.index += 1
-    #     add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
-
-    #     return measurement
     
     def test_get_measurement(self, test_name):
         measurement = self.test_data[test_name][self.index]
         self.index += 1
-
+        update_control_constant(self.loop_id, self.control_id, "test_data_index", self.index)
         # Add the current time of day and date to the measurement
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)

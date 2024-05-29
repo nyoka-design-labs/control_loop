@@ -56,7 +56,8 @@
             "interval": 15,
             "testing": "True",
             "load_data": "True",
-            "devices_connected": "True"
+            "devices_connected": "True",
+            "restart": "True"
         },
         {
             "loop_id": "concentration_loop",
@@ -149,7 +150,10 @@
                     "ph_balance_base_sp": 7,
                     "ph_balance_acid_sp": 7,
                     "no_base_window": 600,
-                    "feed_media": "Glucose"
+                    "start_feed": "True", 
+                    "start_time": 0, 
+                    "test_data_index": 373
+                    
                 },
                 {
                     "controller_id": "do_der_control",

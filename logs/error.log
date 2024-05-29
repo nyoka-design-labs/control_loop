@@ -1,0 +1,46 @@
+2024-05-29 11:07:43 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 56, in start_server
+    subprocess.run(["npm", "start"], check=True, cwd=FRONTEND_DIR)
+        ^^^^^^^^^^^^^^^^^^^^^^
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 55, in start_server
+    # Start the frontend
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py", line 434, in create_task
+    self._check_closed()
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py", line 519, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 11:08:03 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+    ^^^^^^^^^^^^^^^^^^^^^^
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py", line 434, in create_task
+    self._check_closed()
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py", line 519, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+

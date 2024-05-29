@@ -194,6 +194,24 @@ def update_control_constant(loop_id, control_name, constant_name, new_value):
                     with open(json_file_path, 'w') as file:
                         json.dump(data, file, indent=4)
                     return
+def update_loop_constant(loop_id, constant_name, new_value):
+    curr_dir = os.path.dirname(__file__)
+    json_file_path = os.path.join(curr_dir, "constants.json")
+
+    # Read the JSON file
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
+
+    # Locate the specific controller to update
+    for loop in data['loop']:
+        if loop['loop_id'] == loop_id:
+            loop[constant_name] = new_value
+            print(f"Updated {constant_name} in loop {loop_id} to {new_value}")
+
+            # Write the updated JSON back to the file
+            with open(json_file_path, 'w') as file:
+                json.dump(data, file, indent=4)
+            return
                 
 if __name__ == "__main__":
     pass
