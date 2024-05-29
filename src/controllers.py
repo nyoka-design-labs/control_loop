@@ -55,6 +55,14 @@ class Controller:
             return self.status
         else:
             data = self.get_data(test_data=self.test_data)
+            # take out type field before adding to csv
+            status = self.status.copy()
+            status.pop("type", None)  # Remove the "type" key if it exists in the status data
+            combined_data = data.copy()  # Create a copy of the original data
+            combined_data.update(status)
+
+            save_dict_to_sheet(combined_data, self.csv_name)
+            
             return self.status, data
         
     def stop_control(self, data_col_is_on: bool = True):
@@ -439,7 +447,7 @@ class FermentationController(Controller):
 
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 5, 28, 16, 10, 0)  # 5:00 AM May 30, 2024
+        phase3_start_time = datetime(2024, 5, 29, 5, 0, 0)  # 5:00 AM May 30, 2024
 
         # Phase 1: Maintain pH using only base
         if not self.start_feed:

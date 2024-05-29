@@ -138,26 +138,6 @@ def get_controller(loop_id):
 
 async def toggle(loop_id, command, websocket):
     controller_info = get_controller(loop_id)
-
-    # controller_info["controller"].toggle_pump(command.split('_')[1] + "_pump")
-
-    # if command == "toggle_base":
-    #     controller_info["controller"].toggle_base()
-
-    # if command == "toggle_feed":
-    #     controller_info["controller"].toggle_feed()
-   
-    # if command == "toggle_buffer":
-    #     controller_info["controller"].toggle_buffer()
-
-    # if command == "toggle_lysate":
-    #     controller_info["controller"].toggle_lysate()
-
-    # if command == "toggle_lactose":
-    #     controller_info["controller"].toggle_lactose()
-        
-    # if command == "toggle_acid":
-    #     controller_info["controller"].toggle_acid()
     
     if command == "toggle_feed_media":
         controller_info["controller"].switch_feed_media()

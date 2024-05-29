@@ -129,9 +129,24 @@ class DeviceManager:
 
         return dict(zip(data_headers, devices_data))
 
+    # def test_get_measurement(self, test_name):
+    #     measurement = self.test_data[test_name][self.index]
+    #     self.index += 1
+    #     add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
+
+    #     return measurement
+    
     def test_get_measurement(self, test_name):
         measurement = self.test_data[test_name][self.index]
         self.index += 1
+
+        # Add the current time of day and date to the measurement
+        current_time = time.time()
+        current_datetime = datetime.fromtimestamp(current_time)
+
+        measurement['time_of_day'] = current_datetime.strftime('%H:%M:%S')
+        measurement['date'] = current_datetime.strftime('%Y-%m-%d')
+
         add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
 
         return measurement

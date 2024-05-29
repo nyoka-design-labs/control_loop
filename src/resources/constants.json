@@ -55,7 +55,7 @@
             "loop_id": "server_consts",
             "interval": 15,
             "testing": "True",
-            "load_data": "False",
+            "load_data": "True",
             "devices_connected": "True"
         },
         {
