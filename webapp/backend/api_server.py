@@ -25,10 +25,10 @@ restart_command = {
 
 async def handle_client(websocket, path):
     try:
-        if eval(get_loop_constant("server_consts", "restart")):
-            await restart_frontend()
-            await process_command(websocket, restart_command)
-            update_loop_constant("server_consts", "restart", "False")
+        # if eval(get_loop_constant("server_consts", "restart")):
+        #     await restart_frontend()
+        #     await process_command(websocket, restart_command)
+        #     update_loop_constant("server_consts", "restart", "False")
             
         while True:
             try:

@@ -453,6 +453,7 @@ class FermentationController(Controller):
         # Phase 1: Maintain pH using only base
         if not self.start_feed:
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
+            print("in phase 1")
             if data["ph"] >= 7.02:
                 self.start_feed = True
                 update_control_constant(self.loop_id, self.control_name, "start_feed", "True")
@@ -483,7 +484,10 @@ class FermentationController(Controller):
         status.pop("type", None)  # Remove the "type" key if it exists in the status data
         combined_data = data.copy()  # Create a copy of the original data
         combined_data.update(status)
-        save_dict_to_sheet(combined_data, self.csv_name)
+        try:
+            save_dict_to_sheet(combined_data, self.csv_name)
+        except Exception as e:
+            print(f"error in save_dict_to_sheet: {e}")
 
         return data, self.status
     

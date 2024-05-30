@@ -44,3 +44,919 @@ Traceback (most recent call last):
     raise RuntimeError('Event loop is closed')
 RuntimeError: Event loop is closed
 
+2024-05-29 11:49:14 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 11:51:23 ERROR Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    await websocket.send(json.dumps({"type": "pong"}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-05-29 11:51:23 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 11:51:41 ERROR Error in collection_task: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 120, in collection_task
+    await websocket.send(json.dumps(data))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-05-29 11:53:40 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 11:53:40 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-29' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 11:53:40 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-34' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 11:53:40 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-35' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 11:53:40 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-36' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-34' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 11:53:40 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-48' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 11:53:51 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 11:53:59 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 11:53:59 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 11:53:59 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 11:53:59 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 11:53:59 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 11:53:59 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 11:54:20 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 11:59:11 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 11:59:11 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 11:59:11 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 11:59:11 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 11:59:11 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 11:59:11 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-31' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 11:59:16 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 11:59:22 ERROR Error in load_previous_data: 'start_time'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 75, in load_previous_data
+    start_time = float(data[0]["start_time"])  # Update 'YourStartTimeColumnName' with the actual column name
+KeyError: 'start_time'
+
+2024-05-29 12:00:02 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:00:02 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:00:02 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 12:00:02 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 12:00:02 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 12:00:02 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-19' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:00:47 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:46:33 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:46:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:46:33 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 12:46:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 12:46:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 12:46:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-154' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:46:41 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:48:03 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:48:03 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:48:03 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 12:48:03 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 12:48:03 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 12:48:03 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-22' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:48:18 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:48:51 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:48:51 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-16' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 12:48:51 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<control_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:93> wait_for=<Future cancelled>>
+2024-05-29 12:48:51 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:48:51 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 12:48:51 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 12:48:51 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 12:48:51 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-18' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:50:10 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:50:44 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:50:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-16' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 12:50:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<control_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:93> wait_for=<Future cancelled>>
+2024-05-29 12:50:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:50:44 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 12:50:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 12:50:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 12:50:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-18' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:51:56 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:55:21 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:55:21 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 12:55:21 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:55:21 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 12:55:21 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 12:55:21 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-25' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:55:54 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:57:06 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:57:06 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 12:57:06 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:57:06 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 12:57:06 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 12:57:06 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 12:57:06 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-20' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:57:21 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:59:10 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:59:10 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:125> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback() at /usr/lib/python3.10/asyncio/tasks.py:864, Task.task_wakeup()]>>
+2024-05-29 12:59:10 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-20' coro=<control_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:93> wait_for=<Future cancelled>>
+2024-05-29 12:59:10 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:59:10 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelled name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:954>> cb=[shield.<locals>._inner_done_callback() at /usr/lib/python3.10/asyncio/tasks.py:847]>
+2024-05-29 12:59:10 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-22' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:59:32 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:59:33 ERROR Error in get_data: name 'Falses' is not defined
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 139, in get_controller
+    controller, device_manager = c.create_controller(loop_id, control_id, testing)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 21, in create_controller
+    controller = FermentationController(dm)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 211, in __init__
+    self.start_feed = eval(get_control_constant(self.loop_id, self.control_name, "start_feed"))
+  File "<string>", line 1, in <module>
+NameError: name 'Falses' is not defined
+
+2024-05-29 12:59:33 ERROR Error in collection: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 52, in collection
+    if "collection_task" not in controller_info: # if data collection is not already happening then start it
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-05-29 12:59:49 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 12:59:49 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 12:59:49 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 12:59:49 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 12:59:49 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 12:59:49 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 12:59:54 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 12:59:56 ERROR Error in get_data: name 'Falses' is not defined
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 139, in get_controller
+    controller, device_manager = c.create_controller(loop_id, control_id, testing)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 21, in create_controller
+    controller = FermentationController(dm)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 211, in __init__
+    self.start_feed = eval(get_control_constant(self.loop_id, self.control_name, "start_feed"))
+  File "<string>", line 1, in <module>
+NameError: name 'Falses' is not defined
+
+2024-05-29 12:59:56 ERROR Error in collection: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 52, in collection
+    if "collection_task" not in controller_info: # if data collection is not already happening then start it
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-05-29 13:00:32 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 13:00:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 13:00:32 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 13:00:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 13:00:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 13:00:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-16' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 13:00:37 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 13:09:33 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 13:09:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 13:09:33 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 13:09:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 13:09:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 13:09:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-46' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 13:11:06 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 13:13:44 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 13:13:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 13:13:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 13:13:44 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 13:13:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 13:13:44 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-23' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 13:13:52 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 13:16:52 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 13:16:52 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 13:16:52 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 13:16:52 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 13:16:52 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 13:16:52 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-24' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 13:38:27 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 13:39:41 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 13:39:41 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 13:39:41 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 13:39:41 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 13:39:41 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 13:39:41 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-20' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 13:40:41 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 13:41:33 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 13:41:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 13:41:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 13:41:33 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 13:41:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 13:41:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 13:41:33 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-18' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 13:41:36 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 13:42:23 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 14:04:12 ERROR Error in collection_task: (5, 'Input/output error')
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 113, in collection_task
+    status, data = controller.start_collection(False)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 58, in start_collection
+    data = self.get_data(test_data=self.test_data)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 90, in get_data
+    data = self.device_manager.get_measurement()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/DeviceManager.py", line 98, in get_measurement
+    result = dev()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/scale.py", line 67, in __call__
+    return self.get_weight()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/scale.py", line 74, in get_weight
+    self.conn.reset_input_buffer()  # Flush the input buffer to remove old data
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 683, in reset_input_buffer
+    self._reset_input_buffer()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 677, in _reset_input_buffer
+    termios.tcflush(self.fd, termios.TCIFLUSH)
+termios.error: (5, 'Input/output error')
+
+2024-05-29 14:04:45 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 14:04:45 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 14:04:45 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 14:04:45 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 14:04:45 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 14:04:45 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-101' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 14:05:06 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 14:06:08 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 14:06:08 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 14:06:08 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 14:06:08 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelled name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:954>>>
+2024-05-29 14:06:08 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-18' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 14:06:12 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 14:30:55 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 14:30:55 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 14:30:55 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 14:30:55 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 14:30:55 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 14:30:55 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 14:30:55 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-97' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 14:31:01 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 21:27:11 ERROR Error in control_task: APIError: [503]: The service is currently unavailable.
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 89, in control_task
+    data, status = controller.start_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 44, in start_control
+    return control_method()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 487, in __3_phase_feed_control
+    save_dict_to_sheet(combined_data, self.csv_name)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 99, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 144, in open
+    return Spreadsheet(self.http_client, properties)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/spreadsheet.py", line 29, in __init__
+    metadata = self.fetch_sheet_metadata()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/spreadsheet.py", line 230, in fetch_sheet_metadata
+    return self.client.fetch_sheet_metadata(self.id, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 305, in fetch_sheet_metadata
+    r = self.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [503]: The service is currently unavailable.
+
+2024-05-29 21:27:11 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 21:27:11 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-05-29 21:27:11 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 21:27:11 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 21:27:11 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-1241' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled>>
+2024-05-29 21:27:29 ERROR WebSocket connection closed: 1006 - 
+2024-05-29 21:30:32 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-29 21:30:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-16' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-29 21:30:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<control_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:93> wait_for=<Future cancelled>>
+2024-05-29 21:30:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future cancelled>>
+2024-05-29 21:30:32 ERROR Task was destroyed but it is pending!
+task: <Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-05-29 21:30:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future cancelled>>
+2024-05-29 21:30:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task cancelling name='Task-11' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future cancelled> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-05-29 21:30:32 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-26' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future cancelled> cb=[_release_waiter(<Future cancelled>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-05-29 21:30:40 ERROR WebSocket connection closed: 1006 - 
+2024-05-30 09:59:14 ERROR Error in control_task: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 92, in control_task
+    await send_status_update(websocket, status)
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 131, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 647, in send
+    await self.write_frame(True, opcode, data)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1209, in write_frame
+    await self.drain()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1198, in drain
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-05-30 09:59:15 ERROR WebSocket connection closed: 1006 - 
+2024-05-30 10:06:09 ERROR Error starting server: Event loop is closed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 87, in start_server
+    await asyncio.Future()  # Run forever
+GeneratorExit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 86, in start_server
+    async with start_server:
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1106, in __aexit__
+    self.ws_server.close()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 746, in close
+    self.close_task = self.get_loop().create_task(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 436, in create_task
+    self._check_closed()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+
+2024-05-30 10:06:09 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-16' coro=<collection_task() running at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:117> wait_for=<Future cancelled>>
+2024-05-30 10:06:15 ERROR WebSocket connection closed: 1006 - 

@@ -4,28 +4,28 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
+            "port": "/dev/ttyUSB2",
             "data_type": "feed_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
+            "port": "/dev/ttyUSB3",
             "data_type": "lactose_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
+            "port": "/dev/ttyUSB4",
             "data_type": "base_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
+            "port": "/dev/ttyUSB5",
             "data_type": "acid_weight"
         },
         {
@@ -39,14 +39,14 @@
             "name": "ph_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "",
+            "port": "/dev/ttyUSB1",
             "data_type": "ph"
         },
         {
             "name": "do_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "",
+            "port": "/dev/ttyUSB0",
             "data_type": "do"
         }
     ],
@@ -54,10 +54,10 @@
         {
             "loop_id": "server_consts",
             "interval": 15,
-            "testing": "True",
+            "testing": "False",
             "load_data": "True",
             "devices_connected": "True",
-            "restart": "True"
+            "restart": "False"
         },
         {
             "loop_id": "concentration_loop",
@@ -150,10 +150,10 @@
                     "ph_balance_base_sp": 7,
                     "ph_balance_acid_sp": 7,
                     "no_base_window": 600,
-                    "start_feed": "True", 
-                    "start_time": 0, 
-                    "test_data_index": 373
-                    
+                    "start_feed": "True",
+                    "start_time": 1717015349.8079298,
+                    "test_data_index": 4,
+                    "feed_media": "Glucose"
                 },
                 {
                     "controller_id": "do_der_control",

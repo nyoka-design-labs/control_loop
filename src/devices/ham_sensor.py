@@ -71,8 +71,8 @@ class DO(_Sensor):
         """
         Read DO from the sensor.
         """
-
-        return round(self.callibration_func(self.__get_raw_do() - 4.098 + 0.96), 3)
+        return round(self.__get_raw_do() - 5.233, 3)
+        # return round(self.callibration_func(self.__get_raw_do() - 4.098 + 0.96), 3)
     
     def callibrate(self) -> None:
         """
@@ -114,7 +114,7 @@ class PH(_Sensor):
         """
 
         super().__init__(port)
-        self.callibrate(4.099, 7.43)
+        self.callibrate(4.068, 7.056)
 
     def __call__(self, *args, **kwds) -> float:
         return (self.get_ph(), self.get_temp())
@@ -123,7 +123,7 @@ class PH(_Sensor):
         """
         Read data from the sensor.
         """
-    
+        # return round(self.__get_raw_ph(), 5)
         return round(self.callibration_func(self.__get_raw_ph()), 3)
     
     def callibrate(self, setpoint4: int, setpoint7: int) -> None:
@@ -133,7 +133,7 @@ class PH(_Sensor):
 
         b1 = (7 - 4) / (setpoint7 - setpoint4) # slope paramater
 
-        b0 = 4 - b1*setpoint4 # intercept parameter
+        b0 = 4 - b1*setpoint4 + 0.131# intercept parameter
 
         self.callibration_func = lambda x: b0 + b1*x
 
@@ -151,17 +151,21 @@ class PH(_Sensor):
         # Convert the hex value to a float value
         data = self.convert_raw_value(str(hex_value))
 
-        return 1.006*data - 0.01622 + 0.459
+        return data
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    sensor = DO(port="/dev/ttyUSB0")
-    sensor.client.connect()
+    ph = PH("/dev/ttyUSB1")
+    ph.client.connect()
+    do = DO("/dev/ttyUSB0")
+    do.client.connect()
+
 
     try:
         while True:
-            print(f"Data: {sensor.get_do()}, Temperature: {sensor.get_temp()}")
+            print(f"do: {do.get_do()}  ph: {ph.get_ph()}")
             time.sleep(3)
     except KeyboardInterrupt:
-        sensor.close()
+        do.close()
+        ph.close()
         print("\nProgram terminated")

@@ -72,11 +72,6 @@ async def load_previous_data(controller, websocket: websockets.WebSocketServerPr
         # Make sure there is data and a header was found and read
         if data:
             headers = data[0].keys()  # Get headers from the first row
-            start_time = float(data[0]["start_time"])  # Update 'YourStartTimeColumnName' with the actual column name
-
-            # Store the start time in the controller's device manager
-            controller.device_manager.start_time = start_time
-
             # Iterate over rows starting from the first actual data row
             for row in data:
                 row_dict = {key: row[key] for key in headers}
