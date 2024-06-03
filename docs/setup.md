@@ -10,21 +10,23 @@
 
 `pip freeze > docs/requirements.txt`
 
+### Useful commands
+
+- `sudo dmesg | grep tty`: shows connection log of devices connected to the serial ports
+- `lsusb`: list all usb devices connected along with their vendor and product ids
+
 ### Ubuntu setup
 
-- We ran into problems running the pyusb library on Mac and Windows, which is the main reason why we decided to use Ubuntu to run the control loop.
+- Ubuntu needs permission to access usb device. Create a new .rules files in the rules.d directory for 
 
-- Ubuntu needs permission to access usb device.
-
-``` bash
-sudo vi /etc/udev/rules.d/98-dymo.rules
+```bash
 $ sudo cat /etc/udev/rules.d/98-dymo.rules
-SUBSYSTEM=="usb", ATTR{idVendor}=="0922", ATTR{idProduct}=="8004", MODE="666"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0922", ATTRS{idProduct}=="8004", MODE="666"
 ```
 
 - Test to check if Pyusb can find USB device.
 
-``` python
+```python
 import usb.core
 
 # replace the following id's
