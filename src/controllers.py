@@ -1,10 +1,12 @@
+from resources.logging_config import logger
 import serial
 from devices.pump import Pump
 from DeviceManager import DeviceManager
 import time
 from resources.utils import calculate_derivative, isDerPositive, get_loop_constant, get_control_constant, update_control_constant
 from resources.google_api.sheets import save_dict_to_sheet
-from datetime import datetime
+from datetime import datetime, timedelta
+import traceback
 
 #CONSTANTS
 port = '/dev/ttyACM0'
@@ -25,92 +27,118 @@ def create_controller(loop_id, control_id, testing: bool=False):
 class Controller:
 
     def __init__(self):
-        if devices:
-            self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        try:
+            if devices:
+                self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+        except Exception as e:
+            print(f"failed to intialize arduino: \n{e}")
+            logger.error(f"Error in controller super class constructor: {e}\n{traceback.format_exc()}")
+            raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
 
     def pump_control(self, state: str):
-        print(f"sent arduino: {state.encode()}")
-        if devices:
-            self.arduino.write((state + '\n').encode())
+        try:
+            print(f"sent arduino: {state.encode()}")
+            if devices:
+                self.arduino.write((state + '\n').encode())
+        except Exception as e:
+            print(f"failed to control pump: \n state: {state}, \n{e}")
+            logger.error(f"Error in pump_control: {e}\n{traceback.format_exc()}")
 
         time.sleep(1)
 
     def start_control(self):
-        control_name = self.control_name
+        try:
+            control_name = self.control_name
 
-        if control_name:
-            control_method = getattr(self, f"_{self.__class__.__name__}__{control_name}", None)
-            if control_method:
-                return control_method()
+            if control_name:
+                control_method = getattr(self, f"_{self.__class__.__name__}__{control_name}", None)
+                if control_method:
+                    return control_method()
+                else:
+                    raise AttributeError(f"Method {control_name} not found in class.")
             else:
-                raise AttributeError(f"Method {control_name} not found in class.")
-        else:
-            raise ValueError(f"No control method found for loop_id: {self.loop_id}")
+                raise ValueError(f"No control method found for loop_id: {self.loop_id}")
+        except Exception as e:
+            print(f"failed to start control: \n{e}")
+            logger.error(f"Error in start_control: {e}\n{traceback.format_exc()}")
         
     def start_collection(self, control_status: bool):
-        self.status.update({
-            "data_collection_status": "data_collection_on"
-        })
-
-        if control_status:
-            return self.status
-        else:
-            data = self.get_data(test_data=self.test_data)
-            # take out type field before adding to csv
-            status = self.status.copy()
-            status.pop("type", None)  # Remove the "type" key if it exists in the status data
-            combined_data = data.copy()  # Create a copy of the original data
-            combined_data.update(status)
-
-            save_dict_to_sheet(combined_data, self.csv_name)
-            
-            return self.status, data
-        
-    def stop_control(self, data_col_is_on: bool = True):
-        for pump in self.pumps.values():
-            self.pump_control(pump.control(False))
-
-        self.update_status(control_is_on=False, data_col_is_on=data_col_is_on)
-
-        return self.status
-    
-    def toggle_pump(self, pump_name):
-        if pump_name in self.pumps:
-            self.pump_control(self.pumps[pump_name].toggle())
+        try:
             self.status.update({
-                f"{pump_name}_status": str(self.pumps[pump_name].state)
+                "data_collection_status": "data_collection_on"
             })
 
-    def get_data(self, test_data: str):
-        if testing:
-                data = self.device_manager.test_get_measurement(test_data)
-                print(f"test data: {data}")
-                return data
-        else:
-            data = self.device_manager.get_measurement()
-            return data
+            if control_status:
+                return self.status
+            else:
+                data = self.get_data(test_data=self.test_data)
+                # take out type field before adding to csv
+                status = self.status.copy()
+                status.pop("type", None)  # Remove the "type" key if it exists in the status data
+                combined_data = data.copy()  # Create a copy of the original data
+                combined_data.update(status)
+
+                save_dict_to_sheet(combined_data, self.csv_name)
+                
+                return self.status, data
+        except Exception as e:
+            print(f"failed to start_collection: \n control_status: {control_status} \n{e}")
+            logger.error(f"Error in start_collection: {e}\n{traceback.format_exc()}")
+        
+    def stop_control(self, data_col_is_on: bool = True):
+        try:
+            for pump in self.pumps.values():
+                self.pump_control(pump.control(False))
+
+            self.update_status(control_is_on=False, data_col_is_on=data_col_is_on)
+
+            return self.status
+        except Exception as e:
+            print(f"failed to stop_control: \n data_col_is_on: {data_col_is_on} \n{e}")
+            logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
+    
+    def toggle_pump(self, pump_name):
+        try:
+            if pump_name in self.pumps:
+                self.pump_control(self.pumps[pump_name].toggle())
+                self.status.update({
+                    f"{pump_name}_status": str(self.pumps[pump_name].state)
+                })
+        except Exception as e:
+            print(f"failed to toggle_pump: \n{pump_name}, \n{e}")
+            logger.error(f"Error in toggle_pump: {e}\n{traceback.format_exc()}")
+
             
     def initialize_pumps(self):
-        pumps_info = get_control_constant(self.loop_id, self.control_name, "pumps")
-        pumps = {}
-        for pump_name, pump_value in pumps_info.items():
-            pumps[pump_name] = Pump(name=pump_value)
-        return pumps
+        try:
+            pumps_info = get_control_constant(self.loop_id, self.control_name, "pumps")
+            pumps = {}
+            for pump_name, pump_value in pumps_info.items():
+                pumps[pump_name] = Pump(name=pump_value)
+            return pumps
+        except Exception as e:
+            print(f"failed to initialize_pumps: \n{e}")
+            logger.error(f"Error in initialize_pumps: {e}\n{traceback.format_exc()}")
+
     
     def initialize_status(self):
-        status = {
-            "type": "status",
-            "loopID": self.loop_id,
-            "control_loop_status": "control_off",
-            "data_collection_status": "data_collection_off",
-            "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
-        }
-    
-        # Add initial pump statuses to the status dictionary
-        for pump_name in self.pumps:
-            status[f"{pump_name}_status"] = str(self.pumps[pump_name].state)
+        try:
+            status = {
+                "type": "status",
+                "loopID": self.loop_id,
+                "control_loop_status": "control_off",
+                "data_collection_status": "data_collection_off",
+                "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
+            }
+        
+            # Add initial pump statuses to the status dictionary
+            for pump_name in self.pumps:
+                status[f"{pump_name}_status"] = str(self.pumps[pump_name].state)
 
-        return status
+            return status
+        except Exception as e:
+            print(f"failed to initialize_status: \n{e}")
+            logger.error(f"Error in initialize_status: {e}\n{traceback.format_exc()}")
     
     def update_control_status(self, control_is_on: bool=False, data_col_is_on: bool=True):
         """Update the control status based on the boolean value provided."""
@@ -119,19 +147,49 @@ class Controller:
         return control, data_col
     
     def update_status(self, control_is_on: bool=True, data_col_is_on: bool=True):
-        control, data_col = self.update_control_status(control_is_on, data_col_is_on)
-        
-        # Update static statuses
-        self.status.update({
-            "control_loop_status": control,
-            "data_collection_status": data_col,
-            "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
-        })
-        
-        # Update dynamic pump statuses
-        for pump_name in self.pumps:
-            self.status[f"{pump_name}_status"] = str(self.pumps[pump_name].state)
+        try:
+            control, data_col = self.update_control_status(control_is_on, data_col_is_on)
+            
+            # Update static statuses
+            self.status.update({
+                "control_loop_status": control,
+                "data_collection_status": data_col,
+                "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
+            })
+            
+            # Update dynamic pump statuses
+            for pump_name in self.pumps:
+                self.status[f"{pump_name}_status"] = str(self.pumps[pump_name].state)
+        except Exception as e:
+            print(f"failed to update_status: \n control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on} \n {e}")
+            logger.error(f"Error in update_status: {e}\n{traceback.format_exc()}")
+
     
+    def get_data(self, test_data: str):
+        try:
+            if testing:
+                    data = self.device_manager.test_get_measurement(test_data)
+                    print(f"test data: {data}")
+                    return data
+            else:
+                data = self.device_manager.get_measurement()
+                return data
+        except Exception as e:
+            print(f"failed to get data: {e}")
+            logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
+        
+    def save_data_sheets(self, data):
+        try:
+            status = self.status.copy()
+            status.pop("type", None)  # Remove the "type" key if it exists in the status data
+            combined_data = data.copy()  # Create a copy of the original data
+            combined_data.update(status)
+            save_dict_to_sheet(combined_data, self.csv_name)
+            print("added data to sheets")
+        except Exception as e:
+            print(f"failed to add data to sheets: {data}, \n{e}")
+            logger.error(f"Error in save_data_sheets: {e}\n{traceback.format_exc()}")
+
 class ConcentrationController(Controller):
     """
     The concentration control loop controller
@@ -218,6 +276,7 @@ class FermentationController(Controller):
         self.increment_counter = 0
         self.last_base_addition = None
         self.ready_to_start_feed = False
+        self.phase2_start_time = None
 
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
@@ -490,6 +549,62 @@ class FermentationController(Controller):
             print(f"error in save_dict_to_sheet: {e}")
 
         return data, self.status
+    
+
+    def __3_phase_feed_control(self):
+        data = self.get_data(self.test_data)
+        current_time = time.time()
+        current_datetime = datetime.fromtimestamp(current_time)
+
+        # Check if Phase 2 start time is set and if 4 hours have passed
+        if self.phase2_start_time and current_datetime >= self.phase2_start_time + timedelta(hours=4):
+            transition_to_phase3 = True
+        else:
+            transition_to_phase3 = False
+
+        # Phase 1: Maintain pH using only base
+        if not self.start_feed:
+            self.__pH_balance(data["ph"], base_control=True, acid_control=False)
+            print("in phase 1")
+            if data["ph"] >= 7.02:
+                self.start_feed = True
+                self.phase2_start_time = datetime.now()  # Record the start time of Phase 2
+                update_control_constant(self.loop_id, self.control_name, "phase_2_start_time", f"{self.phase2_start_time}")
+                update_control_constant(self.loop_id, self.control_name, "start_feed", "True")
+                print("Transition to Phase 2")
+
+        # Phase 2: Acid and base control, turn on feed pump
+        if self.start_feed and not transition_to_phase3:
+            self.__pH_balance(data["ph"], base_control=True, acid_control=True)
+            self.pump_control(self.pumps["feed_pump"].control(True))
+            self.pump_control(self.pumps["lactose_pump"].control(False))
+            print("Phase 2: Feed pump on")
+
+        # Phase 3: Turn off acid and base control, switch pumps
+        if transition_to_phase3:
+            self.__pH_balance(data["ph"], base_control=False, acid_control=False)
+            self.pump_control(self.pumps["feed_pump"].control(False))
+            print("Transition to Phase 3: Feed pump off, lactose pump control")
+            if data["ph"] >= 7:
+                self.pump_control(self.pumps["lactose_pump"].control(True))
+                print("Lactose pump on")
+            else:
+                self.pump_control(self.pumps["lactose_pump"].control(False))
+                print("Lactose pump off")
+
+        self.update_status()
+
+        status = self.status.copy()
+        status.pop("type", None)  # Remove the "type" key if it exists in the status data
+        combined_data = data.copy()  # Create a copy of the original data
+        combined_data.update(status)
+        try:
+            save_dict_to_sheet(combined_data, self.csv_name)
+        except Exception as e:
+            print(f"error in save_dict_to_sheet: {e}")
+
+        return data, self.status
+
     
     def switch_feed_media(self):
         """

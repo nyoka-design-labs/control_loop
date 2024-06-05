@@ -19,7 +19,6 @@ const FermentationControlPanel = () => {
   const toggleAcidPumpButton = useTogglePumpButton("Toggle Acid Pump", "toggle_acid", fermentationLoopIdentifier);
   const toggleFeedMediaButton = useTogglePumpButton("Switch Feed Media", "toggle_feed_media", fermentationLoopIdentifier);
   
-
   const feedPumpStatus = useFeedPumpStatus();
   const basePumpStatus = useBasePumpStatus();
   const lactosePumpStatus = useLactosePumpStatus();
