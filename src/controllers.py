@@ -550,62 +550,6 @@ class FermentationController(Controller):
 
         return data, self.status
     
-
-    def __3_phase_feed_control(self):
-        data = self.get_data(self.test_data)
-        current_time = time.time()
-        current_datetime = datetime.fromtimestamp(current_time)
-
-        # Check if Phase 2 start time is set and if 4 hours have passed
-        if self.phase2_start_time and current_datetime >= self.phase2_start_time + timedelta(hours=4):
-            transition_to_phase3 = True
-        else:
-            transition_to_phase3 = False
-
-        # Phase 1: Maintain pH using only base
-        if not self.start_feed:
-            self.__pH_balance(data["ph"], base_control=True, acid_control=False)
-            print("in phase 1")
-            if data["ph"] >= 7.02:
-                self.start_feed = True
-                self.phase2_start_time = datetime.now()  # Record the start time of Phase 2
-                update_control_constant(self.loop_id, self.control_name, "phase_2_start_time", f"{self.phase2_start_time}")
-                update_control_constant(self.loop_id, self.control_name, "start_feed", "True")
-                print("Transition to Phase 2")
-
-        # Phase 2: Acid and base control, turn on feed pump
-        if self.start_feed and not transition_to_phase3:
-            self.__pH_balance(data["ph"], base_control=True, acid_control=True)
-            self.pump_control(self.pumps["feed_pump"].control(True))
-            self.pump_control(self.pumps["lactose_pump"].control(False))
-            print("Phase 2: Feed pump on")
-
-        # Phase 3: Turn off acid and base control, switch pumps
-        if transition_to_phase3:
-            self.__pH_balance(data["ph"], base_control=False, acid_control=False)
-            self.pump_control(self.pumps["feed_pump"].control(False))
-            print("Transition to Phase 3: Feed pump off, lactose pump control")
-            if data["ph"] >= 7:
-                self.pump_control(self.pumps["lactose_pump"].control(True))
-                print("Lactose pump on")
-            else:
-                self.pump_control(self.pumps["lactose_pump"].control(False))
-                print("Lactose pump off")
-
-        self.update_status()
-
-        status = self.status.copy()
-        status.pop("type", None)  # Remove the "type" key if it exists in the status data
-        combined_data = data.copy()  # Create a copy of the original data
-        combined_data.update(status)
-        try:
-            save_dict_to_sheet(combined_data, self.csv_name)
-        except Exception as e:
-            print(f"error in save_dict_to_sheet: {e}")
-
-        return data, self.status
-
-    
     def switch_feed_media(self):
         """
         Switch the feed media between 'Glucose' and 'Lactose'.
