@@ -11,6 +11,7 @@ from resources.logging_config import logger
 import traceback
 from datetime import datetime, timedelta
 from resources.utils import *
+
 class _Sensor:
     """
     Class representing the Hamilton sensors.
@@ -44,7 +45,7 @@ class _Sensor:
 
             return round(data, 3)
         except Exception as e:
-            print(f"failed to get temp: \n{e}")
+            print(f"Failed to get temp: \n{e}")
             logger.error(f"Error in get_temp: {e}\n{traceback.format_exc()}")
             return -1
 
@@ -55,15 +56,18 @@ class _Sensor:
         """
         Convert raw hex value to float using IEEE 754 standard.
         """
-
-        # Convert hex to binary string, remove '0b' prefix, and pad to 32 bits
-        binary_str = format(int(value, 16), '032b')
-        # Convert binary string to bytes
-        bytes_value = int(binary_str, 2).to_bytes(4, byteorder='big', signed=True)
-        # Unpack the bytes to a float
-        float_value = struct.unpack('>f', bytes_value)[0]
-        return float_value
-    
+        try:
+            # Convert hex to binary string, remove '0b' prefix, and pad to 32 bits
+            binary_str = format(int(value, 16), '032b')
+            # Convert binary string to bytes
+            bytes_value = int(binary_str, 2).to_bytes(4, byteorder='big', signed=True)
+            # Unpack the bytes to a float
+            float_value = struct.unpack('>f', bytes_value)[0]
+            return float_value
+        except Exception as e:
+            print(f"Failed to convert raw hex to float: \n{e}")
+            logger.error(f"Error in convert_raw_value: {e}\n{traceback.format_exc()}")
+            return -1
 class DO(_Sensor):
     """
     Class representing the dissolved oxygen sensor.
@@ -78,7 +82,11 @@ class DO(_Sensor):
         self.callibration_func = lambda x: x
 
     def __call__(self, *args, **kwds) -> float:
-        return self.get_do()
+        try:
+            return self.get_do()
+        except Exception as e:
+            print(f"Failed to get do: \n{e}")
+            logger.error(f"Error in __call__ for DO probe: {e}\n{traceback.format_exc()}")
 
     def get_do(self) -> float:
         """
@@ -88,7 +96,7 @@ class DO(_Sensor):
             return round(self.__get_raw_do() - 5.233, 3)
             # return round(self.callibration_func(self.__get_raw_do() - 4.098 + 0.96), 3)
         except Exception as e:
-            print(f"failed to get data: \n{e}")
+            print(f"Failed to get do: \n{e}")
             logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
     
     def callibrate(self, do) -> None:
@@ -105,20 +113,22 @@ class DO(_Sensor):
         Returns the raw DO value.
         """
 
-        data = None
-
-        # Read holding registers from the sensor
-        res = self.client.read_holding_registers(address=2089, count=10, slave=1)
-
         try: # checks if probe is connected
+            data = None
+
+            # Read holding registers from the sensor
+            res = self.client.read_holding_registers(address=2089, count=10, slave=1)
+
             # Combine the two registers to form a hex value
             hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-            data = self.convert_raw_value(str(hex_value))
-        except AttributeError:
-            data = 0
 
-        # Convert the hex value to a float value
-        return data
+            # Convert the hex value to a float value
+            data = self.convert_raw_value(str(hex_value))
+            return data 
+        except Exception as e:
+            print(f"Failed to get raw do: \n{e}")
+            logger.error(f"Error in __get_raw_do: {e}\n{traceback.format_exc()}")
+            return -1
     
     def do_calibration(self, dur):
         """
@@ -162,10 +172,17 @@ class PH(_Sensor):
         """
 
         super().__init__(port)
+        self.port = port
         self.callibrate(4.068, 7.056)
 
     def __call__(self, *args, **kwds) -> float:
-        return (self.get_ph(), self.get_temp())
+        try:
+            return (self.get_ph(), self.get_temp())
+        except Exception as e:
+            print(f"Failed to get ph and temp: \n{e}")
+            logger.error(f"Error in __call__ for pH probe:\n port: {self.port}, \n {e}\n{traceback.format_exc()}")
+            return (-1, -1)
+
         
     def get_ph(self) -> float:
         """
@@ -175,7 +192,7 @@ class PH(_Sensor):
             # return round(self.__get_raw_ph(), 5)
             return round(self.callibration_func(self.__get_raw_ph()), 3)
         except Exception as e:
-            print(f"failed to get ph: \n{e}")
+            print(f"Failed to get ph: \n{e}")
             logger.error(f"Error in get_ph: {e}\n{traceback.format_exc()}")
             return -1
     
@@ -194,17 +211,21 @@ class PH(_Sensor):
         """
         Returns the raw pH value.
         """
+        try:
+            # Read holding registers from the sensor
+            res = self.client.read_holding_registers(address=2089, count=10, slave=1)
 
-        # Read holding registers from the sensor
-        res = self.client.read_holding_registers(address=2089, count=10, slave=1)
+            # Combine the two registers to form a hex value
+            hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
 
-        # Combine the two registers to form a hex value
-        hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+            # Convert the hex value to a float value
+            data = self.convert_raw_value(str(hex_value))
 
-        # Convert the hex value to a float value
-        data = self.convert_raw_value(str(hex_value))
-
-        return data
+            return data
+        except Exception as e:
+            print(f"Failed to get ph: \n{e}")
+            logger.error(f"Error in __get_raw_ph: {e}\n{traceback.format_exc()}")
+            return -1
     def ph_calibration_values(self, dur):
         """
         Calibrate the pH sensor at pH 4 and pH 7.

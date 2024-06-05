@@ -2,6 +2,13 @@ import usb.core
 import serial
 import sys
 import time
+import os
+curr_directory = os.path.dirname(__file__)
+SRC_DIR = os.path.join(curr_directory, "..")
+sys.path.append(SRC_DIR)
+from resources.logging_config import logger
+import traceback
+from resources.utils import *
 
 class Scale:
     """
@@ -64,7 +71,11 @@ class USS_Scale:
         )
 
     def __call__(self, *args, **kwds) -> float:
-        return self.get_weight()
+        try:
+            return self.get_weight()
+        except Exception as e:
+            print(f"failed to get weight: \n for port {self.port}, \n{e}")
+            logger.error(f"Error in __call__ for USS scale: \n for port {self.port}, \n {e}\n{traceback.format_exc()}")
 
     def get_weight(self) -> float:
         """

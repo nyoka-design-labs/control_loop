@@ -97,8 +97,8 @@ def save_dict_to_sheet(data, sheet_name):
         data_list = [data.get(header, "") for header in headers]
 
         # Emails to share the sheet with
-        emails_to_share = ["samgupta.1738@gmail.com", "daniel@lightbynyoka.com", "tatiana@lightbynyoka.com", "svhahn1@gmail.com", "charf@lightbynyoka.com"]
-        # emails_to_share = ["samgupta.1738@gmail.com"]
+        # emails_to_share = ["samgupta.1738@gmail.com", "daniel@lightbynyoka.com", "tatiana@lightbynyoka.com", "svhahn1@gmail.com", "charf@lightbynyoka.com"]
+        emails_to_share = ["samgupta.1738@gmail.com"]
         # Try to open the existing spreadsheet by name
         spreadsheet = client.open(sheet_name)
 
