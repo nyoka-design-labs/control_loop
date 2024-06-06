@@ -4,7 +4,7 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
+            "port": "/dev/tty.usbserial-1140",
             "data_type": "feed_weight"
         },
         {
@@ -56,7 +56,8 @@
             "interval": 15,
             "testing": "True",
             "load_data": "False",
-            "devices_connected": "False",
+            "devices_connected": "True",
+            "pumps_connected": "False",
             "restart": "False"
         },
         {
@@ -86,7 +87,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "3_phase_feed_control",
+            "chosen_control": "test_loop",
             "controllers": [
                 {
                     "controller_id": "feed_control",
@@ -152,7 +153,7 @@
                     "no_base_window": 600,
                     "start_feed": "True",
                     "start_time": 1717015349.8079298,
-                    "test_data_index": 13,
+                    "test_data_index": 0,
                     "feed_media": "Glucose"
                 },
                 {
@@ -201,6 +202,23 @@
                     "feed_ph_sp": 7,
                     "refill_mass": 320,
                     "refill_count": 20
+                },
+                {
+                    "controller_id": "test_loop",
+                    "notes": "for testing robustness",
+                    "devices": [
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "base_weight"
+                    ],
+                    "pumps": {
+                        "feed_pump": "blackPump1"
+                    },
+                    "csv_name": "test_sheet",
+                    "test_data_index": 13,
+                    "start_feed": "False",
+                    "start_time": 1717628608.268629
                 }
             ]
         },

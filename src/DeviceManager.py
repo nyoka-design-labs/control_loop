@@ -21,6 +21,7 @@ CONSTANTS_DIR = os.path.join(curr_directory, "resources", "constants.json")
 TEST_DATA_DIR = os.path.join(curr_directory, "resources", "test_data.json")
 test_data = load_test_data(TEST_DATA_DIR)
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
+devices = eval(get_loop_constant(loop_id="server_consts", const="devices_connected"))
 class DeviceManager:
     """
     Represents a device manager.
@@ -40,7 +41,7 @@ class DeviceManager:
         names = self.__get_loop_devices()
         dev2port = []
         idt = 0
-        if not testing:
+        if devices:
             try:
                 # finds the serial port for each device and creates dict
                 for name in names:
@@ -133,6 +134,41 @@ class DeviceManager:
         return dict(zip(data_headers, devices_data))
     
     def test_get_measurement(self, test_name):
+        if devices:
+             # Collect data from each device
+            devices_data = []
+            for dev in self.devices:
+                result = dev()
+
+                if isinstance(result, tuple):
+                    devices_data.extend(result)  # This handles multiple return values
+                else:
+                    devices_data.append(result)
+
+            data_headers = self.data_types
+
+            # elapsed time
+            if self.start_time <= 0:
+                self.start_time = time.time()
+                update_control_constant(self.loop_id, self.control_id, "start_time", self.start_time)
+
+                elapsed_time = 0
+            else:
+                elapsed_time = (time.time() - self.start_time) / 3600
+
+            devices_data.append(round(elapsed_time, 8))
+            # date
+            devices_data.append(datetime.now().strftime('%d-%m-%Y'))
+            # time of day
+            devices_data.append(datetime.now().strftime('%H:%M:%S'))
+            # start time
+            devices_data.append(self.start_time)
+            # type of information being sent to frontend
+            devices_data.append("data")
+            print(f"data from devices: {dict(zip(data_headers, devices_data))}")
+
+
+
         measurement = self.test_data[test_name][self.index]
         self.index += 1
         update_control_constant(self.loop_id, self.control_id, "test_data_index", self.index)
@@ -153,43 +189,43 @@ class DeviceManager:
         Returns the serial port to use for the device.
         """
 
-        if device_name == "dymo_scale":
-            return ""
+        # if device_name == "dymo_scale":
+        #     return ""
 
-        func = lambda x: str(hex(x))[2:].zfill(4)
+        # func = lambda x: str(hex(x))[2:].zfill(4)
 
-        ports = serial.tools.list_ports.comports()
-        ports = list(filter(lambda x: x.vid is not None and x.pid is not None, ports))
+        # ports = serial.tools.list_ports.comports()
+        # ports = list(filter(lambda x: x.vid is not None and x.pid is not None, ports))
 
-        f = open(CONSTANTS_DIR)
-        devs = json.load(f)['devices']
-        for idx, dev in enumerate(devs):
-            if dev['name'] == device_name and dev["port"] == "":
-                # find active serial ports
-                ser_ports = list(filter(lambda x: func(x.vid) == dev['vendor_id'] and func(x.pid) == dev['product_id'], ports))
-                ser_ports = set(map(lambda x: x.device, ser_ports))
-                # find occupied ports
-                occ_ports = self.__get_occupied_ports()
+        # f = open(CONSTANTS_DIR)
+        # devs = json.load(f)['devices']
+        # for idx, dev in enumerate(devs):
+        #     if dev['name'] == device_name and dev["port"] == "":
+        #         # find active serial ports
+        #         ser_ports = list(filter(lambda x: func(x.vid) == dev['vendor_id'] and func(x.pid) == dev['product_id'], ports))
+        #         ser_ports = set(map(lambda x: x.device, ser_ports))
+        #         # find occupied ports
+        #         occ_ports = self.__get_occupied_ports()
 
-                try:
-                    # choose port that is not being used
-                    avail_ports = (ser_ports - occ_ports)
-                    sorted_avail_ports = sorted(avail_ports, key=lambda x: int(x.split('USB')[1]))
-                    chosen_port = sorted_avail_ports[0]
-                except:
-                    raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
+        #         try:
+        #             # choose port that is not being used
+        #             avail_ports = (ser_ports - occ_ports)
+        #             sorted_avail_ports = sorted(avail_ports, key=lambda x: int(x.split('USB')[1]))
+        #             chosen_port = sorted_avail_ports[0]
+        #         except:
+        #             raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
                 
-                # update the current device port
-                self.__update_device_port(chosen_port, data_type, idx)
+        #         # update the current device port
+        #         self.__update_device_port(chosen_port, data_type, idx)
 
-                return chosen_port
+        #         return chosen_port
 
-        raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
+        # raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
 
-        # if device_name == "uss_scale":
-        #     chosen_port = "/dev/ttyUSB0"
-        #     self.__update_device_port(chosen_port, 0)
-        #     return chosen_port
+        if device_name == "uss_scale":
+            chosen_port = "/dev/tty.usbserial-1140"
+            self.__update_device_port(chosen_port, "feed_weight",0)
+            return chosen_port
         # elif device_name == "do_probe":
         #     chosen_port = "/dev/ttyUSB1"
         #     self.__update_device_port(chosen_port, 5)
@@ -256,8 +292,8 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("fermentation_loop", "3_phase_feed_control")
+    dm = DeviceManager("fermentation_loop", "test_loop")
     while True:
         # print(dm.test_get_measurement("do_der_test_1"))
         print(dm.get_measurement())
-        time.sleep(3)
+        time.sleep(10)

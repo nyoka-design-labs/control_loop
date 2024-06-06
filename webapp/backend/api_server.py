@@ -34,9 +34,9 @@ async def handle_client(websocket, path):
         logger.error(f"WebSocket connection closed: {e.code} - {e.reason}")
         print(f"WebSocket connection closed: {e.code} - {e.reason}")
 
-        if e.code == 1006:
-            await manager_server.stop_all("fermentation_loop")
-            await handle_server_error("fermentation_loop")
+        # if e.code == 1006:
+        await manager_server.stop_all("fermentation_loop")
+        await handle_server_error("fermentation_loop")
 
     except Exception as e:
         logger.error(f"Unexpected error in handle_client: {e}\n{traceback.format_exc()}")

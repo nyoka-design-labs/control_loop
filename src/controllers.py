@@ -12,7 +12,7 @@ import traceback
 port = '/dev/ttyACM0'
 baudrate = 9600
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
-devices = eval(get_loop_constant(loop_id="server_consts", const="devices_connected"))
+pumps = eval(get_loop_constant(loop_id="server_consts", const="pumps_connected"))
 def create_controller(loop_id, control_id, testing: bool=False):
     
     dm = DeviceManager(loop_id, control_id, testing)
@@ -28,7 +28,7 @@ class Controller:
 
     def __init__(self):
         try:
-            if devices:
+            if pumps:
                 self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         except Exception as e:
             print(f"failed to intialize arduino: \n{e}")
@@ -38,7 +38,7 @@ class Controller:
     def pump_control(self, state: str):
         try:
             print(f"sent arduino: {state.encode()}")
-            if devices:
+            if pumps:
                 self.arduino.write((state + '\n').encode())
         except Exception as e:
             print(f"failed to control pump: \n state: {state}, \n{e}")
@@ -549,6 +549,12 @@ class FermentationController(Controller):
         except Exception as e:
             print(f"error in save_dict_to_sheet: {e}")
 
+        return data, self.status
+    
+    def __test_loop(self):
+        data = self.get_data(self.test_data)
+        print(data)
+        self.update_status()
         return data, self.status
     
     def switch_feed_media(self):

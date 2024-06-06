@@ -9,6 +9,7 @@ sys.path.append(SRC_DIR)
 from resources.logging_config import logger
 import traceback
 from resources.utils import *
+from serial.serialutil import SerialException
 
 class Scale:
     """
@@ -59,48 +60,67 @@ class USS_Scale:
     Represents the US Solids scales.
     """
 
-    def __init__(self, port) -> None:
-        self.port = port
-        self.conn = serial.Serial(
-            port=port,
-            baudrate=9600,
-            parity=serial.PARITY_NONE,
-            stopbits=serial.STOPBITS_ONE,
-            bytesize=serial.EIGHTBITS,
-            timeout=None
-        )
+    def __init__(self, port):
+            """
+            Initialize the serial connection to the scale.
+            """
+            self.port = port
+            self.conn = None
+            self.connect()
 
-    def __call__(self, *args, **kwds) -> float:
+    def connect(self):
+        """
+        Attempt to connect to the scale.
+        """
         try:
-            return self.get_weight()
-        except Exception as e:
-            print(f"failed to get weight: \n for port {self.port}, \n{e}")
-            logger.error(f"Error in __call__ for USS scale: \n for port {self.port}, \n {e}\n{traceback.format_exc()}")
+            self.conn = serial.Serial(
+                port=self.port,
+                baudrate=9600,
+                parity=serial.PARITY_NONE,
+                stopbits=serial.STOPBITS_ONE,
+                bytesize=serial.EIGHTBITS,
+                timeout=1
+            )
+        except SerialException as e:
+            print(f"Failed to initialize USS_Scale on port {self.port}: {e}")
+            self.conn = None
+    def __call__(self):
+        """
+        Return the weight or try reconnecting if disconnected.
+        """
+        weight = self.get_weight()
+        if weight == -1 and self.conn is None:
+            self.connect()  # Attempt to reconnect only if disconnected
+        return weight
 
-    def get_weight(self) -> float:
+    def get_weight(self):
         """
         Read the weight from the scale.
+        If the scale is disconnected, return -1 and attempt to reconnect.
         """
+        if self.conn is not None:
+            try:
+                self.conn.reset_input_buffer()  # Clear buffer to ensure fresh data
+                reading = self.conn.readline().decode().strip()
+                reading = float(reading[1:-1])
+                hello = True
+                return reading
+            except Exception as e:
+                print(f"Error reading from USS_Scale on port {self.port}: {e}")
+                # Attempt to reconnect in case of failure
+                self.conn = None
+        return -1  # Return -1 if disconnected or on read failure
 
-        self.conn.reset_input_buffer()  # Flush the input buffer to remove old data
-        reading = self.conn.readline().decode().strip()  # Read the latest line and decode from bytes to string
 
-        try:
-            data = float(reading[1:-1])
-        except ValueError:
-            # data not properly read from scale
-            data = -1
-
-        return data
 
 if __name__ == "__main__":
     # example usage of Scale class
     # scale = Scale(vid=0x0922, pid=0x8003)
-    uss_scale = USS_Scale("/dev/ttyUSB2")
+    uss_scale = USS_Scale("/dev/tty.usbserial-1140")
 
     try:
         while True:
-            print(f"Weight: {uss_scale.get_weight()} g")
+            print(f"Weight: {uss_scale()} g")
             time.sleep(3)
     except KeyboardInterrupt:
-        print("Program terminated")
+        print("\n Program terminated")
