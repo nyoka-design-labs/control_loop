@@ -189,43 +189,43 @@ class DeviceManager:
         Returns the serial port to use for the device.
         """
 
-        # if device_name == "dymo_scale":
-        #     return ""
+        if device_name == "dymo_scale":
+            return ""
 
-        # func = lambda x: str(hex(x))[2:].zfill(4)
+        func = lambda x: str(hex(x))[2:].zfill(4)
 
-        # ports = serial.tools.list_ports.comports()
-        # ports = list(filter(lambda x: x.vid is not None and x.pid is not None, ports))
+        ports = serial.tools.list_ports.comports()
+        ports = list(filter(lambda x: x.vid is not None and x.pid is not None, ports))
 
-        # f = open(CONSTANTS_DIR)
-        # devs = json.load(f)['devices']
-        # for idx, dev in enumerate(devs):
-        #     if dev['name'] == device_name and dev["port"] == "":
-        #         # find active serial ports
-        #         ser_ports = list(filter(lambda x: func(x.vid) == dev['vendor_id'] and func(x.pid) == dev['product_id'], ports))
-        #         ser_ports = set(map(lambda x: x.device, ser_ports))
-        #         # find occupied ports
-        #         occ_ports = self.__get_occupied_ports()
+        f = open(CONSTANTS_DIR)
+        devs = json.load(f)['devices']
+        for idx, dev in enumerate(devs):
+            if dev['name'] == device_name and dev["port"] == "":
+                # find active serial ports
+                ser_ports = list(filter(lambda x: func(x.vid) == dev['vendor_id'] and func(x.pid) == dev['product_id'], ports))
+                ser_ports = set(map(lambda x: x.device, ser_ports))
+                # find occupied ports
+                occ_ports = self.__get_occupied_ports()
 
-        #         try:
-        #             # choose port that is not being used
-        #             avail_ports = (ser_ports - occ_ports)
-        #             sorted_avail_ports = sorted(avail_ports, key=lambda x: int(x.split('USB')[1]))
-        #             chosen_port = sorted_avail_ports[0]
-        #         except:
-        #             raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
+                try:
+                    # choose port that is not being used
+                    avail_ports = (ser_ports - occ_ports)
+                    sorted_avail_ports = sorted(avail_ports, key=lambda x: int(x.split('USB')[1]))
+                    chosen_port = sorted_avail_ports[0]
+                except:
+                    raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
                 
-        #         # update the current device port
-        #         self.__update_device_port(chosen_port, data_type, idx)
+                # update the current device port
+                self.__update_device_port(chosen_port, data_type, idx)
 
-        #         return chosen_port
+                return chosen_port
 
-        # raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
+        raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
 
-        if device_name == "uss_scale":
-            chosen_port = "/dev/tty.usbserial-1140"
-            self.__update_device_port(chosen_port, "feed_weight",0)
-            return chosen_port
+        # if device_name == "uss_scale":
+        #     chosen_port = "/dev/tty.usbserial-1140"
+        #     self.__update_device_port(chosen_port, "feed_weight",0)
+        #     return chosen_port
         # elif device_name == "do_probe":
         #     chosen_port = "/dev/ttyUSB1"
         #     self.__update_device_port(chosen_port, 5)

@@ -4,21 +4,21 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/tty.usbserial-1140",
+            "port": "/dev/ttyUSB1",
             "data_type": "feed_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
+            "port": "/dev/ttyUSB2",
             "data_type": "lactose_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
+            "port": "/dev/ttyUSB3",
             "data_type": "base_weight"
         },
         {
@@ -39,7 +39,7 @@
             "name": "ph_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "",
+            "port": "/dev/ttyUSB0",
             "data_type": "ph"
         },
         {
@@ -54,11 +54,11 @@
         {
             "loop_id": "server_consts",
             "interval": 15,
-            "testing": "True",
+            "testing": "False",
             "load_data": "False",
             "devices_connected": "True",
-            "pumps_connected": "False",
-            "restart": "False"
+            "pumps_connected": "True",
+            "error": "False"
         },
         {
             "loop_id": "concentration_loop",
@@ -87,7 +87,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "test_loop",
+            "chosen_control": "3_phase_feed_control",
             "controllers": [
                 {
                     "controller_id": "feed_control",
@@ -129,7 +129,6 @@
                         "ph_sensor",
                         "uss_scale",
                         "uss_scale",
-                        "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
@@ -138,8 +137,7 @@
                         "temp",
                         "feed_weight",
                         "lactose_weight",
-                        "base_weight",
-                        "acid_weight"
+                        "base_weight"
                     ],
                     "pumps": {
                         "feed_pump": "blackPump1",
@@ -150,9 +148,11 @@
                     "csv_name": "test_sheet",
                     "ph_balance_base_sp": 7,
                     "ph_balance_acid_sp": 7,
-                    "no_base_window": 600,
-                    "start_feed": "True",
-                    "start_time": 1717015349.8079298,
+                    "feed_trigger_ph": 7.02,
+                    "ph_maintained_time": 0,
+                    "ph_window": 60,
+                    "start_feed": "False",
+                    "start_time": 0,
                     "test_data_index": 0,
                     "feed_media": "Glucose"
                 },
@@ -207,18 +207,32 @@
                     "controller_id": "test_loop",
                     "notes": "for testing robustness",
                     "devices": [
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "lactose_weight",
                         "base_weight"
                     ],
                     "pumps": {
-                        "feed_pump": "blackPump1"
+                        "feed_pump": "blackPump1",
+                        "lactose_pump": "blackPump3",
+                        "base_pump": "blackPump2",
+                        "acid_pump": "whitePump2"
                     },
                     "csv_name": "test_sheet",
-                    "test_data_index": 13,
-                    "start_feed": "False",
-                    "start_time": 1717628608.268629
+                    "ph_balance_base_sp": 7,
+                    "ph_balance_acid_sp": 7,
+                    "no_base_window": 600,
+                    "start_feed": "True",
+                    "start_time": 1717643112.61671,
+                    "test_data_index": 1339,
+                    "feed_media": "Lactose"
                 }
             ]
         },

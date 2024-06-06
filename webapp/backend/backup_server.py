@@ -7,7 +7,7 @@ curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
 
-from resources.utils import get_loop_constant
+from resources.utils import get_loop_constant, update_loop_constant
 import controllers as c
 from resources.logging_config import logger
 
@@ -32,6 +32,9 @@ def control_task(controller):
     except Exception as e:
         print(f"Error in control_task: {e}")
         logger.error(f"Error in control_task: {e}\n{traceback.format_exc()}")
+    except KeyboardInterrupt as e:
+        controller.stop_control()
+
 
 def get_controller(loop_id):
     if loop_id not in controllers:

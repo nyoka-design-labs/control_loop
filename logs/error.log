@@ -1540,3 +1540,2521 @@ Traceback (most recent call last):
   File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 157, in _on_sigint
     raise KeyboardInterrupt()
 KeyboardInterrupt
+2024-06-05 18:12:17 ERROR Error in __get_raw_do: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 123, in __get_raw_do
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 18:14:38 ERROR Error in __get_raw_do: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 123, in __get_raw_do
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 18:16:27 ERROR Error in __get_raw_ph: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 219, in __get_raw_ph
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 18:19:19 ERROR Error in __get_raw_ph: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 219, in __get_raw_ph
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 18:19:19 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:19:19 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:19:36 ERROR Error in __get_raw_ph: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 219, in __get_raw_ph
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 18:19:36 ERROR Error in convert_raw_value: int too big to convert
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 63, in convert_raw_value
+    bytes_value = int(binary_str, 2).to_bytes(4, byteorder='big', signed=True)
+OverflowError: int too big to convert
+
+2024-06-05 18:30:42 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 194, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 219, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 18:30:42 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:30:42 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:30:52 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:30:52 ERROR Error in get_ph: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 194, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 217, in __get_raw_ph
+    response = self.client.read_holding_registers(address=2089, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:30:52 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:30:52 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:31:08 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 194, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 219, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 18:53:25 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 18:53:25 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:53:25 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:53:25 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:53:25 ERROR Error in get_ph: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 233, in __get_raw_ph
+    response = self.client.read_holding_registers(address=2089, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:53:25 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:53:25 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:53:35 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:53:35 ERROR Error in get_ph: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 233, in __get_raw_ph
+    response = self.client.read_holding_registers(address=2089, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:53:35 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:53:35 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:53:35 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:53:35 ERROR Error in get_ph: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 233, in __get_raw_ph
+    response = self.client.read_holding_registers(address=2089, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:53:35 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 18:53:35 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 18:53:46 ERROR Error in convert_raw_value: int too big to convert
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 63, in convert_raw_value
+    bytes_value = int(binary_str, 2).to_bytes(4, byteorder='big', signed=True)
+OverflowError: int too big to convert
+
+2024-06-05 18:53:46 ERROR Error in convert_raw_value: int too big to convert
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/src/devices/ham_sensor.py", line 63, in convert_raw_value
+    bytes_value = int(binary_str, 2).to_bytes(4, byteorder='big', signed=True)
+OverflowError: int too big to convert
+
+2024-06-05 18:58:35 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 18:59:05 ERROR Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 25, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 104, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    await handle_server_error("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 93, in handle_server_error
+    start_backup_server(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 82, in start_backup_server
+    backup_server.control("fermentation_loop", controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 20, in control
+    control_task(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 31, in control_task
+    time.sleep(INTERVAL)
+KeyboardInterrupt
+2024-06-05 18:59:05 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 18:59:05 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-06-05 18:59:05 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 18:59:05 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-06-05 18:59:05 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_release_waiter(<Future pendi...ask_wakeup()]>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-06-05 18:59:35 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 18:59:50 ERROR Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 25, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 104, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    await handle_server_error("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 93, in handle_server_error
+    start_backup_server(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 82, in start_backup_server
+    backup_server.control("fermentation_loop", controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 20, in control
+    control_task(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 29, in control_task
+    data, status = controller.start_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 57, in start_control
+    return control_method()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 561, in __test_loop
+    data, status = self.__3_phase_feed_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 554, in __3_phase_feed_control
+    save_dict_to_sheet(combined_data, self.csv_name)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 123, in save_dict_to_sheet
+    existing_data = sheet.get_all_values()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/worksheet.py", line 483, in get_all_values
+    return self.get_values(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/worksheet.py", line 460, in get_values
+    return self.get(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/worksheet.py", line 952, in get
+    response = self.client.values_get(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 236, in values_get
+    r = self.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 114, in request
+    response = self.session.request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/google/auth/transport/requests.py", line 541, in request
+    response = super(AuthorizedSession, self).request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 589, in send
+    resp = conn.urlopen(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.10/socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.10/ssl.py", line 1303, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.10/ssl.py", line 1159, in read
+    return self._sslobj.read(len, buffer)
+KeyboardInterrupt
+2024-06-05 18:59:50 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 18:59:50 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-06-05 18:59:50 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 18:59:50 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-06-05 18:59:50 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_release_waiter(<Future pendi...ask_wakeup()]>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-06-05 19:00:59 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:01:04 ERROR Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 25, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 104, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 38, in handle_client
+    await manager_server.stop_all("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 187, in stop_all
+    controller_info["controller"].stop_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 92, in stop_control
+    self.pump_control(pump.control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 19:01:04 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 19:01:04 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-06-05 19:01:04 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 19:01:04 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-06-05 19:01:04 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_release_waiter(<Future pendi...ask_wakeup()]>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-06-05 19:04:01 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:04:01 ERROR connection handler failed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    if error:
+UnboundLocalError: local variable 'error' referenced before assignment
+2024-06-05 19:09:06 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Glucose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ no close frame received or sent
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/usr/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 708, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/usr/lib/python3.10/asyncio/streams.py", line 501, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 132, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 934, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-06-05 19:09:06 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Glucose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ no close frame received or sent
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/usr/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 708, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/usr/lib/python3.10/asyncio/streams.py", line 501, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 132, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 934, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-06-05 19:10:30 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:10:30 ERROR connection handler failed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    if error:
+UnboundLocalError: local variable 'error' referenced before assignment
+2024-06-05 19:13:25 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:13:25 ERROR connection handler failed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    if error:
+UnboundLocalError: local variable 'error' referenced before assignment
+2024-06-05 19:13:59 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:13:59 ERROR connection handler failed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    if error:
+UnboundLocalError: local variable 'error' referenced before assignment
+2024-06-05 19:15:15 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Glucose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ no close frame received or sent
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/usr/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 708, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/usr/lib/python3.10/asyncio/streams.py", line 501, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 132, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 934, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-06-05 19:16:54 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:16:54 ERROR connection handler failed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    if error:
+UnboundLocalError: local variable 'error' referenced before assignment
+2024-06-05 19:19:28 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:19:33 ERROR Error in control_task: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 90, in control_task
+    await websocket.send(json.dumps(data))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:21:50 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_on', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '1', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 132, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:22:09 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:22:09 ERROR connection handler failed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    if error:
+UnboundLocalError: local variable 'error' referenced before assignment
+2024-06-05 19:22:24 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:22:24 ERROR connection handler failed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 48, in handle_client
+    if error:
+UnboundLocalError: local variable 'error' referenced before assignment
+2024-06-05 19:22:24 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:22:24 ERROR connection handler failed
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 39, in handle_client
+    if error:
+UnboundLocalError: local variable 'error' referenced before assignment
+2024-06-05 19:22:39 ERROR Error in control_task: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 90, in control_task
+    await websocket.send(json.dumps(data))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:23:11 ERROR Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<collection_task() done, defined at /home/sam/Desktop/control_loop/webapp/backend/manager_server.py:101> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 109, in <module>
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 110, in collection_task
+    controller.pump_control("T")
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 19:31:23 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:32:01 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:32:05 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:32:05 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:33:44 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:33:44 ERROR Task exception was never retrieved
+future: <Task finished name='Task-10' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 111, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 52, in handle_client
+    await handle_server_error("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 100, in handle_server_error
+    start_backup_server(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 89, in start_backup_server
+    backup_server.control("fermentation_loop", controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 20, in control
+    control_task(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 31, in control_task
+    time.sleep(INTERVAL)
+KeyboardInterrupt
+2024-06-05 19:37:50 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:37:54 ERROR Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 111, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 41, in handle_client
+    await manager_server.stop_all("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 189, in stop_all
+    controller_info["controller"].stop_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 92, in stop_control
+    self.pump_control(pump.control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 19:37:54 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 19:37:54 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>
+2024-06-05 19:37:54 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 19:37:54 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup(), _wait.<locals>._on_completion() at /usr/lib/python3.10/asyncio/tasks.py:475]>>
+2024-06-05 19:37:54 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_release_waiter(<Future pendi...ask_wakeup()]>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-06-05 19:38:07 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:38:57 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 19:38:57 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 19:38:57 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 19:38:57 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 19:38:57 ERROR Error in get_ph: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 233, in __get_raw_ph
+    response = self.client.read_holding_registers(address=2089, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 19:38:57 ERROR [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2024-06-05 19:38:57 ERROR Error in get_temp: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 38, in get_temp
+    res = self.client.read_holding_registers(address=2409, count=10, slave=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/mixin.py", line 107, in read_holding_registers
+    return self.execute(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/pymodbus/client/base.py", line 391, in execute
+    raise ConnectionException(f"Failed to connect[{self!s}]")
+pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB0:0]
+
+2024-06-05 19:39:15 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 19:39:15 ERROR Error in get_temp: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 41, in get_temp
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 19:39:16 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 19:39:16 ERROR Error in get_temp: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 41, in get_temp
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 19:39:34 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 19:39:35 ERROR Error in get_temp: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 41, in get_temp
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 19:39:35 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 19:39:35 ERROR Error in get_temp: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 41, in get_temp
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 19:39:54 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 19:39:54 ERROR Error in get_temp: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 41, in get_temp
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 19:39:54 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 19:39:54 ERROR Error in get_temp: 'ModbusIOException' object has no attribute 'registers'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 41, in get_temp
+    hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+AttributeError: 'ModbusIOException' object has no attribute 'registers'
+
+2024-06-05 19:40:20 ERROR Error in get_ph: Error reading pH
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 210, in get_ph
+    return round(self.callibration_func(self.__get_raw_ph()), 3)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 235, in __get_raw_ph
+    raise ValueError("Error reading pH")
+ValueError: Error reading pH
+
+2024-06-05 19:40:20 ERROR Error in convert_raw_value: int too big to convert
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 63, in convert_raw_value
+    bytes_value = int(binary_str, 2).to_bytes(4, byteorder='big', signed=True)
+OverflowError: int too big to convert
+
+2024-06-05 19:40:20 ERROR Error in convert_raw_value: int too big to convert
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/devices/ham_sensor.py", line 63, in convert_raw_value
+    bytes_value = int(binary_str, 2).to_bytes(4, byteorder='big', signed=True)
+OverflowError: int too big to convert
+
+2024-06-05 19:42:00 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:42:04 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:42:04 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:43:33 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:43:33 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:43:58 ERROR Task exception was never retrieved
+future: <Task finished name='Task-32' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 29, in control_task
+    data, status = controller.start_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 57, in start_control
+    return control_method()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 560, in __test_loop
+    data, status = self.__3_phase_feed_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 526, in __3_phase_feed_control
+    self.pump_control(self.pumps["lactose_pump"].control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 111, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 42, in handle_client
+    await handle_server_error("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 100, in handle_server_error
+    start_backup_server(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 89, in start_backup_server
+    backup_server.control("fermentation_loop", controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 20, in control
+    control_task(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 36, in control_task
+    controller.stop_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 92, in stop_control
+    self.pump_control(pump.control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 19:45:06 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:45:42 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:45:46 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:45:46 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:48:35 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:48:35 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:50:10 ERROR Task exception was never retrieved
+future: <Task finished name='Task-21' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/__main__.py", line 39, in <module>
+    cli.main()
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 430, in main
+    run()
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/adapter/../../debugpy/launcher/../../debugpy/../debugpy/server/cli.py", line 284, in run_file
+    runpy.run_path(target, run_name="__main__")
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 321, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 135, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_runpy.py", line 124, in _run_code
+    exec(code, run_globals)
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 111, in <module>
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 42, in handle_client
+    update_loop_constant("server_consts", "error", "True")
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 100, in handle_server_error
+    else:
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_trace_dispatch_regular.py", line 204, in trace_dispatch
+    return thread_trace_func(frame, event, arg)
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_trace_dispatch_regular.py", line 440, in __call__
+    ).trace_dispatch(frame, event, arg)
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_frame.py", line 1226, in trace_dispatch
+    self.do_wait_suspend(thread, back, event, arg)
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/_pydevd_bundle/pydevd_frame.py", line 165, in do_wait_suspend
+    self._args[0].do_wait_suspend(*args, **kwargs)
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/pydevd.py", line 2070, in do_wait_suspend
+    keep_suspended = self._do_wait_suspend(thread, frame, event, arg, suspend_type, from_this_thread, frames_tracker)
+  File "/home/sam/.vscode/extensions/ms-python.debugpy-2024.6.0-linux-x64/bundled/libs/debugpy/_vendored/pydevd/pydevd.py", line 2106, in _do_wait_suspend
+    time.sleep(0.01)
+KeyboardInterrupt
+2024-06-05 19:50:22 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:50:40 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:50:44 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:50:44 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:51:42 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:51:42 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:51:55 ERROR Task exception was never retrieved
+future: <Task finished name='Task-21' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 31, in control_task
+    time.sleep(INTERVAL)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 112, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 41, in handle_client
+    await handle_server_error("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 101, in handle_server_error
+    start_backup_server(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 90, in start_backup_server
+    backup_server.control("fermentation_loop", controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 20, in control
+    control_task(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 36, in control_task
+    controller.stop_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 92, in stop_control
+    self.pump_control(pump.control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 19:54:57 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:55:01 ERROR Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 113, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 40, in handle_client
+    await manager_server.stop_all("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 171, in stop_all
+    controller_info = get_controller(loop_id)
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 146, in get_controller
+    controller, device_manager = c.create_controller(loop_id, control_id, testing)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 23, in create_controller
+    controller = FermentationController(dm)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 286, in __init__
+    self.stop_control(data_col_is_on=False)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 92, in stop_control
+    self.pump_control(pump.control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 19:55:01 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-15' coro=<WebSocketCommonProtocol.recv() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:552> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_release_waiter(<Future pendi...ask_wakeup()]>)() at /usr/lib/python3.10/asyncio/tasks.py:387]>
+2024-06-05 19:55:01 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-10' coro=<WebSocketServerProtocol.handler() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:236> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 19:55:01 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup()]>
+2024-06-05 19:55:01 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-13' coro=<WebSocketCommonProtocol.keepalive_ping() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1254> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2024-06-05 19:55:01 ERROR Task was destroyed but it is pending!
+task: <Task pending name='Task-14' coro=<WebSocketCommonProtocol.close_connection() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:1301> wait_for=<Task pending name='Task-12' coro=<WebSocketCommonProtocol.transfer_data() running at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py:963> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[Task.task_wakeup()]>>
+2024-06-05 19:55:16 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:55:35 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:55:39 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:55:39 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:56:26 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:56:26 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:56:45 ERROR Task exception was never retrieved
+future: <Task finished name='Task-20' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 31, in control_task
+    time.sleep(INTERVAL)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 113, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 41, in handle_client
+    await handle_server_error("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 101, in handle_server_error
+    start_backup_server(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 90, in start_backup_server
+    backup_server.control("fermentation_loop", controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 20, in control
+    control_task(controller)
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 36, in control_task
+    controller.stop_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 92, in stop_control
+    self.pump_control(pump.control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 19:57:16 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:57:31 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:57:35 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:57:35 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 19:59:41 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 19:59:44 ERROR Task exception was never retrieved
+future: <Task finished name='Task-21' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 435, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 113, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 47, in run
+    _cancel_all_tasks(loop)
+  File "/usr/lib/python3.10/asyncio/runners.py", line 63, in _cancel_all_tasks
+    loop.run_until_complete(tasks.gather(*to_cancel, return_exceptions=True))
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 40, in handle_client
+    await manager_server.stop_all("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 189, in stop_all
+    controller_info["controller"].stop_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 92, in stop_control
+    self.pump_control(pump.control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 20:00:06 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 20:01:31 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 20:01:35 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 20:01:35 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-05 20:01:58 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 20:01:58 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 20:02:08 ERROR Task exception was never retrieved
+future: <Task finished name='Task-24' coro=<WebSocketServerProtocol.handler() done, defined at /home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py:155> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 113, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 236, in handler
+    await self.ws_handler(self)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/server.py", line 1175, in _ws_handler
+    return await cast(
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 41, in handle_client
+    await handle_server_error("fermentation_loop")
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 97, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 189, in stop_all
+    controller_info["controller"].stop_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 92, in stop_control
+    self.pump_control(pump.control(False))
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 47, in pump_control
+    time.sleep(1)
+KeyboardInterrupt
+2024-06-05 20:05:05 ERROR WebSocket connection closed: 1006 - 
+2024-06-05 20:24:43 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_on', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '1', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 647, in send
+    await self.write_frame(True, opcode, data)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1209, in write_frame
+    await self.drain()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1198, in drain
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-06-05 20:24:44 ERROR Unexpected error in handle_client: 
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+2024-06-05 20:24:48 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_on', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 708, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/usr/lib/python3.10/asyncio/streams.py", line 501, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-06-05 20:24:48 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'Lactose', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 708, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/usr/lib/python3.10/asyncio/streams.py", line 501, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-06-05 20:51:52 ERROR Error in save_dict_to_sheet: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 589, in send
+    resp = conn.urlopen(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 114, in request
+    response = self.session.request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/google/auth/transport/requests.py", line 541, in request
+    response = super(AuthorizedSession, self).request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 604, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+2024-06-05 22:42:24 ERROR Error in save_dict_to_sheet: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 589, in send
+    resp = conn.urlopen(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 114, in request
+    response = self.session.request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/google/auth/transport/requests.py", line 541, in request
+    response = super(AuthorizedSession, self).request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 604, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+2024-06-05 22:49:24 ERROR Error in save_dict_to_sheet: APIError: [503]: The service is currently unavailable.
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 144, in open
+    return Spreadsheet(self.http_client, properties)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/spreadsheet.py", line 29, in __init__
+    metadata = self.fetch_sheet_metadata()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/spreadsheet.py", line 230, in fetch_sheet_metadata
+    return self.client.fetch_sheet_metadata(self.id, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 305, in fetch_sheet_metadata
+    r = self.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [503]: The service is currently unavailable.
+
+2024-06-05 23:01:52 ERROR Error in save_dict_to_sheet: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 589, in send
+    resp = conn.urlopen(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 114, in request
+    response = self.session.request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/google/auth/transport/requests.py", line 541, in request
+    response = super(AuthorizedSession, self).request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 604, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+2024-06-06 03:22:55 ERROR Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 172, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/DeviceManager.py", line 172, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+IndexError: list index out of range
+
+2024-06-06 03:22:56 ERROR Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 57, in start_control
+    return control_method()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 560, in __test_loop
+    data, status = self.__3_phase_feed_control()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 539, in __3_phase_feed_control
+    if data["ph"] >= 7.02:
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-06 03:22:56 ERROR Error in control_task: cannot unpack non-iterable NoneType object
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/backup_server.py", line 29, in control_task
+    data, status = controller.start_control()
+TypeError: cannot unpack non-iterable NoneType object
+

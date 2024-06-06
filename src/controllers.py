@@ -508,7 +508,7 @@ class FermentationController(Controller):
 
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 5, 30, 5, 0, 0)  # 5:00 AM May 30, 2024
+        phase3_start_time = datetime(2024, 6, 5, 22, 0, 0)  # 10:00 PM Jun 6, 2024
 
         # Phase 1: Maintain pH using only base
         if not self.start_feed:
@@ -517,21 +517,26 @@ class FermentationController(Controller):
             if data["ph"] >= 7.02:
                 self.start_feed = True
                 update_control_constant(self.loop_id, self.control_name, "start_feed", "True")
+                self.__pH_balance(data["ph"], base_control=False, acid_control=False)
+
                 print("Transition to Phase 2")
 
         # Phase 2: Acid and base control, turn on feed pump
         if self.start_feed and current_datetime < phase3_start_time:
-            self.__pH_balance(data["ph"], base_control=True, acid_control=True)
-            self.pump_control(self.pumps["feed_pump"].control(True))
             self.pump_control(self.pumps["lactose_pump"].control(False))
+            if data["ph"] >= 7.02:
+                self.pump_control(self.pumps["feed_pump"].control(True))
+                print("Feed pump on")
+            else:
+                self.pump_control(self.pumps["feed_pump"].control(False))
+                print("Feed pump off")
             print("Phase 2: Feed pump on")
 
         # Phase 3: turn off acid and base control, turn off feed pump and start using lactose pump
         if self.start_feed and current_datetime >= phase3_start_time:
-            self.__pH_balance(data["ph"], base_control=False, acid_control=False)
             self.pump_control(self.pumps["feed_pump"].control(False))
             print("Transition to Phase 3: Feed pump off, lactose pump control")
-            if data["ph"] >= 7:
+            if data["ph"] >= 7.02:
                 self.pump_control(self.pumps["lactose_pump"].control(True))
                 print("Lactose pump on")
             else:
@@ -552,10 +557,9 @@ class FermentationController(Controller):
         return data, self.status
     
     def __test_loop(self):
-        data = self.get_data(self.test_data)
-        print(data)
-        self.update_status()
-        return data, self.status
+        data, status = self.__3_phase_feed_control()
+
+        return data, status
     
     def switch_feed_media(self):
         """

@@ -79,25 +79,35 @@ class DO(_Sensor):
         """
 
         super().__init__(port)
+        self.port = port
         self.callibration_func = lambda x: x
 
     def __call__(self, *args, **kwds) -> float:
         try:
-            return self.get_do()
+            # Attempt to get DO and handle disconnection transparently
+            do_value = self.get_do()
+            if do_value == -1:
+                self.reconnect()  # Attempt to reconnect if reading fails
+                do_value = self.get_do()  # Try to get DO again after reconnecting
+            return do_value
         except Exception as e:
-            print(f"Failed to get do: \n{e}")
-            logger.error(f"Error in __call__ for DO probe: {e}\n{traceback.format_exc()}")
+            print(f"Failed to get DO: \n{e}")
+            logger.error(f"Error in __call__ for DO probe:\n port: {self.port}, \n {e}\n{traceback.format_exc()}")
+            return -1
+    
 
     def get_do(self) -> float:
         """
-        Read DO from the sensor.
+        Read DO from the sensor, handling disconnections.
         """
-        try:
-            return round(self.__get_raw_do() - 5.233, 3)
-            # return round(self.callibration_func(self.__get_raw_do() - 4.098 + 0.96), 3)
-        except Exception as e:
-            print(f"Failed to get do: \n{e}")
-            logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
+        if self.client:
+            try:
+                return round(self.__get_raw_do() - 5.233, 3)  # Example adjustment factor
+            except Exception as e:
+                print(f"Failed to get DO: {e}")
+                logger.error(f"Error in get_do: {e}\n{traceback.format_exc()}")
+        return -1  # Return error value if disconnected or read fails
+    
     
     def callibrate(self, do) -> None:
         """
@@ -107,29 +117,34 @@ class DO(_Sensor):
         diff = 100 - do
 
         self.callibration_func = lambda x: x + diff
-    
+
     def __get_raw_do(self) -> float:
         """
-        Returns the raw DO value.
+        Returns the raw DO value, handle disconnections.
         """
+        if self.client:
+            response = self.client.read_holding_registers(address=2089, count=10, slave=1)
+            if response.isError():
+                raise ValueError("Error reading DO")
+            hex_value = hex(response.registers[3]) + hex(response.registers[2])[2:].zfill(4)
+            return self.convert_raw_value(hex_value)
+        raise ConnectionError("DO sensor is disconnected")
+            
 
-        try: # checks if probe is connected
-            data = None
-
-            # Read holding registers from the sensor
-            res = self.client.read_holding_registers(address=2089, count=10, slave=1)
-
-            # Combine the two registers to form a hex value
-            hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-
-            # Convert the hex value to a float value
-            data = self.convert_raw_value(str(hex_value))
-            return data 
+        
+    def reconnect(self):
+        """
+        Reattempt to connect to the sensor.
+        """
+        try:
+            if not self.client:
+                self.client = ModbusClient(method='rtu', port=self.port, baudrate=19200, stopbits=2, bytesize=8, parity='N')
+                if not self.client.connect():
+                    print(f"Failed to reconnect sensor on port {self.port}")
+                    self.client = None
         except Exception as e:
-            print(f"Failed to get raw do: \n{e}")
-            logger.error(f"Error in __get_raw_do: {e}\n{traceback.format_exc()}")
-            return -1
-    
+            print(f"Failed to reconnect DO probe: \n{e}")
+            logger.error(f"Error in reconnect DO: {e}\n{traceback.format_exc()}")
     def do_calibration(self, dur):
         """
         Calibrate the DO sensor by averaging measurements after a stabilization period.
@@ -174,27 +189,30 @@ class PH(_Sensor):
         super().__init__(port)
         self.port = port
         self.callibrate(4.068, 7.056)
-
-    def __call__(self, *args, **kwds) -> float:
+        
+    def __call__(self) -> tuple:
         try:
-            return (self.get_ph(), self.get_temp())
+            ph, temp = self.get_ph(), self.get_temp()
+            if ph == -1 or temp == -1:
+                self.reconnect()  # Attempt to reconnect if either value fails
+                ph, temp = self.get_ph(), self.get_temp()
+            return (ph, temp)
         except Exception as e:
             print(f"Failed to get ph and temp: \n{e}")
             logger.error(f"Error in __call__ for pH probe:\n port: {self.port}, \n {e}\n{traceback.format_exc()}")
             return (-1, -1)
-
-        
     def get_ph(self) -> float:
         """
-        Read data from the sensor.
+        Read pH from the sensor, handle disconnection.
         """
-        try:
-            # return round(self.__get_raw_ph(), 5)
-            return round(self.callibration_func(self.__get_raw_ph()), 3)
-        except Exception as e:
-            print(f"Failed to get ph: \n{e}")
-            logger.error(f"Error in get_ph: {e}\n{traceback.format_exc()}")
-            return -1
+        if self.client:
+            try:
+                return round(self.callibration_func(self.__get_raw_ph()), 3)
+            except Exception as e:
+                print(f"Failed to get ph: \n{e}")
+                logger.error(f"Error in get_ph: {e}\n{traceback.format_exc()}")
+        return -1  # Return error value if disconnected or read fails
+        
     
     def callibrate(self, setpoint4: int, setpoint7: int) -> None:
         """
@@ -209,23 +227,51 @@ class PH(_Sensor):
 
     def __get_raw_ph(self) -> float:
         """
-        Returns the raw pH value.
+        Read raw pH value from the sensor.
+        """
+        if self.client:
+            response = self.client.read_holding_registers(address=2089, count=10, slave=1)
+            if response.isError():
+                raise ValueError("Error reading pH")
+            hex_value = hex(response.registers[3]) + hex(response.registers[2])[2:].zfill(4)
+            return self.convert_raw_value(hex_value)
+        raise ConnectionError("PH sensor is disconnected")
+    
+    # def __get_raw_ph(self) -> float:
+    #     """
+    #     Returns the raw pH value.
+    #     """
+    #     try:
+    #         # Read holding registers from the sensor
+    #         res = self.client.read_holding_registers(address=2089, count=10, slave=1)
+
+    #         # Combine the two registers to form a hex value
+    #         hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
+
+    #         # Convert the hex value to a float value
+    #         data = self.convert_raw_value(str(hex_value))
+
+    #         return data
+    #     except Exception as e:
+    #         print(f"Failed to get ph: \n{e}")
+    #         logger.error(f"Error in __get_raw_ph: {e}\n{traceback.format_exc()}")
+    #         return -1
+
+    def reconnect(self):
+        """
+        Reattempt to connect to the sensor.
         """
         try:
-            # Read holding registers from the sensor
-            res = self.client.read_holding_registers(address=2089, count=10, slave=1)
 
-            # Combine the two registers to form a hex value
-            hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-
-            # Convert the hex value to a float value
-            data = self.convert_raw_value(str(hex_value))
-
-            return data
+            if not self.client:
+                self.client = ModbusClient(method='rtu', port=self.port, baudrate=19200, stopbits=2, bytesize=8, parity='N')
+                if not self.client.connect():
+                    print(f"Failed to reconnect sensor on port {self.port}")
+                    self.client = None
         except Exception as e:
-            print(f"Failed to get ph: \n{e}")
-            logger.error(f"Error in __get_raw_ph: {e}\n{traceback.format_exc()}")
-            return -1
+            print(f"Failed to reconnect pH probe: \n{e}")
+            logger.error(f"Error in reconnect pH: {e}\n{traceback.format_exc()}")
+
     def ph_calibration_values(self, dur):
         """
         Calibrate the pH sensor at pH 4 and pH 7.

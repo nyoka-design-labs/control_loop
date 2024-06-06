@@ -9,7 +9,7 @@ curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
 
-from resources.utils import read_csv_file, get_loop_constant, get_control_constant
+from resources.utils import read_csv_file, get_loop_constant, get_control_constant, update_loop_constant
 import controllers as c
 from resources.logging_config import logger
 
@@ -93,6 +93,7 @@ async def control_task(controller, websocket):
         except asyncio.CancelledError:
             print("Control task was cancelled")
             status = controller.stop_control()
+            
             await send_status_update(websocket, status)
     except Exception as e:
         print(f"Error in control_task: {e}")
@@ -119,6 +120,7 @@ async def collection_task(controller, websocket, loop_id):
         except asyncio.CancelledError:
             print("Collection task was cancelled")
             status = controller.status
+            
             status.update({
                 "data_collection_status": "data_collection_off"
             })

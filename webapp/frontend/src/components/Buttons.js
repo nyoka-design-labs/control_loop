@@ -52,7 +52,7 @@ export const useDataCollectionButton = (startCommand, stopCommand, loopIdentifie
   const handleStartDataCollection = () => {
       if (!isDataCollectionRunning && websocket) {
           const command = JSON.stringify({ command: startCommand, loopID: loopIdentifier });
-          websocket.close();
+          
           websocket.send(command);
           console.log(`Sending: ${command}`);
           setIsDataCollectionRunning(true);
@@ -109,6 +109,7 @@ export const useStateToggleButton = (buttonLabelOn, buttonLabelOff, sendCommandO
   const toggleState = () => {
       const commandToSend = isRunning ? sendCommandOff : sendCommandOn;
       if (websocket) {
+          websocket.close();
           websocket.send(commandToSend);
           console.log(commandToSend);
           setIsRunning(!isRunning);

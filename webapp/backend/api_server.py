@@ -19,6 +19,7 @@ curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
 
+error = False
 async def handle_client(websocket, path):
     try:
         while True:
@@ -33,17 +34,25 @@ async def handle_client(websocket, path):
         print(f"Error in handling client")
         logger.error(f"WebSocket connection closed: {e.code} - {e.reason}")
         print(f"WebSocket connection closed: {e.code} - {e.reason}")
-
-        # if e.code == 1006:
-        await manager_server.stop_all("fermentation_loop")
-        await handle_server_error("fermentation_loop")
+        
+        error = eval(get_loop_constant(loop_id="server_consts", const="error"))
+        if error:
+            logger.error(f"Backup Server Starting")
+            await manager_server.stop_all("fermentation_loop")
+            await handle_server_error("fermentation_loop")
+        else:
+            update_loop_constant("server_consts", "error", "True")
+            
 
     except Exception as e:
         logger.error(f"Unexpected error in handle_client: {e}\n{traceback.format_exc()}")
         print(f"Unexpected error: {e}\n{traceback.format_exc()}")
-        if e.code != 1001:
+        error = eval(get_loop_constant(loop_id="server_consts", const="error"))
+        if error:
             await manager_server.stop_all("fermentation_loop")
             await handle_server_error("fermentation_loop")
+        else:
+            update_loop_constant("server_consts", "error", "True")
 
 async def process_command(websocket, data):
     try:
@@ -80,6 +89,7 @@ def start_backup_server(controller):
     try:
         print("Starting backup server due to critical failure.")
         backup_server.control("fermentation_loop", controller)
+        logger.error("Backup Server Started")
     except Exception as e:
         print(f"Failed to start backup server: {e}")
         logger.error(f"Failed to start backup server: {e}\n{traceback.format_exc()}")
@@ -101,7 +111,11 @@ async def main():
     await start_server()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt as e:
+        update_loop_constant("server_consts", "error", "False")
+        print("\n program terminated")
 
 
 # import asyncio
