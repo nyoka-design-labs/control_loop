@@ -4,21 +4,21 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB1",
+            "port": "/dev/ttyUSB2",
             "data_type": "feed_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB2",
+            "port": "/dev/ttyUSB3",
             "data_type": "lactose_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB3",
+            "port": "/dev/ttyUSB4",
             "data_type": "base_weight"
         },
         {
@@ -39,14 +39,14 @@
             "name": "ph_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "/dev/ttyUSB0",
+            "port": "/dev/ttyUSB1",
             "data_type": "ph"
         },
         {
             "name": "do_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "",
+            "port": "/dev/ttyUSB0",
             "data_type": "do"
         }
     ],
@@ -145,16 +145,19 @@
                         "base_pump": "blackPump2",
                         "acid_pump": "whitePump2"
                     },
-                    "csv_name": "test_sheet",
-                    "ph_balance_base_sp": 7,
-                    "ph_balance_acid_sp": 7,
-                    "feed_trigger_ph": 7.02,
-                    "ph_maintained_time": 0,
-                    "ph_window": 60,
-                    "start_feed": "False",
-                    "start_time": 0,
+                    "csv_name": "fermentation_3_phase_feed_control_loop_06-06-2024",
+                    "start_time": 1717709506.4258869,
                     "test_data_index": 0,
-                    "feed_media": "Glucose"
+                    "control_consts": {
+                        "ph_balance_base_sp": 7,
+                        "ph_balance_acid_sp": 7,
+                        "feed_trigger_ph": 7.02,
+                        "ph_maintained_time": 0,
+                        "ph_window": 75,
+                        "start_feed": "False",
+                        "feed_media": "Lactose",
+                        "test_data": "3_phase_control_test_data"
+                    }
                 },
                 {
                     "controller_id": "do_der_control",
@@ -207,12 +210,14 @@
                     "controller_id": "test_loop",
                     "notes": "for testing robustness",
                     "devices": [
+                        "do_sensor",
                         "ph_sensor",
                         "uss_scale",
                         "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
+                        "do",
                         "ph",
                         "temp",
                         "feed_weight",
@@ -226,25 +231,28 @@
                         "acid_pump": "whitePump2"
                     },
                     "csv_name": "test_sheet",
-                    "ph_balance_base_sp": 7,
-                    "ph_balance_acid_sp": 7,
-                    "no_base_window": 600,
-                    "start_feed": "True",
-                    "start_time": 1717643112.61671,
-                    "test_data_index": 1339,
-                    "feed_media": "Lactose"
+                    "start_time": 1717703470.4522102,
+                    "test_data_index": 8,
+                    "control_consts": {
+                        "ph_balance_base_sp": 7,
+                        "ph_balance_acid_sp": 7,
+                        "feed_trigger_ph": 7.02,
+                        "ph_maintained_time": 1717704211.1142964,
+                        "ph_window": 60,
+                        "start_feed": "True",
+                        "feed_media": "Lactose",
+                        "test_data": "3_phase_control_test_data"
+                    }
                 }
             ]
         },
         {
             "loop_id": "calibration_constants",
             "pH_probe": {
-                "4": 0,
-                "7": 0
+                "4": 4.053,
+                "7": 7.047
             },
-            "DO_probe": {
-                "setpoint": 0
-            }
+            "DO_probe": 103.93143653869629
         }
     ]
 }

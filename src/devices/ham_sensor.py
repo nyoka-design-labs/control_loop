@@ -82,6 +82,10 @@ class DO(_Sensor):
         self.port = port
         self.callibration_func = lambda x: x
 
+        DO_setpoint = get_loop_constant("calibration_constants", "DO_probe")
+        print(DO_setpoint)
+        self.callibrate(DO_setpoint)
+
     def __call__(self, *args, **kwds) -> float:
         try:
             # Attempt to get DO and handle disconnection transparently
@@ -102,7 +106,7 @@ class DO(_Sensor):
         """
         if self.client:
             try:
-                return round(self.__get_raw_do() - 5.233, 3)  # Example adjustment factor
+                return round(self.callibration_func(self.__get_raw_do()), 3)  # Example adjustment factor
             except Exception as e:
                 print(f"Failed to get DO: {e}")
                 logger.error(f"Error in get_do: {e}\n{traceback.format_exc()}")
@@ -115,7 +119,7 @@ class DO(_Sensor):
         """
 
         diff = 100 - do
-
+        print(diff)
         self.callibration_func = lambda x: x + diff
 
     def __get_raw_do(self) -> float:
@@ -173,8 +177,8 @@ class DO(_Sensor):
 
         # Calculate average DO and adjust calibration
         average_do = sum(measurements) / len(measurements)
-        self.callibrate(average_do)
         print(f"DO Calibration complete. Average measured DO: {average_do:.3f}")
+        update_loop_constant("calibration_constants", "DO_probe", average_do)
     
 class PH(_Sensor):
     """
@@ -188,7 +192,9 @@ class PH(_Sensor):
 
         super().__init__(port)
         self.port = port
-        self.callibrate(4.068, 7.056)
+        calibration_points = get_loop_constant("calibration_constants", "pH_probe")
+        print(calibration_points)
+        self.callibrate(calibration_points["4"], calibration_points["7"])
         
     def __call__(self) -> tuple:
         try:
@@ -221,7 +227,7 @@ class PH(_Sensor):
 
         b1 = (7 - 4) / (setpoint7 - setpoint4) # slope paramater
 
-        b0 = 4 - b1*setpoint4 + 0.131# intercept parameter
+        b0 = 4 - b1*setpoint4 + 0.008# intercept parameter
 
         self.callibration_func = lambda x: b0 + b1*x
 
@@ -304,22 +310,26 @@ class PH(_Sensor):
             calibration_points[point] = average_ph
             print(f"Calibration complete at pH {point}. Average measured pH: {average_ph:.3f}")
 
-        # Apply new calibration using the averages obtained
-        self.callibrate(calibration_points[4], calibration_points[7])
+        update_loop_constant("calibration_constants", "pH_probe", calibration_points)
+        
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    # ph = PH("/dev/ttyUSB1")
-    # ph.client.connect()
-    # do = DO("/dev/ttyUSB0")
-    # do.client.connect()
-    update_control_constant("calibration_constant", "pH_probe", f"4", 44)
-
-    # try:
-    #     while True:
-    #         print(f"do: {do.get_do()}  ph: {ph.get_ph()}")
-    #         time.sleep(3)
-    # except KeyboardInterrupt:
-    #     do.close()
-    #     ph.close()
-    #     print("\nProgram terminated")
+    ph = PH("/dev/ttyUSB1")
+    ph.client.connect()
+    do = DO("/dev/ttyUSB0")
+    do.client.connect()
+    # update_control_constant("calibration_constant", "pH_probe", f"4", 44)
+    
+    # ph.ph_calibration_values(10)
+    # input("Continue with DO calibration?")
+    # do.do_calibration(10)
+    # print(ph())
+    try:
+        while True:
+            print(f"do: {do()}  ph: {ph()}")
+            time.sleep(3)
+    except KeyboardInterrupt:
+        do.close()
+        ph.close()
+        print("\nProgram terminated")

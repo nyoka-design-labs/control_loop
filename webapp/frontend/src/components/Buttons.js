@@ -109,7 +109,7 @@ export const useStateToggleButton = (buttonLabelOn, buttonLabelOff, sendCommandO
   const toggleState = () => {
       const commandToSend = isRunning ? sendCommandOff : sendCommandOn;
       if (websocket) {
-          websocket.close();
+          
           websocket.send(commandToSend);
           console.log(commandToSend);
           setIsRunning(!isRunning);

@@ -167,8 +167,6 @@ class DeviceManager:
             devices_data.append("data")
             print(f"data from devices: {dict(zip(data_headers, devices_data))}")
 
-
-
         measurement = self.test_data[test_name][self.index]
         self.index += 1
         update_control_constant(self.loop_id, self.control_id, "test_data_index", self.index)
@@ -292,7 +290,7 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("fermentation_loop", "test_loop")
+    dm = DeviceManager("fermentation_loop", "3_phase_feed_control")
     while True:
         # print(dm.test_get_measurement("do_der_test_1"))
         print(dm.get_measurement())
