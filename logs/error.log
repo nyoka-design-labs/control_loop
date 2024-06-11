@@ -5322,3 +5322,709 @@ Traceback (most recent call last):
     raise self.connection_closed_exc()
 websockets.exceptions.ConnectionClosedError: no close frame received or sent
 
+2024-06-10 09:50:13 ERROR Error in get_data: list indices must be integers or slices, not str
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 169, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 170, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+
+2024-06-10 09:50:13 ERROR Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 61, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 572, in __3_phase_feed_control
+    self.__pH_balance(data["ph"], base_control=True, acid_control=False)
+                      ~~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-10 09:50:39 ERROR Error in get_data: list indices must be integers or slices, not str
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 169, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 170, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+
+2024-06-10 09:50:39 ERROR Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 61, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 572, in __3_phase_feed_control
+    self.__pH_balance(data["ph"], base_control=True, acid_control=False)
+                      ~~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-10 09:52:55 ERROR Error in get_data: list indices must be integers or slices, not str
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 169, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 170, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+
+2024-06-10 09:52:55 ERROR Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 61, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 266, in __concentration_loop
+    self.__buffer_control(data['buffer_weight'])
+                          ~~~~^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-10 11:07:41 ERROR Error in save_dict_to_sheet: <Response [200]>
+Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 185, in open
+    properties = finditem(
+                 ^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/utils.py", line 145, in finditem
+    return next(item for item in seq if func(item))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 190, in open
+    raise SpreadsheetNotFound(response) from ex
+gspread.exceptions.SpreadsheetNotFound: <Response [200]>
+
+2024-06-10 11:07:45 ERROR Error in save_dict_to_sheet: <Response [200]>
+Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 185, in open
+    properties = finditem(
+                 ^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/utils.py", line 145, in finditem
+    return next(item for item in seq if func(item))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 190, in open
+    raise SpreadsheetNotFound(response) from ex
+gspread.exceptions.SpreadsheetNotFound: <Response [200]>
+
+2024-06-10 11:07:49 ERROR Error in save_dict_to_sheet: <Response [200]>
+Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 185, in open
+    properties = finditem(
+                 ^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/utils.py", line 145, in finditem
+    return next(item for item in seq if func(item))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 190, in open
+    raise SpreadsheetNotFound(response) from ex
+gspread.exceptions.SpreadsheetNotFound: <Response [200]>
+
+2024-06-10 11:07:54 ERROR Error in save_dict_to_sheet: <Response [200]>
+Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 185, in open
+    properties = finditem(
+                 ^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/utils.py", line 145, in finditem
+    return next(item for item in seq if func(item))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 190, in open
+    raise SpreadsheetNotFound(response) from ex
+gspread.exceptions.SpreadsheetNotFound: <Response [200]>
+
+2024-06-10 11:09:33 ERROR Error in save_dict_to_sheet: <Response [200]>
+Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 185, in open
+    properties = finditem(
+                 ^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/utils.py", line 145, in finditem
+    return next(item for item in seq if func(item))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 190, in open
+    raise SpreadsheetNotFound(response) from ex
+gspread.exceptions.SpreadsheetNotFound: <Response [200]>
+
+2024-06-10 11:09:38 ERROR Error in save_dict_to_sheet: <Response [200]>
+Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 185, in open
+    properties = finditem(
+                 ^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/utils.py", line 145, in finditem
+    return next(item for item in seq if func(item))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/resources/google_api/sheets.py", line 103, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/gspread/client.py", line 190, in open
+    raise SpreadsheetNotFound(response) from ex
+gspread.exceptions.SpreadsheetNotFound: <Response [200]>
+
+2024-06-10 11:26:01 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:26:20 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:26:20 ERROR Backup Server Starting
+2024-06-10 11:26:20 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:27:01 ERROR Backup Server Started
+2024-06-10 11:27:53 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:28:13 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:28:13 ERROR Backup Server Starting
+2024-06-10 11:28:13 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:28:40 ERROR Backup Server Started
+2024-06-10 11:28:52 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:29:30 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:29:30 ERROR Backup Server Starting
+2024-06-10 11:29:30 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:30:10 ERROR Backup Server Started
+2024-06-10 11:33:43 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:33:43 ERROR Backup Server Starting
+2024-06-10 11:34:24 ERROR Backup Server Started
+2024-06-10 11:35:13 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:35:49 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ no close frame received or sent
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 128, in main
+    await start_server()
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 96, in start_server
+    await server.wait_closed()  # Run server until it is closed
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/server.py", line 814, in wait_closed
+    await asyncio.shield(self.closed_waiter)
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 1301, in close_connection
+    await self.transfer_data_task
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+            ^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+           ^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/streams.py", line 747, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/streams.py", line 540, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 934, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-06-10 11:36:19 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:37:29 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ no close frame received or sent
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 128, in main
+    await start_server()
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 96, in start_server
+    await server.wait_closed()  # Run server until it is closed
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/server.py", line 814, in wait_closed
+    await asyncio.shield(self.closed_waiter)
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 1301, in close_connection
+    await self.transfer_data_task
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+            ^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+           ^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/streams.py", line 747, in readexactly
+    await self._wait_for_data('readexactly')
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/streams.py", line 540, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 934, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-06-10 11:37:58 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:38:16 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:38:16 ERROR Backup Server Starting
+2024-06-10 11:38:16 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:39:34 ERROR Backup Server Started
+2024-06-10 11:41:10 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:41:24 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:41:30 ERROR Backup Server Starting
+2024-06-10 11:42:42 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:43:57 ERROR Backup Server Started
+2024-06-10 11:44:11 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:44:34 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:44:38 ERROR Backup Server Starting
+2024-06-10 11:44:48 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:47:53 ERROR Backup Server Started
+2024-06-10 11:49:09 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:50:05 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:50:05 ERROR Backup Server Starting
+2024-06-10 11:50:05 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:50:23 ERROR Backup Server Started
+2024-06-10 11:51:18 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:51:33 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:51:33 ERROR Backup Server Starting
+2024-06-10 11:51:34 ERROR Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_media': 'No feed_media provided', 'feed_pump_status': '0', 'lactose_pump_status': '4', 'base_pump_status': '2', 'acid_pump_status': '12'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 134, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-10 11:52:09 ERROR Backup Server Started
+2024-06-10 12:39:05 ERROR Unexpected error in handle_client: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 27, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.7_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/opt/homebrew/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+

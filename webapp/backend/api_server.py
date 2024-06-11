@@ -14,6 +14,7 @@ sys.path.append(SRC_DIR)
 
 from resources.logging_config import logger
 from resources.utils import *
+from resources.error_notification import send_notification
 
 curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
@@ -37,9 +38,15 @@ async def handle_client(websocket, path):
         
         error = eval(get_loop_constant(loop_id="server_consts", const="error"))
         if error:
-            logger.error(f"Backup Server Starting")
-            await manager_server.stop_all("fermentation_loop")
-            await handle_server_error("fermentation_loop")
+            try:
+                logger.error(f"Backup Server Starting")
+                send_notification(f"WebSocket connection closed: {e.code}\nAttempting to start backup server.")
+                await manager_server.stop_all("fermentation_loop")
+                await handle_server_error("fermentation_loop")
+            except Exception as e:
+                send_notification(f"Unexpected error in trying to run backup protocol from handle_client: {e}\n{traceback.format_exc()}")
+                logger.error(f"Unexpected error in trying to run backup protocol from handle_client: {e}\n{traceback.format_exc()}")
+                print(f"Unexpected error: {e}\n{traceback.format_exc()}")
         else:
             update_loop_constant("server_consts", "error", "True")
             
@@ -49,8 +56,14 @@ async def handle_client(websocket, path):
         print(f"Unexpected error: {e}\n{traceback.format_exc()}")
         error = eval(get_loop_constant(loop_id="server_consts", const="error"))
         if error:
-            await manager_server.stop_all("fermentation_loop")
-            await handle_server_error("fermentation_loop")
+            try:
+                logger.error(f"Backup Server Starting")
+                send_notification(f"WebSocket connection closed: {e.code}\nAttempting to start backup server.")
+                await handle_server_error("fermentation_loop")
+            except Exception as e:
+                send_notification(f"Unexpected error in trying to run backup protocol from handle_client: {e}\n{traceback.format_exc()}")
+                logger.error(f"Unexpected error in trying to run backup protocol from handle_client: {e}\n{traceback.format_exc()}")
+                print(f"Unexpected error: {e}\n{traceback.format_exc()}")
         else:
             update_loop_constant("server_consts", "error", "True")
 
@@ -68,6 +81,7 @@ async def process_command(websocket, data):
     except Exception as e:
         print(f"Failed to process command : \n input: {data.get('command')}  {data.get('loopID')}, \n{e}\n{traceback.format_exc()}")
         logger.error(f"Error in process_command: \n input: {data.get('command')}  {data.get('loopID')}, \n{e}\n{traceback.format_exc()}")
+        send_notification(f"Error in process_command: \n input: {data.get('command')}  {data.get('loopID')}, \n{e}")
         
 async def start_server():
     try:
@@ -82,6 +96,7 @@ async def start_server():
     except Exception as e:
         print(f"Failed to start server: {e}\n{traceback.format_exc()}")
         logger.error(f"Error in start_server: {e}\n{traceback.format_exc()}")
+        send_notification(f"Error in start_server: {e}\n{traceback.format_exc()}")
         # await manager_server.stop_all("fermentation_loop")
         # await handle_server_error("fermentation_loop")
 
@@ -93,6 +108,7 @@ def start_backup_server(controller):
     except Exception as e:
         print(f"Failed to start backup server: {e}")
         logger.error(f"Failed to start backup server: {e}\n{traceback.format_exc()}")
+        
 async def handle_server_error(loop_id):
     try:
         # Attempt to safely stop all and retrieve the controller

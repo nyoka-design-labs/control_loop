@@ -4,21 +4,21 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB2",
+            "port": "",
             "data_type": "feed_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB3",
+            "port": "",
             "data_type": "lactose_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB4",
+            "port": "",
             "data_type": "base_weight"
         },
         {
@@ -39,14 +39,14 @@
             "name": "ph_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "/dev/ttyUSB1",
+            "port": "",
             "data_type": "ph"
         },
         {
             "name": "do_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "/dev/ttyUSB0",
+            "port": "",
             "data_type": "do"
         }
     ],
@@ -54,10 +54,10 @@
         {
             "loop_id": "server_consts",
             "interval": 15,
-            "testing": "False",
+            "testing": "True",
             "load_data": "False",
-            "devices_connected": "True",
-            "pumps_connected": "True",
+            "devices_connected": "False",
+            "pumps_connected": "False",
             "error": "False"
         },
         {
@@ -79,15 +79,21 @@
                         "buffer_pump": "whitePump1",
                         "lysate_pump": "whitePump2"
                     },
-                    "csv_name": "concentration_05-28-2024",
-                    "buffer_sp": 1200,
-                    "lysate_sp": 250
+                    "control_consts": {
+                        "buffer_sp": 1200,
+                        "lysate_upper_sp": 300,
+                        "lysate_lower_sp": 250,
+                        "start_time": 0,
+                        "test_data_index": 4,
+                        "csv_name": "concentration_05-28-2024",
+                        "test_data": "concentration_test_data_1"
+                    }
                 }
             ]
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "3_phase_feed_control",
+            "chosen_control": "test_loop",
             "controllers": [
                 {
                     "controller_id": "feed_control",
@@ -145,18 +151,18 @@
                         "base_pump": "blackPump2",
                         "acid_pump": "whitePump2"
                     },
-                    "csv_name": "fermentation_3_phase_feed_control_loop_06-06-2024",
-                    "start_time": 1717709506.4258869,
+                    "start_time": 0,
                     "test_data_index": 0,
                     "control_consts": {
                         "ph_balance_base_sp": 7,
                         "ph_balance_acid_sp": 7,
                         "feed_trigger_ph": 7.02,
                         "ph_maintained_time": 0,
-                        "ph_window": 75,
+                        "ph_window": 45,
                         "start_feed": "False",
                         "feed_media": "Lactose",
-                        "test_data": "3_phase_control_test_data"
+                        "test_data": "3_phase_control_test_data",
+                        "csv_name": "fermentation_3_phase_feed_control_loop_06-11-2024"
                     }
                 },
                 {
@@ -230,18 +236,18 @@
                         "base_pump": "blackPump2",
                         "acid_pump": "whitePump2"
                     },
-                    "csv_name": "test_sheet",
-                    "start_time": 1717703470.4522102,
-                    "test_data_index": 8,
+                    "start_time": 1718049922.502458,
+                    "test_data_index": 38,
                     "control_consts": {
                         "ph_balance_base_sp": 7,
                         "ph_balance_acid_sp": 7,
                         "feed_trigger_ph": 7.02,
-                        "ph_maintained_time": 1717704211.1142964,
-                        "ph_window": 60,
+                        "ph_maintained_time": 1718049939.253382,
+                        "ph_window": 5,
                         "start_feed": "True",
                         "feed_media": "Lactose",
-                        "test_data": "3_phase_control_test_data"
+                        "test_data": "3_phase_control_test_data",
+                        "csv_name": "test_sheet"
                     }
                 }
             ]

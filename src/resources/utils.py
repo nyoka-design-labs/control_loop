@@ -5,7 +5,7 @@ import serial.tools.list_ports
 import usb.core
 import json
 import numpy as np
-
+import inspect
 #################################################### Port Funcs ####################################################
 def find_usb_serial_port(vendor_id: hex, product_id: hex):
     ports = serial.tools.list_ports.comports()
@@ -212,8 +212,16 @@ def update_loop_constant(loop_id, constant_name, new_value):
             with open(json_file_path, 'w') as file:
                 json.dump(data, file, indent=4)
             return
-        
 
+def called_from():
+    stack = inspect.stack()
+    # The first element on the stack is this function, the second is the caller
+    caller = stack[1]
+    caller_frame = caller[0]
+    info = inspect.getframeinfo(caller_frame)
+    
+    # Print caller's details
+    print(f"Called from {info.filename} at line {info.lineno} in function {info.function}")
 
                 
 if __name__ == "__main__":

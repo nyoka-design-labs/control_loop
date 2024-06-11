@@ -3,12 +3,14 @@ import serial
 from devices.pump import Pump
 from DeviceManager import DeviceManager
 import time
-from resources.utils import calculate_derivative, isDerPositive, get_loop_constant, get_control_constant, update_control_constant
+from resources.utils import calculate_derivative, isDerPositive, get_loop_constant, get_control_constant, called_from
 from resources.google_api.sheets import save_dict_to_sheet
 from datetime import datetime, timedelta
 import traceback
 import json
 import os
+import inspect
+
 #CONSTANTS
 port = '/dev/ttyACM0'
 curr_dir = os.path.dirname(__file__)
@@ -16,6 +18,7 @@ json_file_path = os.path.join(curr_dir, "resources","constants.json")
 baudrate = 9600
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 pumps = eval(get_loop_constant(loop_id="server_consts", const="pumps_connected"))
+
 def create_controller(loop_id, control_id, testing: bool=False):
     
     dm = DeviceManager(loop_id, control_id, testing)
@@ -76,22 +79,15 @@ class Controller:
                 return self.status
             else:
                 data = self.get_data(test_data=self.control_consts["test_data"])
-                # # take out type field before adding to csv
-                # status = self.status.copy()
-                # status.pop("type", None)  # Remove the "type" key if it exists in the status data
-                # combined_data = data.copy()  # Create a copy of the original data
-                # combined_data.pop("type", None)
-                # combined_data.update(status)
-
-                # save_dict_to_sheet(combined_data, self.csv_name)
                 self.save_data_sheets(data)
-                
                 return self.status, data
         except Exception as e:
             print(f"failed to start_collection: \n control_status: {control_status} \n{e}")
             logger.error(f"Error in start_collection: \n control_status: {control_status}, \n{e}\n{traceback.format_exc()}")
         
     def stop_control(self, data_col_is_on: bool = True):
+        print("stopping pumps")
+        
         try:
             for pump in self.pumps.values():
                 self.pump_control(pump.control(False))
@@ -192,7 +188,7 @@ class Controller:
             combined_data = data.copy()  # Create a copy of the original data
             combined_data.pop("type", None)
             combined_data.update(status)
-            save_dict_to_sheet(combined_data, self.csv_name)
+            save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
             print("added data to sheets")
         except Exception as e:
             print(f"failed to add data to sheets: {data}, \n{e}")
@@ -257,10 +253,13 @@ class ConcentrationController(Controller):
 
         self.device_manager = dm
         self.loop_id = "concentration_loop"
-        self.test_data = "concentration_test_data_1"
-
         self.control_name = get_loop_constant(self.loop_id, "chosen_control")
-        self.csv_name = get_control_constant(self.loop_id, self.control_name, "csv_name")
+
+        self.initial_buffer_mass = None
+        self.initial_lysate_mass = None
+
+        self.control_consts = {}
+        self.load_control_constants()
 
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
@@ -269,20 +268,14 @@ class ConcentrationController(Controller):
         self.stop_control(data_col_is_on=False)
         
     def __concentration_loop(self):
-        data = self.get_data(test_data="concentration_test_data_1")
+        data = self.get_data(test_data=self.control_consts["test_data"])
 
         self.__buffer_control(data['buffer_weight'])
         self.__lysate_control(data['lysate_weight'])
 
         self.update_status()   
    
-        # take out type field before adding to csv
-        status = self.status.copy()
-        status.pop("type", None)  # Remove the "type" key if it exists in the status data
-        combined_data = data.copy()  # Create a copy of the original data
-        combined_data.update(status)
-
-        save_dict_to_sheet(combined_data, self.csv_name)
+        self.save_data_sheets(data)
 
         return data, self.status
 
@@ -290,7 +283,11 @@ class ConcentrationController(Controller):
         '''
         Turns on pump if LESS than set point. Re-fills reservoir.
         '''
-        buffer_sp = get_control_constant(self.loop_id, self.control_name, "buffer_sp")
+        if self.initial_buffer_mass == None:
+            self.initial_buffer_mass = weight
+            self.update_controller_consts("buffer_sp", weight)
+
+        buffer_sp = self.control_consts["buffer_sp"]
         if (weight < buffer_sp):
             self.pump_control(self.pumps["buffer_pump"].control(True))
         else:
@@ -300,10 +297,16 @@ class ConcentrationController(Controller):
         '''
         Turns on pump if GREATER than set point. Empties reservoir.
         '''
-        lysate_sp = get_control_constant(self.loop_id, self.control_name, "lysate_sp")
-        if (weight > lysate_sp):
+        if self.initial_lysate_mass == None:
+            self.initial_lysate_mass = weight
+            self.update_controller_consts("lysate_upper_sp", weight)
+            self.update_controller_consts("lysate_lower_sp", weight - 50)
+
+        lysate_upper_sp = self.control_consts["lysate_upper_sp"]
+        lysate_lower_sp = self.control_consts["lysate_lower_sp"]
+        if (weight > lysate_upper_sp):
             self.pump_control(self.pumps["lysate_pump"].control(True))
-        else:
+        elif (weight < lysate_lower_sp):
             self.pump_control(self.pumps["lysate_pump"].control(False))
 
 class FermentationController(Controller):
@@ -316,26 +319,12 @@ class FermentationController(Controller):
 
         self.device_manager = dm
         self.loop_id = "fermentation_loop"
-        self.control_name = get_loop_constant(self.loop_id, "chosen_control")
 
-        self.test_data = "3_phase_control_test_data"
+        self.control_name = get_loop_constant(self.loop_id, "chosen_control")
 
         self.control_consts = {}
         self.load_control_constants()
-        self.csv_name = get_control_constant(self.loop_id, self.control_name, "csv_name")
         
-        # self.start_feed = eval(get_control_constant(self.loop_id, self.control_name, "start_feed"))
-        # self.start_feed_2 = False
-        # self.first_time = True
-        # self.refill = False
-        # self.switch_feeds = False
-        # self.refill_increment = 0
-        # self.rpm_volts = 0.06
-        # self.increment_counter = 0
-        # self.last_base_addition = None
-        # self.ready_to_start_feed = False
-        # self.phase2_start_time = None
-
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
 
@@ -617,14 +606,7 @@ class FermentationController(Controller):
 
         self.update_status()
 
-        status = self.status.copy()
-        status.pop("type", None)  # Remove the "type" key if it exists in the status data
-        combined_data = data.copy()  # Create a copy of the original data
-        combined_data.update(status)
-        try:
-            save_dict_to_sheet(combined_data, self.csv_name)
-        except Exception as e:
-            print(f"error in save_dict_to_sheet: {e}")
+        self.save_data_sheets(data)
 
         return data, self.status
     
@@ -685,10 +667,13 @@ class FermentationController(Controller):
         self.update_status()
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop", "3_phase_feed_control", testing)
+    d = DeviceManager("fermentation_loop", "test_loop", testing)
     c = FermentationController(d)
+    # c = ConcentrationController(d)
     
-
+    while True:
+        c.start_control()
+        time.sleep(3)
 
 
     # d = DeviceManager("concentration_loop", "concentration_loop", testing)

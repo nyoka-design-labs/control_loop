@@ -27,16 +27,6 @@ void setup() {
     pinMode(whitePump3Pin, OUTPUT);
     dac.begin(0x60);
 
-    // set all pump pins to low
-//    digitalWrite(blackPump1Pin, LOW);
-//    digitalWrite(blackPump2Pin, LOW);
-//    digitalWrite(blackPump3Pin, LOW);
-//    digitalWrite(blackPump4Pin, LOW);
-//    digitalWrite(blackPump5Pin, LOW);
-//    digitalWrite(whitePump1Pin, LOW);
-//    digitalWrite(whitePump2Pin, LOW);
-//    digitalWrite(whitePump3Pin, LOW);
-
     // switch the units on dymo from lb to grams
     digitalWrite(dymoRelayPin, HIGH);
     delay(RELAY_DELAY);

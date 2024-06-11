@@ -33,10 +33,11 @@ class DeviceManager:
         self.loop_id = loop_id
         self.control_id = control_id
         self.data_types = self.__init_data_types()
-        self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
+        self.constrol_consts = get_control_constant(self.loop_id, self.control_id, "control_consts")
         
-        self.index = get_control_constant(self.loop_id, self.control_id, "test_data_index")
-        self.start_time = get_control_constant(loop_id, control_id, const="start_time")
+        self.index =  get_control_constant(self.loop_id, self.control_id, "test_data_index")
+        self.start_time =  get_control_constant(self.loop_id, self.control_id, "start_time")
+        self.csv_name = self.constrol_consts["csv_name"]
         
         names = self.__get_loop_devices()
         dev2port = []
@@ -168,6 +169,17 @@ class DeviceManager:
             print(f"data from devices: {dict(zip(data_headers, devices_data))}")
 
         measurement = self.test_data[test_name][self.index]
+        # elapsed time
+        if self.start_time <= 0:
+            self.start_time = time.time()
+            update_control_constant(self.loop_id, self.control_id, "start_time", self.start_time)
+
+            elapsed_time = 0
+        else:
+            elapsed_time = (time.time() - self.start_time) / 3600
+
+        measurement["time"] = elapsed_time
+        measurement["start_time"] = self.start_time
         self.index += 1
         update_control_constant(self.loop_id, self.control_id, "test_data_index", self.index)
         # Add the current time of day and date to the measurement
