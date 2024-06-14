@@ -127,10 +127,6 @@ class DeviceManager:
 
         if save_data:
             add_to_csv(devices_data, f"{self.csv_name}.csv", data_headers)
-            # try:
-            #     save_to_sheet(devices_data, data_headers, self.csv_name) ## WILL BE USED HERE
-            # except Exception as e:
-            #     print("data did not save to sheets")
 
         return dict(zip(data_headers, devices_data))
     
@@ -179,7 +175,6 @@ class DeviceManager:
             elapsed_time = (time.time() - self.start_time) / 3600
 
         measurement["time"] = elapsed_time
-        measurement["start_time"] = self.start_time
         self.index += 1
         update_control_constant(self.loop_id, self.control_id, "test_data_index", self.index)
         # Add the current time of day and date to the measurement
@@ -302,7 +297,8 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    dm = DeviceManager("fermentation_loop", "3_phase_feed_control")
+    # dm = DeviceManager("fermentation_loop", "3_phase_feed_control")
+    dm = DeviceManager("concentration_loop", "concentration_buffer_loop")
     while True:
         # print(dm.test_get_measurement("do_der_test_1"))
         print(dm.get_measurement())

@@ -179,12 +179,17 @@ class Controller:
         except Exception as e:
             print(f"failed to get data: {e}")
             logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
-        
+    def __convert_even_odd(self, value):
+            if isinstance(value, str) and value.isdigit():
+                num = int(value)
+                return "OFF" if num % 2 == 0 else "ON"
+            return value
     def save_data_sheets(self, data):
         try:
             status = self.status.copy()
             status.pop("type", None)  # Remove the "type" key if it exists in the status data
             status.pop("data_collection_status", None)
+            status = {k: self.__convert_even_odd(v) for k, v in status.items()}
             combined_data = data.copy()  # Create a copy of the original data
             combined_data.pop("type", None)
             combined_data.update(status)
@@ -210,7 +215,7 @@ class Controller:
 
     def update_controller_consts(self, key, value):
         """
-        Update a specific control constant in the JSON file.
+        Update a specific control constant in the control_const dict in the JSON file.
 
         Args:
             loop_id (str): The identifier for the loop.
@@ -218,7 +223,6 @@ class Controller:
             key (str): The key of the constant to update.
             value: The new value to set for the constant.
         """
-        
 
         # Load the existing data from the JSON file
         with open(json_file_path, "r") as file:
@@ -278,13 +282,23 @@ class ConcentrationController(Controller):
         self.save_data_sheets(data)
 
         return data, self.status
+    
+    def __concentration_buffer_loop(self):
+        data = self.get_data(test_data=self.control_consts["test_data"])
 
+        self.__buffer_control(data['buffer_weight'])
+
+        self.update_status()   
+   
+        self.save_data_sheets(data)
+
+        return data, self.status
+    
     def __buffer_control(self, weight: float):
         '''
         Turns on pump if LESS than set point. Re-fills reservoir.
         '''
-        if self.initial_buffer_mass == None:
-            self.initial_buffer_mass = weight
+        if self.control_consts["buffer_sp"] == 0:
             self.update_controller_consts("buffer_sp", weight)
 
         buffer_sp = self.control_consts["buffer_sp"]
@@ -297,11 +311,7 @@ class ConcentrationController(Controller):
         '''
         Turns on pump if GREATER than set point. Empties reservoir.
         '''
-        if self.initial_lysate_mass == None:
-            self.initial_lysate_mass = weight
-            self.update_controller_consts("lysate_upper_sp", weight)
-            self.update_controller_consts("lysate_lower_sp", weight - 50)
-
+        
         lysate_upper_sp = self.control_consts["lysate_upper_sp"]
         lysate_lower_sp = self.control_consts["lysate_lower_sp"]
         if (weight > lysate_upper_sp):
@@ -324,7 +334,6 @@ class FermentationController(Controller):
 
         self.control_consts = {}
         self.load_control_constants()
-        
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
 
@@ -332,229 +341,13 @@ class FermentationController(Controller):
         self.stop_control(data_col_is_on=False)
 
 
-    def __ph_mixed_feed_control(self):
-        '''
-        control_id = ph_mixed_feed_control
-        '''
-        data = self.get_data()
-        refill_mass = get_control_constant(self.loop_id, self.control_name, "refill_mass")
-        feed_ph_sp = get_control_constant(self.loop_id, self.control_name, "feed_ph_sp")
-        refill_count = get_control_constant(self.loop_id, self.control_name, "refill_count")
-
-        # gets the intial weight of the feed
-        if self.first_time:
-            self.feedweightinitial = data["feed_weight"]
-            print(self.feedweightinitial)
-            self.first_time = False
-
-        if not self.start_feed:
-            if data["ph"] >= 7:
-                self.pump_control(self.base_pump.control(False))
-                self.start_feed = True
-            else:
-                self.pump_control(self.base_pump.control(True))
-
-        if self.start_feed:
-            if data['ph'] >= feed_ph_sp:
-                self.pump_control(self.feed_pump.control(True)) # turn on the pump
-
-            elif data['ph'] < feed_ph_sp:
-                self.pump_control(self.feed_pump.control(False)) # turn on the pump
-            
-            if not self.refill and self.has_refilled:
-                if self.feedweightinitial - data["feed_weight"] >= refill_mass:
-                    self.refill = True
-
-            if self.refill:
-                if self.increment_counter < refill_count: # interval size of 15s
-                    self.pump_control(self.lactose_pump.control(True))
-                    self.increment_counter += 1
-                else:
-                    self.pump_control(self.lactose_pump.control(False))
-                    self.increment_counter = 0
-                    self.feedweightinitial = data["feed_weight"]
-
-        self.update_status()
-
-        return self.status
-    
-    def __do_der_control(self):
-        '''
-        control_id = do_der_control
-        '''
-        # gets the intial weight of the feed
-        data = self.get_data()
-        if self.first_time:
-            self.feedweightinitial = data["feed_weight"]
-            print(self.feedweightinitial)
-            self.first_time = False
-
-        self.__pH_balance(data["ph"], self.control_name)
-
-        if not hasattr(self, 'derivs'):
-            self.derivs = []
-                
-        if not self.start_feed:
-            deriv_window = get_control_constant(self.loop_id, control_id=self.control_name, const="deriv_window")
-            self.increment_counter += 1
-            if self.increment_counter < deriv_window:
-                print("not enough points", self.increment_counter)
-                pass
-            else:
-                self.derivs.append(calculate_derivative("do", self.loop_id, deriv_window)) 
-                print(self.derivs)
-                self.increment_counter = 0
-
-            if isDerPositive(self.derivs):
-                    print("the last 5 derivatives were positive feed started",isDerPositive(self.derivs))
-                    self.feedweightinitial = data["feed_weight"]
-                    self.start_feed = True
-            
-        if self.start_feed:
-
-            # self.pump_control(self.feed_pump.control(True))
-
-            refill_mass = get_control_constant(self.loop_id, self.control_name, "refill_mass")
-
-            if not self.switch_feeds:
-                if self.feedweightinitial - data["feed_weight"] >= refill_mass:
-                    self.switch_feeds = True
-
-            if self.switch_feeds:
-                self.pump_control(self.feed_pump.control(False))
-                self.pump_control(self.lactose_pump.control(True))
-            else:
-                self.pump_control(self.feed_pump.control(True))
-
-        else:
-            self.pump_control(self.feed_pump.control(False))
-        
-        self.update_status()
-
-        return self.status
-    
-    def __new_control(self):
-        data = self.device_manager.get_measurement()
-
-        if self.first_time:
-            self.pump_control(f"9 {round(self.rpm_volts, 2)}")
-            self.pump_control(self.feed_pump.control(False))
-            self.first_time = False
-
-        # if data['do'] < 50:
-        # # if True:
-        #     self.start_feed = True
-        
-        # if self.start_feed:
-        if True:
-            if True: # change later
-                self.start_feed_2 = True
-            
-            if self.start_feed_2:
-                print("went into main loop")
-                self.pump_control(self.feed_pump.control(True))
-                time.sleep(1)
-                if self.increment_counter == 10:
-                    if data['do'] >= 20:
-                        print("incremented rpm")
-                        self.rpm_volts += 0.01
-                        
-                    else:
-                        print("decremented rpm")
-                        self.rpm_volts -= 0.01
-
-                    self.pump_control(f"9 {round(self.rpm_volts, 2)}")
-                    self.increment_counter = 0
-                
-                self.increment_counter += 1
-
-        self.__pH_balance(data['ph'])
-        self.update_status()
-         
-        return self.status
-
-    def __do_feed_control(self):
-        """
-        DO only control loop for the controller. Loops indefinitely.
-        """
-        data = self.device_manager.get_measurement()
-        # if data['do'] > 70:
-        print(f"increment counter:{self.increment_counter}")
-
-        if self.increment_counter == 4:
-            print("4th increment")
-           
-            if (data["do"] >= 20):
-                    self.pump_control(self.feed_pump.control(True)) # turn on the pump
-
-            elif (data["do"] < 20):
-                    self.pump_control(self.feed_pump.control(False)) # turn off the pump
-            self.increment_counter = 0
-        self.increment_counter += 1
-        
-        self.__pH_balance(data['ph']) # balances the pH
-
-        self.update_status()
-
-        return self.status
-
-    def __feed_control(self):
-        data = self.get_data(self.control_consts["test_data"])
-        self.__pH_balance(data["ph"])
-        
-        current_time = time.time()  # Get the current time
-
-        if not self.start_feed:
-            if not self.ready_to_start_feed:
-                no_base_window = get_control_constant(self.loop_id, self.control_name, "no_base_window")
-
-                if self.status["base_pump_status"] == str(self.pumps["base_pump"].return_on_off_states(True)):
-                    print(f"updated last base addition time {current_time}")
-                    self.last_base_addition = current_time  # Update the last base addition time
-
-                if self.last_base_addition and (current_time - self.last_base_addition) >= no_base_window:
-                    # 10 minutes (600 seconds) have passed since the last base addition
-                    print(f"ready to feed set to true {(current_time - self.last_base_addition)}")
-                    self.ready_to_start_feed = True
-
-            if self.ready_to_start_feed and self.status["base_pump_status"] == str(self.pumps["base_pump"].return_on_off_states(True)):
-                # Feed starts when base is added for the first time after the 10-minute period
-                print("start feed set to true")
-                self.start_feed = True
-
-        switch_feed = True if get_control_constant(self.loop_id, self.control_name, "feed_media") == "Lactose" else False
-
-        if self.start_feed:
-            if not switch_feed: 
-                self.pump_control(self.pumps["feed_pump"].control(True))
-                self.pump_control(self.pumps["lactose_pump"].control(False))
-            else:
-                self.pump_control(self.pumps["lactose_pump"].control(True))
-                self.pump_control(self.pumps["feed_pump"].control(False))
-        else:
-            self.pump_control(self.pumps["lactose_pump"].control(False))
-            self.pump_control(self.pumps["feed_pump"].control(False))
-
-        self.update_status()
-
-        
-        # take out type field before adding to csv
-        status = self.status.copy()
-        status.pop("type", None)  # Remove the "type" key if it exists in the status data
-        combined_data = data.copy()  # Create a copy of the original data
-        combined_data.update(status)
-
-        save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
-
-        return data, self.status
-
     def __3_phase_feed_control(self):
 
         data = self.get_data(self.control_consts["test_data"])
 
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 6, 6, 22, 0, 0)  # 10:00 PM Jun 6, 2024
+        phase3_start_time = datetime(2024, 6, 13, 20, 30, 0)  # 8:30 PM Jun 13, 2024
 
         start_feed = eval(self.control_consts["start_feed"])
 
@@ -563,6 +356,73 @@ class FermentationController(Controller):
         ph_maintained_time = self.control_consts.get("ph_maintained_time", 0)
         ph_window = self.control_consts["ph_window"]
         feed_trigger_ph = self.control_consts["feed_trigger_ph"]
+
+        # Phase 1: Maintain pH using only base
+        if not start_feed:
+            self.__pH_balance(data["ph"], base_control=True, acid_control=False)
+            print("in phase 1")
+            if data["ph"] >= feed_trigger_ph:
+                if ph_maintained_time == 0:
+                    # Start timing when pH first reaches feed_trigger_ph
+                    ph_maintained_time = current_time
+                    self.update_controller_consts("ph_maintained_time", ph_maintained_time)
+                elif current_time - ph_maintained_time >= ph_window:  # Check if pH has been maintained
+                    start_feed = True
+                    self.update_controller_consts("start_feed", "True")
+                    print("Transitioning to Phase 2")
+            else:
+                # Reset the timer if pH drops below feed_trigger_ph
+                if ph_maintained_time != 0:
+                    self.update_controller_consts("ph_maintained_time", 0)
+
+        # Phase 2: Acid and base control OFF, turn on feed pump
+        if start_feed and current_datetime < phase3_start_time:
+            print("Phase 2: Glucose Feed")
+            self.__pH_balance(base_control=True, acid_control=False)
+            self.pump_control(self.pumps["lactose_pump"].control(False))
+            if data["ph"] >= feed_trigger_ph:
+                self.pump_control(self.pumps["feed_pump"].control(True))
+                print("Feed pump on")
+            else:
+                self.pump_control(self.pumps["feed_pump"].control(False))
+                print("Feed pump off")
+
+        # Phase 3: turn off acid and base control, turn off feed pump and start using lactose pump
+        if start_feed and current_datetime >= phase3_start_time:
+            print("Phase 3: Lactose Feed")
+            #self.__pH_balance(ph= data["ph"], base_control=True, acid_control=False, )
+            self.pump_control(self.pumps["feed_pump"].control(False))
+            print("Transition to Phase 3: Feed pump off, lactose pump control")
+            if data["ph"] >= feed_trigger_ph:
+                self.pump_control(self.pumps["lactose_pump"].control(True))
+                print("Lactose pump on")
+            else:
+                self.pump_control(self.pumps["lactose_pump"].control(False))
+                print("Lactose pump off")
+
+        self.update_status()
+
+        self.save_data_sheets(data)
+
+        return data, self.status
+    
+    def __3_phase_do_feed_control(self):
+
+        data = self.get_data(self.control_consts["test_data"])
+
+        current_time = time.time()
+        current_datetime = datetime.fromtimestamp(current_time)
+        phase3_start_time = datetime(2024, 6, 13, 20, 0, 0)  # 8:00 PM Jun 11, 2024
+
+        start_feed = eval(self.control_consts["start_feed"])
+
+        # Phase 1: Maintain pH using only base
+        
+        ph_maintained_time = self.control_consts.get("ph_maintained_time", 0)
+        ph_window = self.control_consts["ph_window"]
+        feed_trigger_ph = self.control_consts["feed_trigger_ph"]
+        do_upper_sp = self.control_consts["do_upper_sp"]
+        do_lower_sp = self.control_consts["do_lower_sp"]
 
         # Phase 1: Maintain pH using only base
         if not start_feed:
@@ -584,23 +444,29 @@ class FermentationController(Controller):
 
         # Phase 2: Acid and base control OFF, turn on feed pump
         if start_feed and current_datetime < phase3_start_time:
+            print("Phase 2: Glucose Feed")
+            self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             self.pump_control(self.pumps["lactose_pump"].control(False))
-            if data["ph"] >= feed_trigger_ph:
+            self.pump_control(self.pumps["lactose_const_pump"].control(False))
+            self.pump_control(self.pumps["feed_const_pump"].control(True))
+            if data["do"] >= do_upper_sp:
                 self.pump_control(self.pumps["feed_pump"].control(True))
                 print("Feed pump on")
-            else:
+            elif data["do"] <= do_lower_sp:
                 self.pump_control(self.pumps["feed_pump"].control(False))
                 print("Feed pump off")
-            print("Phase 2: Feed pump on")
 
         # Phase 3: turn off acid and base control, turn off feed pump and start using lactose pump
         if start_feed and current_datetime >= phase3_start_time:
+            print("Phase 3: Lactose Feed")
+            self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             self.pump_control(self.pumps["feed_pump"].control(False))
-            print("Transition to Phase 3: Feed pump off, lactose pump control")
-            if data["ph"] >= feed_trigger_ph:
+            self.pump_control(self.pumps["feed_const_pump"].control(False))
+            self.pump_control(self.pumps["lactose_const_pump"].control(True))
+            if data["do"] >= do_upper_sp:
                 self.pump_control(self.pumps["lactose_pump"].control(True))
                 print("Lactose pump on")
-            else:
+            elif data["do"] <= do_lower_sp:
                 self.pump_control(self.pumps["lactose_pump"].control(False))
                 print("Lactose pump off")
 
@@ -667,9 +533,10 @@ class FermentationController(Controller):
         self.update_status()
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop", "test_loop", testing)
-    c = FermentationController(d)
-    # c = ConcentrationController(d)
+    # d = DeviceManager("fermentation_loop", "3_phase_feed_control", testing)
+    d = DeviceManager("concentration_loop", "concentration_buffer_loop", testing)
+    # c = FermentationController(d)
+    c = ConcentrationController(d)
     
     while True:
         c.start_control()

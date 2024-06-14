@@ -1,7 +1,7 @@
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
 import { useTogglePumpButton, useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
-import { useFeedPumpStatus, useBasePumpStatus, useLactosePumpStatus, useControlLoopStatus, useDataCollectionStatus, useAcidPumpStatus, useFeedMediaStatus } from '../components/StatusBoxes';
+import { useFeedPumpStatus, useBasePumpStatus, useLactosePumpStatus, useFeedConstPumpStatus, useLactoseConstPumpStatus, useControlLoopStatus, useDataCollectionStatus, useAcidPumpStatus, useFeedMediaStatus } from '../components/StatusBoxes';
 import { Chart } from '../components/Charts';
 import '../App.css';
 import 'chart.js/auto';
@@ -16,10 +16,13 @@ const FermentationControlPanel = () => {
   const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", fermentationLoopIdentifier);
   const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", fermentationLoopIdentifier, isControlLoopRunning);
   const toggleFeedPumpButton = useTogglePumpButton("Toggle Feed Pump", "toggle_feed", fermentationLoopIdentifier);
+  const toggleFeedConstPumpButton = useTogglePumpButton("Toggle Const Feed Pump", "toggle_feed_const", fermentationLoopIdentifier);
+  const toggleLactoseConstPumpButton = useTogglePumpButton("Toggle Const Lactose Pump", "toggle_lactose_const", fermentationLoopIdentifier);
   const toggleBasePumpButton = useTogglePumpButton("Toggle Base Pump", "toggle_base", fermentationLoopIdentifier);
   const toggleLactosePumpButton = useTogglePumpButton("Toggle Lactose Pump", "toggle_lactose", fermentationLoopIdentifier);
   const toggleAcidPumpButton = useTogglePumpButton("Toggle Acid Pump", "toggle_acid", fermentationLoopIdentifier);
   const toggleFeedMediaButton = useTogglePumpButton("Switch Feed Media", "toggle_feed_media", fermentationLoopIdentifier);
+  
   
   const feedPumpStatus = useFeedPumpStatus();
   const basePumpStatus = useBasePumpStatus();
@@ -28,6 +31,8 @@ const FermentationControlPanel = () => {
   const acidPumpStatus = useAcidPumpStatus();
   const dataCollectionStatus = useDataCollectionStatus();
   const feedMediaStatus = useFeedMediaStatus();
+  const feedConstPumpStatus =  useFeedConstPumpStatus();
+  const lactoseConstPumpStatus =  useLactoseConstPumpStatus();
 
   return (
     <div className="App container mt-5">
@@ -71,8 +76,16 @@ const FermentationControlPanel = () => {
             {feedPumpStatus}
           </div>
           <div className="button-status-container">
+            {toggleFeedConstPumpButton}
+            {feedConstPumpStatus}
+          </div>
+          <div className="button-status-container">
             {toggleLactosePumpButton}
             {lactosePumpStatus}
+          </div>
+          <div className="button-status-container">
+            {toggleLactoseConstPumpButton}
+            {lactoseConstPumpStatus}
           </div>
           <div className="button-status-container">
             {toggleBasePumpButton}
@@ -86,11 +99,6 @@ const FermentationControlPanel = () => {
             {controlLoopButton}
             {controlLoopStatus}
           </div>
-          <div className="button-status-container">
-            {toggleFeedMediaButton}
-            {feedMediaStatus}
-          </div>
-          
         </div>
       </div>
     </div>

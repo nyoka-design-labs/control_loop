@@ -48,3 +48,6 @@ Traceback (most recent call last):
     raise ConnectionException(f"Failed to connect[{self!s}]")
 pymodbus.exceptions.ConnectionException: Modbus Error: [Connection] Failed to connect[ModbusSerialClient /dev/ttyUSB1:0]
 
+2024-06-13 15:36:30 ERROR [Errno 11] Could not exclusively lock port /dev/ttyUSB0: [Errno 11] Resource temporarily unavailable
+2024-06-13 15:36:30 ERROR [Errno 11] Could not exclusively lock port /dev/ttyUSB0: [Errno 11] Resource temporarily unavailable
+2024-06-13 15:36:33 ERROR [Errno 11] Could not exclusively lock port /dev/ttyUSB0: [Errno 11] Resource temporarily unavailable

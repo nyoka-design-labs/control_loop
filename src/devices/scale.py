@@ -116,7 +116,7 @@ class USS_Scale:
 if __name__ == "__main__":
     # example usage of Scale class
     # scale = Scale(vid=0x0922, pid=0x8003)
-    uss_scale = USS_Scale("/dev/tty.usbserial-1140")
+    uss_scale = USS_Scale("/dev/ttyUSB1")
 
     try:
         while True:

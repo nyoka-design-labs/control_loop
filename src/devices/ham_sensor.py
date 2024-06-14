@@ -229,7 +229,7 @@ class PH(_Sensor):
 
         b0 = 4 - b1*setpoint4 + 0.008# intercept parameter
 
-        self.callibration_func = lambda x: b0 + b1*x
+        self.callibration_func = lambda x: b0 + b1*x + 0.03
 
     def __get_raw_ph(self) -> float:
         """
@@ -242,26 +242,6 @@ class PH(_Sensor):
             hex_value = hex(response.registers[3]) + hex(response.registers[2])[2:].zfill(4)
             return self.convert_raw_value(hex_value)
         raise ConnectionError("PH sensor is disconnected")
-    
-    # def __get_raw_ph(self) -> float:
-    #     """
-    #     Returns the raw pH value.
-    #     """
-    #     try:
-    #         # Read holding registers from the sensor
-    #         res = self.client.read_holding_registers(address=2089, count=10, slave=1)
-
-    #         # Combine the two registers to form a hex value
-    #         hex_value = hex(res.registers[3]) + hex(res.registers[2])[2:].zfill(4)
-
-    #         # Convert the hex value to a float value
-    #         data = self.convert_raw_value(str(hex_value))
-
-    #         return data
-    #     except Exception as e:
-    #         print(f"Failed to get ph: \n{e}")
-    #         logger.error(f"Error in __get_raw_ph: {e}\n{traceback.format_exc()}")
-    #         return -1
 
     def reconnect(self):
         """
@@ -315,21 +295,21 @@ class PH(_Sensor):
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    ph = PH("/dev/ttyUSB1")
-    ph.client.connect()
+    # ph = PH("/dev/ttyUSB1")
+    # ph.client.connect()
     do = DO("/dev/ttyUSB0")
     do.client.connect()
     # update_control_constant("calibration_constant", "pH_probe", f"4", 44)
     
-    # ph.ph_calibration_values(10)
+    # ph.ph_calibration_values(5)
     # input("Continue with DO calibration?")
-    # do.do_calibration(10)
+    do.do_calibration(10)
     # print(ph())
-    try:
-        while True:
-            print(f"do: {do()}  ph: {ph()}")
-            time.sleep(3)
-    except KeyboardInterrupt:
-        do.close()
-        ph.close()
-        print("\nProgram terminated")
+    # try:
+    #     while True:
+    #         print(f"do: {do()}  ph: {ph()}")
+    #         time.sleep(3)
+    # except KeyboardInterrupt:
+    #     do.close()
+    #     ph.close()
+    #     print("\nProgram terminated")

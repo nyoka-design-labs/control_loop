@@ -9,7 +9,7 @@ curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
 
-from resources.utils import read_csv_file, get_loop_constant, get_control_constant, update_loop_constant
+from resources.utils import *
 import controllers as c
 from resources.logging_config import logger
 
@@ -65,7 +65,8 @@ async def collection(loop_id, command, websocket):
 async def load_previous_data(controller, websocket: websockets.WebSocketServerProtocol, loop_id: str):
     try:
         control_id = get_loop_constant(loop_id=loop_id, const="chosen_control")
-        csv_name = get_control_constant(loop_id, control_id, "csv_name")
+        control_consts = get_control_constant(loop_id, control_id, "control_consts")
+        csv_name = control_consts["csv_name"]
         data = read_csv_file(f"{csv_name}.csv")
 
         # Make sure there is data and a header was found and read
@@ -92,9 +93,8 @@ async def control_task(controller, websocket):
                 await asyncio.sleep(INTERVAL)
         except asyncio.CancelledError:
             print("Control task was cancelled")
-            status = controller.stop_control()
-            
-            await send_status_update(websocket, status)
+            status = controller.stop_control() # first stop_all error
+            await send_status_update(websocket, status) # does when there is an error
     except Exception as e:
         print(f"Error in control_task: {e}")
         logger.error(f"Error in control_task: {e}\n{traceback.format_exc()}")
@@ -159,7 +159,8 @@ async def toggle(loop_id, command, websocket):
         if command == "toggle_feed_media":
             controller_info["controller"].switch_feed_media()
         else:
-            controller_info["controller"].toggle_pump(command.split('_')[1] + "_pump")
+            pump_name = extract_after_toggle(command)
+            controller_info["controller"].toggle_pump(pump_name + "_pump")
 
         status = controller_info["controller"].status
         await send_status_update(websocket, status)

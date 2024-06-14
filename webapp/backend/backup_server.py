@@ -19,14 +19,22 @@ controllers = {}
 
 def control(loop_id, controller):
     try:
-        send_notification(f"Backup Server Started.", "H")
+        # send_notification(f"Backup Server Started.", "H")
+        try:
+            send_notification(f"Backup Server Started", "H")
+        except Exception as e:
+            logger.error(f"Notification not sent: {e}\n{traceback.format_exc()}")
         if controller:
             control_task(controller)
         else:
             controller_info = get_controller(loop_id)
             control_task(controller_info["controller"])
     except Exception as e:
-        send_notification(f"Backup Server Crashed in control")
+        # send_notification(f"Backup Server Crashed in control")
+        try:
+            send_notification(f"Backup Server Crashed")
+        except Exception as e:
+            logger.error(f"Notification not sent: {e}\n{traceback.format_exc()}")
         print(f"Error in backup server control_task: {e}")
         logger.error(f"Error in backup server control_task: {e}\n{traceback.format_exc()}")
         

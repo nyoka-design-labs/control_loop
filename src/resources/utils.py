@@ -6,6 +6,7 @@ import usb.core
 import json
 import numpy as np
 import inspect
+import re
 #################################################### Port Funcs ####################################################
 def find_usb_serial_port(vendor_id: hex, product_id: hex):
     ports = serial.tools.list_ports.comports()
@@ -223,6 +224,19 @@ def called_from():
     # Print caller's details
     print(f"Called from {info.filename} at line {info.lineno} in function {info.function}")
 
+
+def extract_after_toggle(input_string):
+    # Define a regular expression pattern that looks for 'toggle_' followed by any characters
+    pattern = r"toggle_(.*)"
+
+    # Search for the pattern in the input string
+    match = re.search(pattern, input_string)
+    if match:
+        # Return the part of the string after 'toggle_'
+        return match.group(1)
+    else:
+        # Return None or some default value if 'toggle_' is not found
+        return None
                 
 if __name__ == "__main__":
     pass

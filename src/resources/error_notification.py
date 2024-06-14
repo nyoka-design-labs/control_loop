@@ -14,22 +14,14 @@ def send_notification(message, priority="E"):
         else:
             priority = chump.HIGH
 
-        while True:
-            try:
-                message = user.send_message(f"{message}", priority=priority)
-                print("message sent")
-                break
-            except:
-                time.sleep(5)
-                print("message not sent")
+        message = user.send_message(f"{message}", priority=priority)
 
         print(f"Message Sent: {message.is_sent}\nMessage ID:{message.id}\nMessage Sent At: {str(message.sent_at)}")
-        
-        print("message acknowledged")
     except Exception as e:
         print(f"Error in send_notification: {e}\n{traceback.format_exc()}")
         logger.error(f"Error in send_notification: {e}\n{traceback.format_exc()}")
-        send_notification(f"Error in send_notification: {e}")
+        
+        
 
 
 if __name__ == "__main__":
