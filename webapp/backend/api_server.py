@@ -20,8 +20,7 @@ curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
 
-error = False
-async def handle_client(websocket, path):
+async def handle_client(websocket):
     try:
         while True:
             message = await asyncio.wait_for(websocket.recv(), timeout=60)
@@ -31,25 +30,8 @@ async def handle_client(websocket, path):
                 await websocket.send(json.dumps({"type": "pong"}))
             else:
                 await process_command(websocket, data)
-    except ConnectionClosedError as e:
-        logger.error(f"WebSocket connection closed: {e.code} - {e.reason}")
-        print(f"Error in handling client\nWebSocket connection closed: {e.code} - {e.reason}")
-        error = eval(get_loop_constant(loop_id="server_consts", const="error"))
-        if error:
-            try:
-                logger.error(f"Backup Server Starting")
-                send_notification(f"WebSocket connection closed: {e.code}\nAttempting to start backup server.")
-                await handle_server_error()
-            except Exception as e:    
-                send_notification(f"Unexpected error in trying to run backup protocol from handle_client: {e}\n{traceback.format_exc()}")
-                logger.error(f"Unexpected error in trying to run backup protocol from handle_client: {e}\n{traceback.format_exc()}")
-                print(f"Unexpected error: {e}\n{traceback.format_exc()}")
-        else:
-            update_loop_constant("server_consts", "error", "True")
-            
-
     except Exception as e:
-        logger.error(f"Unexpected error in handle_client: {e}\n{traceback.format_exc()}")
+        logger.error(f"Error in handling client\nUnexpected error: {e}\n{traceback.format_exc()}")
         print(f"Error in handling client\nUnexpected error: {e}\n{traceback.format_exc()}")
         error = eval(get_loop_constant(loop_id="server_consts", const="error"))
         if error:
@@ -79,7 +61,7 @@ async def process_command(websocket, data):
     except Exception as e:
         print(f"Failed to process command : \n input: {data.get('command')}  {data.get('loopID')}, \n{e}\n{traceback.format_exc()}")
         logger.error(f"Error in process_command: \n input: {data.get('command')}  {data.get('loopID')}, \n{e}\n{traceback.format_exc()}")
-        send_notification(f"Error in process_command: \n input: {data.get('command')}  {data.get('loopID')}, \n{e}")
+        send_notification(f"Error in process_command: {e}")
         
         
 async def start_server():
