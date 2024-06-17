@@ -56,8 +56,7 @@ def isDerPositive(derivatives, num_points=5):
     last_values = derivatives[-num_points:]
     return all(value > 0 for value in last_values)
 
-def calculate_derivative(key, loop_id, num_points=10):
-    csv_name = get_control_constant(loop_id, "do_der_control", "csv_name")
+def calculate_derivative(key, csv_name, num_points=10):
     data = read_csv_file(f"{csv_name}.csv")
     do_values = [float(row[f"{key}"]) for row in data]
     time_values = [float(row["time"]) for row in data]
@@ -213,6 +212,23 @@ def update_loop_constant(loop_id, constant_name, new_value):
             with open(json_file_path, 'w') as file:
                 json.dump(data, file, indent=4)
             return
+#################################################### MISC ####################################################
+
+def update_dict(original: dict={}, *args, **kwargs):
+    if len(args) == 1 and isinstance(args[0], dict):
+        original.update(args[0])
+    elif len(args) == 2 and isinstance(args[0], list) and isinstance(args[1], list):
+        keys, values = args
+        if len(keys) != len(values):
+            raise ValueError("Keys and values lists must be of the same length")
+        else:
+            original.update(zip(keys, values))
+    elif len(args) == 2 and isinstance(args[0], str):
+        key, value = args
+        original[key] = value
+    elif not args and kwargs:
+        original.update(kwargs)
+    return original
 
 def called_from():
     stack = inspect.stack()

@@ -4,7 +4,7 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB0",
+            "port": "",
             "data_type": "buffer_weight"
         },
         {
@@ -54,11 +54,11 @@
         {
             "loop_id": "server_consts",
             "interval": 4,
-            "testing": "False",
+            "testing": "True",
             "load_data": "False",
-            "devices_connected": "True",
-            "pumps_connected": "True",
-            "error": "True",
+            "devices_connected": "False",
+            "pumps_connected": "False",
+            "error": "False",
             "control_running": "concentration_loop"
         },
         {
@@ -114,7 +114,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "3_phase_feed_control",
+            "chosen_control": "3_phase_do_feed_control",
             "controllers": [
                 {
                     "controller_id": "3_phase_feed_control",
@@ -141,7 +141,7 @@
                         "acid_pump": "whitePump2"
                     },
                     "start_time": 1718319136.5368838,
-                    "test_data_index": 0,
+                    "test_data_index": 5,
                     "control_consts": {
                         "ph_balance_base_sp": 6.5,
                         "ph_balance_acid_sp": 8,
@@ -156,7 +156,7 @@
                 },
                 {
                     "controller_id": "3_phase_do_feed_control",
-                    "notes": "manages pH and feeding in three phases. Phase 1 uses the base pump to maintain pH until it reaches 7.02. Phase 2 engages both base and acid pumps, activates the feed pump, and starts Phase 3 at 5:00 AM on May 30, switching to the lactose pump for feeding based on pH levels.",
+                    "notes": "3 phase control with do control.",
                     "devices": [
                         "do_sensor",
                         "ph_sensor",
@@ -181,19 +181,31 @@
                         "acid_pump": "whitePump3"
                     },
                     "start_time": 0,
-                    "test_data_index": 0,
+                    "test_data_index": 58,
                     "control_consts": {
-                        "ph_balance_base_sp": 7,
-                        "ph_balance_acid_sp": 8,
-                        "feed_trigger_ph": 7.02,
-                        "ph_maintained_time": 0,
+                        "ph_balance_base_sp": 6.9,
+                        "ph_balance_acid_sp": 7.1,
                         "do_upper_sp": 25,
-                        "do_lower_sp": 21,
-                        "ph_window": 10,
+                        "do_lower_sp": 22,
+                        "derivs": [
+                            648.1693561564956,
+                            -2850.5024637315873,
+                            695.9877596575753,
+                            291.1040393057644,
+                            837.8174481673913,
+                            785.6585922740994,
+                            814.0532019878908
+                        ],
+                        "deriv_window": 8,
+                        "increment_counter": 0,
                         "start_feed": "True",
-                        "feed_media": "Lactose",
-                        "test_data": "3_phase_control_test_data",
-                        "csv_name": "fermentation_3_phase_feed_control_loop_06-13-2024"
+                        "test_data": "do_der_test_3",
+                        "csv_name": "fermentation_3_phase_do_feed_control_loop_06-17-2024"
+                    },
+                    "reset_consts": {
+                        "derivs": [],
+                        "increment_counter": 0,
+                        "start_feed": "False"
                     }
                 },
                 {
