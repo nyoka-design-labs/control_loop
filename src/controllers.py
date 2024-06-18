@@ -284,7 +284,7 @@ class ConcentrationController(Controller):
         data = self.get_data(test_data=self.control_consts["test_data"])
 
         self.__buffer_control(data['buffer_weight'])
-        self.__lysate_control(data['lysate_weight'])
+        # self.__lysate_control(data['lysate_weight'])
 
         self.update_status()   
    
@@ -342,6 +342,7 @@ class FermentationController(Controller):
 
         self.control_consts = {}
         self.load_control_constants()
+        
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
 
@@ -355,7 +356,7 @@ class FermentationController(Controller):
 
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 6, 13, 20, 30, 0)  # 8:30 PM Jun 13, 2024
+        phase3_start_time = datetime(2024, 6, 17, 20, 30, 0)  # 8:30 PM Jun 17, 2024
 
         start_feed = eval(self.control_consts["start_feed"])
 
@@ -365,7 +366,6 @@ class FermentationController(Controller):
         ph_window = self.control_consts["ph_window"]
         feed_trigger_ph = self.control_consts["feed_trigger_ph"]
 
-        # Phase 1: Maintain pH using only base
         if not start_feed:
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             print("in phase 1")
@@ -400,7 +400,6 @@ class FermentationController(Controller):
             print("Phase 3: Lactose Feed")
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             self.pump_control(self.pumps["feed_pump"].control(False))
-            print("Transition to Phase 3: Feed pump off, lactose pump control")
             if data["ph"] >= feed_trigger_ph:
                 self.pump_control(self.pumps["lactose_pump"].control(True))
                 print("Lactose pump on")

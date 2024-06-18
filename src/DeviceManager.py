@@ -298,7 +298,7 @@ class DeviceManager:
 
 if __name__ == "__main__":
     # dm = DeviceManager("fermentation_loop", "3_phase_feed_control")
-    dm = DeviceManager("concentration_loop", "concentration_buffer_loop")
+    dm = DeviceManager("concentration_loop", "concentration_loop")
     while True:
         # print(dm.test_get_measurement("do_der_test_1"))
         print(dm.get_measurement())

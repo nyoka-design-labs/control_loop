@@ -4,15 +4,15 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
+            "port": "/dev/ttyUSB0",
             "data_type": "buffer_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
-            "data_type": "lactose_weight"
+            "port": "/dev/ttyUSB1",
+            "data_type": "lysate_weight"
         },
         {
             "name": "uss_scale",
@@ -54,16 +54,16 @@
         {
             "loop_id": "server_consts",
             "interval": 4,
-            "testing": "True",
-            "load_data": "False",
-            "devices_connected": "False",
-            "pumps_connected": "False",
-            "error": "False",
+            "testing": "False",
+            "load_data": "True",
+            "devices_connected": "True",
+            "pumps_connected": "True",
+            "error": "True",
             "control_running": "concentration_loop"
         },
         {
             "loop_id": "concentration_loop",
-            "chosen_control": "concentration_buffer_loop",
+            "chosen_control": "concentration_loop",
             "controllers": [
                 {
                     "controller_id": "concentration_loop",
@@ -80,13 +80,13 @@
                         "buffer_pump": "whitePump1",
                         "lysate_pump": "whitePump2"
                     },
-                    "start_time": 0,
+                    "start_time": 1718729731.79507,
                     "test_data_index": 0,
                     "control_consts": {
                         "buffer_sp": 400,
                         "lysate_upper_sp": 300,
                         "lysate_lower_sp": 250,
-                        "csv_name": "concentration_05-28-2024",
+                        "csv_name": "concentration_06-18-2024",
                         "test_data": "concentration_test_data_1"
                     }
                 },
@@ -114,11 +114,11 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "3_phase_do_feed_control",
+            "chosen_control": "3_phase_feed_control",
             "controllers": [
                 {
                     "controller_id": "3_phase_feed_control",
-                    "notes": "manages pH and feeding in three phases. Phase 1 uses the base pump to maintain pH until it reaches 7.02. Phase 2 engages both base and acid pumps, activates the feed pump, and starts Phase 3 at 5:00 AM on May 30, switching to the lactose pump for feeding based on pH levels.",
+                    "notes": "manages pH and feeding in three phases. Phase 1 uses the base pump to maintain pH until it reaches 7.02. Phase 2 activates the feed pump, and starts Phase 3 at 5:00 AM on May 30, switching to the lactose pump for feeding based on pH levels.",
                     "devices": [
                         "do_sensor",
                         "ph_sensor",
@@ -140,18 +140,18 @@
                         "base_pump": "blackPump2",
                         "acid_pump": "whitePump2"
                     },
-                    "start_time": 1718319136.5368838,
-                    "test_data_index": 5,
+                    "start_time": 1718662271.456343,
+                    "test_data_index": 0,
                     "control_consts": {
-                        "ph_balance_base_sp": 6.5,
+                        "ph_balance_base_sp": 6.9,
                         "ph_balance_acid_sp": 8,
                         "feed_trigger_ph": 7.02,
-                        "ph_maintained_time": 1718329548.419207,
-                        "ph_window": 10,
+                        "ph_maintained_time": 1718691575.33697,
+                        "ph_window": 5,
                         "start_feed": "True",
                         "feed_media": "Lactose",
                         "test_data": "3_phase_control_test_data",
-                        "csv_name": "fermentation_3_phase_feed_control_loop_06-13-2024"
+                        "csv_name": "fermentation_3_phase_feed_control_loop_06-17-2024"
                     }
                 },
                 {
@@ -253,10 +253,11 @@
         {
             "loop_id": "calibration_constants",
             "pH_probe": {
-                "4": 4.071420669555664,
-                "7": 7.049391674995422
+                "4": 4.0564251899719235,
+                "7": 7.030090117454529,
+                "ph_offset": 0.168
             },
-            "DO_probe": 105.35838661193847
+            "DO_probe": 107.08950767517089
         }
     ]
 }

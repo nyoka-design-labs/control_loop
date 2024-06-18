@@ -212,8 +212,9 @@ class PH(_Sensor):
         Read pH from the sensor, handle disconnection.
         """
         if self.client:
+            ph_offset = get_loop_constant("calibration_constants", "pH_probe").get("ph_offset", 0)
             try:
-                return round(self.callibration_func(self.__get_raw_ph()), 3)
+                return round(self.callibration_func(self.__get_raw_ph() + ph_offset), 3)
             except Exception as e:
                 print(f"Failed to get ph: \n{e}")
                 logger.error(f"Error in get_ph: {e}\n{traceback.format_exc()}")
@@ -227,7 +228,7 @@ class PH(_Sensor):
 
         b1 = (7 - 4) / (setpoint7 - setpoint4) # slope paramater
 
-        b0 = 4 - b1*setpoint4 + 0.008# intercept parameter
+        b0 = 4 - b1*setpoint4 + 0.168# intercept parameter
 
         self.callibration_func = lambda x: b0 + b1*x + 0.03
 
@@ -295,14 +296,12 @@ class PH(_Sensor):
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    # ph = PH("/dev/ttyUSB1")
-    # ph.client.connect()
+    ph = PH("/dev/ttyUSB1")
+    ph.client.connect()
     do = DO("/dev/ttyUSB0")
     do.client.connect()
-    # update_control_constant("calibration_constant", "pH_probe", f"4", 44)
     
-    # ph.ph_calibration_values(5)
-    # input("Continue with DO calibration?")
+    ph.ph_calibration_values(10)
     do.do_calibration(10)
     # print(ph())
     # try:
