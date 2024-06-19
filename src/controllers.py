@@ -19,9 +19,9 @@ baudrate = 9600
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 pumps = eval(get_loop_constant(loop_id="server_consts", const="pumps_connected"))
 
-def create_controller(loop_id, control_name, testing: bool=False):
+def create_controller(loop_id, control_name):
     
-    dm = DeviceManager(loop_id, control_name, testing)
+    dm = DeviceManager(loop_id, control_name)
 
     if loop_id == "concentration_loop":
         controller = ConcentrationController(dm)
@@ -540,8 +540,8 @@ class FermentationController(Controller):
         self.update_status()
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop", "3_phase_do_feed_control", testing)
-    # d = DeviceManager("concentration_loop", "concentration_buffer_loop", testing)
+    d = DeviceManager("fermentation_loop", "3_phase_do_feed_control")
+    # d = DeviceManager("concentration_loop", "concentration_buffer_loop")
     c = FermentationController(d)
     # c = ConcentrationController(d)
     
@@ -551,7 +551,7 @@ if __name__ == "__main__":
         time.sleep(2)
     # TEST THE RESET SHIT
 
-    # d = DeviceManager("concentration_loop", "concentration_loop", testing)
+    # d = DeviceManager("concentration_loop", "concentration_loop")
     # c = ConcentrationController(d)
    
 

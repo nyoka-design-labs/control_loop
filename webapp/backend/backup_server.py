@@ -14,7 +14,6 @@ from resources.logging_config import logger
 from resources.error_notification import send_notification
 
 INTERVAL = get_loop_constant("server_consts", "interval")
-testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 controllers = {}
 
 def control(loop_id, controller):
@@ -57,6 +56,6 @@ def control_task(controller):
 def get_controller(loop_id):
     if loop_id not in controllers:
         control_id = get_loop_constant(loop_id=loop_id, const="chosen_control")
-        controller, device_manager = c.create_controller(loop_id, control_id, testing)
+        controller, device_manager = c.create_controller(loop_id, control_id)
         controllers[loop_id] = {"controller": controller, "device_manager": device_manager}
     return controllers[loop_id]

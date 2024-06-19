@@ -27,7 +27,7 @@ class DeviceManager:
     Represents a device manager.
     """
 
-    def __init__(self, loop_id: str, control_id: str, testing: bool=False) -> None:
+    def __init__(self, loop_id: str, control_id: str) -> None:
         self.test_data = test_data
         self.delete()
         self.loop_id = loop_id
