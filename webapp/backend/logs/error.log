@@ -1,0 +1,80 @@
+2024-06-19 12:11:34 ERROR Error in handling client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/anaconda3/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/control_loop/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/control_loop/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-06-19 12:11:34 ERROR Backup Server Starting
+2024-06-19 12:11:35 ERROR Error in get_controller: 
+ Input: concentration_loop, 
+ create_controller() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/anaconda3/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/control_loop/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/control_loop/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 145, in get_controller
+    controller, device_manager = c.create_controller(loop_id, control_id, testing)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: create_controller() takes 2 positional arguments but 3 were given
+
+2024-06-19 12:11:35 ERROR Server error handling failed: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/anaconda3/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/control_loop/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/control_loop/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 95, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/manager_server.py", line 175, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-06-19 12:13:19 ERROR Error in handling client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/webapp/backend/api_server.py", line 26, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/anaconda3/lib/python3.11/asyncio/tasks.py", line 489, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/control_loop/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/control_loop/lib/python3.11/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
