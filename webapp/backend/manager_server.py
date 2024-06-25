@@ -108,7 +108,6 @@ async def collection_task(controller, websocket, loop_id):
                 load_data = False
 
             while True:
-                controller.pump_control("T")
                 print(f"data being collected")
                 if controller.status["control_loop_status"] == "control_off":
                     status, data = controller.start_collection(False)

@@ -4,15 +4,15 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB0",
-            "data_type": "buffer_weight"
+            "port": "",
+            "data_type": "feed_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "/dev/ttyUSB1",
-            "data_type": "lysate_weight"
+            "port": "",
+            "data_type": "base_weight"
         },
         {
             "name": "uss_scale",
@@ -39,14 +39,14 @@
             "name": "ph_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "",
+            "port": "/dev/ttyUSB1",
             "data_type": "ph"
         },
         {
             "name": "do_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "",
+            "port": "/dev/ttyUSB0",
             "data_type": "do"
         }
     ],
@@ -58,12 +58,12 @@
             "load_data": "True",
             "devices_connected": "True",
             "pumps_connected": "True",
-            "error": "True",
-            "control_running": "concentration_loop"
+            "error": "False",
+            "control_running": "fermentation_loop"
         },
         {
             "loop_id": "concentration_loop",
-            "chosen_control": "concentration_loop",
+            "chosen_control": "concentration_buffer_loop",
             "controllers": [
                 {
                     "controller_id": "concentration_loop",
@@ -102,11 +102,11 @@
                     "pumps": {
                         "buffer_pump": "whitePump1"
                     },
-                    "start_time": 1718384182.9285023,
+                    "start_time": 0,
                     "test_data_index": 0,
                     "control_consts": {
-                        "buffer_sp": 12.7,
-                        "csv_name": "concentration_06-14-2024",
+                        "buffer_sp": 0,
+                        "csv_name": "concentration_06-25-2024",
                         "test_data": "concentration_test_data_1"
                     }
                 }
@@ -114,7 +114,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "3_phase_feed_control",
+            "chosen_control": "2_phase_do_trig_ph_feed_control",
             "controllers": [
                 {
                     "controller_id": "3_phase_feed_control",
@@ -140,18 +140,54 @@
                         "base_pump": "blackPump2",
                         "acid_pump": "whitePump2"
                     },
-                    "start_time": 1718662271.456343,
+                    "start_time": 1718924029.6998272,
                     "test_data_index": 0,
                     "control_consts": {
-                        "ph_balance_base_sp": 6.9,
+                        "ph_balance_base_sp": 7,
                         "ph_balance_acid_sp": 8,
                         "feed_trigger_ph": 7.02,
-                        "ph_maintained_time": 1718691575.33697,
+                        "ph_maintained_time": 1718932384.16817,
                         "ph_window": 5,
                         "start_feed": "True",
-                        "feed_media": "Lactose",
                         "test_data": "3_phase_control_test_data",
-                        "csv_name": "fermentation_3_phase_feed_control_loop_06-17-2024"
+                        "csv_name": "fermentation_3_phase_feed_control_loop_06-20-2024"
+                    }
+                },
+                {
+                    "controller_id": "2_phase_do_trig_ph_feed_control",
+                    "notes": "manages pH and feeding in three phases. Phase 1 uses the base pump to maintain pH until DO reaches 70 Phase 2 activates the feed pump for feeding based on pH.",
+                    "devices": [
+                        "do_sensor",
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "do",
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "base_weight"
+                    ],
+                    "pumps": {
+                        "feed_pump": "blackPump1",
+                        "base_pump": "blackPump2",
+                        "acid_pump": "whitePump3"
+                    },
+                    "start_time": 1719272190.0451667,
+                    "test_data_index": 0,
+                    "control_consts": {
+                        "ph_balance_base_sp": 6.95,
+                        "ph_balance_acid_sp": 8,
+                        "feed_trigger_ph": 7.0,
+                        "feed_trigger_do": 70,
+                        "do_maintained_counter": 0,
+                        "do_below_50_counter": 2,
+                        "do_window": 3,
+                        "start_feed": "True",
+                        "start_phase_1": "True",
+                        "test_data": "2_phase_test_1",
+                        "csv_name": "fermentation_2_phase_do_trig_ph_feed_control_loop_06-24-2024"
                     }
                 },
                 {
@@ -162,6 +198,7 @@
                         "ph_sensor",
                         "uss_scale",
                         "uss_scale",
+                        "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
@@ -170,37 +207,30 @@
                         "temp",
                         "feed_weight",
                         "lactose_weight",
-                        "base_weight"
+                        "base_weight",
+                        "acid_weight"
                     ],
                     "pumps": {
                         "feed_pump": "blackPump1",
+                        "feed_const_pump": "whitePump2",
                         "lactose_pump": "blackPump3",
+                        "lactose_const_pump": "whitePump1",
                         "base_pump": "blackPump2",
-                        "feed_const_pump": "whitePump1",
-                        "lactose_const_pump": "whitePump2",
-                        "acid_pump": "whitePump3"
+                        "acid_pump": "blackPump4"
                     },
                     "start_time": 0,
-                    "test_data_index": 58,
+                    "test_data_index": 0,
                     "control_consts": {
-                        "ph_balance_base_sp": 6.9,
+                        "ph_balance_base_sp": 7,
                         "ph_balance_acid_sp": 7.1,
                         "do_upper_sp": 25,
                         "do_lower_sp": 22,
-                        "derivs": [
-                            648.1693561564956,
-                            -2850.5024637315873,
-                            695.9877596575753,
-                            291.1040393057644,
-                            837.8174481673913,
-                            785.6585922740994,
-                            814.0532019878908
-                        ],
+                        "derivs": [],
                         "deriv_window": 8,
                         "increment_counter": 0,
-                        "start_feed": "True",
-                        "test_data": "do_der_test_3",
-                        "csv_name": "fermentation_3_phase_do_feed_control_loop_06-17-2024"
+                        "start_feed": "False",
+                        "test_data": "do_der_test_1",
+                        "csv_name": "fermentation_3_phase_do_feed_control_loop_06-20-2024"
                     },
                     "reset_consts": {
                         "derivs": [],
@@ -253,11 +283,11 @@
         {
             "loop_id": "calibration_constants",
             "pH_probe": {
-                "4": 4.0564251899719235,
-                "7": 7.030090117454529,
-                "ph_offset": 0.168
+                "4": 4.0607081890106205,
+                "7": 7.040511870384217,
+                "ph_offset": -0.04
             },
-            "DO_probe": 107.08950767517089
+            "DO_probe": 100
         }
     ]
 }

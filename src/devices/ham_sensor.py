@@ -11,6 +11,7 @@ from resources.logging_config import logger
 import traceback
 from datetime import datetime, timedelta
 from resources.utils import *
+from resources.error_notification import send_notification
 
 class _Sensor:
     """
@@ -47,6 +48,7 @@ class _Sensor:
         except Exception as e:
             print(f"Failed to get temp: \n{e}")
             logger.error(f"Error in get_temp: {e}\n{traceback.format_exc()}")
+            # send_notification(f"sensors not connected")
             return -1
 
     def close(self):
@@ -97,6 +99,7 @@ class DO(_Sensor):
         except Exception as e:
             print(f"Failed to get DO: \n{e}")
             logger.error(f"Error in __call__ for DO probe:\n port: {self.port}, \n {e}\n{traceback.format_exc()}")
+            send_notification(f"sensors not connected")
             return -1
     
 
@@ -109,6 +112,7 @@ class DO(_Sensor):
                 return round(self.callibration_func(self.__get_raw_do()), 3)  # Example adjustment factor
             except Exception as e:
                 print(f"Failed to get DO: {e}")
+                send_notification(f"sensors not connected")
                 logger.error(f"Error in get_do: {e}\n{traceback.format_exc()}")
         return -1  # Return error value if disconnected or read fails
     
@@ -147,6 +151,7 @@ class DO(_Sensor):
                     print(f"Failed to reconnect sensor on port {self.port}")
                     self.client = None
         except Exception as e:
+            send_notification(f"sensors not connected")
             print(f"Failed to reconnect DO probe: \n{e}")
             logger.error(f"Error in reconnect DO: {e}\n{traceback.format_exc()}")
     def do_calibration(self, dur):
@@ -205,6 +210,7 @@ class PH(_Sensor):
             return (ph, temp)
         except Exception as e:
             print(f"Failed to get ph and temp: \n{e}")
+            send_notification(f"sensors not connected")
             logger.error(f"Error in __call__ for pH probe:\n port: {self.port}, \n {e}\n{traceback.format_exc()}")
             return (-1, -1)
     def get_ph(self) -> float:
@@ -216,6 +222,7 @@ class PH(_Sensor):
             try:
                 return round(self.callibration_func(self.__get_raw_ph() + ph_offset), 3)
             except Exception as e:
+                send_notification(f"sensors not connected")
                 print(f"Failed to get ph: \n{e}")
                 logger.error(f"Error in get_ph: {e}\n{traceback.format_exc()}")
         return -1  # Return error value if disconnected or read fails
@@ -264,7 +271,7 @@ class PH(_Sensor):
         Calibrate the pH sensor at pH 4 and pH 7.
         Dur is the stabilization duration in minutes.
         """
-        calibration_points = {4: None, 7: None}
+        calibration_points = {4: None, 7: None, "ph_offset": 0}
         for point in [4, 7]:  # Calibration points
             input(f"Place the probe in the {point} pH solution and press Enter to start calibration.")
             start_time = datetime.now()
@@ -296,13 +303,13 @@ class PH(_Sensor):
 
 if __name__ == "__main__":
     # example usage of Sensor class
-    ph = PH("/dev/ttyUSB1")
-    ph.client.connect()
+    # ph = PH("/dev/ttyUSB0")
+    # ph.client.connect()
     do = DO("/dev/ttyUSB0")
-    do.client.connect()
+    # do.client.connect()
     
-    ph.ph_calibration_values(10)
-    do.do_calibration(10)
+    # # ph.ph_calibration_values(10)
+    # do.do_calibration(5)
     # print(ph())
     # try:
     #     while True:

@@ -69,7 +69,6 @@ class DeviceManager:
         data_types.append("time")
         data_types.append("date")
         data_types.append("time_of_day")
-        data_types.append("start_time")
         data_types.append("type")
         
         return data_types
@@ -120,8 +119,6 @@ class DeviceManager:
         devices_data.append(datetime.now().strftime('%d-%m-%Y'))
         # time of day
         devices_data.append(datetime.now().strftime('%H:%M:%S'))
-        # start time
-        devices_data.append(self.start_time)
         # type of information being sent to frontend
         devices_data.append("data")
 
@@ -297,8 +294,8 @@ class DeviceManager:
             f.close()
 
 if __name__ == "__main__":
-    # dm = DeviceManager("fermentation_loop", "3_phase_feed_control")
-    dm = DeviceManager("concentration_loop", "concentration_loop")
+    dm = DeviceManager("fermentation_loop", "2_phase_do_trig_ph_feed_control")
+    # dm = DeviceManager("concentration_loop", "concentration_buffer_loop")
     while True:
         # print(dm.test_get_measurement("do_der_test_1"))
         print(dm.get_measurement())

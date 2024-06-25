@@ -19,9 +19,9 @@ baudrate = 9600
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 pumps = eval(get_loop_constant(loop_id="server_consts", const="pumps_connected"))
 
-def create_controller(loop_id, control_name, testing: bool=False):
+def create_controller(loop_id, control_id, testing: bool=False):
     
-    dm = DeviceManager(loop_id, control_name, testing)
+    dm = DeviceManager(loop_id, control_id, testing)
 
     if loop_id == "concentration_loop":
         controller = ConcentrationController(dm)
@@ -52,17 +52,16 @@ class Controller:
 
         time.sleep(1)
         
-
     def start_control(self):
         try:
-            control_name = self.control_name
+            control_id = self.control_id
 
-            if control_name:
-                control_method = getattr(self, f"_{self.__class__.__name__}__{control_name}", None)
+            if control_id:
+                control_method = getattr(self, f"_{self.__class__.__name__}__{control_id}", None)
                 if control_method:
                     return control_method()
                 else:
-                    raise AttributeError(f"Method {control_name} not found in class.")
+                    raise AttributeError(f"Method {control_id} not found in class.")
             else:
                 raise ValueError(f"No control method found for loop_id: {self.loop_id}")
         except Exception as e:
@@ -87,11 +86,10 @@ class Controller:
 
     def reset_controller_consts(self, testing: bool=False):
         if testing:
-            reset_consts = get_control_constant(self.loop_id, self.control_name, "reset_consts")
-            update_control_constant(self.loop_id, self.control_name, "start_time", 0)
-            update_control_constant(self.loop_id, self.control_name, "test_data_index", 0)
+            reset_consts = get_control_constant(self.loop_id, self.control_id, "reset_consts")
+            update_control_constant(self.loop_id, self.control_id, "start_time", 0)
+            update_control_constant(self.loop_id, self.control_id, "test_data_index", 0)
             self.update_controller_consts(reset_consts)
-
 
     def stop_control(self, data_col_is_on: bool = True):
         print("stopping pumps")
@@ -117,11 +115,10 @@ class Controller:
         except Exception as e:
             print(f"failed to toggle_pump: \n{pump_name}, \n{e}")
             logger.error(f"Error in toggle_pump: \n{pump_name}, \n{e}\n{traceback.format_exc()}")
-
-            
+         
     def initialize_pumps(self):
         try:
-            pumps_info = get_control_constant(self.loop_id, self.control_name, "pumps")
+            pumps_info = get_control_constant(self.loop_id, self.control_id, "pumps")
             pumps = {}
             for pump_name, pump_value in pumps_info.items():
                 pumps[pump_name] = Pump(name=pump_value)
@@ -130,7 +127,6 @@ class Controller:
             print(f"failed to initialize_pumps: \n{e}")
             logger.error(f"Error in initialize_pumps: {e}\n{traceback.format_exc()}")
 
-    
     def initialize_status(self):
         try:
             status = {
@@ -138,7 +134,6 @@ class Controller:
                 "loopID": self.loop_id,
                 "control_loop_status": "control_off",
                 "data_collection_status": "data_collection_off",
-                "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
             }
         
             # Add initial pump statuses to the status dictionary
@@ -164,7 +159,6 @@ class Controller:
             self.status.update({
                 "control_loop_status": control,
                 "data_collection_status": data_col,
-                "feed_media": get_control_constant(self.loop_id, self.control_name, "feed_media")
             })
             
             # Update dynamic pump statuses
@@ -174,7 +168,6 @@ class Controller:
             print(f"failed to update_status: \n control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on} \n {e}")
             logger.error(f"Error in update_status: control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
 
-    
     def get_data(self, test_data: str):
         try:
             if testing:
@@ -187,16 +180,19 @@ class Controller:
         except Exception as e:
             print(f"failed to get data: {e}")
             logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
+    
     def __convert_even_odd(self, value):
             if isinstance(value, str) and value.isdigit():
                 num = int(value)
                 return "OFF" if num % 2 == 0 else "ON"
             return value
+    
     def save_data_sheets(self, data):
         try:
             status = self.status.copy()
             status.pop("type", None)  # Remove the "type" key if it exists in the status data
             status.pop("data_collection_status", None)
+            status.pop("loopID", None)
             status = {k: self.__convert_even_odd(v) for k, v in status.items()}
             combined_data = data.copy()  # Create a copy of the original data
             combined_data.pop("type", None)
@@ -212,10 +208,10 @@ class Controller:
         Load and store control constants for the chosen control in self.control_constants.
         """
         try:
-            constants = get_control_constant(self.loop_id, self.control_name, "control_consts")  # Fetch constants for the given control
+            constants = get_control_constant(self.loop_id, self.control_id, "control_consts")  # Fetch constants for the given control
             # Store constants in a dictionary
             self.control_consts = constants
-            print(f"Loaded control constants for {self.control_name}: {self.control_consts}")
+            print(f"Loaded control constants for {self.control_id}: {self.control_consts}")
         except Exception as e:
             print(f"Failed to load control constants: {e}")
             logger.error(f"Error in load_control_constants: {e}\n{traceback.format_exc()}")
@@ -239,18 +235,18 @@ class Controller:
         # Find the correct loop and controller to update
         loop_found = next((item for item in data["loop"] if item["loop_id"] == self.loop_id), None)
         if loop_found:
-            controller_found = next((controller for controller in loop_found["controllers"] if controller["controller_id"] == self.control_name), None)
+            controller_found = next((controller for controller in loop_found["controllers"] if controller["controller_id"] == self.control_id), None)
             if controller_found and "control_consts" in controller_found:
                 updated_dict = update_dict(controller_found["control_consts"], *args, **kwargs)
                 controller_found["control_consts"] = updated_dict
                 # Save the updated data back to the JSON file
                 with open(json_file_path, "w") as file:
                     json.dump(data, file, indent=4)
-                print(f"Updated {args, kwargs} in controller {self.control_name} of loop {self.loop_id}")
+                print(f"Updated {args, kwargs} in controller {self.control_id} of loop {self.loop_id}")
                 self.load_control_constants()
                 print("Updated control_consts for controller")
             else:
-                print(f"Controller {self.control_name} not found in loop {self.loop_id}")
+                print(f"Controller {self.control_id} not found in loop {self.loop_id}")
         else:
             print(f"Loop {self.loop_id} not found")
 
@@ -266,7 +262,7 @@ class ConcentrationController(Controller):
 
         self.device_manager = dm
         self.loop_id = "concentration_loop"
-        self.control_name = get_loop_constant(self.loop_id, "chosen_control")
+        self.control_id = get_loop_constant(self.loop_id, "chosen_control")
 
         self.initial_buffer_mass = None
         self.initial_lysate_mass = None
@@ -338,7 +334,7 @@ class FermentationController(Controller):
         self.device_manager = dm
         self.loop_id = "fermentation_loop"
 
-        self.control_name = get_loop_constant(self.loop_id, "chosen_control")
+        self.control_id = get_loop_constant(self.loop_id, "chosen_control")
 
         self.control_consts = {}
         self.load_control_constants()
@@ -356,8 +352,8 @@ class FermentationController(Controller):
 
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 6, 17, 20, 30, 0)  # 8:30 PM Jun 17, 2024
-
+        phase3_start_time = datetime(2024, 6, 20, 20, 30, 0)  # 8:30 PM Jun 20, 2024
+        print(f"Lactose Start Time: {phase3_start_time.strftime('%d-%m-%Y_%H:%M:%S')}")
         start_feed = eval(self.control_consts["start_feed"])
 
         # Phase 1: Maintain pH using only base
@@ -413,13 +409,71 @@ class FermentationController(Controller):
 
         return data, self.status
     
+    def __2_phase_do_trig_ph_feed_control(self):
+
+        data = self.get_data(self.control_consts["test_data"])
+        start_feed = eval(self.control_consts["start_feed"])
+
+        # Phase 1: Maintain pH using only base
+        
+        do_maintained_counter = self.control_consts.get("do_maintained_counter", 0)
+        do_window = self.control_consts["do_window"] - 1
+        feed_trigger_ph = self.control_consts["feed_trigger_ph"]
+        feed_trigger_do = self.control_consts["feed_trigger_do"]
+        do_below_50_counter = self.control_consts["do_below_50_counter"]
+        start_phase_1 = eval(self.control_consts["start_phase_1"])
+        required_consecutive_readings = 2
+
+        if not start_feed:
+            self.__pH_balance(data["ph"], base_control=True, acid_control=False)
+            if not start_phase_1:
+                if data["do"] < 50:
+                    do_below_50_counter += 1
+                    self.update_controller_consts("do_below_50_counter", do_below_50_counter)
+                else:
+                    do_below_50_counter = 0  # Reset counter if DO is not below 50
+                    self.update_controller_consts("do_below_50_counter", do_below_50_counter)
+            if do_below_50_counter >= required_consecutive_readings:
+                self.update_controller_consts("start_phase_1", "True")
+                if data["do"] >= feed_trigger_do:
+                    print("In phase 1")
+                    if do_maintained_counter >= do_window:  # Check if DO has been maintained
+                        self.__pH_balance(data["ph"], base_control=False, acid_control=False)
+                        start_feed = True
+                        self.update_controller_consts("start_feed", "True")
+                        print("Transitioning to Phase 2")
+                    else:
+                        do_maintained_counter += 1
+                        self.update_controller_consts("do_maintained_counter", do_maintained_counter)
+                else:
+                    # Reset the counter if DO drops below feed_trigger_do
+                    if do_maintained_counter != 0:
+                        self.update_controller_consts("do_maintained_counter", 0)
+
+        # Phase 2: Base control OFF, turn on feed pump
+        if start_feed:
+            print("Phase 2: Glucose Feed")
+            self.__pH_balance(data["ph"], base_control=True, acid_control=False)
+            if data["ph"] >= feed_trigger_ph:
+                self.pump_control(self.pumps["feed_pump"].control(True))
+                print("Feed pump on")
+            else:
+                self.pump_control(self.pumps["feed_pump"].control(False))
+                print("Feed pump off")
+
+        self.update_status()
+
+        self.save_data_sheets(data)
+
+        return data, self.status
+    
     def __3_phase_do_feed_control(self):
 
         data = self.get_data(self.control_consts["test_data"])
 
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 6, 17, 20, 30, 0)  # 8:30 PM Jun 17, 2024
+        phase3_start_time = datetime(2024, 6, 20, 20, 30, 0)  # 8:30 PM Jun 20, 2024
 
 
         # Phase 1: Maintain pH using only base
@@ -492,8 +546,8 @@ class FermentationController(Controller):
         """
         Switch the feed media between 'Glucose' and 'Lactose'.
         """
-        # control_name = self.control_name
-        # current_value = get_control_constant(self.loop_id, control_name, "feed_media")
+        # control_id = self.control_id
+        # current_value = get_control_constant(self.loop_id, control_id, "feed_media")
         current_value = self.control_consts["feed_media"]
         new_value = 'Lactose' if current_value == 'Glucose' else 'Glucose'
         self.update_controller_consts("feed_media", new_value)
@@ -506,8 +560,8 @@ class FermentationController(Controller):
         Main control loop for the pH controller.
         """
         
-        # ph_base_sp = get_control_constant(self.loop_id, self.control_name, "ph_balance_base_sp")
-        # ph_acid_sp = get_control_constant(self.loop_id, self.control_name, "ph_balance_acid_sp")
+        # ph_base_sp = get_control_constant(self.loop_id, self.control_id, "ph_balance_base_sp")
+        # ph_acid_sp = get_control_constant(self.loop_id, self.control_id, "ph_balance_acid_sp")
         ph_base_sp = self.control_consts["ph_balance_base_sp"]
         ph_acid_sp = self.control_consts["ph_balance_acid_sp"]
         print(f"ph being balanced at base: {ph_base_sp} and acid: {ph_acid_sp}")
@@ -540,12 +594,12 @@ class FermentationController(Controller):
         self.update_status()
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop", "3_phase_do_feed_control", testing)
+    d = DeviceManager("fermentation_loop", "2_phase_do_trig_ph_feed_control", testing)
     # d = DeviceManager("concentration_loop", "concentration_buffer_loop", testing)
     c = FermentationController(d)
     # c = ConcentrationController(d)
     
-    c.reset_controller_consts(testing)
+    # c.reset_controller_consts(testing)
     while True:
         c.start_control()
         time.sleep(2)
