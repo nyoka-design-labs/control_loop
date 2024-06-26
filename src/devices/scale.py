@@ -6,11 +6,11 @@ import os
 curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..")
 sys.path.append(SRC_DIR)
-from resources.logging_config import logger
+from resources.logging_config import setup_logger
 import traceback
 from resources.utils import *
 from serial.serialutil import SerialException
-
+logger = setup_logger()
 class Scale:
     """
     Represents the Dymo M25 scale.

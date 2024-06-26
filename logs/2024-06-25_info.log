@@ -1,0 +1,144 @@
+2024-06-25 14:15:53 - INFO - Loaded control constants for test_loop: {'ph_balance_base_sp': 7, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.02, 'ph_maintained_time': 0, 'do_upper_sp': 25, 'do_lower_sp': 21, 'ph_window': 10, 'start_feed': 'True', 'feed_media': 'Lactose', 'test_data': '3_phase_control_test_data', 'csv_name': 'test_sheet'}
+2024-06-25 14:15:53 - INFO - sent arduino: b'0'
+2024-06-25 14:15:54 - INFO - sent arduino: b'4'
+2024-06-25 14:15:55 - INFO - sent arduino: b'2'
+2024-06-25 14:15:56 - INFO - sent arduino: b'10'
+2024-06-25 14:15:57 - INFO - sent arduino: b'12'
+2024-06-25 14:15:58 - INFO - sent arduino: b'14'
+2024-06-25 14:15:59 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.8724566494756275, 'type': 'data', 'time_of_day': '14:15:59', 'date': '2024-06-25'}
+2024-06-25 14:15:59 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:15:59 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:15:59 - INFO - sent arduino: b'3'
+2024-06-25 14:16:00 - INFO - sent arduino: b'0'
+2024-06-25 14:16:01 - INFO - sent arduino: b'4'
+2024-06-25 14:16:02 - INFO - Lactose pump off
+2024-06-25 14:16:03 - INFO - added data to sheets
+2024-06-25 14:16:05 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 0.8743243183692296, 'type': 'data', 'time_of_day': '14:16:05', 'date': '2024-06-25'}
+2024-06-25 14:16:05 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:16:05 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:16:05 - INFO - sent arduino: b'2'
+2024-06-25 14:16:06 - INFO - sent arduino: b'0'
+2024-06-25 14:16:07 - INFO - sent arduino: b'4'
+2024-06-25 14:16:08 - INFO - Lactose pump off
+2024-06-25 14:16:10 - INFO - added data to sheets
+2024-06-25 14:16:12 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 0.8760603997442458, 'type': 'data', 'time_of_day': '14:16:12', 'date': '2024-06-25'}
+2024-06-25 14:16:12 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:16:12 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:16:12 - INFO - sent arduino: b'2'
+2024-06-25 14:16:13 - INFO - sent arduino: b'0'
+2024-06-25 14:16:14 - INFO - sent arduino: b'5'
+2024-06-25 14:16:15 - INFO - Lactose pump on
+2024-06-25 14:16:16 - INFO - added data to sheets
+2024-06-25 14:16:18 - INFO - test data: {'ph': 6, 'do': 19, 'time': 0.8778230911493301, 'type': 'data', 'time_of_day': '14:16:18', 'date': '2024-06-25'}
+2024-06-25 14:16:18 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:16:18 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:16:18 - INFO - sent arduino: b'3'
+2024-06-25 14:16:19 - INFO - sent arduino: b'0'
+2024-06-25 14:16:20 - INFO - sent arduino: b'4'
+2024-06-25 14:16:21 - INFO - Lactose pump off
+2024-06-25 14:16:22 - INFO - added data to sheets
+2024-06-25 14:16:24 - INFO - test data: {'ph': 6.5, 'do': 24, 'time': 0.8795522663990657, 'type': 'data', 'time_of_day': '14:16:24', 'date': '2024-06-25'}
+2024-06-25 14:16:24 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:16:24 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:16:24 - INFO - sent arduino: b'3'
+2024-06-25 14:16:25 - INFO - sent arduino: b'0'
+2024-06-25 14:16:26 - INFO - sent arduino: b'4'
+2024-06-25 14:16:27 - INFO - Lactose pump off
+2024-06-25 14:16:28 - INFO - added data to sheets
+2024-06-25 14:16:30 - INFO - test data: {'ph': 7, 'do': 25, 'time': 0.8812739637162951, 'type': 'data', 'time_of_day': '14:16:30', 'date': '2024-06-25'}
+2024-06-25 14:16:30 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:16:30 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:16:30 - INFO - sent arduino: b'3'
+2024-06-25 14:16:31 - INFO - sent arduino: b'0'
+2024-06-25 14:16:32 - INFO - sent arduino: b'4'
+2024-06-25 14:16:44 - INFO - Loaded control constants for test_loop: {'ph_balance_base_sp': 7, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.02, 'ph_maintained_time': 0, 'do_upper_sp': 25, 'do_lower_sp': 21, 'ph_window': 10, 'start_feed': 'True', 'feed_media': 'Lactose', 'test_data': '3_phase_control_test_data', 'csv_name': 'test_sheet'}
+2024-06-25 14:16:44 - INFO - sent arduino: b'0'
+2024-06-25 14:16:45 - INFO - sent arduino: b'4'
+2024-06-25 14:16:46 - INFO - sent arduino: b'2'
+2024-06-25 14:16:47 - INFO - sent arduino: b'10'
+2024-06-25 14:16:48 - INFO - sent arduino: b'12'
+2024-06-25 14:16:49 - INFO - sent arduino: b'14'
+2024-06-25 14:16:50 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.8867847134007348, 'type': 'data', 'time_of_day': '14:16:50', 'date': '2024-06-25'}
+2024-06-25 14:16:50 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:16:50 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:16:50 - INFO - sent arduino: b'3'
+2024-06-25 14:16:51 - INFO - sent arduino: b'0'
+2024-06-25 14:16:52 - INFO - sent arduino: b'4'
+2024-06-25 14:16:53 - INFO - Lactose pump off
+2024-06-25 14:16:55 - INFO - added data to sheets
+2024-06-25 14:16:57 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 0.8886252370145585, 'type': 'data', 'time_of_day': '14:16:57', 'date': '2024-06-25'}
+2024-06-25 14:16:57 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:16:57 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:16:57 - INFO - sent arduino: b'2'
+2024-06-25 14:16:58 - INFO - sent arduino: b'0'
+2024-06-25 14:16:59 - INFO - sent arduino: b'4'
+2024-06-25 14:17:00 - INFO - Lactose pump off
+2024-06-25 14:17:01 - INFO - added data to sheets
+2024-06-25 14:17:03 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 0.8903425170315636, 'type': 'data', 'time_of_day': '14:17:03', 'date': '2024-06-25'}
+2024-06-25 14:17:03 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 14:17:03 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 14:17:03 - INFO - sent arduino: b'2'
+2024-06-25 15:36:16 - INFO - Loaded control constants for test_loop: {'ph_balance_base_sp': 7, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.02, 'ph_maintained_time': 0, 'do_upper_sp': 25, 'do_lower_sp': 21, 'ph_window': 10, 'start_feed': 'True', 'feed_media': 'Lactose', 'test_data': '3_phase_control_test_data', 'csv_name': 'test_sheet'}
+2024-06-25 15:36:16 - INFO - sent arduino: b'0'
+2024-06-25 15:36:17 - INFO - sent arduino: b'4'
+2024-06-25 15:36:18 - INFO - sent arduino: b'2'
+2024-06-25 15:36:19 - INFO - sent arduino: b'10'
+2024-06-25 15:36:20 - INFO - sent arduino: b'12'
+2024-06-25 15:36:21 - INFO - sent arduino: b'14'
+2024-06-25 15:36:22 - INFO - test data: {'ph': 6, 'do': 19, 'time': 2.212163960072729, 'type': 'data', 'time_of_day': '15:36:22', 'date': '2024-06-25'}
+2024-06-25 15:36:22 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 15:36:22 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 15:36:22 - INFO - sent arduino: b'3'
+2024-06-25 15:36:23 - INFO - sent arduino: b'0'
+2024-06-25 15:36:24 - INFO - sent arduino: b'4'
+2024-06-25 15:36:25 - INFO - Lactose pump off
+2024-06-25 15:36:27 - INFO - added data to sheets
+2024-06-25 15:36:29 - INFO - test data: {'ph': 6.5, 'do': 24, 'time': 2.2142543131113053, 'type': 'data', 'time_of_day': '15:36:29', 'date': '2024-06-25'}
+2024-06-25 15:36:29 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 15:36:29 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 15:36:29 - INFO - sent arduino: b'3'
+2024-06-25 15:36:36 - INFO - Loaded control constants for test_loop: {'ph_balance_base_sp': 7, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.02, 'ph_maintained_time': 0, 'do_upper_sp': 25, 'do_lower_sp': 21, 'ph_window': 10, 'start_feed': 'True', 'feed_media': 'Lactose', 'test_data': '3_phase_control_test_data', 'csv_name': 'test_sheet'}
+2024-06-25 15:36:36 - INFO - sent arduino: b'0'
+2024-06-25 15:36:37 - INFO - sent arduino: b'4'
+2024-06-25 15:36:38 - INFO - sent arduino: b'2'
+2024-06-25 15:36:39 - INFO - sent arduino: b'10'
+2024-06-25 15:36:40 - INFO - sent arduino: b'12'
+2024-06-25 15:36:41 - INFO - sent arduino: b'14'
+2024-06-25 15:36:42 - INFO - test data: {'ph': 7, 'do': 25, 'time': 2.2177828055620195, 'type': 'data', 'time_of_day': '15:36:42', 'date': '2024-06-25'}
+2024-06-25 15:36:42 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 15:36:42 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 15:36:42 - INFO - sent arduino: b'3'
+2024-06-25 15:36:43 - INFO - sent arduino: b'0'
+2024-06-25 15:36:44 - INFO - sent arduino: b'4'
+2024-06-25 15:36:45 - INFO - Lactose pump off
+2024-06-25 15:36:47 - INFO - added data to sheets
+2024-06-25 15:36:49 - INFO - test data: {'ph': 6, 'do': 25, 'time': 2.219645532568296, 'type': 'data', 'time_of_day': '15:36:49', 'date': '2024-06-25'}
+2024-06-25 15:36:49 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 15:36:49 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 15:36:49 - INFO - sent arduino: b'3'
+2024-06-25 15:36:50 - INFO - sent arduino: b'0'
+2024-06-25 15:36:51 - INFO - sent arduino: b'4'
+2024-06-25 15:36:52 - INFO - Lactose pump off
+2024-06-25 15:36:53 - INFO - added data to sheets
+2024-06-25 15:36:55 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 2.221382501986292, 'type': 'data', 'time_of_day': '15:36:55', 'date': '2024-06-25'}
+2024-06-25 15:36:55 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 15:36:55 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 15:36:55 - INFO - sent arduino: b'2'
+2024-06-25 15:36:56 - INFO - sent arduino: b'0'
+2024-06-25 15:36:57 - INFO - sent arduino: b'4'
+2024-06-25 15:36:58 - INFO - Lactose pump off
+2024-06-25 15:36:59 - INFO - added data to sheets
+2024-06-25 15:37:01 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 2.2231757675939137, 'type': 'data', 'time_of_day': '15:37:01', 'date': '2024-06-25'}
+2024-06-25 15:37:01 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 15:37:01 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 15:37:01 - INFO - sent arduino: b'2'
+2024-06-25 15:37:02 - INFO - sent arduino: b'0'
+2024-06-25 15:37:03 - INFO - sent arduino: b'5'
+2024-06-25 15:37:04 - INFO - Lactose pump on
+2024-06-25 15:37:05 - INFO - added data to sheets
+2024-06-25 15:37:07 - INFO - test data: {'ph': 6, 'do': 19, 'time': 2.2249018497599495, 'type': 'data', 'time_of_day': '15:37:07', 'date': '2024-06-25'}
+2024-06-25 15:37:07 - INFO - Lactose Start Time: 20-06-2024_20:30:00
+2024-06-25 15:37:07 - INFO - ph being balanced at base: 7 and acid: 8
+2024-06-25 15:37:07 - INFO - sent arduino: b'3'
+2024-06-25 15:37:08 - INFO - sent arduino: b'0'
+2024-06-25 15:37:09 - INFO - sent arduino: b'4'

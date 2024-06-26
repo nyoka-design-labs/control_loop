@@ -39,14 +39,14 @@
             "name": "ph_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "/dev/ttyUSB1",
+            "port": "",
             "data_type": "ph"
         },
         {
             "name": "do_sensor",
             "vendor_id": "0403",
             "product_id": "6001",
-            "port": "/dev/ttyUSB0",
+            "port": "",
             "data_type": "do"
         }
     ],
@@ -54,10 +54,10 @@
         {
             "loop_id": "server_consts",
             "interval": 4,
-            "testing": "False",
-            "load_data": "True",
-            "devices_connected": "True",
-            "pumps_connected": "True",
+            "testing": "True",
+            "load_data": "False",
+            "devices_connected": "False",
+            "pumps_connected": "False",
             "error": "False",
             "control_running": "fermentation_loop"
         },
@@ -114,7 +114,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "2_phase_do_trig_ph_feed_control",
+            "chosen_control": "test_loop",
             "controllers": [
                 {
                     "controller_id": "3_phase_feed_control",
@@ -262,8 +262,8 @@
                         "lactose_const_pump": "whitePump2",
                         "acid_pump": "whitePump3"
                     },
-                    "start_time": 0,
-                    "test_data_index": 0,
+                    "start_time": 1719427470.0103822,
+                    "test_data_index": 4,
                     "control_consts": {
                         "ph_balance_base_sp": 7,
                         "ph_balance_acid_sp": 8,
@@ -272,7 +272,7 @@
                         "do_upper_sp": 25,
                         "do_lower_sp": 21,
                         "ph_window": 10,
-                        "start_feed": "True",
+                        "start_feed": "False",
                         "feed_media": "Lactose",
                         "test_data": "3_phase_control_test_data",
                         "csv_name": "test_sheet"

@@ -1,4 +1,3 @@
-from resources.logging_config import logger
 import serial
 from devices.pump import Pump
 from DeviceManager import DeviceManager
@@ -10,7 +9,8 @@ import traceback
 import json
 import os
 import inspect
-
+from resources.logging_config import setup_logger
+logger = setup_logger()
 #CONSTANTS
 port = '/dev/ttyACM0'
 curr_dir = os.path.dirname(__file__)
@@ -19,16 +19,14 @@ baudrate = 9600
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 pumps = eval(get_loop_constant(loop_id="server_consts", const="pumps_connected"))
 
-def create_controller(loop_id, control_id, testing: bool=False):
-    
-    dm = DeviceManager(loop_id, control_id, testing)
+def create_controller(loop_id):
 
     if loop_id == "concentration_loop":
-        controller = ConcentrationController(dm)
+        controller = ConcentrationController()
     elif loop_id == "fermentation_loop":
-        controller = FermentationController(dm)
+        controller = FermentationController()
 
-    return controller, dm
+    return controller, controller.device_manager
 
 class Controller:
 
@@ -44,6 +42,7 @@ class Controller:
     def pump_control(self, state: str):
         try:
             print(f"sent arduino: {state.encode()}")
+            logger.info(f"sent arduino: {state.encode()}")
             if pumps:
                 self.arduino.write((state + '\n').encode())
         except Exception as e:
@@ -173,6 +172,7 @@ class Controller:
             if testing:
                     data = self.device_manager.test_get_measurement(test_data)
                     print(f"test data: {data}")
+                    logger.info(f"test data: {data}")
                     return data
             else:
                 data = self.device_manager.get_measurement()
@@ -199,6 +199,7 @@ class Controller:
             combined_data.update(status)
             save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
             print("added data to sheets")
+            logger.info("added data to sheets")
         except Exception as e:
             print(f"failed to add data to sheets: {data}, \n{e}")
             logger.error(f"Error in save_data_sheets: \n{data}, \n{e}\n{traceback.format_exc()}")
@@ -212,6 +213,7 @@ class Controller:
             # Store constants in a dictionary
             self.control_consts = constants
             print(f"Loaded control constants for {self.control_id}: {self.control_consts}")
+            logger.info(f"Loaded control constants for {self.control_id}: {self.control_consts}")
         except Exception as e:
             print(f"Failed to load control constants: {e}")
             logger.error(f"Error in load_control_constants: {e}\n{traceback.format_exc()}")
@@ -243,6 +245,7 @@ class Controller:
                 with open(json_file_path, "w") as file:
                     json.dump(data, file, indent=4)
                 print(f"Updated {args, kwargs} in controller {self.control_id} of loop {self.loop_id}")
+                logger.info(f"Updated {args, kwargs} in controller {self.control_id} of loop {self.loop_id}")
                 self.load_control_constants()
                 print("Updated control_consts for controller")
             else:
@@ -255,14 +258,14 @@ class ConcentrationController(Controller):
     The concentration control loop controller
     """
 
-    def __init__(self, dm: DeviceManager):
+    def __init__(self):
         super().__init__()
         self.buffer_pump = Pump(name="whitePump1")
         self.lysate_pump = Pump(name="whitePump2")
 
-        self.device_manager = dm
         self.loop_id = "concentration_loop"
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
+        self.device_manager = DeviceManager(self.loop_id, self.control_id, testing)
 
         self.initial_buffer_mass = None
         self.initial_lysate_mass = None
@@ -328,13 +331,13 @@ class FermentationController(Controller):
     The fermentation control loop controller
     """
 
-    def __init__(self, dm: DeviceManager):
+    def __init__(self):
         super().__init__()
 
-        self.device_manager = dm
         self.loop_id = "fermentation_loop"
-
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
+
+        self.device_manager = DeviceManager(self.loop_id, self.control_id, testing)
 
         self.control_consts = {}
         self.load_control_constants()
@@ -354,6 +357,7 @@ class FermentationController(Controller):
         current_datetime = datetime.fromtimestamp(current_time)
         phase3_start_time = datetime(2024, 6, 20, 20, 30, 0)  # 8:30 PM Jun 20, 2024
         print(f"Lactose Start Time: {phase3_start_time.strftime('%d-%m-%Y_%H:%M:%S')}")
+        logger.info(f"Lactose Start Time: {phase3_start_time.strftime('%d-%m-%Y_%H:%M:%S')}")
         start_feed = eval(self.control_consts["start_feed"])
 
         # Phase 1: Maintain pH using only base
@@ -364,7 +368,8 @@ class FermentationController(Controller):
 
         if not start_feed:
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
-            print("in phase 1")
+            print("In phase 1")
+            logger.info("In Phase 1")
             if data["ph"] >= feed_trigger_ph:
                 if ph_maintained_time == 0:
                     # Start timing when pH first reaches feed_trigger_ph
@@ -374,6 +379,7 @@ class FermentationController(Controller):
                     start_feed = True
                     self.update_controller_consts("start_feed", "True")
                     print("Transitioning to Phase 2")
+                    logger.info("Transitioning to Phase 2")
             else:
                 # Reset the timer if pH drops below feed_trigger_ph
                 if ph_maintained_time != 0:
@@ -382,14 +388,17 @@ class FermentationController(Controller):
         # Phase 2: Acid and base control OFF, turn on feed pump
         if start_feed and current_datetime < phase3_start_time:
             print("Phase 2: Glucose Feed")
+            logger.info("Phase 2: Glucose Feed")
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             self.pump_control(self.pumps["lactose_pump"].control(False))
             if data["ph"] >= feed_trigger_ph:
                 self.pump_control(self.pumps["feed_pump"].control(True))
                 print("Feed pump on")
+                logger.info("Feed pump on")
             else:
                 self.pump_control(self.pumps["feed_pump"].control(False))
                 print("Feed pump off")
+                logger.info("Feed pump off")
 
         # Phase 3: turn off acid and base control, turn off feed pump and start using lactose pump
         if start_feed and current_datetime >= phase3_start_time:
@@ -399,9 +408,11 @@ class FermentationController(Controller):
             if data["ph"] >= feed_trigger_ph:
                 self.pump_control(self.pumps["lactose_pump"].control(True))
                 print("Lactose pump on")
+                logger.info("Lactose pump on")
             else:
                 self.pump_control(self.pumps["lactose_pump"].control(False))
                 print("Lactose pump off")
+                logger.info("Lactose pump off")
 
         self.update_status()
 
@@ -437,11 +448,13 @@ class FermentationController(Controller):
                 self.update_controller_consts("start_phase_1", "True")
                 if data["do"] >= feed_trigger_do:
                     print("In phase 1")
+                    logger.info("In phase 1")
                     if do_maintained_counter >= do_window:  # Check if DO has been maintained
                         self.__pH_balance(data["ph"], base_control=False, acid_control=False)
                         start_feed = True
                         self.update_controller_consts("start_feed", "True")
                         print("Transitioning to Phase 2")
+                        logger.info("Transitioning to Phase 2")
                     else:
                         do_maintained_counter += 1
                         self.update_controller_consts("do_maintained_counter", do_maintained_counter)
@@ -457,9 +470,11 @@ class FermentationController(Controller):
             if data["ph"] >= feed_trigger_ph:
                 self.pump_control(self.pumps["feed_pump"].control(True))
                 print("Feed pump on")
+                logger.info("Feed pump on")
             else:
                 self.pump_control(self.pumps["feed_pump"].control(False))
                 print("Feed pump off")
+                logger.info("Feed pump off")
 
         self.update_status()
 
@@ -490,11 +505,13 @@ class FermentationController(Controller):
             self.update_controller_consts("increment_counter", increment_counter)
             if increment_counter < deriv_window:
                 print("not enough points", increment_counter)
+                logger.info("not enough points", increment_counter)
                 pass
             else:
                 derivs.append(calculate_derivative("do", self.control_consts["csv_name"], deriv_window))
                 self.update_controller_consts("derivs", derivs)
                 print(derivs)
+                logger.info(derivs)
                 self.update_controller_consts("increment_counter", 0)
 
             if isDerPositive(derivs):
@@ -502,6 +519,7 @@ class FermentationController(Controller):
                     start_feed = True
                     self.update_controller_consts("start_feed", "True")
                     print("Transitioning to Phase 2")
+                    logger.info("Transitioning to Phase 2")
 
         # Phase 2: Acid and base control OFF, turn on feed pump
         if start_feed and current_datetime < phase3_start_time:
@@ -513,9 +531,11 @@ class FermentationController(Controller):
             if data["do"] >= do_upper_sp:
                 self.pump_control(self.pumps["feed_pump"].control(True))
                 print("Glycerol pump on")
+                logger.info("Glycerol pump on")
             elif data["do"] <= do_lower_sp:
                 self.pump_control(self.pumps["feed_pump"].control(False))
                 print("Glycerol pump off")
+                logger.info("Glycerol pump off")
 
         # Phase 3: turn off acid and base control, turn off feed pump and start using lactose pump
         if start_feed and current_datetime >= phase3_start_time:
@@ -527,9 +547,11 @@ class FermentationController(Controller):
             if data["do"] >= do_upper_sp:
                 self.pump_control(self.pumps["lactose_pump"].control(True))
                 print("Lactose pump on")
+                logger.info("Lactose pump on")
             elif data["do"] <= do_lower_sp:
                 self.pump_control(self.pumps["lactose_pump"].control(False))
                 print("Lactose pump off")
+                logger.info("Lactose pump off")
 
         self.update_status()
 
@@ -565,6 +587,7 @@ class FermentationController(Controller):
         ph_base_sp = self.control_consts["ph_balance_base_sp"]
         ph_acid_sp = self.control_consts["ph_balance_acid_sp"]
         print(f"ph being balanced at base: {ph_base_sp} and acid: {ph_acid_sp}")
+        logger.info(f"ph being balanced at base: {ph_base_sp} and acid: {ph_acid_sp}")
 
         if base_control and (ph <= ph_base_sp):
             # turn on base pump
@@ -594,19 +617,13 @@ class FermentationController(Controller):
         self.update_status()
 
 if __name__ == "__main__":
-    d = DeviceManager("fermentation_loop", "2_phase_do_trig_ph_feed_control", testing)
-    # d = DeviceManager("concentration_loop", "concentration_buffer_loop", testing)
-    c = FermentationController(d)
-    # c = ConcentrationController(d)
-    
-    # c.reset_controller_consts(testing)
+   
+    c = FermentationController()
+    # c = ConcentrationController()
+
     while True:
         c.start_control()
         time.sleep(2)
-    # TEST THE RESET SHIT
-
-    # d = DeviceManager("concentration_loop", "concentration_loop", testing)
-    # c = ConcentrationController(d)
    
 
        

@@ -1,9 +1,9 @@
 import chump
 import asyncio
-from resources.logging_config import logger
+from resources.logging_config import setup_logger
 import traceback
 import time
-
+logger = setup_logger()
 def send_notification(message, priority="E"):
     try:
         app = chump.Application('aubr7cnv73kbgv9tvdmzg5k9d7xe12')

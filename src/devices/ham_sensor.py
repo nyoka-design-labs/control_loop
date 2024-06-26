@@ -7,12 +7,12 @@ import sys
 curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..")
 sys.path.append(SRC_DIR)
-from resources.logging_config import logger
+from resources.logging_config import setup_logger
 import traceback
 from datetime import datetime, timedelta
 from resources.utils import *
 from resources.error_notification import send_notification
-
+logger = setup_logger()
 class _Sensor:
     """
     Class representing the Hamilton sensors.

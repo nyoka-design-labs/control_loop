@@ -3,7 +3,8 @@ from google.oauth2.service_account import Credentials
 import os
 from resources.utils import *
 import traceback
-from resources.logging_config import logger
+from resources.logging_config import setup_logger
+logger = setup_logger()
 
 # Define the scope of the API
 SCOPES = [

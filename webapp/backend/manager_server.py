@@ -11,8 +11,8 @@ sys.path.append(SRC_DIR)
 
 from resources.utils import *
 import controllers as c
-from resources.logging_config import logger
-
+from resources.logging_config import setup_logger
+logger = setup_logger()
 load_data = eval(get_loop_constant(loop_id="server_consts", const="load_data"))
 INTERVAL = get_loop_constant("server_consts", "interval")
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
@@ -86,8 +86,9 @@ async def control_task(controller, websocket):
         try:
             while True:
                 print("loop controlled")
+                logger.info("loop controlled")
                 data, status = controller.start_control()
-                print(f"data sent from control: {data}")
+                logger.info(f"data sent from control: {data}")
                 await websocket.send(json.dumps(data))
                 await send_status_update(websocket, status)
                 await asyncio.sleep(INTERVAL)
@@ -111,7 +112,7 @@ async def collection_task(controller, websocket, loop_id):
                 print(f"data being collected")
                 if controller.status["control_loop_status"] == "control_off":
                     status, data = controller.start_collection(False)
-                    print(f"data sent from collect: {data}")
+                    logger.info(f"data sent from collect: {data}")
                     await websocket.send(json.dumps(data))
                     await send_status_update(websocket, status)
                 await asyncio.sleep(INTERVAL)
@@ -135,14 +136,11 @@ async def send_status_update(websocket, status):
         print(f"Error in send_status_update: \n Input: {status}, \n {e}")
         logger.error(f"Error in send_status_update: \n Input: {status}, \n {e}\n{traceback.format_exc()}")
 
-
 def get_controller(loop_id):
     try:
         # Initialize controller and device manager if they don't exist for this loop
         if loop_id not in controllers:
-            control_id = get_loop_constant(loop_id=loop_id, const="chosen_control")
-            
-            controller, device_manager = c.create_controller(loop_id, control_id, testing)
+            controller, device_manager = c.create_controller(loop_id)
             controllers[loop_id] = {
                 "controller": controller,  # Replace with appropriate constructor arguments
                 "device_manager": device_manager  # Replace with appropriate constructor arguments
