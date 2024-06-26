@@ -42,6 +42,12 @@ async def handle_client(websocket):
 
     Parameters:
     websocket (websockets.WebSocketServerProtocol): The websocket connection to the client.
+
+    Behavior:
+    - Continuously listens for messages from the client.
+    - Processes 'ping' messages by responding with 'pong'.
+    - Processes other commands by calling process_command.
+    - On error, logs the error, sends notifications, and may start a backup server if needed.
     """
     try:
         while True:
@@ -71,11 +77,18 @@ async def process_client_command(websocket, data):
     Parameters:
     websocket (websockets.WebSocketServerProtocol): The websocket connection to the client.
     data (dict): The JSON-decoded data received from the client.
+
+    Behavior:
+    - Extracts the command and loop ID from the data.
+    - Updates the loop constant for control_running.
+    - Calls the appropriate manager_server function based on the command.
+    - Logs and notifies errors if command processing fails.
     """
     try:
         command = data.get("command")
         loop_id = data.get("loopID")
         print(f"Command received: {command}")
+        logger.info(f"Command received: {command}")
         update_loop_constant("server_consts", "control_running", loop_id)
         if "control" in command:
             await manager_server.control(loop_id, command, websocket)
@@ -89,6 +102,12 @@ async def process_client_command(websocket, data):
 async def start_server():
     """
     Start the WebSocket server and listen for connections.
+
+    Behavior:
+    - Configures and starts the WebSocket server on localhost at port 8765.
+    - Sets the ping interval and timeout for maintaining connections.
+    - Runs the server until it is closed.
+    - Logs and notifies errors if server startup fails.
     """
     try:
         server = await websockets.serve(
@@ -112,6 +131,7 @@ def start_backup_server(controller, loop_id):
     """
     try:
         print("Starting backup server due to critical failure.")
+        logger.info("Starting backup server due to critical failure.")
         backup_server.control(loop_id, controller)
         logger.error("Backup Server Started")
     except Exception as e:
