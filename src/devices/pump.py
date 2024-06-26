@@ -57,7 +57,14 @@ class Pump:
         else:
             return self.pump_names[self.name][0]
 
+    def is_on(self) -> bool:
+        """
+        Checks if the pump is currently on.
 
+        Returns:
+        bool: True if the pump is on, False otherwise.
+        """
+        return self.state == self.pump_names[self.name][1]
 
 if __name__ == "__main__":
     # example usage of Pump class

@@ -112,3 +112,88 @@ Traceback (most recent call last):
     raise self.connection_closed_exc()
 websockets.exceptions.ConnectionClosedError: no close frame received or sent
 
+2024-06-26 12:54:22 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 0, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:54:22 - ERROR - Error in initialize_pumps: Invalid pump mode
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 123, in initialize_pumps
+    pumps[pump_name] = Pump(name=pump_value)
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/devices/pump.py", line 25, in __init__
+    raise ValueError("Invalid pump mode")
+ValueError: Invalid pump mode
+
+2024-06-26 12:54:22 - ERROR - Error in initialize_status: 'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 139, in initialize_status
+    for pump_name in self.pumps:
+TypeError: 'NoneType' object is not iterable
+
+2024-06-26 12:54:22 - ERROR - Error in get_data: 
+ data_col_is_on: False, 
+'NoneType' object has no attribute 'values'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 97, in stop_control
+    for pump in self.pumps.values():
+                ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'values'
+
+2024-06-26 12:54:57 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 0, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:54:57 - INFO - sent arduino: b'0'
+2024-06-26 12:54:58 - INFO - sent arduino: b'2'
+2024-06-26 12:54:59 - INFO - sent arduino: b'14'
+2024-06-26 12:55:00 - INFO - sent arduino: b'4'
+2024-06-26 12:55:01 - INFO - Updated (('last_antifoam_edition', 0), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-06-26 12:55:01 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 0, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:55:19 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 0, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:55:19 - INFO - sent arduino: b'0'
+2024-06-26 12:55:20 - INFO - sent arduino: b'2'
+2024-06-26 12:55:21 - INFO - sent arduino: b'14'
+2024-06-26 12:55:22 - INFO - sent arduino: b'4'
+2024-06-26 12:55:23 - INFO - Updated (('last_antifoam_edition', 0), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-06-26 12:55:23 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 0, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:55:23 - INFO - sent arduino: b'5'
+2024-06-26 12:55:24 - INFO - Antifoam pump activated
+2024-06-26 12:55:26 - INFO - sent arduino: b'4'
+2024-06-26 12:55:27 - INFO - Updated (('last_antifoam_edition', 1719431726.482798), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-06-26 12:55:27 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 1719431726.482798, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:55:27 - INFO - Antifoam pump deactivated
+2024-06-26 12:56:04 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 0, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:56:04 - INFO - sent arduino: b'0'
+2024-06-26 12:56:05 - INFO - sent arduino: b'2'
+2024-06-26 12:56:06 - INFO - sent arduino: b'14'
+2024-06-26 12:56:07 - INFO - sent arduino: b'4'
+2024-06-26 12:57:36 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 0, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:57:36 - INFO - sent arduino: b'0'
+2024-06-26 12:57:37 - INFO - sent arduino: b'2'
+2024-06-26 12:57:38 - INFO - sent arduino: b'14'
+2024-06-26 12:57:39 - INFO - sent arduino: b'4'
+2024-06-26 12:57:40 - INFO - Updated (('last_antifoam_edition', 1719431860.360109), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-06-26 12:57:40 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 1719431860.360109, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:57:59 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 1719431860.360109, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 12:57:59 - INFO - sent arduino: b'0'
+2024-06-26 12:58:00 - INFO - sent arduino: b'2'
+2024-06-26 12:58:01 - INFO - sent arduino: b'14'
+2024-06-26 12:58:02 - INFO - sent arduino: b'4'
+2024-06-26 13:00:36 - INFO - sent arduino: b'5'
+2024-06-26 13:00:39 - INFO - Antifoam pump activated
+2024-06-26 13:00:46 - INFO - sent arduino: b'4'
+2024-06-26 13:00:57 - INFO - Updated (('last_antifoam_edition', 1719432046.044877), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-06-26 13:00:57 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 1719432046.044877, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 13:01:01 - INFO - Antifoam pump deactivated
+2024-06-26 13:03:16 - INFO - sent arduino: b'5'
+2024-06-26 13:03:18 - INFO - Antifoam pump activated
+2024-06-26 13:03:32 - INFO - sent arduino: b'4'
+2024-06-26 13:03:34 - INFO - Updated (('last_antifoam_edition', 1719432208.0726788), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-06-26 13:03:34 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 1719432208.0726788, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 13:03:55 - INFO - Antifoam pump deactivated
+2024-06-26 13:04:09 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 1719432208.0726788, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 13:04:09 - INFO - sent arduino: b'0'
+2024-06-26 13:04:10 - INFO - sent arduino: b'2'
+2024-06-26 13:04:11 - INFO - sent arduino: b'14'
+2024-06-26 13:04:12 - INFO - sent arduino: b'4'
+2024-06-26 13:05:29 - INFO - sent arduino: b'5'
+2024-06-26 13:05:30 - INFO - Antifoam pump activated
+2024-06-26 13:05:32 - INFO - sent arduino: b'4'
+2024-06-26 13:05:33 - INFO - Updated (('last_antifoam_edition', 1719432332.509407), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-06-26 13:05:33 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'ph_balance_base_sp': 6.95, 'ph_balance_acid_sp': 8, 'feed_trigger_ph': 7.0, 'feed_trigger_do': 50, 'phase_1_start_trig': 30, 'do_maintained_counter': 0, 'phase_1_start_counter': 0, 'required_consecutive_readings': 3, 'last_antifoam_edition': 1719432332.509407, 'antifoam_edition_rate': 0.0333, 'start_feed': 'False', 'start_phase_1': 'False', 'test_data': '2_phase_test_1', 'csv_name': 'fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024'}
+2024-06-26 13:05:33 - INFO - Antifoam pump deactivated

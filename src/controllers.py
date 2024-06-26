@@ -423,33 +423,35 @@ class FermentationController(Controller):
     def __2_phase_do_trig_ph_feed_control(self):
 
         data = self.get_data(self.control_consts["test_data"])
-        start_feed = eval(self.control_consts["start_feed"])
 
-        # Phase 1: Maintain pH using only base
-        
+        start_feed = eval(self.control_consts["start_feed"])
+        start_phase_1 = eval(self.control_consts["start_phase_1"])
+
+        self.activate_antifoam_pump()
+
         do_maintained_counter = self.control_consts.get("do_maintained_counter", 0)
-        do_window = self.control_consts["do_window"] - 1
+        required_consecutive_readings = self.control_consts.get("required_consecutive_readings", 3) - 1
         feed_trigger_ph = self.control_consts["feed_trigger_ph"]
         feed_trigger_do = self.control_consts["feed_trigger_do"]
-        do_below_50_counter = self.control_consts["do_below_50_counter"]
-        start_phase_1 = eval(self.control_consts["start_phase_1"])
-        required_consecutive_readings = 2
+        phase_1_start_counter = self.control_consts["phase_1_start_counter"]
+        phase_1_start_trig = self.control_consts["phase_1_start_trig"]
 
+        # Phase 1: Maintain pH using only base
         if not start_feed:
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             if not start_phase_1:
-                if data["do"] < 50:
-                    do_below_50_counter += 1
-                    self.update_controller_consts("do_below_50_counter", do_below_50_counter)
+                if data["do"] < phase_1_start_trig:
+                    phase_1_start_counter += 1
+                    self.update_controller_consts("phase_1_start_counter", phase_1_start_counter)
                 else:
-                    do_below_50_counter = 0  # Reset counter if DO is not below 50
-                    self.update_controller_consts("do_below_50_counter", do_below_50_counter)
-            if do_below_50_counter >= required_consecutive_readings:
+                    phase_1_start_counter = 0  # Reset counter if DO is not below phase 1 start trig
+                    self.update_controller_consts("phase_1_start_counter", phase_1_start_counter)
+            if phase_1_start_counter >= required_consecutive_readings:
                 self.update_controller_consts("start_phase_1", "True")
                 if data["do"] >= feed_trigger_do:
                     print("In phase 1")
                     logger.info("In phase 1")
-                    if do_maintained_counter >= do_window:  # Check if DO has been maintained
+                    if do_maintained_counter >= required_consecutive_readings:  # Check if DO has been maintained
                         self.__pH_balance(data["ph"], base_control=False, acid_control=False)
                         start_feed = True
                         self.update_controller_consts("start_feed", "True")
@@ -616,13 +618,47 @@ class FermentationController(Controller):
 
         self.update_status()
 
+    def activate_antifoam_pump(self):
+        """
+        Activates the antifoam pump for one cycle every 2 hours from the start time in data.
+
+        Parameters:
+        data (dict): The JSON-decoded data received from the client.
+        """
+        start_time = get_control_constant(self.loop_id, self.control_id, "start_time")
+        last_antifoam_edition = self.control_consts.get("last_antifoam_edition", 0)
+        antifoam_edition_rate = self.control_consts.get("antifoam_edition_rate", 2)
+        current_time = time.time()
+
+        # Check if the antifoam pump is on
+        if self.pumps["antifoam_pump"].is_on():
+            # Turn off the antifoam pump and update last_antifoam_edition with current_time
+            self.pump_control(self.pumps["antifoam_pump"].control(False))
+            self.update_controller_consts("last_antifoam_edition", current_time)
+            print("Antifoam pump deactivated")
+            logger.info("Antifoam pump deactivated")
+        else:
+            if last_antifoam_edition == 0:
+                # Initialize last_antifoam_edition with start_time
+                self.update_controller_consts("last_antifoam_edition", start_time)
+            last_antifoam_edition = self.control_consts.get("last_antifoam_edition")
+
+            elapsed_time = (current_time - last_antifoam_edition) / 3600  # Convert elapsed time to hours
+
+            # Check if specified hours have passed since the last antifoam edition
+            if elapsed_time >= antifoam_edition_rate:
+                self.pump_control(self.pumps["antifoam_pump"].control(True))
+                print("Antifoam pump activated")
+                logger.info("Antifoam pump activated")
+
 if __name__ == "__main__":
    
     c = FermentationController()
     # c = ConcentrationController()
 
+    update_control_constant(c.loop_id, c.control_id, "start_time", time.time())
     while True:
-        c.start_control()
+        c.activate_antifoam_pump()
         time.sleep(2)
    
 

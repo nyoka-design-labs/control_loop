@@ -114,7 +114,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "test_loop",
+            "chosen_control": "2_phase_do_trig_ph_feed_control",
             "controllers": [
                 {
                     "controller_id": "3_phase_feed_control",
@@ -158,36 +158,43 @@
                     "notes": "manages pH and feeding in three phases. Phase 1 uses the base pump to maintain pH until DO reaches 70 Phase 2 activates the feed pump for feeding based on pH.",
                     "devices": [
                         "do_sensor",
-                        "ph_sensor",
-                        "uss_scale",
-                        "uss_scale"
+                        "ph_sensor"
                     ],
                     "data_type": [
                         "do",
                         "ph",
-                        "temp",
-                        "feed_weight",
-                        "base_weight"
+                        "temp"
                     ],
                     "pumps": {
                         "feed_pump": "blackPump1",
                         "base_pump": "blackPump2",
-                        "acid_pump": "whitePump3"
+                        "acid_pump": "whitePump3",
+                        "antifoam_pump": "blackPump3"
                     },
-                    "start_time": 1719272190.0451667,
+                    "start_time": 0,
                     "test_data_index": 0,
                     "control_consts": {
                         "ph_balance_base_sp": 6.95,
                         "ph_balance_acid_sp": 8,
                         "feed_trigger_ph": 7.0,
-                        "feed_trigger_do": 70,
+                        "feed_trigger_do": 50,
+                        "phase_1_start_trig": 30,
                         "do_maintained_counter": 0,
-                        "do_below_50_counter": 2,
-                        "do_window": 3,
-                        "start_feed": "True",
-                        "start_phase_1": "True",
+                        "phase_1_start_counter": 0,
+                        "required_consecutive_readings": 3,
+                        "last_antifoam_edition": 0,
+                        "antifoam_edition_rate": 1,
+                        "start_feed": "False",
+                        "start_phase_1": "False",
                         "test_data": "2_phase_test_1",
-                        "csv_name": "fermentation_2_phase_do_trig_ph_feed_control_loop_06-24-2024"
+                        "csv_name": "fermentation_2_phase_do_trig_ph_feed_control_loop_06-26-2024"
+                    },
+                    "reset_consts": {
+                        "do_maintained_counter": 0,
+                        "phase_1_start_counter": 0,
+                        "last_antifoam_edition": 0,
+                        "start_feed": "False",
+                        "start_phase_1": "False"
                     }
                 },
                 {

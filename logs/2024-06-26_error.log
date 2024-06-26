@@ -93,3 +93,27 @@ Traceback (most recent call last):
     raise self.connection_closed_exc()
 websockets.exceptions.ConnectionClosedError: no close frame received or sent
 
+2024-06-26 12:54:22 - ERROR - Error in initialize_pumps: Invalid pump mode
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 123, in initialize_pumps
+    pumps[pump_name] = Pump(name=pump_value)
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/devices/pump.py", line 25, in __init__
+    raise ValueError("Invalid pump mode")
+ValueError: Invalid pump mode
+
+2024-06-26 12:54:22 - ERROR - Error in initialize_status: 'NoneType' object is not iterable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 139, in initialize_status
+    for pump_name in self.pumps:
+TypeError: 'NoneType' object is not iterable
+
+2024-06-26 12:54:22 - ERROR - Error in get_data: 
+ data_col_is_on: False, 
+'NoneType' object has no attribute 'values'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 97, in stop_control
+    for pump in self.pumps.values():
+                ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'values'
+
