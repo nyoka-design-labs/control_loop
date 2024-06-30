@@ -22,6 +22,17 @@ testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 pumps = eval(get_loop_constant(loop_id="server_consts", const="pumps_connected"))
 
 def create_controller(loop_id):
+    """
+    Creates a controller instance based on the specified loop ID.
+
+    Args:
+        loop_id (str): The loop identifier used to determine the type of controller to create.
+
+    Returns:
+        tuple: A tuple containing the controller instance and its associated device manager.
+
+    Depending on the loop ID, this function initializes either a ConcentrationController or FermentationController along with their respective device managers.
+    """
 
     if loop_id == "concentration_loop":
         controller = ConcentrationController()
@@ -31,8 +42,19 @@ def create_controller(loop_id):
     return controller, controller.device_manager
 
 class Controller:
+    """
+    A base class for controllers that manage operations related to device control and data handling.
+
+    Handles initialization of serial connections to Arduino devices, controls pumps based on provided states, and manages data collection and control processes.
+    """
 
     def __init__(self):
+        """
+        Initializes the Controller instance, attempting to establish a serial connection to an Arduino.
+
+        Raises:
+            AttributeError: If the connection to the Arduino cannot be established, typically due to the serial monitor being open in the Arduino IDE.
+        """
         try:
             if pumps:
                 self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
@@ -42,6 +64,14 @@ class Controller:
             raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
 
     def pump_control(self, state: str):
+        """
+        Sends a control command to the Arduino to manage pump states.
+
+        Args:
+            state (str): The desired state ('on' or 'off') to which the pump should be set.
+
+        Logs the command sent to the Arduino and handles any exceptions that occur during the process.
+        """
         try:
             print(f"sent arduino: {state.encode()}")
             logger.info(f"sent arduino: {state.encode()}")
@@ -54,6 +84,13 @@ class Controller:
         time.sleep(1)
         
     def start_control(self):
+        """
+        Begins the control process by identifying and invoking the control method specified by the controller's current configuration.
+
+        Raises:
+            AttributeError: If the specified control method does not exist.
+            ValueError: If no control method is configured for the current loop.
+        """
         try:
             control_id = self.control_id
 
@@ -70,6 +107,15 @@ class Controller:
             logger.error(f"Error in start_control: {e}\n{traceback.format_exc()}")
         
     def start_collection(self, control_status: bool):
+        """
+        Starts or continues data collection based on the control status.
+
+        Args:
+            control_status (bool): Indicates whether the collection is starting as part of an ongoing control process.
+
+        Returns:
+            dict: The current status of the collection process, possibly along with collected data if control_status is False.
+        """
         try:
             self.status.update({
                 "data_collection_status": "data_collection_on"
@@ -86,6 +132,12 @@ class Controller:
             logger.error(f"Error in start_collection: \n control_status: {control_status}, \n{e}\n{traceback.format_exc()}")
 
     def reset_controller_consts(self, testing: bool=False):
+        """
+        Resets control constants to default values based on testing requirements.
+
+        Args:
+            testing (bool): Indicates whether the reset is being performed under testing conditions, which may require different defaults.
+        """
         if testing:
             reset_consts = get_control_constant(self.loop_id, self.control_id, "reset_consts")
             update_control_constant(self.loop_id, self.control_id, "start_time", 0)
@@ -93,6 +145,15 @@ class Controller:
             self.update_controller_consts(reset_consts)
 
     def stop_control(self, data_col_is_on: bool = True):
+        """
+        Stops all control activities and updates the system status accordingly.
+
+        Args:
+            data_col_is_on (bool): Indicates whether data collection should also be stopped.
+
+        Returns:
+            dict: The updated status after stopping the control processes.
+        """
         print("stopping pumps")
         
         try:
@@ -107,6 +168,14 @@ class Controller:
             logger.error(f"Error in get_data: \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
     
     def toggle_pump(self, pump_name):
+        """
+        Toggles the operational state of a specified pump.
+
+        Args:
+            pump_name (str): The name of the pump whose state is to be toggled.
+
+        Updates the status to reflect the new state of the pump after the toggle.
+        """
         try:
             if pump_name in self.pumps:
                 self.pump_control(self.pumps[pump_name].toggle())
@@ -118,6 +187,14 @@ class Controller:
             logger.error(f"Error in toggle_pump: \n{pump_name}, \n{e}\n{traceback.format_exc()}")
          
     def initialize_pumps(self):
+        """
+        Initializes the pumps based on the configuration stored in the control constants.
+
+        Returns:
+            dict: A dictionary of Pump objects indexed by their names.
+
+        Creates and stores Pump instances for each configured pump, ready for operational control.
+        """
         try:
             pumps_info = get_control_constant(self.loop_id, self.control_id, "pumps")
             pumps = {}
@@ -129,6 +206,12 @@ class Controller:
             logger.error(f"Error in initialize_pumps: {e}\n{traceback.format_exc()}")
 
     def initialize_status(self):
+        """
+        Initializes the status dictionary for the controller with default values and current pump states.
+
+        Returns:
+            dict: The initial status dictionary containing control and collection states as well as initial pump states.
+        """
         try:
             status = {
                 "type": "status",
@@ -147,12 +230,30 @@ class Controller:
             logger.error(f"Error in initialize_status: {e}\n{traceback.format_exc()}")
     
     def update_control_status(self, control_is_on: bool=False, data_col_is_on: bool=True):
-        """Update the control status based on the boolean value provided."""
+        """
+        Updates the control status based on specified parameters.
+
+        Args:
+            control_is_on (bool): Indicates whether the control loop is active.
+            data_col_is_on (bool): Indicates whether data collection is active.
+
+        Returns:
+            tuple: A tuple containing new values for control and data collection status.
+        """
         control = "control_on" if control_is_on else "control_off"
         data_col = "data_collection_on" if data_col_is_on else "data_collection_off"
         return control, data_col
     
     def update_status(self, control_is_on: bool=True, data_col_is_on: bool=True):
+        """
+        Updates the comprehensive status of the controller, including static and dynamic states.
+
+        Args:
+            control_is_on (bool): Indicates whether the control loop should be marked as active.
+            data_col_is_on (bool): Indicates whether data collection should be marked as active.
+
+        Updates both static and dynamic components of the controller's status based on current operational states.
+        """
         try:
             control, data_col = self.update_control_status(control_is_on, data_col_is_on)
             
@@ -170,6 +271,15 @@ class Controller:
             logger.error(f"Error in update_status: control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
 
     def get_data(self, test_data: str):
+        """
+        Fetches measurement data from the device manager based on the current testing configuration.
+
+        Args:
+            test_data (str): Identifier for the type of test data to fetch.
+
+        Returns:
+            dict: The measurement data retrieved from the device manager or the test configuration.
+        """
         try:
             if testing:
                     data = self.device_manager.test_get_measurement(test_data)
@@ -184,6 +294,14 @@ class Controller:
             logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
       
     def save_data_sheets(self, data):
+        """
+        Saves collected data into a designated data sheet for record-keeping and analysis.
+
+        Args:
+            data (dict): The data to be saved.
+
+        Processes and formats the data appropriately before saving it to an external data sheet.
+        """
         try:
             status = self.status.copy()
             status.pop("type", None)  # Remove the "type" key if it exists in the status data
@@ -202,7 +320,9 @@ class Controller:
 
     def load_control_constants(self):
         """
-        Load and store control constants for the chosen control in self.control_constants.
+        Loads and caches control constants for the controller from an external configuration source.
+
+        Loads control constants specific to the controller's loop and configuration, storing them for operational use.
         """
         try:
             constants = get_control_constant(self.loop_id, self.control_id, "control_consts")  # Fetch constants for the given control
@@ -217,13 +337,13 @@ class Controller:
     
     def update_controller_consts(self, *args, **kwargs):
         """
-        Update a specific control constant in the control_const dict in the JSON file.
+        Updates specific control constants within the controller's configuration.
 
         Args:
-            loop_id (str): The identifier for the loop.
-            controller_id (str): The identifier for the specific controller within the loop.
-            key (str): The key of the constant to update.
-            value: The new value to set for the constant.
+            *args: Additional positional arguments specifying which constants to update.
+            **kwargs: Key-value pairs specifying the values to which the constants should be updated.
+
+        Updates are performed directly in the configuration file and are immediately reflected in the controller's operational parameters.
         """
          
         # Load the existing data from the JSON file
@@ -250,10 +370,19 @@ class Controller:
             print(f"Loop {self.loop_id} not found")
 
     def __convert_even_odd(self, value):
-            if isinstance(value, str) and value.isdigit():
-                num = int(value)
-                return "OFF" if num % 2 == 0 else "ON"
-            return value
+        """
+        Converts numeric values to 'ON' or 'OFF' based on their even or odd status.
+
+        Args:
+            value (str): The numeric value to be converted, as a string.
+
+        Returns:
+            str: 'ON' if the number is odd, 'OFF' if even.
+        """
+        if isinstance(value, str) and value.isdigit():
+            num = int(value)
+            return "OFF" if num % 2 == 0 else "ON"
+        return value
 
 class ConcentrationController(Controller):
     """
@@ -350,6 +479,22 @@ class FermentationController(Controller):
 
 
     def __3_phase_feed_control(self):
+        """
+        Manages a three-phase feed control process involving pH adjustments and selective pump activation.
+
+        This method manages the control process through the following:
+        - Loads control constants.
+        - Retrieves and uses the latest data to monitor and adjust system behavior.
+        - Manages the feeding process in three phases:
+        1. Initial pH maintenance using only a base solution.
+        2. Activation of a glycerol feed pump based on time and pH levels before a specific datetime.
+        3. Transition to a lactose feed pump after the specified datetime.
+
+        Each phase uses pH data to control pumps and adjust the feed type, ensuring that the process parameters are within specified limits. The method also handles data collection and status updates.
+
+        Returns:
+            tuple: Contains the data collected during the control process and the updated status of the controller.
+        """
 
         data = self.get_data(self.control_consts["test_data"])
         self.load_control_constants()
@@ -395,6 +540,24 @@ class FermentationController(Controller):
         return data, self.status
     
     def __2_phase_do_trig_ph_feed_control(self):
+        """
+        Controls a two-phase feeding process that initiates based on dissolved oxygen (DO) and controls pH levels.
+
+        This method performs the following:
+        - Loads control constants.
+        - Retrieves and uses the latest data to monitor and adjust system behavior.
+        - Manages the feeding process in two phases:
+        1. pH maintenance based on predefined settings.
+        2. Activation of feeding pumps when conditions meet specific triggers.
+
+        Pre-feed conditions and feed initiation are controlled by evaluating the dissolved oxygen levels,
+        followed by pH maintenance. The process aims to transition smoothly from the first phase (maintenance)
+        to the second phase (active feeding), which is controlled through continuous monitoring and adjustments
+        based on the current pH levels.
+
+        Returns:
+            tuple: Contains the data collected during the process and the updated status of the controller.
+        """
 
         self.load_control_constants()
 
@@ -434,7 +597,25 @@ class FermentationController(Controller):
         return data, self.status
     
     def __3_phase_do_feed_control(self):
+        """
+        Manages a three-phase feeding process based on pH and dissolved oxygen (DO) levels, integrating derivative checks.
 
+        This method performs the following:
+        - Loads control constants and fetches the latest data.
+        - Retrieves and uses the latest data to monitor and adjust system behavior.
+        - Manages the feeding process through three phases:
+        1. pH maintenance using only the base solution before any feed starts.
+        2. Glycerol feed activation prior to a specific datetime using DO triggers.
+        3. Lactose feed activation post a specific datetime, continuing DO-based control.
+
+        The control logic includes starting the feed based on the DO levels and adjusting the feed type over time.
+        The method also involves advanced control techniques such as derivative checking of the sensor readings
+        to decide on feed initiation and adjustment, providing precise control over the feeding process.
+
+        Returns:
+            tuple: Contains the latest data and the controller's updated status, detailing the operational state
+                and any changes enacted during the control process.
+        """
         data = self.get_data(self.control_consts["test_data"])
         self.load_control_constants()
         
