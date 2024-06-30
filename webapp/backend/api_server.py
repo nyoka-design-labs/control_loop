@@ -20,12 +20,15 @@ logger = setup_logger()
 
 def handle_error(exception, context, data=None, notify=True):
     """
-    Handle errors by logging, printing, and sending notifications.
+    Handles errors by logging, printing to standard output, and optionally sending notifications.
 
-    Parameters:
-    exception (Exception): The exception to handle.
-    context (str): The context in which the error occurred.
-    data (dict, optional): Additional data related to the error.
+    Args:
+        exception (Exception): The exception that triggered the error handling.
+        context (str): A brief description of where the error occurred, providing context.
+        data (dict, optional): Additional data related to the error to include in logs.
+        notify (bool, default=True): Whether to send out a notification about the error.
+
+    Logs detailed error information, including a traceback, and sends a notification if enabled.
     """
     error_message = f"Error in {context}\nUnexpected error: {exception}\n{traceback.format_exc()}"
     logger.error(error_message)
@@ -38,16 +41,12 @@ def handle_error(exception, context, data=None, notify=True):
 
 async def handle_client(websocket):
     """
-    Handle incoming messages from the client, process them, and send responses.
+    Continuously listens for and processes messages from clients over a WebSocket.
 
-    Parameters:
-    websocket (websockets.WebSocketServerProtocol): The websocket connection to the client.
+    Args:
+        websocket (websockets.WebSocketServerProtocol): The WebSocket connection to handle.
 
-    Behavior:
-    - Continuously listens for messages from the client.
-    - Processes 'ping' messages by responding with 'pong'.
-    - Processes other commands by calling process_command.
-    - On error, logs the error, sends notifications, and may start a backup server if needed.
+    Listens for incoming messages on the websocket, processes them based on type ('ping' or command), and sends appropriate responses. Handles exceptions by logging and notifying errors, and potentially initiating backup procedures.
     """
     try:
         while True:
@@ -72,17 +71,13 @@ async def handle_client(websocket):
 
 async def process_client_command(websocket, data):
     """
-    Process a command received from the client.
+    Processes a command received from the client through WebSocket.
 
-    Parameters:
-    websocket (websockets.WebSocketServerProtocol): The websocket connection to the client.
-    data (dict): The JSON-decoded data received from the client.
+    Args:
+        websocket (websockets.WebSocketServerProtocol): The WebSocket connection to send responses.
+        data (dict): The JSON-decoded data received from the client, containing the command and other parameters.
 
-    Behavior:
-    - Extracts the command and loop ID from the data.
-    - Updates the loop constant for control_running.
-    - Calls the appropriate manager_server function based on the command.
-    - Logs and notifies errors if command processing fails.
+    Identifies the command from the data and executes relevant actions. It updates loop constants, handles control commands, collection requests, and toggles based on the command type.
     """
     try:
         command = data.get("command")
@@ -101,14 +96,13 @@ async def process_client_command(websocket, data):
 
 async def start_server():
     """
-    Start the WebSocket server and listen for connections.
+    Starts a WebSocket server to manage client connections and handle messages.
 
     Behavior:
-    - Configures and starts the WebSocket server on localhost at port 8765.
-    - Sets the ping interval and timeout for maintaining connections.
-    - Runs the server until it is closed.
-    - Logs and notifies errors if server startup fails.
-    """
+        Sets up and starts a WebSocket server configured for a specific host and port. Handles connections indefinitely unless interrupted by errors or manual closure.
+
+    Manages WebSocket connections, facilitating real-time communication with clients, handling pings, and ensuring connections are maintained with appropriate timeouts.
+    """ 
     try:
         server = await websockets.serve(
             handle_client,
@@ -123,11 +117,13 @@ async def start_server():
 
 def start_backup_server(controller, loop_id):
     """
-    Start the backup server in case of critical failure.
+    Initiates a backup server if the primary server encounters critical failures.
 
-    Parameters:
-    controller (object): The controller object to be used by the backup server.
-    loop_id (str): The loop ID for the backup server control.
+    Args:
+        controller (object): The controller object that will be used by the backup server.
+        loop_id (str): The identifier for the control loop that the backup server will manage.
+
+    Starts a backup server using the given controller and loop ID to ensure continued operation despite failures in the primary server setup.
     """
     try:
         print("Starting backup server due to critical failure.")
@@ -139,7 +135,9 @@ def start_backup_server(controller, loop_id):
 
 async def handle_server_error():
     """
-    Handle errors in the server by attempting to stop all operations and start the backup server.
+    Handles unexpected errors in server operations by attempting to gracefully stop activities and start a backup server.
+
+    Attempts to retrieve and stop all current server activities based on the control loop's running state and starts a backup server if a controller is available.
     """
     loop_id = get_loop_constant(loop_id="server_consts", const="control_running")
     try:
@@ -154,7 +152,9 @@ async def handle_server_error():
 
 async def main():
     """
-    The main entry point for the program to start the WebSocket server.
+    The main entry point for starting the WebSocket server.
+
+    Executes the setup and start of the WebSocket server, managing incoming client connections and facilitating real-time data exchange and control commands.
     """
     await start_server()
 

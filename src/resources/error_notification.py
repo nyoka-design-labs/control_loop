@@ -4,6 +4,7 @@ from resources.logging_config import setup_logger
 import traceback
 import time
 logger = setup_logger()
+
 def send_notification(message, priority="E"):
     try:
         app = chump.Application('aubr7cnv73kbgv9tvdmzg5k9d7xe12')
@@ -21,8 +22,5 @@ def send_notification(message, priority="E"):
         print(f"Error in send_notification: {e}\n{traceback.format_exc()}")
         logger.error(f"Error in send_notification: {e}\n{traceback.format_exc()}")
         
-        
-
-
 if __name__ == "__main__":
     asyncio.run(send_notification("yo it worked"))

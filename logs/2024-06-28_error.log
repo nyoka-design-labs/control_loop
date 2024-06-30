@@ -1,0 +1,266 @@
+2024-06-28 16:12:56 - ERROR - Error in start_control: 'test_data'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 489, in __test_loop
+    data, status = self.__3_phase_feed_control()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 354, in __3_phase_feed_control
+    data = self.get_data(self.control_consts["test_data"])
+                         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'test_data'
+
+2024-06-28 16:12:59 - ERROR - Error in start_control: 'test_data'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 489, in __test_loop
+    data, status = self.__3_phase_feed_control()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 354, in __3_phase_feed_control
+    data = self.get_data(self.control_consts["test_data"])
+                         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'test_data'
+
+2024-06-28 16:26:32 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:32 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:35 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:35 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:38 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:38 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:41 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:41 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:44 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:44 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:47 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:47 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:50 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:50 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:53 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:53 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:56 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:56 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+    self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    current_value = data[feed_trigger_type]
+                    ~~~~^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:26:59 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:26:59 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    """
+        
+TypeError: 'NoneType' object is not subscriptable
+
+2024-06-28 16:27:02 - ERROR - Error in get_data: list index out of range
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 175, in get_data
+    data = self.device_manager.test_get_measurement(test_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/DeviceManager.py", line 164, in test_get_measurement
+    measurement = self.test_data[test_name][self.index]
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range
+
+2024-06-28 16:27:02 - ERROR - Error in start_control: 'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 63, in start_control
+    return control_method()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 425, in __2_phase_do_trig_ph_feed_control
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers.py", line 696, in __control_pump_activation
+    """
+        
+TypeError: 'NoneType' object is not subscriptable
+

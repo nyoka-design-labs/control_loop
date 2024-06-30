@@ -128,38 +128,6 @@ class DeviceManager:
         return dict(zip(data_headers, devices_data))
     
     def test_get_measurement(self, test_name):
-        if devices:
-             # Collect data from each device
-            devices_data = []
-            for dev in self.devices:
-                result = dev()
-
-                if isinstance(result, tuple):
-                    devices_data.extend(result)  # This handles multiple return values
-                else:
-                    devices_data.append(result)
-
-            data_headers = self.data_types
-
-            # elapsed time
-            if self.start_time <= 0:
-                self.start_time = time.time()
-                update_control_constant(self.loop_id, self.control_id, "start_time", self.start_time)
-
-                elapsed_time = 0
-            else:
-                elapsed_time = (time.time() - self.start_time) / 3600
-
-            devices_data.append(round(elapsed_time, 8))
-            # date
-            devices_data.append(datetime.now().strftime('%d-%m-%Y'))
-            # time of day
-            devices_data.append(datetime.now().strftime('%H:%M:%S'))
-            # start time
-            devices_data.append(self.start_time)
-            # type of information being sent to frontend
-            devices_data.append("data")
-            print(f"data from devices: {dict(zip(data_headers, devices_data))}")
 
         measurement = self.test_data[test_name][self.index]
         # elapsed time
@@ -184,7 +152,6 @@ class DeviceManager:
         add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
 
         return measurement
-
 
     def __find_usb_serial_port(self, device_name: str, data_type: str) -> str | SerialPortNotFoundException:
         """
@@ -223,29 +190,13 @@ class DeviceManager:
                 return chosen_port
 
         raise SerialPortNotFoundException(f"Serial port for {device_name} not found.")
-
-        # if device_name == "uss_scale":
-        #     chosen_port = "/dev/tty.usbserial-1140"
-        #     self.__update_device_port(chosen_port, "feed_weight",0)
-        #     return chosen_port
-        # elif device_name == "do_probe":
-        #     chosen_port = "/dev/ttyUSB1"
-        #     self.__update_device_port(chosen_port, 5)
-        #     return chosen_port
-        # elif device_name == "ph_probe":
-        #     chosen_port = "/dev/ttyUSB2"
-        #     self.__update_device_port(chosen_port, 6)
-        #     return chosen_port
-
+    
     def __get_loop_devices(self) -> list:
         """
         Gets the devices in the specified loop.
         """
         
-        # f = open(CONSTANTS_DIR)
-        # loops = json.load(f)['loop']
-        # f.close()
-        # chosen_loop = filter(lambda x: x['loop_id'] == self.loop_id, loops)
+        
         devices = get_control_constant(self.loop_id, self.control_id, "devices")
         devices = list(filter(lambda dev: dev != "temp_sensor", devices))
         # print(devices)
@@ -255,10 +206,6 @@ class DeviceManager:
         """
         Gets the data type for the specified loop.
         """
-
-        # f = open(CONSTANTS_DIR)
-        # loops = json.load(f)['loop']
-        # f.close()
 
         return list(get_control_constant(self.loop_id, self.control_id, "data_type"))
 
