@@ -1,97 +1,95 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useData } from '../DataContext'; // Use the custom hook
 
 
-const sharedState = {
-    isControlLoopRunning: false,
-    setIsControlLoopRunning: () => {},
-    isDataCollectionRunning: false,
-    setIsDataCollectionRunning: () => {}
+export const useControlLoopButton = (startCommand, stopCommand, loopIdentifier) => {
+  const [isControlLoopRunning, setIsControlLoopRunning] = useState(false);
+  const { websocket } = useData();
+
+  const handleStartControlLoop = () => {
+      if (!isControlLoopRunning && websocket) {
+          const command = JSON.stringify({ command: startCommand, loopID: loopIdentifier });
+          websocket.send(command);
+          console.log(`Sending: ${command}`);
+          setIsControlLoopRunning(true);
+      }
   };
 
-export const useControlLoopButton = (startCommand, stopCommand) => {
-    const [isControlLoopRunning, setIsControlLoopRunning] = useState(sharedState.isControlLoopRunning);
-    const { websocket } = useData();
+  const handleStopControlLoop = () => {
+      if (isControlLoopRunning && websocket) {
+          const command = JSON.stringify({ command: stopCommand, loopID: loopIdentifier });
+          websocket.send(command);
+          console.log(`Sending: ${command}`);
+          setIsControlLoopRunning(false);
+      }
+  };
 
-    // Update the shared state object
-    sharedState.isControlLoopRunning = isControlLoopRunning;
-    sharedState.setIsControlLoopRunning = setIsControlLoopRunning;
+  const controlLoopButton = isControlLoopRunning ? (
+      <Button variant="danger" onClick={handleStopControlLoop} className="me-2">
+          Stop Control Loop
+      </Button>
+  ) : (
+      <Button variant="success" onClick={handleStartControlLoop} className="me-2">
+          Start Control Loop
+      </Button>
+  );
 
-    const handleStartControlLoop = () => {
-        if (!isControlLoopRunning && websocket) {
-        websocket.send(startCommand);
-        console.log(startCommand);
-        setIsControlLoopRunning(true);
-        sharedState.setIsDataCollectionRunning(true);
-        }
-    };
-
-    const handleStopControlLoop = () => {
-        if (isControlLoopRunning && websocket) {
-        websocket.send(stopCommand);
-        console.log(stopCommand);
-        sharedState.setIsControlLoopRunning(false);
-        }
-    };
-
-    const controlLoopButton = isControlLoopRunning ? (
-        <Button variant="danger" onClick={handleStopControlLoop} className="me-2">
-        Stop Control Loop
-        </Button>
-    ) : (
-        <Button variant="success" onClick={handleStartControlLoop} className="me-2">
-        Start Control Loop
-        </Button>
-    );
-
-    return controlLoopButton; // Returns the button component
+  return [controlLoopButton, isControlLoopRunning];
 };
 
-export const useDataCollectionButton = (startCommand, stopCommand) => {
-    const [isDataCollectionRunning, setIsDataCollectionRunning] = useState(sharedState.isDataCollectionRunning);
-    const { websocket } = useData();
+export const useDataCollectionButton = (startCommand, stopCommand, loopIdentifier, isControlLoopRunning) => {
+  const [isDataCollectionRunning, setIsDataCollectionRunning] = useState(false);
+  const { websocket } = useData();
 
-    // Update the shared state object
-    sharedState.isDataCollectionRunning = isDataCollectionRunning;
-    sharedState.setIsDataCollectionRunning = setIsDataCollectionRunning;
-  
-    const handleStartDataCollection = () => {
+  // Ensure that data collection runs when control loop is running
+  useEffect(() => {
+      if (isControlLoopRunning && !isDataCollectionRunning) {
+          setIsDataCollectionRunning(true);
+      }
+  }, [isControlLoopRunning, isDataCollectionRunning]);
+
+  const handleStartDataCollection = () => {
       if (!isDataCollectionRunning && websocket) {
-        websocket.send(startCommand);
-        console.log(startCommand);
-        setIsDataCollectionRunning(true);
+          const command = JSON.stringify({ command: startCommand, loopID: loopIdentifier });
+          
+          websocket.send(command);
+          console.log(`Sending: ${command}`);
+          setIsDataCollectionRunning(true);
       }
-    };
-  
-    const handleStopDataCollection = () => {
-      if (isDataCollectionRunning && !sharedState.isControlLoopRunning && websocket) { // need to ensure data collection cannot be stopped when control loop is running how ot make this change
-        websocket.send(stopCommand);
-        console.log(stopCommand);
-        setIsDataCollectionRunning(false);
-      }
-    };
-  
-    const dataCollectionButton = isDataCollectionRunning ? (
-      <Button variant="danger" onClick={handleStopDataCollection} className="me-2">
-        Stop Data Collection
-      </Button>
-    ) : (
-      <Button variant="success" onClick={handleStartDataCollection} className="me-2">
-        Start Data Collection
-      </Button>
-    );
-  
-    return dataCollectionButton;
   };
 
-  export const useTogglePumpButton = (buttonLabel, sendCommand) => {
+  const handleStopDataCollection = () => {
+      // Prevent stopping data collection when control loop is running
+      if (isDataCollectionRunning && !isControlLoopRunning && websocket) {
+          const command = JSON.stringify({ command: stopCommand, loopID: loopIdentifier });
+          websocket.send(command);
+          console.log(`Sending: ${command}`);
+          setIsDataCollectionRunning(false);
+      }
+  };
+
+  const dataCollectionButton = isDataCollectionRunning ? (
+      <Button variant="danger" onClick={handleStopDataCollection} className="me-2" disabled={isControlLoopRunning}>
+          Stop Data Collection
+      </Button>
+  ) : (
+      <Button variant="success" onClick={handleStartDataCollection} className="me-2">
+          Start Data Collection
+      </Button>
+  );
+
+  return dataCollectionButton;
+};
+
+  export const useTogglePumpButton = (buttonLabel, sendCommand, loopIdentifier) => {
     const { websocket } = useData();
 
     const handleToggle = () => {
         if (websocket) {
-            websocket.send(sendCommand);
-            console.log(sendCommand);
+          const command = JSON.stringify({ command: sendCommand, loopID: loopIdentifier });
+          websocket.send(command);
+          console.log(`Sending: ${command}`);
         }
     };
 
@@ -111,6 +109,7 @@ export const useStateToggleButton = (buttonLabelOn, buttonLabelOff, sendCommandO
   const toggleState = () => {
       const commandToSend = isRunning ? sendCommandOff : sendCommandOn;
       if (websocket) {
+          
           websocket.send(commandToSend);
           console.log(commandToSend);
           setIsRunning(!isRunning);

@@ -14,28 +14,53 @@ export const DataProvider = ({ children }) => {
         buffer_weight: "---",
         lysate_weight: "---"
       });
-      
 
     useEffect(() => {
         const ws = new WebSocket("ws://localhost:8765");
-        ws.onopen = () => console.log("WebSocket connection established");
+
+        ws.onopen = () => {
+            console.log("WebSocket connection established");
+            
+            // Send a ping message every 20 seconds to keep the connection alive
+            const pingInterval = setInterval(() => {
+                if (ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({ type: "ping" }));
+                }
+            }, 20000);
+
+            // Clear the interval on close
+            ws.onclose = () => {
+                clearInterval(pingInterval);
+                console.log("WebSocket connection closed");
+            };
+        };
+
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             if (data.type === 'data') {
+                console.log("Data Received:", data);
                 setSystemData(prevData => [...prevData, data]);
                 setCurrentMeasurements({
-                    weight: data.weight,
+                    weight: data.feed_weight,
                     do: data.do,
                     ph: data.ph,
                     temp: data.temp,
-                    expected_weight: data.expected_weight,
+                    expected_weight: data.lactose_weight,
                     buffer_weight: data.buffer_weight,
                     lysate_weight: data.lysate_weight
-                    
-                  });
+                });
+            }
+
+            // Handle pong response
+            if (data.type === 'pong') {
+                console.log("Pong received from server");
             }
         };
-        ws.onclose = () => console.log("WebSocket connection closed");
+
+        ws.onerror = (error) => {
+            console.error("WebSocket error:", error);
+        };
+
         setWebsocket(ws);
         return () => ws.close();
     }, []);
