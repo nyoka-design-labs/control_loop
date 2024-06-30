@@ -1,0 +1,11 @@
+{
+    "feed_pump_status": [0, 1],
+    "base_pump_status": [2, 3],
+    "lactose_pump_status": [4, 5],
+    "buffer_pump_status": [10, 11],
+    "lysate_pump_status": [12, 13],
+    "acid_pump_status": [14, 15],
+    "control_loop_status": ["control_off", "control_on"],
+    "data_collection_status": ["data_collection_off", "data_collection_on"],
+    "feed_media": ["Glucose", "Lactose"]
+}

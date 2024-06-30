@@ -5,7 +5,9 @@ export const createChartData = (systemData, label, actualColor, expectedLabel, e
     const currentDataPoints = label === 'Temperature'
       ? systemData.map(data => parseFloat(data.temp))
       : systemData.map(data => data[label.toLowerCase()]);
-    
+    // console.log("Charts system Data:", systemData);
+    // console.log("Charts Current data points:", currentDataPoints);
+    // console.log(currentDataPoints);
     const datasets = [
       {
         label: `${label} Actual`,
@@ -20,6 +22,9 @@ export const createChartData = (systemData, label, actualColor, expectedLabel, e
       const expectedDataPoints = expectedLabel === 'Temperature'
       ? systemData.map(data => parseFloat(data.temp))
       : systemData.map(data => data[expectedLabel.toLowerCase()]);
+      // console.log("Charts expected Data Points:", expectedDataPoints);
+      // console.log("Charts expected label:", expectedLabel);
+      // console.log("Charts system data label:", systemData);
       datasets.push({
         label: `${expectedLabel}`,
         data: expectedDataPoints,
@@ -45,6 +50,7 @@ export const chartOptions = {
 
 // A functional component to render a chart
 export const Chart = ({ systemData, label, actualColor, expectedDataKey = null, expectedColor = 'rgb(255, 99, 132)' }) => {
+    // console.log("Rendering Chart with systemData:", systemData);
     const data = createChartData(systemData, label, actualColor, expectedDataKey, expectedColor);
     return <Line data={data} options={chartOptions} />;
   };
