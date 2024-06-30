@@ -2,5 +2,4 @@ __pycache__/
 env
 /.vscode
 *.csv
-
 src/resources/google_api/sheets_access_key.json

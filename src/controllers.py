@@ -337,8 +337,6 @@ class Controller:
     
     def update_controller_consts(self, *args, **kwargs):
         """
-        Updates specific control constants within the controller's configuration.
-
         Args:
             *args: Additional positional arguments specifying which constants to update.
             **kwargs: Key-value pairs specifying the values to which the constants should be updated.
