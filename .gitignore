@@ -2,3 +2,5 @@ __pycache__/
 env
 /.vscode
 *.csv
+src/sheets_access_key.json
+src/resources/google_api/sheets_access_key.json

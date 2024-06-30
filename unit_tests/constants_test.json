@@ -1,0 +1,300 @@
+{
+    "devices": [
+        {
+            "name": "uss_scale",
+            "vendor_id": "1a86",
+            "product_id": "7523",
+            "port": "",
+            "data_type": "feed_weight"
+        },
+        {
+            "name": "uss_scale",
+            "vendor_id": "1a86",
+            "product_id": "7523",
+            "port": "",
+            "data_type": "base_weight"
+        },
+        {
+            "name": "uss_scale",
+            "vendor_id": "1a86",
+            "product_id": "7523",
+            "port": "",
+            "data_type": "base_weight"
+        },
+        {
+            "name": "uss_scale",
+            "vendor_id": "1a86",
+            "product_id": "7523",
+            "port": "",
+            "data_type": "acid_weight"
+        },
+        {
+            "name": "dymo_scale",
+            "vendor_id": "0922",
+            "product_id": "8003",
+            "port": "",
+            "data_type": ""
+        },
+        {
+            "name": "ph_sensor",
+            "vendor_id": "0403",
+            "product_id": "6001",
+            "port": "",
+            "data_type": "ph"
+        },
+        {
+            "name": "do_sensor",
+            "vendor_id": "0403",
+            "product_id": "6001",
+            "port": "",
+            "data_type": "do"
+        }
+    ],
+    "loop": [
+        {
+            "loop_id": "server_consts",
+            "interval": 4,
+            "testing": "True",
+            "load_data": "False",
+            "devices_connected": "False",
+            "pumps_connected": "False",
+            "error": "False",
+            "control_running": "fermentation_loop"
+        },
+        {
+            "loop_id": "concentration_loop",
+            "chosen_control": "concentration_buffer_loop",
+            "controllers": [
+                {
+                    "controller_id": "concentration_loop",
+                    "notes": "basic concentration loop",
+                    "devices": [
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "buffer_weight",
+                        "lysate_weight"
+                    ],
+                    "pumps": {
+                        "buffer_pump": "whitePump1",
+                        "lysate_pump": "whitePump2"
+                    },
+                    "start_time": 1718729731.79507,
+                    "test_data_index": 0,
+                    "control_consts": {
+                        "buffer_sp": 400,
+                        "lysate_upper_sp": 300,
+                        "lysate_lower_sp": 250,
+                        "csv_name": "concentration_06-18-2024",
+                        "test_data": "concentration_test_data_1"
+                    }
+                },
+                {
+                    "controller_id": "concentration_buffer_loop",
+                    "notes": "basic concentration loop with buffer only",
+                    "devices": [
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "buffer_weight"
+                    ],
+                    "pumps": {
+                        "buffer_pump": "whitePump1"
+                    },
+                    "start_time": 0,
+                    "test_data_index": 0,
+                    "control_consts": {
+                        "buffer_sp": 0,
+                        "csv_name": "concentration_06-25-2024",
+                        "test_data": "concentration_test_data_1"
+                    }
+                }
+            ]
+        },
+        {
+            "loop_id": "fermentation_loop",
+            "chosen_control": "test_loop",
+            "controllers": [
+                {
+                    "controller_id": "3_phase_feed_control",
+                    "notes": "manages pH and feeding in three phases. Phase 1 uses the base pump to maintain pH until it reaches 7.02. Phase 2 activates the feed pump, and starts Phase 3 at 5:00 AM on May 30, switching to the lactose pump for feeding based on pH levels.",
+                    "devices": [
+                        "do_sensor",
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "do",
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "lactose_weight",
+                        "base_weight"
+                    ],
+                    "pumps": {
+                        "feed_pump": "blackPump1",
+                        "lactose_pump": "blackPump3",
+                        "base_pump": "blackPump2",
+                        "acid_pump": "whitePump2"
+                    },
+                    "start_time": 0,
+                    "test_data_index": 0,
+                    "control_consts": {
+                        "base_sp": 7,
+                        "acid_sp": 8,
+                        "feed_trigger_sp": 7.02,
+                        "start_feed_trig_value": 7.02,
+                        "required_readings": 3,
+                        "feed_counter": 0,
+                        "start_feed": "False",
+                        "test_data": "3_phase_control_test_data",
+                        "csv_name": "fermentation_3_phase_feed_control_loop_06-20-2024"
+                    }
+                },
+                {
+                    "controller_id": "2_phase_do_trig_ph_feed_control",
+                    "notes": "manages pH and feeding in three phases. Phase 1 uses the base pump to maintain pH until DO reaches 70 Phase 2 activates the feed pump for feeding based on pH.",
+                    "devices": [
+                        "do_sensor",
+                        "ph_sensor"
+                    ],
+                    "data_type": [
+                        "do",
+                        "ph",
+                        "temp"
+                    ],
+                    "pumps": {
+                        "feed_pump": "blackPump1",
+                        "base_pump": "blackPump2",
+                        "acid_pump": "whitePump3",
+                        "antifoam_pump": "blackPump3"
+                    },
+                    "start_time": 0,
+                    "test_data_index": 0,
+                    "control_consts": {
+                        "base_sp": 6.95,
+                        "acid_sp": 8,
+                        "feed_trigger_sp": 7.0,
+                        "start_feed_trig_value": 50,
+                        "start_trig_value": 30,
+                        "feed_counter": 0,
+                        "start_counter": 0,
+                        "required_readings": 3,
+                        "last_antifoam_edition": 0,
+                        "antifoam_edition_rate": 1,
+                        "start_feed": "False",
+                        "start_phase_1": "False",
+                        "test_data": "2_phase_test_1",
+                        "csv_name": "test_sheet"
+                    },
+                    "reset_consts": {
+                        "feed_counter": 0,
+                        "start_counter": 0,
+                        "last_antifoam_edition": 0,
+                        "start_feed": "False",
+                        "start_phase_1": "False"
+                    }
+                },
+                {
+                    "controller_id": "3_phase_do_feed_control",
+                    "notes": "3 phase control with do control.",
+                    "devices": [
+                        "do_sensor",
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale",
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "do",
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "lactose_weight",
+                        "base_weight",
+                        "acid_weight"
+                    ],
+                    "pumps": {
+                        "feed_pump": "blackPump1",
+                        "feed_const_pump": "whitePump2",
+                        "lactose_pump": "blackPump3",
+                        "lactose_const_pump": "whitePump1",
+                        "base_pump": "blackPump2",
+                        "acid_pump": "blackPump4"
+                    },
+                    "start_time": 0,
+                    "test_data_index": 0,
+                    "control_consts": {
+                        "base_sp": 7,
+                        "acid_sp": 7.1,
+                        "feed_trigger_upper_sp": 25,
+                        "feed_trigger_lower_sp": 22,
+                        "derivs": [],
+                        "required_readings": 5,
+                        "deriv_window": 8,
+                        "feed_counter": 0,
+                        "start_feed": "False",
+                        "test_data": "do_der_test_1",
+                        "csv_name": "fermentation_3_phase_do_feed_control_loop_06-20-2024"
+                    },
+                    "reset_consts": {
+                        "derivs": [],
+                        "increment_counter": 0,
+                        "start_feed": "False"
+                    }
+                },
+                {
+                    "controller_id": "test_loop",
+                    "notes": "for testing robustness",
+                    "devices": [
+                        "ph_sensor",
+                        "uss_scale",
+                        "uss_scale",
+                        "uss_scale"
+                    ],
+                    "data_type": [
+                        "ph",
+                        "temp",
+                        "feed_weight",
+                        "lactose_weight",
+                        "base_weight"
+                    ],
+                    "pumps": {
+                        "feed_pump": "blackPump1",
+                        "lactose_pump": "blackPump3",
+                        "base_pump": "blackPump2",
+                        "feed_const_pump": "whitePump1",
+                        "lactose_const_pump": "whitePump2",
+                        "acid_pump": "whitePump3"
+                    },
+                    "start_time": 1719427470.0103822,
+                    "test_data_index": 4,
+                    "control_consts": {
+                        "base_sp": 7,
+                        "acid_sp": 8,
+                        "feed_trigger_sp": 7.02,
+                        "start_feed_trig_value": 7.02,
+                        "required_readings": 3,
+                        "feed_counter": 0,
+                        "start_feed": "False",
+                        "test_data": "3_phase_control_test_data",
+                        "csv_name": "test_sheet"
+                    }
+                }
+            ]
+        },
+        {
+            "loop_id": "calibration_constants",
+            "pH_probe": {
+                "4": 4.0607081890106205,
+                "7": 7.040511870384217,
+                "ph_offset": -0.04
+            },
+            "DO_probe": 100
+        }
+    ]
+}

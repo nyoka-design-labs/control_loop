@@ -9,11 +9,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ConcentrationControlPanel = () => {
   const { systemData, currentMeasurements } = useData();
+  // Unique identifier for the concentration control loop
+  const concentrationLoopIdentifier = 'concentration_loop';
   
-  const controlLoopButton = useControlLoopButton("start_control", "stop_control");
-  const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection");
-  const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer");
-  const toggleLysatePumpButton = useTogglePumpButton("Toggle Lysate Pump", "toggle_lysate");
+  const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", concentrationLoopIdentifier);
+  const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", concentrationLoopIdentifier, isControlLoopRunning);
+  const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer", concentrationLoopIdentifier);
+  const toggleLysatePumpButton = useTogglePumpButton("Toggle Lysate Pump", "toggle_lysate", concentrationLoopIdentifier);
 
   const bufferPumpStatus = useBufferPumpStatus();
   const lysatePumpStatus = useLysatePumpStatus();
