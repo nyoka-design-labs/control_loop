@@ -8,7 +8,9 @@ import serial.tools.list_ports
 from resources.exceptions import SerialPortNotFoundException
 from resources.google_api.sheets import save_to_sheet
 from datetime import datetime
+from resources.logging_config import setup_logger
 
+logger = setup_logger()
 DEV_CONTRUCTORS = {
     "uss_scale": USS_Scale,
     "dymo_scale": Scale,
@@ -128,7 +130,8 @@ class DeviceManager:
         return dict(zip(data_headers, devices_data))
     
     def test_get_measurement(self, test_name):
-
+        data_from_devices = self.get_measurement()
+        logger.info(f"data from devices: {data_from_devices}")
         measurement = self.test_data[test_name][self.index]
         # elapsed time
         if self.start_time <= 0:
