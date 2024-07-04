@@ -10,6 +10,7 @@ import json
 import os
 import inspect
 from resources.logging_config import setup_logger
+from controller_mqtt_client import ControllerMQTTClient
 
 logger = setup_logger()
 
@@ -124,7 +125,7 @@ class Controller:
             if control_status:
                 return self.status
             else:
-                data = self.get_data(test_data=self.control_consts["test_data"])
+                data = self.get_data()
                 self.save_data_sheets(data)
                 return self.status, data
         except Exception as e:
@@ -311,7 +312,7 @@ class Controller:
             combined_data = data.copy()  # Create a copy of the original data
             combined_data.pop("type", None)
             combined_data.update(status)
-            save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+            save_dict_to_sheet(combined_data, self.csv_name)
             print("added data to sheets")
             logger.info("added data to sheets")
         except Exception as e:
@@ -440,7 +441,7 @@ class ConcentrationController(Controller):
         self.stop_control(data_col_is_on=False)
         
     def __concentration_loop(self):
-        data = self.get_data(test_data=self.control_consts["test_data"])
+        data = self.get_data()
 
         self.__buffer_control(data['buffer_weight'])
         # self.__lysate_control(data['lysate_weight'])
@@ -452,7 +453,7 @@ class ConcentrationController(Controller):
         return data, self.status
     
     def __concentration_buffer_loop(self):
-        data = self.get_data(test_data=self.control_consts["test_data"])
+        data = self.get_data()
 
         self.__buffer_control(data['buffer_weight'])
 
@@ -495,9 +496,10 @@ class FermentationController(Controller):
 
         self.loop_id = "fermentation_loop"
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
+        self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
 
 
-        self.mqtt_client = ControllerMQTTClient()
+        self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
         self.init_device_manager()
 
         self.control_consts = {}
@@ -961,7 +963,7 @@ if __name__ == "__main__":
     c = FermentationController()
     
     while True:
-        c.start_control()
+        c.start_collection(control_status=False)
 
         time.sleep(3)
 

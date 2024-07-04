@@ -54,9 +54,9 @@
         {
             "loop_id": "server_consts",
             "interval": 4,
-            "testing": "True",
+            "testing": "False",
             "load_data": "False",
-            "devices_connected": "False",
+            "devices_connected": "True",
             "pumps_connected": "False",
             "error": "False",
             "control_running": "fermentation_loop"
@@ -114,7 +114,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "3_phase_feed_control",
+            "chosen_control": "test_loop",
             "controllers": [
                 {
                     "controller_id": "3_phase_feed_control",
@@ -254,17 +254,12 @@
                     "controller_id": "test_loop",
                     "notes": "for testing robustness",
                     "devices": [
-                        "ph_sensor",
-                        "uss_scale",
-                        "uss_scale",
+                        "do_sensor",
                         "uss_scale"
                     ],
                     "data_type": [
-                        "ph",
-                        "temp",
-                        "feed_weight",
-                        "lactose_weight",
-                        "base_weight"
+                        "do",
+                        "feed_weight"
                     ],
                     "pumps": {
                         "feed_pump": "blackPump1",
@@ -274,8 +269,8 @@
                         "lactose_const_pump": "whitePump2",
                         "acid_pump": "whitePump3"
                     },
-                    "start_time": 1719427470.0103822,
-                    "test_data_index": 4,
+                    "start_time": 0,
+                    "test_data_index": 0,
                     "csv_name": "test_sheet",
                     "test_name": "3_phase_control_test_data",
                     "control_consts": {

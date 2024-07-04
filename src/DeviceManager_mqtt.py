@@ -22,13 +22,16 @@ class DeviceManager:
     """
 
     def __init__(self, loop_id: str, control_id: str, data_types: list, loop_devices: list, csv_name: str, test_name: str, devices: bool) -> None:
+        self.loop_control_file = f"{self.loop_id}-{self.control_id}-{datetime.now().strftime('%Y%m%d')}.json"
+        # self.__init_loop_control_file()
+        self.start_time = self.get_loop_control_file_data("start_time")
+        self.index = self.get_loop_control_file_data("test_data_index")
+
         self.devices = devices
         self.loop_id = loop_id
         self.control_id = control_id
         self.data_types = data_types + ["time", "date", "time_of_day", "type"]
         self.csv_name = csv_name
-        self.start_time = 0
-        self.index = 0
         self.test_name = test_name
 
         curr_directory = os.path.dirname(__file__)
@@ -43,8 +46,6 @@ class DeviceManager:
 
         self.devices = self.__init_devices(loop_devices)
 
-        self.loop_control_file = f"{self.loop_id}-{self.control_id}-{datetime.now().strftime('%Y%m%d')}.json"
-        self.__init_loop_control_file()
 
     def __delete(self) -> None:
         """
@@ -88,7 +89,7 @@ class DeviceManager:
     def __init_loop_control_file(self):
         if not os.path.exists(self.loop_control_file):
             with open(self.loop_control_file, "w") as f:
-                json.dump({"start_time": self.start_time, "test_data_index": self.index}, f)
+                json.dump({"start_time": self.start_time, "test_data_index": self.index, "csv_name": self.csv_name}, f)
 
     def update_loop_control_file(self, key, value):
         with open(self.loop_control_file, "r+") as f:
@@ -97,6 +98,14 @@ class DeviceManager:
             f.seek(0)
             json.dump(data, f, indent=4)
             f.truncate()
+
+    def get_loop_control_file_data(self, key):
+        if not os.path.exists(self.loop_control_file):
+            with open(self.loop_control_file, "w") as f:
+                json.dump({"start_time": 0, "test_data_index": 0, "csv_name": self.csv_name}, f)
+        with open(self.loop_control_file, "r") as f:
+            data = json.load(f)
+            return data.get(key, 0)
 
     def get_loop_control_value(self, key):
         with open(self.loop_control_file, "r") as f:

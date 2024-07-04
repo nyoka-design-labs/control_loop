@@ -1,0 +1,198 @@
+2024-07-04 14:11:39 - ERROR - Error in start_collection: 
+ control_status: False, 
+'test_data'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 128, in start_collection
+    data = self.get_data(test_data=self.control_consts["test_data"])
+                                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'test_data'
+
+2024-07-04 14:11:42 - ERROR - Error in start_collection: 
+ control_status: False, 
+'test_data'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 128, in start_collection
+    data = self.get_data(test_data=self.control_consts["test_data"])
+                                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'test_data'
+
+2024-07-04 14:16:31 - ERROR - Error in save_data_sheets: 
+{'do': 130.692, 'ph': 1.05956306, 'temp': '04-07-2024', 'feed_weight': '14:16:31', 'lactose_weight': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:16:34 - ERROR - Error in save_data_sheets: 
+{'do': 130.652, 'ph': 1.06044462, 'temp': '04-07-2024', 'feed_weight': '14:16:34', 'lactose_weight': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:17:52 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50565842, 'date': '04-07-2024', 'time_of_day': '14:17:52', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:17:55 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50650631, 'date': '04-07-2024', 'time_of_day': '14:17:55', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:17:58 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50737777, 'date': '04-07-2024', 'time_of_day': '14:17:58', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:01 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50825062, 'date': '04-07-2024', 'time_of_day': '14:18:01', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:04 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50912432, 'date': '04-07-2024', 'time_of_day': '14:18:04', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:07 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50999874, 'date': '04-07-2024', 'time_of_day': '14:18:07', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:10 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.51087222, 'date': '04-07-2024', 'time_of_day': '14:18:10', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:13 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.51174525, 'date': '04-07-2024', 'time_of_day': '14:18:13', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:41 - ERROR - Error in save_data_sheets: 
+{'do': 130.437, 'feed_weight': 0.5193253, 'time': '04-07-2024', 'date': '14:18:41', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:44 - ERROR - Error in save_data_sheets: 
+{'do': 130.416, 'feed_weight': 0.52019351, 'time': '04-07-2024', 'date': '14:18:44', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:47 - ERROR - Error in save_data_sheets: 
+{'do': 130.416, 'feed_weight': 0.52107059, 'time': '04-07-2024', 'date': '14:18:47', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:50 - ERROR - Error in save_data_sheets: 
+{'do': 130.417, 'feed_weight': 0.52194779, 'time': '04-07-2024', 'date': '14:18:50', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:53 - ERROR - Error in save_data_sheets: 
+{'do': 130.41, 'feed_weight': 0.52281154, 'time': '04-07-2024', 'date': '14:18:53', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:56 - ERROR - Error in save_data_sheets: 
+{'do': 130.416, 'feed_weight': 0.52367529, 'time': '04-07-2024', 'date': '14:18:56', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:19:00 - ERROR - Error in save_data_sheets: 
+{'do': 130.395, 'feed_weight': 0.52453906, 'time': '04-07-2024', 'date': '14:18:59', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:19:03 - ERROR - Error in save_data_sheets: 
+{'do': 130.396, 'feed_weight': 0.52540277, 'time': '04-07-2024', 'date': '14:19:03', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:19:06 - ERROR - Error in save_data_sheets: 
+{'do': 130.417, 'feed_weight': 0.52626655, 'time': '04-07-2024', 'date': '14:19:06', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:19:09 - ERROR - Error in save_data_sheets: 
+{'do': 130.434, 'feed_weight': 0.52715716, 'time': '04-07-2024', 'date': '14:19:09', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+

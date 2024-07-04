@@ -460,3 +460,345 @@
 2024-07-04 11:10:45 - INFO - sent arduino: b'4'
 2024-07-04 11:10:46 - INFO - lactose_pump pump off
 2024-07-04 11:10:47 - INFO - added data to sheets
+2024-07-04 14:11:35 - INFO - sent arduino: b'0'
+2024-07-04 14:11:36 - INFO - sent arduino: b'4'
+2024-07-04 14:11:37 - INFO - sent arduino: b'2'
+2024-07-04 14:11:38 - INFO - sent arduino: b'12'
+2024-07-04 14:11:39 - ERROR - Error in start_collection: 
+ control_status: False, 
+'test_data'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 128, in start_collection
+    data = self.get_data(test_data=self.control_consts["test_data"])
+                                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'test_data'
+
+2024-07-04 14:11:42 - ERROR - Error in start_collection: 
+ control_status: False, 
+'test_data'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 128, in start_collection
+    data = self.get_data(test_data=self.control_consts["test_data"])
+                                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'test_data'
+
+2024-07-04 14:12:51 - INFO - sent arduino: b'0'
+2024-07-04 14:12:52 - INFO - sent arduino: b'4'
+2024-07-04 14:12:53 - INFO - sent arduino: b'2'
+2024-07-04 14:12:54 - INFO - sent arduino: b'12'
+2024-07-04 14:14:04 - INFO - sent arduino: b'0'
+2024-07-04 14:14:05 - INFO - sent arduino: b'4'
+2024-07-04 14:14:06 - INFO - sent arduino: b'2'
+2024-07-04 14:14:07 - INFO - sent arduino: b'12'
+2024-07-04 14:16:27 - INFO - sent arduino: b'0'
+2024-07-04 14:16:28 - INFO - sent arduino: b'4'
+2024-07-04 14:16:29 - INFO - sent arduino: b'2'
+2024-07-04 14:16:30 - INFO - sent arduino: b'12'
+2024-07-04 14:16:31 - ERROR - Error in save_data_sheets: 
+{'do': 130.692, 'ph': 1.05956306, 'temp': '04-07-2024', 'feed_weight': '14:16:31', 'lactose_weight': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:16:34 - ERROR - Error in save_data_sheets: 
+{'do': 130.652, 'ph': 1.06044462, 'temp': '04-07-2024', 'feed_weight': '14:16:34', 'lactose_weight': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:17:23 - INFO - sent arduino: b'0'
+2024-07-04 14:17:24 - INFO - sent arduino: b'4'
+2024-07-04 14:17:25 - INFO - sent arduino: b'2'
+2024-07-04 14:17:26 - INFO - sent arduino: b'10'
+2024-07-04 14:17:27 - INFO - sent arduino: b'12'
+2024-07-04 14:17:28 - INFO - sent arduino: b'14'
+2024-07-04 14:17:45 - INFO - sent arduino: b'0'
+2024-07-04 14:17:46 - INFO - sent arduino: b'4'
+2024-07-04 14:17:47 - INFO - sent arduino: b'2'
+2024-07-04 14:17:48 - INFO - sent arduino: b'10'
+2024-07-04 14:17:49 - INFO - sent arduino: b'12'
+2024-07-04 14:17:50 - INFO - sent arduino: b'14'
+2024-07-04 14:17:52 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50565842, 'date': '04-07-2024', 'time_of_day': '14:17:52', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:17:55 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50650631, 'date': '04-07-2024', 'time_of_day': '14:17:55', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:17:58 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50737777, 'date': '04-07-2024', 'time_of_day': '14:17:58', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:01 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50825062, 'date': '04-07-2024', 'time_of_day': '14:18:01', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:04 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50912432, 'date': '04-07-2024', 'time_of_day': '14:18:04', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:07 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.50999874, 'date': '04-07-2024', 'time_of_day': '14:18:07', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:10 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.51087222, 'date': '04-07-2024', 'time_of_day': '14:18:10', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:13 - ERROR - Error in save_data_sheets: 
+{'do': -1, 'feed_weight': 14.7, 'time': 0.51174525, 'date': '04-07-2024', 'time_of_day': '14:18:13', 'type': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:27 - INFO - sent arduino: b'0'
+2024-07-04 14:18:28 - INFO - sent arduino: b'4'
+2024-07-04 14:18:29 - INFO - sent arduino: b'2'
+2024-07-04 14:18:30 - INFO - sent arduino: b'10'
+2024-07-04 14:18:31 - INFO - sent arduino: b'12'
+2024-07-04 14:18:32 - INFO - sent arduino: b'14'
+2024-07-04 14:18:41 - ERROR - Error in save_data_sheets: 
+{'do': 130.437, 'feed_weight': 0.5193253, 'time': '04-07-2024', 'date': '14:18:41', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:44 - ERROR - Error in save_data_sheets: 
+{'do': 130.416, 'feed_weight': 0.52019351, 'time': '04-07-2024', 'date': '14:18:44', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:47 - ERROR - Error in save_data_sheets: 
+{'do': 130.416, 'feed_weight': 0.52107059, 'time': '04-07-2024', 'date': '14:18:47', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:50 - ERROR - Error in save_data_sheets: 
+{'do': 130.417, 'feed_weight': 0.52194779, 'time': '04-07-2024', 'date': '14:18:50', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:53 - ERROR - Error in save_data_sheets: 
+{'do': 130.41, 'feed_weight': 0.52281154, 'time': '04-07-2024', 'date': '14:18:53', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:18:56 - ERROR - Error in save_data_sheets: 
+{'do': 130.416, 'feed_weight': 0.52367529, 'time': '04-07-2024', 'date': '14:18:56', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:19:00 - ERROR - Error in save_data_sheets: 
+{'do': 130.395, 'feed_weight': 0.52453906, 'time': '04-07-2024', 'date': '14:18:59', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:19:03 - ERROR - Error in save_data_sheets: 
+{'do': 130.396, 'feed_weight': 0.52540277, 'time': '04-07-2024', 'date': '14:19:03', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:19:06 - ERROR - Error in save_data_sheets: 
+{'do': 130.417, 'feed_weight': 0.52626655, 'time': '04-07-2024', 'date': '14:19:06', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:19:09 - ERROR - Error in save_data_sheets: 
+{'do': 130.434, 'feed_weight': 0.52715716, 'time': '04-07-2024', 'date': '14:19:09', 'time_of_day': 'data'}, 
+'csv_name'
+Traceback (most recent call last):
+  File "/Users/mba_sam/Github/Nyoka Design Labs/control_loop/src/controllers_mqtt.py", line 315, in save_data_sheets
+    save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'csv_name'
+
+2024-07-04 14:23:19 - INFO - sent arduino: b'0'
+2024-07-04 14:23:20 - INFO - sent arduino: b'4'
+2024-07-04 14:23:21 - INFO - sent arduino: b'2'
+2024-07-04 14:23:22 - INFO - sent arduino: b'10'
+2024-07-04 14:23:23 - INFO - sent arduino: b'12'
+2024-07-04 14:23:24 - INFO - sent arduino: b'14'
+2024-07-04 14:23:28 - INFO - added data to sheets
+2024-07-04 14:23:32 - INFO - added data to sheets
+2024-07-04 14:23:36 - INFO - added data to sheets
+2024-07-04 14:23:40 - INFO - added data to sheets
+2024-07-04 14:23:45 - INFO - added data to sheets
+2024-07-04 14:23:49 - INFO - added data to sheets
+2024-07-04 14:23:53 - INFO - added data to sheets
+2024-07-04 14:23:57 - INFO - added data to sheets
+2024-07-04 14:24:02 - INFO - added data to sheets
+2024-07-04 14:24:06 - INFO - added data to sheets
+2024-07-04 14:24:10 - INFO - added data to sheets
+2024-07-04 14:24:22 - INFO - sent arduino: b'0'
+2024-07-04 14:24:23 - INFO - sent arduino: b'4'
+2024-07-04 14:24:24 - INFO - sent arduino: b'2'
+2024-07-04 14:24:25 - INFO - sent arduino: b'10'
+2024-07-04 14:33:08 - INFO - sent arduino: b'0'
+2024-07-04 14:33:09 - INFO - sent arduino: b'4'
+2024-07-04 14:33:10 - INFO - sent arduino: b'2'
+2024-07-04 14:33:11 - INFO - sent arduino: b'10'
+2024-07-04 14:33:12 - INFO - sent arduino: b'12'
+2024-07-04 14:33:13 - INFO - sent arduino: b'14'
+2024-07-04 14:33:16 - INFO - added data to sheets
+2024-07-04 14:33:20 - INFO - added data to sheets
+2024-07-04 14:33:25 - INFO - added data to sheets
+2024-07-04 14:33:29 - INFO - added data to sheets
+2024-07-04 14:33:33 - INFO - added data to sheets
+2024-07-04 14:33:38 - INFO - added data to sheets
+2024-07-04 14:33:42 - INFO - added data to sheets
+2024-07-04 14:33:45 - INFO - sent arduino: b'0'
+2024-07-04 14:33:46 - INFO - sent arduino: b'4'
+2024-07-04 14:33:47 - INFO - sent arduino: b'2'
+2024-07-04 14:33:48 - INFO - sent arduino: b'10'
+2024-07-04 14:33:49 - INFO - sent arduino: b'12'
+2024-07-04 14:33:50 - INFO - sent arduino: b'14'
+2024-07-04 14:33:53 - INFO - added data to sheets
+2024-07-04 14:35:13 - INFO - sent arduino: b'0'
+2024-07-04 14:35:14 - INFO - sent arduino: b'4'
+2024-07-04 14:35:15 - INFO - sent arduino: b'2'
+2024-07-04 14:35:16 - INFO - sent arduino: b'10'
+2024-07-04 14:35:17 - INFO - sent arduino: b'12'
+2024-07-04 14:35:18 - INFO - sent arduino: b'14'
+2024-07-04 14:35:52 - INFO - sent arduino: b'0'
+2024-07-04 14:35:53 - INFO - sent arduino: b'4'
+2024-07-04 14:35:54 - INFO - sent arduino: b'2'
+2024-07-04 14:35:55 - INFO - sent arduino: b'10'
+2024-07-04 14:35:56 - INFO - sent arduino: b'12'
+2024-07-04 14:35:57 - INFO - sent arduino: b'14'
+2024-07-04 14:36:52 - INFO - sent arduino: b'0'
+2024-07-04 14:36:53 - INFO - sent arduino: b'4'
+2024-07-04 14:36:54 - INFO - sent arduino: b'2'
+2024-07-04 14:36:55 - INFO - sent arduino: b'10'
+2024-07-04 14:36:56 - INFO - sent arduino: b'12'
+2024-07-04 14:36:57 - INFO - sent arduino: b'14'
+2024-07-04 14:38:09 - INFO - sent arduino: b'0'
+2024-07-04 14:38:10 - INFO - sent arduino: b'4'
+2024-07-04 14:38:11 - INFO - sent arduino: b'2'
+2024-07-04 14:38:12 - INFO - sent arduino: b'10'
+2024-07-04 14:38:13 - INFO - sent arduino: b'12'
+2024-07-04 14:38:14 - INFO - sent arduino: b'14'
+2024-07-04 14:38:47 - INFO - added data to sheets
+2024-07-04 14:38:51 - INFO - added data to sheets
+2024-07-04 14:38:56 - INFO - added data to sheets
+2024-07-04 14:39:04 - INFO - sent arduino: b'0'
+2024-07-04 14:39:05 - INFO - sent arduino: b'4'
+2024-07-04 14:39:06 - INFO - sent arduino: b'2'
+2024-07-04 14:39:07 - INFO - sent arduino: b'10'
+2024-07-04 14:39:08 - INFO - sent arduino: b'12'
+2024-07-04 14:39:09 - INFO - sent arduino: b'14'
+2024-07-04 14:47:03 - INFO - sent arduino: b'0'
+2024-07-04 14:47:04 - INFO - sent arduino: b'4'
+2024-07-04 14:47:05 - INFO - sent arduino: b'2'
+2024-07-04 14:47:06 - INFO - sent arduino: b'10'
+2024-07-04 14:47:07 - INFO - sent arduino: b'12'
+2024-07-04 14:47:08 - INFO - sent arduino: b'14'
+2024-07-04 14:47:32 - INFO - added data to sheets
+2024-07-04 14:47:36 - INFO - added data to sheets
+2024-07-04 14:47:41 - INFO - added data to sheets
+2024-07-04 14:47:46 - INFO - sent arduino: b'0'
+2024-07-04 14:47:47 - INFO - sent arduino: b'4'
+2024-07-04 14:47:48 - INFO - sent arduino: b'2'
+2024-07-04 14:47:49 - INFO - sent arduino: b'10'
+2024-07-04 14:47:50 - INFO - sent arduino: b'12'
+2024-07-04 14:47:51 - INFO - sent arduino: b'14'
+2024-07-04 14:48:53 - INFO - sent arduino: b'0'
+2024-07-04 14:48:54 - INFO - sent arduino: b'4'
+2024-07-04 14:48:55 - INFO - sent arduino: b'2'
+2024-07-04 14:48:56 - INFO - sent arduino: b'10'
+2024-07-04 14:48:57 - INFO - sent arduino: b'12'
+2024-07-04 14:48:58 - INFO - sent arduino: b'14'
+2024-07-04 14:49:19 - INFO - added data to sheets
+2024-07-04 14:49:23 - INFO - added data to sheets
+2024-07-04 14:49:28 - INFO - added data to sheets
+2024-07-04 14:49:32 - INFO - added data to sheets
+2024-07-04 14:49:40 - INFO - sent arduino: b'0'
+2024-07-04 14:49:41 - INFO - sent arduino: b'4'
+2024-07-04 14:49:42 - INFO - sent arduino: b'2'
+2024-07-04 14:49:43 - INFO - sent arduino: b'10'
+2024-07-04 14:49:44 - INFO - sent arduino: b'12'
+2024-07-04 14:49:45 - INFO - sent arduino: b'14'
+2024-07-04 14:49:49 - INFO - added data to sheets
+2024-07-04 14:49:53 - INFO - added data to sheets
+2024-07-04 14:49:58 - INFO - added data to sheets
+2024-07-04 14:50:02 - INFO - added data to sheets
+2024-07-04 14:50:06 - INFO - added data to sheets
