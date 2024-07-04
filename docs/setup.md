@@ -19,7 +19,7 @@
 ``` bash
 sudo vi /etc/udev/rules.d/98-dymo.rules
 $ sudo cat /etc/udev/rules.d/98-dymo.rules
-SUBSYSTEM=="usb", ATTR{idVendor}=="0922", ATTR{idProduct}=="8004", MODE="666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="0922", ATTR{idProduct}=="8003", MODE="666"
 ```
 
 - Test to check if Pyusb can find USB device.

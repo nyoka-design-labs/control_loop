@@ -82,12 +82,12 @@
                     },
                     "start_time": 1718729731.79507,
                     "test_data_index": 0,
+                    "csv_name": "concentration_06-18-2024",
+                    "test_name": "concentration_test_data_1",
                     "control_consts": {
                         "buffer_sp": 400,
                         "lysate_upper_sp": 300,
-                        "lysate_lower_sp": 250,
-                        "csv_name": "concentration_06-18-2024",
-                        "test_data": "concentration_test_data_1"
+                        "lysate_lower_sp": 250
                     }
                 },
                 {
@@ -104,10 +104,11 @@
                     },
                     "start_time": 0,
                     "test_data_index": 0,
+                    "csv_name": "concentration_06-25-2024",
+                    "test_name": "concentration_test_data_1",
+
                     "control_consts": {
-                        "buffer_sp": 0,
-                        "csv_name": "concentration_06-25-2024",
-                        "test_data": "concentration_test_data_1"
+                        "buffer_sp": 0
                     }
                 }
             ]
@@ -142,6 +143,8 @@
                     },
                     "start_time": 0,
                     "test_data_index": 0,
+                    "csv_name": "fermentation_3_phase_feed_control_loop_06-20-2024",
+                    "test_name": "3_phase_control_test_data",
                     "control_consts": {
                         "base_sp": 7,
                         "acid_sp": 8,
@@ -149,9 +152,7 @@
                         "start_feed_trig_value": 7.02,
                         "required_readings": 3,
                         "feed_counter": 0,
-                        "start_feed": "False",
-                        "test_data": "3_phase_control_test_data",
-                        "csv_name": "fermentation_3_phase_feed_control_loop_06-20-2024"
+                        "start_feed": "False"
                     }
                 },
                 {
@@ -177,6 +178,8 @@
                     },
                     "start_time": 1719616781.395793,
                     "test_data_index": 80,
+                    "csv_name": "test_sheet",
+                    "test_name": "2_phase_test_1",
                     "control_consts": {
                         "base_sp": 6.95,
                         "acid_sp": 8,
@@ -189,9 +192,7 @@
                         "last_antifoam_edition": 1719616856.864018,
                         "antifoam_edition_rate": 1,
                         "start_feed": "True",
-                        "start_phase_1": "True",
-                        "test_data": "2_phase_test_1",
-                        "csv_name": "test_sheet"
+                        "start_phase_1": "True"                  
                     },
                     "reset_consts": {
                         "feed_counter": 0,
@@ -231,6 +232,8 @@
                     },
                     "start_time": 0,
                     "test_data_index": 0,
+                    "csv_name": "fermentation_3_phase_do_feed_control_loop_06-20-2024",
+                    "test_name": "do_der_test_1",
                     "control_consts": {
                         "base_sp": 7,
                         "acid_sp": 7.1,
@@ -240,10 +243,7 @@
                         "required_readings": 5,
                         "deriv_window": 8,
                         "feed_counter": 0,
-                        "start_feed": "False",
-                        "test_data": "do_der_test_1",
-                        "csv_name": "fermentation_3_phase_do_feed_control_loop_06-20-2024"
-                    },
+                        "start_feed": "False"                    },
                     "reset_consts": {
                         "derivs": [],
                         "increment_counter": 0,
@@ -276,6 +276,8 @@
                     },
                     "start_time": 1719427470.0103822,
                     "test_data_index": 4,
+                    "csv_name": "test_sheet",
+                    "test_name": "3_phase_control_test_data",
                     "control_consts": {
                         "base_sp": 7,
                         "acid_sp": 8,
@@ -286,8 +288,6 @@
                         "ph_window": 10,
                         "start_feed": "False",
                         "feed_media": "Lactose",
-                        "test_data": "3_phase_control_test_data",
-                        "csv_name": "test_sheet",
                         "start_phase_1": "True",
                         "start_counter": 3
                     }

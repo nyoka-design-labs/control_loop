@@ -306,7 +306,10 @@ if __name__ == "__main__":
     # ph = PH("/dev/ttyUSB0")
     # ph.client.connect()
     do = DO("/dev/ttyUSB0")
-    # do.client.connect()
+    do.client.connect()
+    while True:
+        print(f"do: {do()}")
+        time.sleep(3)
     
     # # ph.ph_calibration_values(10)
     # do.do_calibration(5)

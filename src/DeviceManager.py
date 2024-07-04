@@ -26,18 +26,17 @@ class DeviceManager:
     """
     Represents a device manager.
     """
-
-    def __init__(self, loop_id: str, control_id: str, testing: bool=False) -> None:
+    def __init__(self, loop_id: str, control_id: str) -> None:
         self.test_data = test_data
         self.delete()
         self.loop_id = loop_id
         self.control_id = control_id
         self.data_types = self.__init_data_types()
-        self.constrol_consts = get_control_constant(self.loop_id, self.control_id, "control_consts")
         
         self.index =  get_control_constant(self.loop_id, self.control_id, "test_data_index")
         self.start_time =  get_control_constant(self.loop_id, self.control_id, "start_time")
-        self.csv_name = self.constrol_consts["csv_name"]
+        self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
+        self.test_name = get_control_constant(self.loop_id, self.control_id, "test_name")
         
         names = self.__get_loop_devices()
         dev2port = []
@@ -127,9 +126,9 @@ class DeviceManager:
 
         return dict(zip(data_headers, devices_data))
     
-    def test_get_measurement(self, test_name):
+    def test_get_measurement(self):
 
-        measurement = self.test_data[test_name][self.index]
+        measurement = self.test_data[self.test_name][self.index]
         # elapsed time
         if self.start_time <= 0:
             self.start_time = time.time()
@@ -195,11 +194,10 @@ class DeviceManager:
         """
         Gets the devices in the specified loop.
         """
-        
-        
+           
         devices = get_control_constant(self.loop_id, self.control_id, "devices")
         devices = list(filter(lambda dev: dev != "temp_sensor", devices))
-        # print(devices)
+
         return devices
     
     def __get_loop_data_type(self) -> list:
