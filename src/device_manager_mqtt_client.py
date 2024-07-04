@@ -35,16 +35,29 @@ class DeviceManagerMQTTClient:
         test_name = config.get("test_name", "")
         devices = config.get("devices", True)
 
-        # Check if a DeviceManager with the same specifications already exists
-        if self.dm and self.dm.loop_id == loop_id and self.dm.control_id == control_id and \
-        self.dm.data_types == data_types + ["time", "date", "time_of_day", "type"] and \
-        self.dm.devices == devices:
-            # Update fields that can be overwritten
-            self.dm.csv_name = csv_name
-            self.dm.test_name = test_name
-            return self.dm
+        # Existing DeviceManager values
+        existing_dm_loop_id = self.dm.loop_id if self.dm else None
+        existing_dm_control_id = self.dm.control_id if self.dm else None
+        existing_dm_data_types = self.dm.data_types[:-4] if self.dm else None
 
-        # Create a new DeviceManager if not existing
+        # Comparison checks
+        loop_id_matches = existing_dm_loop_id == loop_id
+        control_id_matches = existing_dm_control_id == control_id
+        data_types_matches = existing_dm_data_types == data_types
+
+        # Check if a DeviceManager with the same specifications already exists
+        if self.dm:
+            if loop_id_matches and control_id_matches and data_types_matches:
+                # Update fields that can be overwritten
+                self.dm.csv_name = csv_name
+                self.dm.test_name = test_name
+                return self.dm
+            else:
+                # Cleanup resources of the existing DeviceManager
+                self.dm.cleanup_resources()
+                self.dm = None
+
+        # Create a new DeviceManager if not existing or values don't match
         self.dm = DeviceManager(loop_id, control_id, data_types, loop_devices, csv_name, test_name, devices)
         return self.dm
 
