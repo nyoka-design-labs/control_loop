@@ -68,14 +68,14 @@ def generate_test_data(test_name):
         generate_set(do_values, ph_values)
 
     # Load existing JSON file
-    with open('src/resources/test_data.json', 'r') as file:
+    with open('src/test_data/test_data.json', 'r') as file:
         existing_data = json.load(file)
 
     # Add the new test data without erasing existing tests
     existing_data[test_name] = test_data[test_name]
 
     # Save updated data back to the JSON file with one dictionary per line
-    with open('src/resources/test_data.json', 'w') as file:
+    with open('src/test_data/test_data.json', 'w') as file:
         file.write(
             '{\n' +
             ',\n'.join(f'"{key}": [\n' + ',\n'.join(json.dumps(item) for item in value) + '\n]' for key, value in existing_data.items()) +

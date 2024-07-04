@@ -124,7 +124,7 @@ class Controller:
             if control_status:
                 return self.status
             else:
-                data = self.get_data(test_data=self.control_consts["test_data"])
+                data = self.get_data()
                 self.save_data_sheets(data)
                 return self.status, data
         except Exception as e:
@@ -270,7 +270,7 @@ class Controller:
             print(f"failed to update_status: \n control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on} \n {e}")
             logger.error(f"Error in update_status: control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
 
-    def get_data(self, test_data: str):
+    def get_data(self):
         """
         Fetches measurement data from the device manager based on the current testing configuration.
 
@@ -282,7 +282,7 @@ class Controller:
         """
         try:
             if testing:
-                    data = self.device_manager.test_get_measurement(test_data)
+                    data = self.device_manager.test_get_measurement()
                     print(f"test data: {data}")
                     logger.info(f"test data: {data}")
                     return data
@@ -311,7 +311,10 @@ class Controller:
             combined_data = data.copy()  # Create a copy of the original data
             combined_data.pop("type", None)
             combined_data.update(status)
-            save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
+            if testing:
+                save_dict_to_sheet(combined_data, "test_sheet")
+            else:
+                save_dict_to_sheet(combined_data, self.control_consts["csv_name"])
             print("added data to sheets")
             logger.info("added data to sheets")
         except Exception as e:
@@ -411,7 +414,7 @@ class ConcentrationController(Controller):
         self.stop_control(data_col_is_on=False)
         
     def __concentration_loop(self):
-        data = self.get_data(test_data=self.control_consts["test_data"])
+        data = self.get_data()
 
         self.__buffer_control(data['buffer_weight'])
         # self.__lysate_control(data['lysate_weight'])
@@ -423,7 +426,7 @@ class ConcentrationController(Controller):
         return data, self.status
     
     def __concentration_buffer_loop(self):
-        data = self.get_data(test_data=self.control_consts["test_data"])
+        data = self.get_data()
 
         self.__buffer_control(data['buffer_weight'])
 
@@ -467,7 +470,7 @@ class FermentationController(Controller):
         self.loop_id = "fermentation_loop"
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
 
-        self.device_manager = DeviceManager(self.loop_id, self.control_id, testing)
+        self.device_manager = DeviceManager(self.loop_id, self.control_id)
 
         self.control_consts = {}
         
@@ -496,7 +499,7 @@ class FermentationController(Controller):
             tuple: Contains the data collected during the control process and the updated status of the controller.
         """
 
-        data = self.get_data(self.control_consts["test_data"])
+        data = self.get_data()
         self.load_control_constants()
 
         start_feed = eval(self.control_consts["start_feed"])
@@ -512,13 +515,13 @@ class FermentationController(Controller):
         
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 6, 20, 20, 30, 0)  # 8:30 PM Jun 20, 2024
+        phase3_start_time = datetime(2024, 7, 4, 11, 0, 0)  # 8:30 PM Jun 20, 2024
         
 
         # Phase 1: Maintain pH using only base
         if not start_feed:
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
-            start_feed = self.__start_feed_check_bool(data, pre_feed_trigger_type, start_feed_trig_value, required_readings, feed_counter, start_feed)
+            start_feed = self.__start_feed_check_bool(data, pre_feed_trigger_type, start_feed_trig_value, required_readings, feed_counter)
 
         # Phase 2: Start feeding with glycerol pump
         if start_feed and current_datetime < phase3_start_time:
@@ -561,7 +564,7 @@ class FermentationController(Controller):
 
         self.load_control_constants()
 
-        data = self.get_data(self.control_consts["test_data"])
+        data = self.get_data()
 
         pre_feed_trigger_type = 'do'
         feed_trigger_type = 'ph'
@@ -581,7 +584,7 @@ class FermentationController(Controller):
         if not start_feed:
             self.__pH_balance(data['ph'], base_control=True, acid_control=False)
             start_phase_1 = self.__pre_phase_check(data, pre_feed_trigger_type, start_trig_value, required_readings, start_counter, start_phase_1)
-            start_feed = self.__start_feed_check_bool(data, pre_feed_trigger_type, start_feed_trig_value, required_readings, feed_counter, start_phase_1, start_feed)
+            start_feed = self.__start_feed_check_bool(data, pre_feed_trigger_type, start_feed_trig_value, required_readings, feed_counter, start_phase_1)
             if start_feed:
                 self.__pH_balance(data['ph'], base_control=False, acid_control=False)
         
@@ -616,7 +619,7 @@ class FermentationController(Controller):
             tuple: Contains the latest data and the controller's updated status, detailing the operational state
                 and any changes enacted during the control process.
         """
-        data = self.get_data(self.control_consts["test_data"])
+        data = self.get_data()
         self.load_control_constants()
         
         start_feed = eval(self.control_consts["start_feed"])
@@ -775,7 +778,7 @@ class FermentationController(Controller):
     def test_pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: int, start_counter: int, start_phase_1: bool, trigger_below = True):
         return self.__pre_phase_check(data, trigger_type, start_trig_value, required_readings, start_counter, start_phase_1, trigger_below)
 
-    def __start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1: True, trigger_below = False, start_feed = False):
+    def __start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1=True, trigger_below=False, start_feed=False):
         """
         Checks and determines if feeding should start based on sensor data exceeding/subceeding a set threshold.
 
@@ -794,7 +797,7 @@ class FermentationController(Controller):
         curr_value = data[trigger_type]
         # Phase 1: check feed start conditions
         if start_phase_1 and (not start_feed):
-            if (not trigger_below and curr_value > start_feed_trig_value) or (trigger_below and curr_value < start_feed_trig_value):
+            if (not trigger_below and curr_value >= start_feed_trig_value) or (trigger_below and curr_value <= start_feed_trig_value):
                 feed_counter += 1
                 if feed_counter >= required_readings:
                     self.update_controller_consts("start_feed", "True")
@@ -809,7 +812,7 @@ class FermentationController(Controller):
 
         return start_feed
     
-    def test_start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1: True, trigger_below = False, start_feed = False):
+    def test_start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1=True, trigger_below = False, start_feed = False):
         return self.__start_feed_check_bool(data, trigger_type, start_feed_trig_value, required_readings, feed_counter, start_phase_1, trigger_below, start_feed)
 
     def __start_feed_check_der(self, trigger_type: str, feed_counter: int, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
@@ -933,6 +936,5 @@ if __name__ == "__main__":
         c.start_control()
 
         time.sleep(3)
-   
 
        

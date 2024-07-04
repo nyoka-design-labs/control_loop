@@ -1,0 +1,462 @@
+2024-07-04 10:14:39 - INFO - sent arduino: b'0'
+2024-07-04 10:14:40 - INFO - sent arduino: b'4'
+2024-07-04 10:14:41 - INFO - sent arduino: b'2'
+2024-07-04 10:14:42 - INFO - sent arduino: b'12'
+2024-07-04 10:14:43 - INFO - test data: {'ph': 6.8, 'do': 67, 'time': 0, 'type': 'data', 'time_of_day': '10:14:43', 'date': '2024-07-04'}
+2024-07-04 10:14:43 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:14:43 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:14:43 - INFO - sent arduino: b'3'
+2024-07-04 10:14:46 - INFO - added data to sheets
+2024-07-04 10:14:49 - INFO - test data: {'ph': 6.9, 'do': 67, 'time': 0.0017305202616585626, 'type': 'data', 'time_of_day': '10:14:49', 'date': '2024-07-04'}
+2024-07-04 10:14:49 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:14:49 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:14:49 - INFO - sent arduino: b'3'
+2024-07-04 10:14:51 - INFO - added data to sheets
+2024-07-04 10:14:54 - INFO - test data: {'ph': 6.0, 'do': 67, 'time': 0.0031543164120780096, 'type': 'data', 'time_of_day': '10:14:54', 'date': '2024-07-04'}
+2024-07-04 10:14:54 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:14:54 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:14:54 - INFO - sent arduino: b'3'
+2024-07-04 10:14:56 - INFO - added data to sheets
+2024-07-04 10:14:59 - INFO - test data: {'ph': 7.02, 'do': 67, 'time': 0.004575792219903734, 'type': 'data', 'time_of_day': '10:14:59', 'date': '2024-07-04'}
+2024-07-04 10:14:59 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:14:59 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:14:59 - INFO - sent arduino: b'2'
+2024-07-04 10:15:01 - INFO - added data to sheets
+2024-07-04 10:15:04 - INFO - test data: {'ph': 6, 'do': 67, 'time': 0.005999302731619941, 'type': 'data', 'time_of_day': '10:15:04', 'date': '2024-07-04'}
+2024-07-04 10:15:04 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:04 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:04 - INFO - sent arduino: b'3'
+2024-07-04 10:15:06 - INFO - added data to sheets
+2024-07-04 10:15:09 - INFO - test data: {'ph': 7.03, 'do': 67, 'time': 0.007425794137848748, 'type': 'data', 'time_of_day': '10:15:09', 'date': '2024-07-04'}
+2024-07-04 10:15:09 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:09 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:09 - INFO - sent arduino: b'2'
+2024-07-04 10:15:12 - INFO - added data to sheets
+2024-07-04 10:15:15 - INFO - test data: {'ph': 6, 'do': 67, 'time': 0.008831132186783684, 'type': 'data', 'time_of_day': '10:15:15', 'date': '2024-07-04'}
+2024-07-04 10:15:15 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:15 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:15 - INFO - sent arduino: b'3'
+2024-07-04 10:15:17 - INFO - added data to sheets
+2024-07-04 10:15:20 - INFO - test data: {'ph': 7.05, 'do': 67, 'time': 0.01025058580769433, 'type': 'data', 'time_of_day': '10:15:20', 'date': '2024-07-04'}
+2024-07-04 10:15:20 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:20 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:20 - INFO - sent arduino: b'2'
+2024-07-04 10:15:22 - INFO - added data to sheets
+2024-07-04 10:15:25 - INFO - test data: {'ph': 7.03, 'do': 67, 'time': 0.011679221656587389, 'type': 'data', 'time_of_day': '10:15:25', 'date': '2024-07-04'}
+2024-07-04 10:15:25 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:25 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:25 - INFO - sent arduino: b'2'
+2024-07-04 10:15:27 - INFO - added data to sheets
+2024-07-04 10:15:30 - INFO - test data: {'ph': 7.06, 'do': 67, 'time': 0.013111833333969116, 'type': 'data', 'time_of_day': '10:15:30', 'date': '2024-07-04'}
+2024-07-04 10:15:30 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:30 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:30 - INFO - sent arduino: b'2'
+2024-07-04 10:15:32 - INFO - added data to sheets
+2024-07-04 10:15:35 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.014560548265775046, 'type': 'data', 'time_of_day': '10:15:35', 'date': '2024-07-04'}
+2024-07-04 10:15:35 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:35 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:35 - INFO - sent arduino: b'3'
+2024-07-04 10:15:37 - INFO - added data to sheets
+2024-07-04 10:15:40 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 0.016006419724888272, 'type': 'data', 'time_of_day': '10:15:40', 'date': '2024-07-04'}
+2024-07-04 10:15:40 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:40 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:40 - INFO - sent arduino: b'2'
+2024-07-04 10:15:43 - INFO - added data to sheets
+2024-07-04 10:15:46 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 0.01752775053183238, 'type': 'data', 'time_of_day': '10:15:46', 'date': '2024-07-04'}
+2024-07-04 10:15:46 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:46 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:46 - INFO - sent arduino: b'2'
+2024-07-04 10:15:48 - INFO - added data to sheets
+2024-07-04 10:15:51 - INFO - test data: {'ph': 6, 'do': 19, 'time': 0.018958854145473904, 'type': 'data', 'time_of_day': '10:15:51', 'date': '2024-07-04'}
+2024-07-04 10:15:51 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:51 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:51 - INFO - sent arduino: b'3'
+2024-07-04 10:15:53 - INFO - added data to sheets
+2024-07-04 10:15:56 - INFO - test data: {'ph': 6.5, 'do': 24, 'time': 0.020352575249142118, 'type': 'data', 'time_of_day': '10:15:56', 'date': '2024-07-04'}
+2024-07-04 10:15:56 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:15:56 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:15:56 - INFO - sent arduino: b'3'
+2024-07-04 10:15:58 - INFO - added data to sheets
+2024-07-04 10:16:01 - INFO - test data: {'ph': 7, 'do': 25, 'time': 0.02176117890410953, 'type': 'data', 'time_of_day': '10:16:01', 'date': '2024-07-04'}
+2024-07-04 10:16:01 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:01 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:01 - INFO - sent arduino: b'3'
+2024-07-04 10:16:03 - INFO - added data to sheets
+2024-07-04 10:16:06 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.02315885437859429, 'type': 'data', 'time_of_day': '10:16:06', 'date': '2024-07-04'}
+2024-07-04 10:16:06 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:06 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:06 - INFO - sent arduino: b'3'
+2024-07-04 10:16:08 - INFO - added data to sheets
+2024-07-04 10:16:11 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 0.024611179166369967, 'type': 'data', 'time_of_day': '10:16:11', 'date': '2024-07-04'}
+2024-07-04 10:16:11 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:11 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:11 - INFO - sent arduino: b'2'
+2024-07-04 10:16:13 - INFO - added data to sheets
+2024-07-04 10:16:16 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 0.02601467251777649, 'type': 'data', 'time_of_day': '10:16:16', 'date': '2024-07-04'}
+2024-07-04 10:16:16 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:16 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:16 - INFO - sent arduino: b'2'
+2024-07-04 10:16:19 - INFO - added data to sheets
+2024-07-04 10:16:22 - INFO - test data: {'ph': 6, 'do': 19, 'time': 0.02743427832921346, 'type': 'data', 'time_of_day': '10:16:22', 'date': '2024-07-04'}
+2024-07-04 10:16:22 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:22 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:22 - INFO - sent arduino: b'3'
+2024-07-04 10:16:24 - INFO - added data to sheets
+2024-07-04 10:16:27 - INFO - test data: {'ph': 6.5, 'do': 24, 'time': 0.028831126623683506, 'type': 'data', 'time_of_day': '10:16:27', 'date': '2024-07-04'}
+2024-07-04 10:16:27 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:27 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:27 - INFO - sent arduino: b'3'
+2024-07-04 10:16:29 - INFO - added data to sheets
+2024-07-04 10:16:32 - INFO - test data: {'ph': 7, 'do': 25, 'time': 0.030253247221310932, 'type': 'data', 'time_of_day': '10:16:32', 'date': '2024-07-04'}
+2024-07-04 10:16:32 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:32 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:32 - INFO - sent arduino: b'3'
+2024-07-04 10:16:34 - INFO - added data to sheets
+2024-07-04 10:16:37 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.03165720495912764, 'type': 'data', 'time_of_day': '10:16:37', 'date': '2024-07-04'}
+2024-07-04 10:16:37 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:37 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:37 - INFO - sent arduino: b'3'
+2024-07-04 10:16:39 - INFO - added data to sheets
+2024-07-04 10:16:42 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 0.03314341525236766, 'type': 'data', 'time_of_day': '10:16:42', 'date': '2024-07-04'}
+2024-07-04 10:16:42 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:42 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:42 - INFO - sent arduino: b'2'
+2024-07-04 10:16:44 - INFO - added data to sheets
+2024-07-04 10:16:47 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 0.03456257939338684, 'type': 'data', 'time_of_day': '10:16:47', 'date': '2024-07-04'}
+2024-07-04 10:16:47 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:47 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:47 - INFO - sent arduino: b'2'
+2024-07-04 10:16:49 - INFO - added data to sheets
+2024-07-04 10:16:52 - INFO - test data: {'ph': 6, 'do': 19, 'time': 0.03596598717901442, 'type': 'data', 'time_of_day': '10:16:52', 'date': '2024-07-04'}
+2024-07-04 10:16:52 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:52 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:52 - INFO - sent arduino: b'3'
+2024-07-04 10:16:54 - INFO - added data to sheets
+2024-07-04 10:16:57 - INFO - test data: {'ph': 6.5, 'do': 24, 'time': 0.03738444553481208, 'type': 'data', 'time_of_day': '10:16:57', 'date': '2024-07-04'}
+2024-07-04 10:16:57 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:16:57 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:16:57 - INFO - sent arduino: b'3'
+2024-07-04 10:23:28 - INFO - sent arduino: b'0'
+2024-07-04 10:23:29 - INFO - sent arduino: b'4'
+2024-07-04 10:23:30 - INFO - sent arduino: b'2'
+2024-07-04 10:23:31 - INFO - sent arduino: b'12'
+2024-07-04 10:23:32 - INFO - test data: {'ph': 6.8, 'do': 67, 'time': 0, 'type': 'data', 'time_of_day': '10:23:32', 'date': '2024-07-04'}
+2024-07-04 10:23:32 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:23:32 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:23:32 - INFO - sent arduino: b'3'
+2024-07-04 10:23:35 - INFO - added data to sheets
+2024-07-04 10:23:38 - INFO - test data: {'ph': 6.9, 'do': 67, 'time': 0.0016715961032443577, 'type': 'data', 'time_of_day': '10:23:38', 'date': '2024-07-04'}
+2024-07-04 10:23:38 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:23:38 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:23:38 - INFO - sent arduino: b'3'
+2024-07-04 10:23:40 - INFO - added data to sheets
+2024-07-04 10:23:43 - INFO - test data: {'ph': 6.0, 'do': 67, 'time': 0.00308128105269538, 'type': 'data', 'time_of_day': '10:23:43', 'date': '2024-07-04'}
+2024-07-04 10:23:43 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:23:43 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:23:43 - INFO - sent arduino: b'3'
+2024-07-04 10:23:45 - INFO - added data to sheets
+2024-07-04 10:25:38 - INFO - sent arduino: b'0'
+2024-07-04 10:25:39 - INFO - sent arduino: b'4'
+2024-07-04 10:25:40 - INFO - sent arduino: b'2'
+2024-07-04 10:25:41 - INFO - sent arduino: b'12'
+2024-07-04 10:25:42 - INFO - test data: {'ph': 6.8, 'do': 67, 'time': 0, 'type': 'data', 'time_of_day': '10:25:42', 'date': '2024-07-04'}
+2024-07-04 10:25:42 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:25:42 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:25:42 - INFO - sent arduino: b'3'
+2024-07-04 10:25:46 - INFO - added data to sheets
+2024-07-04 10:25:49 - INFO - test data: {'ph': 6.9, 'do': 67, 'time': 0.0016955388254589504, 'type': 'data', 'time_of_day': '10:25:49', 'date': '2024-07-04'}
+2024-07-04 10:25:49 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:25:49 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:25:49 - INFO - sent arduino: b'3'
+2024-07-04 10:25:51 - INFO - added data to sheets
+2024-07-04 10:25:54 - INFO - test data: {'ph': 6.0, 'do': 67, 'time': 0.0031285075346628825, 'type': 'data', 'time_of_day': '10:25:54', 'date': '2024-07-04'}
+2024-07-04 10:25:54 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:25:54 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:25:54 - INFO - sent arduino: b'3'
+2024-07-04 10:25:56 - INFO - added data to sheets
+2024-07-04 10:25:59 - INFO - test data: {'ph': 7.02, 'do': 67, 'time': 0.004555582205454508, 'type': 'data', 'time_of_day': '10:25:59', 'date': '2024-07-04'}
+2024-07-04 10:25:59 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:25:59 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:25:59 - INFO - sent arduino: b'2'
+2024-07-04 10:26:01 - INFO - added data to sheets
+2024-07-04 10:26:04 - INFO - test data: {'ph': 6, 'do': 67, 'time': 0.005958243078655666, 'type': 'data', 'time_of_day': '10:26:04', 'date': '2024-07-04'}
+2024-07-04 10:26:04 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:26:04 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:26:04 - INFO - sent arduino: b'3'
+2024-07-04 10:26:06 - INFO - added data to sheets
+2024-07-04 10:26:09 - INFO - test data: {'ph': 7.03, 'do': 67, 'time': 0.007367340061399672, 'type': 'data', 'time_of_day': '10:26:09', 'date': '2024-07-04'}
+2024-07-04 10:26:09 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:26:09 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:26:09 - INFO - sent arduino: b'2'
+2024-07-04 10:26:11 - INFO - added data to sheets
+2024-07-04 10:27:12 - INFO - sent arduino: b'0'
+2024-07-04 10:27:13 - INFO - sent arduino: b'4'
+2024-07-04 10:27:14 - INFO - sent arduino: b'2'
+2024-07-04 10:27:15 - INFO - sent arduino: b'12'
+2024-07-04 10:27:16 - INFO - test data: {'ph': 6.8, 'do': 67, 'time': 0, 'type': 'data', 'time_of_day': '10:27:16', 'date': '2024-07-04'}
+2024-07-04 10:27:24 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:29:00 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:29:00 - INFO - sent arduino: b'3'
+2024-07-04 10:30:29 - INFO - sent arduino: b'0'
+2024-07-04 10:30:30 - INFO - sent arduino: b'4'
+2024-07-04 10:30:31 - INFO - sent arduino: b'2'
+2024-07-04 10:30:32 - INFO - sent arduino: b'12'
+2024-07-04 10:30:33 - INFO - test data: {'ph': 6.8, 'do': 67, 'time': 0, 'type': 'data', 'time_of_day': '10:30:33', 'date': '2024-07-04'}
+2024-07-04 10:30:37 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 10:30:43 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 10:30:43 - INFO - sent arduino: b'3'
+2024-07-04 10:59:57 - INFO - sent arduino: b'0'
+2024-07-04 10:59:58 - INFO - sent arduino: b'4'
+2024-07-04 10:59:59 - INFO - sent arduino: b'2'
+2024-07-04 11:00:00 - INFO - sent arduino: b'12'
+2024-07-04 11:00:01 - INFO - test data: {'ph': 6.8, 'do': 67, 'time': 0, 'type': 'data', 'time_of_day': '11:00:01', 'date': '2024-07-04'}
+2024-07-04 11:00:04 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:00:07 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:00:07 - INFO - sent arduino: b'3'
+2024-07-04 11:03:15 - INFO - sent arduino: b'0'
+2024-07-04 11:03:16 - INFO - sent arduino: b'4'
+2024-07-04 11:03:17 - INFO - sent arduino: b'2'
+2024-07-04 11:03:18 - INFO - sent arduino: b'12'
+2024-07-04 11:03:19 - INFO - test data: {'ph': 6.8, 'do': 67, 'time': 0, 'type': 'data', 'time_of_day': '11:03:19', 'date': '2024-07-04'}
+2024-07-04 11:03:20 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:03:23 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:03:23 - INFO - sent arduino: b'3'
+2024-07-04 11:03:24 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:03:24 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:03:33 - INFO - added data to sheets
+2024-07-04 11:03:36 - INFO - test data: {'ph': 6.9, 'do': 67, 'time': 0.004724859727753533, 'type': 'data', 'time_of_day': '11:03:36', 'date': '2024-07-04'}
+2024-07-04 11:03:37 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:03:40 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:03:40 - INFO - sent arduino: b'3'
+2024-07-04 11:03:44 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:03:44 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:03:45 - INFO - added data to sheets
+2024-07-04 11:03:48 - INFO - test data: {'ph': 6.0, 'do': 67, 'time': 0.008138958017031352, 'type': 'data', 'time_of_day': '11:03:48', 'date': '2024-07-04'}
+2024-07-04 11:03:59 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:04:00 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:04:00 - INFO - sent arduino: b'3'
+2024-07-04 11:04:29 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:04:29 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:04:30 - INFO - added data to sheets
+2024-07-04 11:04:33 - INFO - test data: {'ph': 7.02, 'do': 67, 'time': 0.020803899698787265, 'type': 'data', 'time_of_day': '11:04:33', 'date': '2024-07-04'}
+2024-07-04 11:04:35 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:04:36 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:04:36 - INFO - sent arduino: b'2'
+2024-07-04 11:04:37 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:04:37 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:04:38 - INFO - added data to sheets
+2024-07-04 11:04:41 - INFO - test data: {'ph': 6, 'do': 67, 'time': 0.022848871681425305, 'type': 'data', 'time_of_day': '11:04:41', 'date': '2024-07-04'}
+2024-07-04 11:06:09 - INFO - sent arduino: b'0'
+2024-07-04 11:06:10 - INFO - sent arduino: b'4'
+2024-07-04 11:06:11 - INFO - sent arduino: b'2'
+2024-07-04 11:06:12 - INFO - sent arduino: b'12'
+2024-07-04 11:06:13 - INFO - test data: {'ph': 6.8, 'do': 67, 'time': 0, 'type': 'data', 'time_of_day': '11:06:13', 'date': '2024-07-04'}
+2024-07-04 11:06:13 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:13 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:06:13 - INFO - sent arduino: b'3'
+2024-07-04 11:06:14 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:06:14 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:16 - INFO - added data to sheets
+2024-07-04 11:06:19 - INFO - test data: {'ph': 6.9, 'do': 67, 'time': 0.0017416601710849339, 'type': 'data', 'time_of_day': '11:06:19', 'date': '2024-07-04'}
+2024-07-04 11:06:19 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:19 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:06:19 - INFO - sent arduino: b'3'
+2024-07-04 11:06:20 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:06:20 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:21 - INFO - added data to sheets
+2024-07-04 11:06:24 - INFO - test data: {'ph': 6.0, 'do': 67, 'time': 0.003177231616444058, 'type': 'data', 'time_of_day': '11:06:24', 'date': '2024-07-04'}
+2024-07-04 11:06:24 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:24 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:06:24 - INFO - sent arduino: b'3'
+2024-07-04 11:06:25 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:06:25 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:26 - INFO - added data to sheets
+2024-07-04 11:06:29 - INFO - test data: {'ph': 7.02, 'do': 67, 'time': 0.00463873909579383, 'type': 'data', 'time_of_day': '11:06:29', 'date': '2024-07-04'}
+2024-07-04 11:06:29 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:29 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:06:29 - INFO - sent arduino: b'2'
+2024-07-04 11:06:41 - INFO - Updated (('feed_counter', 1), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:06:41 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 1, 'start_feed': 'False'}
+2024-07-04 11:06:43 - INFO - added data to sheets
+2024-07-04 11:06:46 - INFO - test data: {'ph': 6, 'do': 67, 'time': 0.009145116342438591, 'type': 'data', 'time_of_day': '11:06:46', 'date': '2024-07-04'}
+2024-07-04 11:06:46 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 1, 'start_feed': 'False'}
+2024-07-04 11:06:46 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:06:46 - INFO - sent arduino: b'3'
+2024-07-04 11:06:47 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:06:47 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:48 - INFO - added data to sheets
+2024-07-04 11:06:51 - INFO - test data: {'ph': 7.03, 'do': 67, 'time': 0.010601356890466478, 'type': 'data', 'time_of_day': '11:06:51', 'date': '2024-07-04'}
+2024-07-04 11:06:51 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:06:51 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:06:51 - INFO - sent arduino: b'2'
+2024-07-04 11:07:06 - INFO - Updated (('feed_counter', 1), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:07:06 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 1, 'start_feed': 'False'}
+2024-07-04 11:07:07 - INFO - added data to sheets
+2024-07-04 11:07:10 - INFO - test data: {'ph': 6, 'do': 67, 'time': 0.016019756926430595, 'type': 'data', 'time_of_day': '11:07:10', 'date': '2024-07-04'}
+2024-07-04 11:07:10 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 1, 'start_feed': 'False'}
+2024-07-04 11:07:10 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:07:10 - INFO - sent arduino: b'3'
+2024-07-04 11:07:11 - INFO - Updated (('feed_counter', 0), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:07:11 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:07:12 - INFO - added data to sheets
+2024-07-04 11:07:15 - INFO - test data: {'ph': 7.05, 'do': 67, 'time': 0.01744898988140954, 'type': 'data', 'time_of_day': '11:07:15', 'date': '2024-07-04'}
+2024-07-04 11:07:15 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 0, 'start_feed': 'False'}
+2024-07-04 11:07:15 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:07:15 - INFO - sent arduino: b'2'
+2024-07-04 11:07:21 - INFO - Updated (('feed_counter', 1), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:07:21 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 1, 'start_feed': 'False'}
+2024-07-04 11:07:22 - INFO - added data to sheets
+2024-07-04 11:07:25 - INFO - test data: {'ph': 7.03, 'do': 67, 'time': 0.020103901028633117, 'type': 'data', 'time_of_day': '11:07:25', 'date': '2024-07-04'}
+2024-07-04 11:07:25 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 1, 'start_feed': 'False'}
+2024-07-04 11:07:25 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:07:25 - INFO - sent arduino: b'2'
+2024-07-04 11:07:30 - INFO - Updated (('feed_counter', 2), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:07:30 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 2, 'start_feed': 'False'}
+2024-07-04 11:07:31 - INFO - added data to sheets
+2024-07-04 11:07:34 - INFO - test data: {'ph': 7.06, 'do': 67, 'time': 0.02272289209895664, 'type': 'data', 'time_of_day': '11:07:34', 'date': '2024-07-04'}
+2024-07-04 11:07:34 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 2, 'start_feed': 'False'}
+2024-07-04 11:07:34 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:07:34 - INFO - sent arduino: b'2'
+2024-07-04 11:07:39 - INFO - Updated (('start_feed', 'True'), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:07:39 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 2, 'start_feed': 'True'}
+2024-07-04 11:07:46 - INFO - Feed started by ph above 7.02 for 3 readings.
+2024-07-04 11:07:48 - INFO - Updated (('feed_counter', 3), {}) in controller 3_phase_feed_control of loop fermentation_loop
+2024-07-04 11:07:48 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:08:02 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:08:02 - INFO - sent arduino: b'2'
+2024-07-04 11:08:03 - INFO - sent arduino: b'5'
+2024-07-04 11:08:04 - INFO - lactose_pump pump on
+2024-07-04 11:08:05 - INFO - added data to sheets
+2024-07-04 11:08:08 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.032035369078318277, 'type': 'data', 'time_of_day': '11:08:08', 'date': '2024-07-04'}
+2024-07-04 11:08:08 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:08:08 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:08:08 - INFO - sent arduino: b'3'
+2024-07-04 11:08:09 - INFO - sent arduino: b'4'
+2024-07-04 11:08:10 - INFO - lactose_pump pump off
+2024-07-04 11:08:11 - INFO - added data to sheets
+2024-07-04 11:08:14 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 0.033771422704060874, 'type': 'data', 'time_of_day': '11:08:14', 'date': '2024-07-04'}
+2024-07-04 11:08:14 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:08:14 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:08:14 - INFO - sent arduino: b'2'
+2024-07-04 11:08:15 - INFO - sent arduino: b'4'
+2024-07-04 11:08:16 - INFO - lactose_pump pump off
+2024-07-04 11:08:17 - INFO - added data to sheets
+2024-07-04 11:08:21 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 0.035504927966329786, 'type': 'data', 'time_of_day': '11:08:21', 'date': '2024-07-04'}
+2024-07-04 11:08:21 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:08:21 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:08:21 - INFO - sent arduino: b'2'
+2024-07-04 11:08:22 - INFO - sent arduino: b'5'
+2024-07-04 11:08:23 - INFO - lactose_pump pump on
+2024-07-04 11:08:24 - INFO - added data to sheets
+2024-07-04 11:08:27 - INFO - test data: {'ph': 6, 'do': 19, 'time': 0.0372475227382448, 'type': 'data', 'time_of_day': '11:08:27', 'date': '2024-07-04'}
+2024-07-04 11:08:27 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:08:27 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:08:27 - INFO - sent arduino: b'3'
+2024-07-04 11:08:28 - INFO - sent arduino: b'4'
+2024-07-04 11:08:29 - INFO - lactose_pump pump off
+2024-07-04 11:08:30 - INFO - added data to sheets
+2024-07-04 11:08:33 - INFO - test data: {'ph': 6.5, 'do': 24, 'time': 0.039005154967308046, 'type': 'data', 'time_of_day': '11:08:33', 'date': '2024-07-04'}
+2024-07-04 11:08:33 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:08:58 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:08:58 - INFO - sent arduino: b'3'
+2024-07-04 11:09:09 - INFO - sent arduino: b'4'
+2024-07-04 11:09:10 - INFO - lactose_pump pump off
+2024-07-04 11:09:12 - INFO - added data to sheets
+2024-07-04 11:09:15 - INFO - test data: {'ph': 7, 'do': 25, 'time': 0.050535016391012405, 'type': 'data', 'time_of_day': '11:09:15', 'date': '2024-07-04'}
+2024-07-04 11:09:15 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:09:22 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:09:22 - INFO - sent arduino: b'3'
+2024-07-04 11:09:23 - INFO - sent arduino: b'4'
+2024-07-04 11:09:24 - INFO - lactose_pump pump off
+2024-07-04 11:09:25 - INFO - added data to sheets
+2024-07-04 11:09:28 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.05435180577966902, 'type': 'data', 'time_of_day': '11:09:28', 'date': '2024-07-04'}
+2024-07-04 11:09:28 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:09:28 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:09:28 - INFO - sent arduino: b'3'
+2024-07-04 11:09:29 - INFO - sent arduino: b'4'
+2024-07-04 11:09:30 - INFO - lactose_pump pump off
+2024-07-04 11:09:32 - INFO - added data to sheets
+2024-07-04 11:09:35 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 0.05609981636206309, 'type': 'data', 'time_of_day': '11:09:35', 'date': '2024-07-04'}
+2024-07-04 11:09:35 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:09:35 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:09:35 - INFO - sent arduino: b'2'
+2024-07-04 11:09:36 - INFO - sent arduino: b'4'
+2024-07-04 11:09:37 - INFO - lactose_pump pump off
+2024-07-04 11:09:38 - INFO - added data to sheets
+2024-07-04 11:09:41 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 0.05784764137532976, 'type': 'data', 'time_of_day': '11:09:41', 'date': '2024-07-04'}
+2024-07-04 11:09:41 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:09:41 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:09:41 - INFO - sent arduino: b'2'
+2024-07-04 11:09:42 - INFO - sent arduino: b'5'
+2024-07-04 11:09:43 - INFO - lactose_pump pump on
+2024-07-04 11:09:44 - INFO - added data to sheets
+2024-07-04 11:09:47 - INFO - test data: {'ph': 6, 'do': 19, 'time': 0.05956806745794084, 'type': 'data', 'time_of_day': '11:09:47', 'date': '2024-07-04'}
+2024-07-04 11:09:47 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:09:47 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:09:47 - INFO - sent arduino: b'3'
+2024-07-04 11:09:48 - INFO - sent arduino: b'4'
+2024-07-04 11:09:49 - INFO - lactose_pump pump off
+2024-07-04 11:09:50 - INFO - added data to sheets
+2024-07-04 11:09:53 - INFO - test data: {'ph': 6.5, 'do': 24, 'time': 0.0612810707754559, 'type': 'data', 'time_of_day': '11:09:53', 'date': '2024-07-04'}
+2024-07-04 11:09:53 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:09:53 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:09:53 - INFO - sent arduino: b'3'
+2024-07-04 11:09:54 - INFO - sent arduino: b'4'
+2024-07-04 11:09:55 - INFO - lactose_pump pump off
+2024-07-04 11:09:57 - INFO - added data to sheets
+2024-07-04 11:10:00 - INFO - test data: {'ph': 7, 'do': 25, 'time': 0.06302530434396532, 'type': 'data', 'time_of_day': '11:10:00', 'date': '2024-07-04'}
+2024-07-04 11:10:00 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:10:00 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:10:00 - INFO - sent arduino: b'3'
+2024-07-04 11:10:01 - INFO - sent arduino: b'4'
+2024-07-04 11:10:02 - INFO - lactose_pump pump off
+2024-07-04 11:10:03 - INFO - added data to sheets
+2024-07-04 11:10:06 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.06474742266866895, 'type': 'data', 'time_of_day': '11:10:06', 'date': '2024-07-04'}
+2024-07-04 11:10:06 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:10:06 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:10:06 - INFO - sent arduino: b'3'
+2024-07-04 11:10:07 - INFO - sent arduino: b'4'
+2024-07-04 11:10:08 - INFO - lactose_pump pump off
+2024-07-04 11:10:09 - INFO - added data to sheets
+2024-07-04 11:10:12 - INFO - test data: {'ph': 7.01, 'do': 24, 'time': 0.06648227466477288, 'type': 'data', 'time_of_day': '11:10:12', 'date': '2024-07-04'}
+2024-07-04 11:10:12 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:10:12 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:10:12 - INFO - sent arduino: b'2'
+2024-07-04 11:10:13 - INFO - sent arduino: b'4'
+2024-07-04 11:10:14 - INFO - lactose_pump pump off
+2024-07-04 11:10:15 - INFO - added data to sheets
+2024-07-04 11:10:18 - INFO - test data: {'ph': 7.1, 'do': 21, 'time': 0.06823223431905111, 'type': 'data', 'time_of_day': '11:10:18', 'date': '2024-07-04'}
+2024-07-04 11:10:18 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:10:18 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:10:18 - INFO - sent arduino: b'2'
+2024-07-04 11:10:19 - INFO - sent arduino: b'5'
+2024-07-04 11:10:20 - INFO - lactose_pump pump on
+2024-07-04 11:10:22 - INFO - added data to sheets
+2024-07-04 11:10:25 - INFO - test data: {'ph': 6, 'do': 19, 'time': 0.06998583886358473, 'type': 'data', 'time_of_day': '11:10:25', 'date': '2024-07-04'}
+2024-07-04 11:10:25 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:10:25 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:10:25 - INFO - sent arduino: b'3'
+2024-07-04 11:10:26 - INFO - sent arduino: b'4'
+2024-07-04 11:10:27 - INFO - lactose_pump pump off
+2024-07-04 11:10:28 - INFO - added data to sheets
+2024-07-04 11:10:31 - INFO - test data: {'ph': 6.5, 'do': 24, 'time': 0.07172601878643035, 'type': 'data', 'time_of_day': '11:10:31', 'date': '2024-07-04'}
+2024-07-04 11:10:31 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:10:31 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:10:31 - INFO - sent arduino: b'3'
+2024-07-04 11:10:32 - INFO - sent arduino: b'4'
+2024-07-04 11:10:33 - INFO - lactose_pump pump off
+2024-07-04 11:10:34 - INFO - added data to sheets
+2024-07-04 11:10:37 - INFO - test data: {'ph': 7, 'do': 25, 'time': 0.07351050383514827, 'type': 'data', 'time_of_day': '11:10:37', 'date': '2024-07-04'}
+2024-07-04 11:10:37 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:10:37 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:10:37 - INFO - sent arduino: b'3'
+2024-07-04 11:10:38 - INFO - sent arduino: b'4'
+2024-07-04 11:10:39 - INFO - lactose_pump pump off
+2024-07-04 11:10:41 - INFO - added data to sheets
+2024-07-04 11:10:44 - INFO - test data: {'ph': 6, 'do': 25, 'time': 0.0752573815981547, 'type': 'data', 'time_of_day': '11:10:44', 'date': '2024-07-04'}
+2024-07-04 11:10:44 - INFO - Loaded control constants for 3_phase_feed_control: {'base_sp': 7, 'acid_sp': 8, 'feed_trigger_sp': 7.02, 'start_feed_trig_value': 7.02, 'required_readings': 3, 'feed_counter': 3, 'start_feed': 'True'}
+2024-07-04 11:10:44 - INFO - ph being balanced at base: 7 and acid: 8
+2024-07-04 11:10:44 - INFO - sent arduino: b'3'
+2024-07-04 11:10:45 - INFO - sent arduino: b'4'
+2024-07-04 11:10:46 - INFO - lactose_pump pump off
+2024-07-04 11:10:47 - INFO - added data to sheets

@@ -21,16 +21,21 @@ class DeviceManager:
     Represents a device manager.
     """
 
-    def __init__(self, loop_id: str, control_id: str, data_types: list, loop_devices: list, csv_name: str) -> None:
+    def __init__(self, loop_id: str, control_id: str, data_types: list, loop_devices: list, csv_name: str, test_name: str, devices: bool) -> None:
+        self.devices = devices
         self.loop_id = loop_id
         self.control_id = control_id
         self.data_types = data_types + ["time", "date", "time_of_day", "type"]
         self.csv_name = csv_name
         self.start_time = 0
         self.index = 0
+        self.test_name = test_name
+
+        curr_directory = os.path.dirname(__file__)
+        TEST_DATA_DIR = os.path.join(curr_directory, "test_data", "test_data.json")
+        self.test_data = load_test_data(TEST_DATA_DIR)
 
         # Load all devices information
-        curr_directory = os.path.dirname(__file__)
         self.ALL_DEVICES_DIR = os.path.join(curr_directory, "resources", "all_devices.json")
         self.__delete()
         with open(self.ALL_DEVICES_DIR, "r") as f:
@@ -61,7 +66,7 @@ class DeviceManager:
     def __init_devices(self, loop_devices):
         dev2port = []
         idt = 0
-        if loop_devices:
+        if self.devices:
             try:
                 for name in loop_devices:
                     if self.data_types[idt] == "temp":
@@ -124,8 +129,8 @@ class DeviceManager:
 
         return dict(zip(self.data_types, devices_data))
 
-    def test_get_measurement(self, test_name):
-        measurement = self.test_data[test_name][self.index]
+    def test_get_measurement(self):
+        measurement = self.test_data[self.test_name][self.index]
         if self.start_time <= 0:
             self.start_time = time.time()
             self.update_loop_control_file("start_time", self.start_time)
@@ -141,7 +146,6 @@ class DeviceManager:
         measurement['time_of_day'] = current_datetime.strftime('%H:%M:%S')
         measurement['date'] = current_datetime.strftime('%Y-%m-%d')
 
-        add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
         return measurement
 
     def __find_usb_serial_port(self, device_name: str, data_type: str) -> str | SerialPortNotFoundException:
@@ -186,8 +190,10 @@ if __name__ == "__main__":
     csv_name = "sensor_data"
     loop_id = "fermentation_loop"
     control_id = "test_loop"
+    test_name = "3_phase_control_test_data"
+    devices = False
 
-    dm = DeviceManager(loop_id, control_id, data_types, loop_devices, csv_name)
+    dm = DeviceManager(loop_id, control_id, data_types, loop_devices, csv_name, test_name, devices)
     while True:
         print(dm.get_measurement())
         time.sleep(10)

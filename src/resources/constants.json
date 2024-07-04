@@ -106,7 +106,6 @@
                     "test_data_index": 0,
                     "csv_name": "concentration_06-25-2024",
                     "test_name": "concentration_test_data_1",
-
                     "control_consts": {
                         "buffer_sp": 0
                     }
@@ -115,7 +114,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "2_phase_do_trig_ph_feed_control",
+            "chosen_control": "3_phase_feed_control",
             "controllers": [
                 {
                     "controller_id": "3_phase_feed_control",
@@ -151,8 +150,8 @@
                         "feed_trigger_sp": 7.02,
                         "start_feed_trig_value": 7.02,
                         "required_readings": 3,
-                        "feed_counter": 0,
-                        "start_feed": "False"
+                        "feed_counter": 3,
+                        "start_feed": "True"
                     }
                 },
                 {
@@ -192,7 +191,7 @@
                         "last_antifoam_edition": 1719616856.864018,
                         "antifoam_edition_rate": 1,
                         "start_feed": "True",
-                        "start_phase_1": "True"                  
+                        "start_phase_1": "True"
                     },
                     "reset_consts": {
                         "feed_counter": 0,
@@ -243,7 +242,8 @@
                         "required_readings": 5,
                         "deriv_window": 8,
                         "feed_counter": 0,
-                        "start_feed": "False"                    },
+                        "start_feed": "False"
+                    },
                     "reset_consts": {
                         "derivs": [],
                         "increment_counter": 0,

@@ -270,7 +270,7 @@ class Controller:
             print(f"failed to update_status: \n control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on} \n {e}")
             logger.error(f"Error in update_status: control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
 
-    def get_data(self, test_data: str):
+    def get_data(self):
         """
         Fetches measurement data from the device manager based on the current testing configuration.
 
@@ -282,12 +282,12 @@ class Controller:
         """
         try:
             if testing:
-                    data = self.device_manager.test_get_measurement(test_data)
+                    data = self.mqtt_client.request_data(testing=testing)
                     print(f"test data: {data}")
                     logger.info(f"test data: {data}")
                     return data
             else:
-                data = self.device_manager.get_measurement()
+                data = self.mqtt_client.request_data()
                 return data
         except Exception as e:
             print(f"failed to get data: {e}")
@@ -407,8 +407,10 @@ class Controller:
             "control_id": self.control_id,
             "data_types": self.__get_loop_data_type(),
             "loop_devices": self.__get_loop_devices(),
-            "csv_name": self.control_consts["csv_name"],
-            "test_name": get_control_constant(self.loop_id, self.control_id, "test_name")
+            "csv_name": get_control_constant(self.loop_id, self.control_id, "csv_name"),
+            "test_name": get_control_constant(self.loop_id, self.control_id, "test_name"),
+            "devices": eval(get_loop_constant(loop_id="server_consts", const="devices_connected"))
+
         }
         self.mqtt_client.init_device_manager(init_data)
 class ConcentrationController(Controller):
@@ -495,7 +497,7 @@ class FermentationController(Controller):
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
 
 
-        self.mqtt_client = ControllerMQTTClient(broker_address)
+        self.mqtt_client = ControllerMQTTClient()
         self.init_device_manager()
 
         self.control_consts = {}
@@ -525,7 +527,7 @@ class FermentationController(Controller):
             tuple: Contains the data collected during the control process and the updated status of the controller.
         """
 
-        data = self.get_data(self.control_consts["test_data"])
+        data = self.get_data()
         self.load_control_constants()
 
         start_feed = eval(self.control_consts["start_feed"])
@@ -541,13 +543,13 @@ class FermentationController(Controller):
         
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
-        phase3_start_time = datetime(2024, 6, 20, 20, 30, 0)  # 8:30 PM Jun 20, 2024
+        phase3_start_time = datetime(2024, 7, 4, 11, 0, 0)  # 8:30 PM Jun 20, 2024
         
 
         # Phase 1: Maintain pH using only base
         if not start_feed:
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
-            start_feed = self.__start_feed_check_bool(data, pre_feed_trigger_type, start_feed_trig_value, required_readings, feed_counter, start_feed)
+            start_feed = self.__start_feed_check_bool(data, pre_feed_trigger_type, start_feed_trig_value, required_readings, feed_counter)
 
         # Phase 2: Start feeding with glycerol pump
         if start_feed and current_datetime < phase3_start_time:
@@ -590,7 +592,7 @@ class FermentationController(Controller):
 
         self.load_control_constants()
 
-        data = self.get_data(self.control_consts["test_data"])
+        data = self.get_data()
 
         pre_feed_trigger_type = 'do'
         feed_trigger_type = 'ph'
@@ -610,7 +612,7 @@ class FermentationController(Controller):
         if not start_feed:
             self.__pH_balance(data['ph'], base_control=True, acid_control=False)
             start_phase_1 = self.__pre_phase_check(data, pre_feed_trigger_type, start_trig_value, required_readings, start_counter, start_phase_1)
-            start_feed = self.__start_feed_check_bool(data, pre_feed_trigger_type, start_feed_trig_value, required_readings, feed_counter, start_phase_1, start_feed)
+            start_feed = self.__start_feed_check_bool(data, pre_feed_trigger_type, start_feed_trig_value, required_readings, feed_counter, start_phase_1)
             if start_feed:
                 self.__pH_balance(data['ph'], base_control=False, acid_control=False)
         
@@ -645,7 +647,7 @@ class FermentationController(Controller):
             tuple: Contains the latest data and the controller's updated status, detailing the operational state
                 and any changes enacted during the control process.
         """
-        data = self.get_data(self.control_consts["test_data"])
+        data = self.get_data()
         self.load_control_constants()
         
         start_feed = eval(self.control_consts["start_feed"])
@@ -804,7 +806,7 @@ class FermentationController(Controller):
     def test_pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: int, start_counter: int, start_phase_1: bool, trigger_below = True):
         return self.__pre_phase_check(data, trigger_type, start_trig_value, required_readings, start_counter, start_phase_1, trigger_below)
 
-    def __start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1: True, trigger_below = False, start_feed = False):
+    def __start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1=True, trigger_below=False, start_feed=False):
         """
         Checks and determines if feeding should start based on sensor data exceeding/subceeding a set threshold.
 
@@ -823,7 +825,7 @@ class FermentationController(Controller):
         curr_value = data[trigger_type]
         # Phase 1: check feed start conditions
         if start_phase_1 and (not start_feed):
-            if (not trigger_below and curr_value > start_feed_trig_value) or (trigger_below and curr_value < start_feed_trig_value):
+            if (not trigger_below and curr_value >= start_feed_trig_value) or (trigger_below and curr_value <= start_feed_trig_value):
                 feed_counter += 1
                 if feed_counter >= required_readings:
                     self.update_controller_consts("start_feed", "True")
@@ -838,7 +840,7 @@ class FermentationController(Controller):
 
         return start_feed
     
-    def test_start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1: True, trigger_below = False, start_feed = False):
+    def test_start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1=True, trigger_below = False, start_feed = False):
         return self.__start_feed_check_bool(data, trigger_type, start_feed_trig_value, required_readings, feed_counter, start_phase_1, trigger_below, start_feed)
 
     def __start_feed_check_der(self, trigger_type: str, feed_counter: int, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
@@ -962,6 +964,5 @@ if __name__ == "__main__":
         c.start_control()
 
         time.sleep(3)
-   
 
        

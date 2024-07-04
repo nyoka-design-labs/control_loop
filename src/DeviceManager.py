@@ -5,7 +5,7 @@ from resources.utils import *
 import json
 import os
 import serial.tools.list_ports
-from resources.exceptions import SerialPortNotFoundException
+from resources.exceptions import SerialPortNotFoundException, TestDataCompleted
 from resources.google_api.sheets import save_to_sheet
 from datetime import datetime
 
@@ -18,9 +18,8 @@ DEV_CONTRUCTORS = {
 
 curr_directory = os.path.dirname(__file__)
 CONSTANTS_DIR = os.path.join(curr_directory, "resources", "constants.json")
-TEST_DATA_DIR = os.path.join(curr_directory, "resources", "test_data.json")
+TEST_DATA_DIR = os.path.join(curr_directory, "test_data", "test_data.json")
 test_data = load_test_data(TEST_DATA_DIR)
-testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 devices = eval(get_loop_constant(loop_id="server_consts", const="devices_connected"))
 class DeviceManager:
     """
@@ -127,8 +126,10 @@ class DeviceManager:
         return dict(zip(data_headers, devices_data))
     
     def test_get_measurement(self):
-
-        measurement = self.test_data[self.test_name][self.index]
+        try:
+            measurement = self.test_data[self.test_name][self.index]
+        except:
+            raise TestDataCompleted(f"test data finished at index: {self.index - 1}")
         # elapsed time
         if self.start_time <= 0:
             self.start_time = time.time()
@@ -147,9 +148,6 @@ class DeviceManager:
 
         measurement['time_of_day'] = current_datetime.strftime('%H:%M:%S')
         measurement['date'] = current_datetime.strftime('%Y-%m-%d')
-
-        add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
-
         return measurement
 
     def __find_usb_serial_port(self, device_name: str, data_type: str) -> str | SerialPortNotFoundException:

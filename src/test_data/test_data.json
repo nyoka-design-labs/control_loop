@@ -335,7 +335,7 @@
 {"ph": 6.9, "do": 67, "time": 900, "type": "data"},
 {"ph": 6.0, "do": 67, "time": 1800, "type": "data"},
 {"ph": 7.02, "do": 67, "time": 2700, "type": "data"},
-{"ph": 6, "do": 67, "time": 3600, "type": "data"},
+{"ph": 67, "do": 67, "time": 3600, "type": "data"},
 {"ph": 7.03, "do": 67, "time": 4500, "type": "data"},
 {"ph": 6, "do": 67, "time": 5400, "type": "data"},
 {"ph": 7.05, "do": 67, "time": 3600, "type": "data"},
