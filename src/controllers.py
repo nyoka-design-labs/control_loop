@@ -117,6 +117,7 @@ class Controller:
             dict: The current status of the collection process, possibly along with collected data if control_status is False.
         """
         try:
+            self.load_control_constants()
             self.status.update({
                 "data_collection_status": "data_collection_on"
             })
