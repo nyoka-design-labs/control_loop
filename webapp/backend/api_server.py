@@ -37,7 +37,7 @@ def handle_error(exception, context, data=None, notify=True):
         logger.error(f"Input data: {data}")
         print(f"Input data: {data}")
     if notify:
-        send_notification(f"Unexpected error in {context}: {exception}\n{traceback.format_exc()}")
+        send_notification(f"Unexpected error in {context}")
 
 async def handle_client(websocket):
     """

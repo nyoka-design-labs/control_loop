@@ -57,6 +57,7 @@
             "testing": "False",
             "load_data": "False",
             "devices_connected": "True",
+            "devices_connected": "True",
             "pumps_connected": "False",
             "error": "True",
             "control_running": "fermentation_loop"
@@ -170,6 +171,7 @@
                         "feed_weight",
                         "base_weight"
                     ],
+                    "pump_control_unit_id": "pcu1",
                     "pumps": {
                         "feed_pump": "blackPump1",
                         "base_pump": "blackPump2",

@@ -117,6 +117,7 @@ class Controller:
             dict: The current status of the collection process, possibly along with collected data if control_status is False.
         """
         try:
+            self.load_control_constants()
             self.status.update({
                 "data_collection_status": "data_collection_on"
             })
@@ -762,7 +763,7 @@ class FermentationController(Controller):
         if (not start_phase_1):
             if (trigger_below and curr_value < start_trig_value) or (not trigger_below and curr_value > start_trig_value):
                 start_counter += 1
-                if start_counter >= required_readings - 1:
+                if start_counter >= required_readings:
                     self.update_controller_consts("start_phase_1", "True")
                     start_phase_1 = True
                     print(f"Phase 1 activated by {trigger_type} {'below' if trigger_below else 'above'} {start_trig_value} for {required_readings} readings.")
