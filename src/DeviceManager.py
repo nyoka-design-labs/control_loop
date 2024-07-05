@@ -152,7 +152,7 @@ class DeviceManager:
         measurement['time_of_day'] = current_datetime.strftime('%H:%M:%S')
         measurement['date'] = current_datetime.strftime('%Y-%m-%d')
 
-        add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
+        # add_test_data_to_csv(measurement, f"{self.csv_name}.csv")
 
         return measurement
 
