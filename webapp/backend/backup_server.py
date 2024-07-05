@@ -8,7 +8,7 @@ SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
 
 from resources.utils import get_loop_constant
-import controllers as c
+import controllers_mqtt as c
 from resources.logging_config import setup_logger
 from resources.error_notification import send_notification
 
@@ -77,6 +77,6 @@ def get_controller(loop_id):
     This function checks if a controller for the given loop ID is already initialized and stored; if not, it initializes and stores it. This ensures that there is a single instance of the controller and device manager per loop.
     """
     if loop_id not in controllers:
-        controller, device_manager = c.create_controller(loop_id)
-        controllers[loop_id] = {"controller": controller, "device_manager": device_manager}
+        controller = c.create_controller(loop_id)
+        controllers[loop_id] = {"controller": controller}
     return controllers[loop_id]

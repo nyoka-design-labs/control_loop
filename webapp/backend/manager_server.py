@@ -10,7 +10,7 @@ SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
 
 from resources.utils import *
-import controllers as c
+import controllers_mqtt as c
 from resources.logging_config import setup_logger
 
 logger = setup_logger()
@@ -267,10 +267,9 @@ def get_controller(loop_id):
     try:
         # Initialize controller and device manager if they don't exist for this loop
         if loop_id not in controllers:
-            controller, device_manager = c.create_controller(loop_id)
+            controller = c.create_controller(loop_id)
             controllers[loop_id] = {
-                "controller": controller,  # Replace with appropriate constructor arguments
-                "device_manager": device_manager  # Replace with appropriate constructor arguments
+                "controller": controller,
             }
         return controllers[loop_id]
     except Exception as e:

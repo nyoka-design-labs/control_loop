@@ -1,0 +1,612 @@
+2024-07-05 12:06:59 - INFO - sent arduino: b'0'
+2024-07-05 12:07:00 - INFO - sent arduino: b'4'
+2024-07-05 12:07:01 - INFO - sent arduino: b'2'
+2024-07-05 12:07:02 - INFO - sent arduino: b'10'
+2024-07-05 12:07:03 - INFO - sent arduino: b'12'
+2024-07-05 12:07:04 - INFO - sent arduino: b'14'
+2024-07-05 12:07:08 - INFO - added data to sheets
+2024-07-05 12:07:12 - INFO - added data to sheets
+2024-07-05 12:07:17 - INFO - added data to sheets
+2024-07-05 12:07:21 - INFO - added data to sheets
+2024-07-05 12:07:25 - INFO - added data to sheets
+2024-07-05 12:08:10 - INFO - sent arduino: b'0'
+2024-07-05 12:08:11 - INFO - sent arduino: b'2'
+2024-07-05 12:08:12 - INFO - sent arduino: b'14'
+2024-07-05 12:08:13 - INFO - sent arduino: b'4'
+2024-07-05 12:08:16 - INFO - added data to sheets
+2024-07-05 12:08:20 - INFO - added data to sheets
+2024-07-05 12:08:25 - INFO - added data to sheets
+2024-07-05 12:08:29 - INFO - added data to sheets
+2024-07-05 12:09:51 - INFO - sent arduino: b'0'
+2024-07-05 12:09:52 - INFO - sent arduino: b'2'
+2024-07-05 12:09:53 - INFO - sent arduino: b'14'
+2024-07-05 12:09:54 - INFO - sent arduino: b'4'
+2024-07-05 12:11:10 - INFO - sent arduino: b'0'
+2024-07-05 12:11:11 - INFO - sent arduino: b'2'
+2024-07-05 12:11:12 - INFO - sent arduino: b'14'
+2024-07-05 12:11:13 - INFO - sent arduino: b'4'
+2024-07-05 12:11:16 - INFO - added data to sheets
+2024-07-05 12:11:21 - INFO - added data to sheets
+2024-07-05 12:11:25 - INFO - added data to sheets
+2024-07-05 12:11:29 - INFO - added data to sheets
+2024-07-05 12:11:34 - INFO - added data to sheets
+2024-07-05 12:11:38 - INFO - added data to sheets
+2024-07-05 12:11:43 - INFO - added data to sheets
+2024-07-05 12:11:47 - INFO - added data to sheets
+2024-07-05 12:11:51 - INFO - added data to sheets
+2024-07-05 12:11:56 - INFO - added data to sheets
+2024-07-05 12:16:21 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:16:26 - INFO - Command received: start_collection
+2024-07-05 12:16:26 - INFO - sent arduino: b'0'
+2024-07-05 12:16:27 - INFO - sent arduino: b'2'
+2024-07-05 12:16:28 - INFO - sent arduino: b'14'
+2024-07-05 12:16:29 - INFO - sent arduino: b'4'
+2024-07-05 12:16:30 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ 'FermentationController' object has no attribute 'device_manager'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 270, in get_controller
+    controller, device_manager = c.create_controller(loop_id)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 43, in create_controller
+    return controller, controller.device_manager
+AttributeError: 'FermentationController' object has no attribute 'device_manager'
+
+2024-07-05 12:16:30 - ERROR - Error in collection: 
+Input: start_collection, 
+argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 71, in collection
+    if "collection_task" not in controller_info: # if data collection is not already happening then start it
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-05 12:20:20 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:20:39 - INFO - Command received: start_collection
+2024-07-05 12:20:39 - INFO - sent arduino: b'0'
+2024-07-05 12:20:40 - INFO - sent arduino: b'2'
+2024-07-05 12:20:41 - INFO - sent arduino: b'14'
+2024-07-05 12:20:42 - INFO - sent arduino: b'4'
+2024-07-05 12:20:45 - INFO - added data to sheets
+2024-07-05 12:20:45 - INFO - data sent from collect: {'do': 130.212, 'ph': 6.231, 'temp': 25.734, 'feed_weight': 56.3, 'base_weight': 251.1, 'time': 0.20811427, 'date': '05-07-2024', 'time_of_day': '12:20:43', 'type': 'data'}
+2024-07-05 12:20:51 - INFO - added data to sheets
+2024-07-05 12:20:51 - INFO - data sent from collect: {'do': 130.203, 'ph': 6.231, 'temp': 25.733, 'feed_weight': 56.3, 'base_weight': 251.1, 'time': 0.20983336, 'date': '05-07-2024', 'time_of_day': '12:20:49', 'type': 'data'}
+2024-07-05 12:20:56 - INFO - added data to sheets
+2024-07-05 12:20:56 - INFO - data sent from collect: {'do': 130.2, 'ph': 6.232, 'temp': 25.731, 'feed_weight': 56.3, 'base_weight': 251.1, 'time': 0.21133463, 'date': '05-07-2024', 'time_of_day': '12:20:55', 'type': 'data'}
+2024-07-05 12:21:01 - INFO - added data to sheets
+2024-07-05 12:21:01 - INFO - data sent from collect: {'do': 130.222, 'ph': 6.231, 'temp': 25.733, 'feed_weight': 56.3, 'base_weight': 251.1, 'time': 0.2128367, 'date': '05-07-2024', 'time_of_day': '12:21:00', 'type': 'data'}
+2024-07-05 12:21:07 - INFO - added data to sheets
+2024-07-05 12:21:07 - INFO - data sent from collect: {'do': 130.234, 'ph': 6.231, 'temp': 25.734, 'feed_weight': 56.3, 'base_weight': 251.1, 'time': 0.2143113, 'date': '05-07-2024', 'time_of_day': '12:21:05', 'type': 'data'}
+2024-07-05 12:21:10 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-05 12:21:10 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-05 12:21:11 - ERROR - Backup Server Starting
+2024-07-05 12:21:11 - ERROR - Error in send_status_update: 
+ Input: {'type': 'status', 'loopID': 'fermentation_loop', 'control_loop_status': 'control_off', 'data_collection_status': 'data_collection_off', 'feed_pump_status': '0', 'base_pump_status': '2', 'acid_pump_status': '14', 'antifoam_pump_status': '4'}, 
+ received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 250, in send_status_update
+    await websocket.send(json.dumps({"type": "status", **status}))
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-05 12:21:11 - INFO - sent arduino: b'0'
+2024-07-05 12:21:12 - INFO - sent arduino: b'2'
+2024-07-05 12:21:13 - INFO - sent arduino: b'14'
+2024-07-05 12:21:14 - INFO - sent arduino: b'4'
+2024-07-05 12:21:15 - INFO - Starting backup server due to critical failure.
+2024-07-05 12:21:15 - INFO - back up server running
+2024-07-05 12:21:15 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'feed_counter': 3, 'start_counter': 2, 'required_readings': 3, 'last_antifoam_edition': 1719616856.864018, 'antifoam_edition_rate': 1, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-05 12:21:15 - INFO - sent arduino: b'0'
+2024-07-05 12:21:16 - INFO - feed_pump pump off
+2024-07-05 12:21:16 - INFO - sent arduino: b'5'
+2024-07-05 12:21:17 - INFO - Antifoam pump activated
+2024-07-05 12:21:19 - INFO - added data to sheets
+2024-07-05 12:21:23 - INFO - back up server running
+2024-07-05 12:21:23 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'feed_counter': 3, 'start_counter': 2, 'required_readings': 3, 'last_antifoam_edition': 1719616856.864018, 'antifoam_edition_rate': 1, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-05 12:21:23 - INFO - sent arduino: b'0'
+2024-07-05 12:21:24 - INFO - feed_pump pump off
+2024-07-05 12:21:24 - INFO - sent arduino: b'4'
+2024-07-05 12:21:25 - INFO - Updated (('last_antifoam_edition', 1720207284.5299902), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-07-05 12:21:25 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'feed_counter': 3, 'start_counter': 2, 'required_readings': 3, 'last_antifoam_edition': 1720207284.5299902, 'antifoam_edition_rate': 1, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-05 12:21:25 - INFO - Antifoam pump deactivated
+2024-07-05 12:21:26 - INFO - added data to sheets
+2024-07-05 12:21:30 - INFO - back up server running
+2024-07-05 12:21:30 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'feed_counter': 3, 'start_counter': 2, 'required_readings': 3, 'last_antifoam_edition': 1720207284.5299902, 'antifoam_edition_rate': 1, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-05 12:21:30 - INFO - sent arduino: b'0'
+2024-07-05 12:21:31 - INFO - feed_pump pump off
+2024-07-05 12:21:32 - INFO - added data to sheets
+2024-07-05 12:21:36 - INFO - back up server running
+2024-07-05 12:21:36 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'feed_counter': 3, 'start_counter': 2, 'required_readings': 3, 'last_antifoam_edition': 1720207284.5299902, 'antifoam_edition_rate': 1, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-05 12:21:37 - INFO - sent arduino: b'0'
+2024-07-05 12:21:37 - INFO - sent arduino: b'0'
+2024-07-05 12:21:38 - INFO - sent arduino: b'2'
+2024-07-05 12:21:39 - INFO - sent arduino: b'14'
+2024-07-05 12:21:40 - INFO - sent arduino: b'4'
+2024-07-05 12:21:41 - ERROR - Backup Server Started
+2024-07-05 12:21:41 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:21:41 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:21:41 - ERROR - Error in send_notification: Bad message: must be 0-1024 characters, was 1923
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/error_notification.py", line 18, in send_notification
+    message = user.send_message(f"{message}", priority=priority)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 563, in send_message
+    message = self.create_message(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 549, in create_message
+    return message_class(self, **kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 781, in __init__
+    super(EmergencyMessage, self).__init__(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 590, in __init__
+    self.message = message
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 825, in __setattr__
+    super(EmergencyMessage, self).__setattr__(name, value)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 645, in __setattr__
+    raise ValueError('Bad message: must be 0-1024 characters, was {length}'.format(length=len(value)))
+ValueError: Bad message: must be 0-1024 characters, was 1923
+
+2024-07-05 12:21:41 - ERROR - Backup Server Starting
+2024-07-05 12:21:41 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:21:41 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:21:41 - ERROR - Error in send_notification: Bad message: must be 0-1024 characters, was 1923
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/error_notification.py", line 18, in send_notification
+    message = user.send_message(f"{message}", priority=priority)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 563, in send_message
+    message = self.create_message(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 549, in create_message
+    return message_class(self, **kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 781, in __init__
+    super(EmergencyMessage, self).__init__(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 590, in __init__
+    self.message = message
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 825, in __setattr__
+    super(EmergencyMessage, self).__setattr__(name, value)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 645, in __setattr__
+    raise ValueError('Bad message: must be 0-1024 characters, was {length}'.format(length=len(value)))
+ValueError: Bad message: must be 0-1024 characters, was 1923
+
+2024-07-05 12:21:41 - ERROR - Backup Server Starting
+2024-07-05 12:21:41 - INFO - sent arduino: b'0'
+2024-07-05 12:22:37 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:22:40 - INFO - Command received: start_collection
+2024-07-05 12:22:40 - INFO - sent arduino: b'0'
+2024-07-05 12:22:41 - INFO - sent arduino: b'4'
+2024-07-05 12:22:42 - INFO - sent arduino: b'2'
+2024-07-05 12:22:43 - INFO - sent arduino: b'10'
+2024-07-05 12:22:44 - INFO - sent arduino: b'12'
+2024-07-05 12:22:45 - INFO - sent arduino: b'14'
+2024-07-05 12:22:48 - INFO - added data to sheets
+2024-07-05 12:22:48 - INFO - data sent from collect: {'do': 0.53114256, 'feed_weight': '05-07-2024', 'time': '12:22:46', 'date': 'data'}
+2024-07-05 12:22:53 - INFO - added data to sheets
+2024-07-05 12:22:53 - INFO - data sent from collect: {'do': 0.53281362, 'feed_weight': '05-07-2024', 'time': '12:22:52', 'date': 'data'}
+2024-07-05 12:22:59 - INFO - added data to sheets
+2024-07-05 12:22:59 - INFO - data sent from collect: {'do': 0.53436419, 'feed_weight': '05-07-2024', 'time': '12:22:57', 'date': 'data'}
+2024-07-05 12:23:05 - INFO - added data to sheets
+2024-07-05 12:23:05 - INFO - data sent from collect: {'do': 0.53591278, 'feed_weight': '05-07-2024', 'time': '12:23:03', 'date': 'data'}
+2024-07-05 12:23:10 - INFO - added data to sheets
+2024-07-05 12:23:10 - INFO - data sent from collect: {'do': 0.53746731, 'feed_weight': '05-07-2024', 'time': '12:23:08', 'date': 'data'}
+2024-07-05 12:23:16 - INFO - added data to sheets
+2024-07-05 12:23:16 - INFO - data sent from collect: {'do': 0.53902845, 'feed_weight': '05-07-2024', 'time': '12:23:14', 'date': 'data'}
+2024-07-05 12:23:21 - INFO - added data to sheets
+2024-07-05 12:23:21 - INFO - data sent from collect: {'do': 0.5405937, 'feed_weight': '05-07-2024', 'time': '12:23:20', 'date': 'data'}
+2024-07-05 12:23:25 - INFO - Command received: stop_collection
+2024-07-05 12:23:46 - INFO - Command received: start_collection
+2024-07-05 12:23:47 - INFO - added data to sheets
+2024-07-05 12:23:47 - INFO - data sent from collect: {'do': 0.54784098, 'feed_weight': '05-07-2024', 'time': '12:23:46', 'date': 'data'}
+2024-07-05 12:23:53 - INFO - added data to sheets
+2024-07-05 12:23:53 - INFO - data sent from collect: {'do': 0.54939649, 'feed_weight': '05-07-2024', 'time': '12:23:51', 'date': 'data'}
+2024-07-05 12:23:59 - INFO - added data to sheets
+2024-07-05 12:23:59 - INFO - data sent from collect: {'do': 0.5509278, 'feed_weight': '05-07-2024', 'time': '12:23:57', 'date': 'data'}
+2024-07-05 12:24:04 - INFO - added data to sheets
+2024-07-05 12:24:04 - INFO - data sent from collect: {'do': 0.55247083, 'feed_weight': '05-07-2024', 'time': '12:24:03', 'date': 'data'}
+2024-07-05 12:24:10 - INFO - added data to sheets
+2024-07-05 12:24:10 - INFO - data sent from collect: {'do': 0.55400985, 'feed_weight': '05-07-2024', 'time': '12:24:08', 'date': 'data'}
+2024-07-05 12:24:13 - INFO - Command received: stop_collection
+2024-07-05 12:24:44 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:24:52 - INFO - Command received: start_collection
+2024-07-05 12:24:52 - INFO - sent arduino: b'0'
+2024-07-05 12:24:53 - INFO - sent arduino: b'4'
+2024-07-05 12:24:54 - INFO - sent arduino: b'2'
+2024-07-05 12:24:55 - INFO - sent arduino: b'10'
+2024-07-05 12:24:56 - INFO - sent arduino: b'12'
+2024-07-05 12:24:57 - INFO - sent arduino: b'14'
+2024-07-05 12:25:48 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:25:50 - INFO - Command received: start_collection
+2024-07-05 12:25:51 - INFO - sent arduino: b'0'
+2024-07-05 12:25:52 - INFO - sent arduino: b'4'
+2024-07-05 12:25:53 - INFO - sent arduino: b'2'
+2024-07-05 12:25:54 - INFO - sent arduino: b'10'
+2024-07-05 12:25:55 - INFO - sent arduino: b'12'
+2024-07-05 12:25:56 - INFO - sent arduino: b'14'
+2024-07-05 12:25:59 - INFO - added data to sheets
+2024-07-05 12:25:59 - INFO - data sent from collect: {'do': 130.445, 'feed_weight': 60.8, 'time': 0.58414352, 'date': '05-07-2024', 'time_of_day': '12:25:57', 'type': 'data'}
+2024-07-05 12:26:04 - INFO - added data to sheets
+2024-07-05 12:26:04 - INFO - data sent from collect: {'do': 130.446, 'feed_weight': 60.8, 'time': 0.58584327, 'date': '05-07-2024', 'time_of_day': '12:26:03', 'type': 'data'}
+2024-07-05 12:26:08 - INFO - Command received: stop_collection
+2024-07-05 12:27:16 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-05 12:27:21 - INFO - Command received: start_collection
+2024-07-05 12:27:21 - INFO - sent arduino: b'0'
+2024-07-05 12:27:22 - INFO - sent arduino: b'2'
+2024-07-05 12:27:23 - INFO - sent arduino: b'14'
+2024-07-05 12:27:24 - INFO - sent arduino: b'4'
+2024-07-05 12:27:28 - INFO - added data to sheets
+2024-07-05 12:27:28 - INFO - data sent from collect: {'do': 130.378, 'ph': 6.577, 'temp': 25.737, 'feed_weight': 56.1, 'base_weight': 251.0, 'time': 0.31991818, 'date': '05-07-2024', 'time_of_day': '12:27:26', 'type': 'data'}
+2024-07-05 12:27:33 - INFO - added data to sheets
+2024-07-05 12:27:33 - INFO - data sent from collect: {'do': 130.378, 'ph': 6.518, 'temp': 25.736, 'feed_weight': 56.1, 'base_weight': 251.0, 'time': 0.32158106, 'date': '05-07-2024', 'time_of_day': '12:27:32', 'type': 'data'}
+2024-07-05 12:27:38 - INFO - added data to sheets
+2024-07-05 12:27:38 - INFO - data sent from collect: {'do': 130.373, 'ph': 6.475, 'temp': 25.737, 'feed_weight': 56.1, 'base_weight': 251.0, 'time': 0.32305354, 'date': '05-07-2024', 'time_of_day': '12:27:37', 'type': 'data'}
+2024-07-05 12:27:38 - INFO - Command received: stop_collection

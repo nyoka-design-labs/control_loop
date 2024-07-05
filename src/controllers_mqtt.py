@@ -40,7 +40,7 @@ def create_controller(loop_id):
     elif loop_id == "fermentation_loop":
         controller = FermentationController()
 
-    return controller, controller.device_manager
+    return controller
 
 class Controller:
     """
