@@ -77,7 +77,7 @@ class Controller:
             print(f"sent arduino: {state.encode()}")
             logger.info(f"sent arduino: {state.encode()}")
             if pumps:
-                self.arduino.write((state + '\n').encode())
+                self.arduino.write((state + self.pcu_id + '\n').encode())
         except Exception as e:
             print(f"failed to control pump: \n state: {state}, \n{e}")
             logger.error(f"Error in pump_control: \n state: {state}, \n{e}\n{traceback.format_exc()}")
@@ -421,18 +421,20 @@ class ConcentrationController(Controller):
 
     def __init__(self):
         super().__init__()
-        # self.buffer_pump = Pump(name="whitePump1")
-        # self.lysate_pump = Pump(name="whitePump2")
 
-        self.loop_id = "concentration_loop"
+        self.loop_id = "fermentation_loop"
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
-        self.device_manager = DeviceManager(self.loop_id, self.control_id, testing)
+        self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
+        self.pcu_id = get_loop_constant(self.loop_id, "pcu_id")
+
+        self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+        self.init_device_manager()
 
         self.initial_buffer_mass = None
         self.initial_lysate_mass = None
 
         self.control_consts = {}
-        self.load_control_constants()
+        
 
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
@@ -441,6 +443,7 @@ class ConcentrationController(Controller):
         self.stop_control(data_col_is_on=False)
         
     def __concentration_loop(self):
+        self.load_control_constants()
         data = self.get_data()
 
         self.__buffer_control(data['buffer_weight'])
@@ -453,6 +456,7 @@ class ConcentrationController(Controller):
         return data, self.status
     
     def __concentration_buffer_loop(self):
+        self.load_control_constants()
         data = self.get_data()
 
         self.__buffer_control(data['buffer_weight'])
@@ -467,6 +471,7 @@ class ConcentrationController(Controller):
         '''
         Turns on pump if LESS than set point. Re-fills reservoir.
         '''
+        
         if self.control_consts["buffer_sp"] == 0:
             self.update_controller_consts("buffer_sp", weight)
         buffer_sp = self.control_consts["buffer_sp"]
@@ -497,7 +502,7 @@ class FermentationController(Controller):
         self.loop_id = "fermentation_loop"
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
         self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
-
+        self.pcu_id = get_loop_constant(self.loop_id, "pcu_id")
 
         self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
         self.init_device_manager()

@@ -57,7 +57,6 @@
             "testing": "False",
             "load_data": "False",
             "devices_connected": "True",
-            "devices_connected": "True",
             "pumps_connected": "False",
             "error": "True",
             "control_running": "fermentation_loop"
@@ -65,6 +64,7 @@
         {
             "loop_id": "concentration_loop",
             "chosen_control": "concentration_buffer_loop",
+            "pcu_id": "pcu1",
             "controllers": [
                 {
                     "controller_id": "concentration_loop",
@@ -116,6 +116,7 @@
         {
             "loop_id": "fermentation_loop",
             "chosen_control": "2_phase_do_trig_ph_feed_control",
+            "pcu_id": "pcu1",
             "controllers": [
                 {
                     "controller_id": "3_phase_feed_control",
@@ -171,7 +172,6 @@
                         "feed_weight",
                         "base_weight"
                     ],
-                    "pump_control_unit_id": "pcu1",
                     "pumps": {
                         "feed_pump": "blackPump1",
                         "base_pump": "blackPump2",
