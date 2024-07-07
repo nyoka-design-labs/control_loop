@@ -2,7 +2,7 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-uint8_t broadcastAddressPcu1[] = {0x24, 0x6F, 0x28, 0x4F, 0xF3, 0xD6}; // Replace with actual MAC address for pcu1
+uint8_t broadcastAddressPcu1[] = {0xfc, 0xb4, 0x67, 0xf3, 0xc6, 0xe0}; // Replace with actual MAC address for pcu1
 uint8_t broadcastAddressPcu2[] = {0x24, 0x6F, 0x28, 0x4F, 0xF3, 0xD7}; // Replace with actual MAC address for pcu2
 
 typedef struct command {
@@ -59,6 +59,7 @@ void loop() {
         String incomingCommand = Serial.readStringUntil('\n');
         if (incomingCommand.length() > 4) {
             int cmd = incomingCommand.substring(0, incomingCommand.length() - 4).toInt();
+            Serial.println(cmd);
             String pcu_id = incomingCommand.substring(incomingCommand.length() - 4);
 
             if (pcu_id == "pcu1") {
@@ -75,7 +76,7 @@ void loop() {
 void sendCommand(int cmd, uint8_t *address) {
     commandData.cmd = cmd;
     strcpy(commandData.pcu_id, (address == broadcastAddressPcu1) ? "pcu1" : "pcu2");
-
+    Serial.println(commandData.pcu_id);
     esp_err_t result = esp_now_send(address, (uint8_t *)&commandData, sizeof(commandData));
     if (result == ESP_OK) {
         Serial.println("Sent with success");

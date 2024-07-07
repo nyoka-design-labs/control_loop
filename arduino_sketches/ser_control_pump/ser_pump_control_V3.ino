@@ -52,12 +52,6 @@ void loop() {
             int voltage = command.substring(1).toInt(); // Extract RPM value from command
             setRPM(voltage);
         }
-        else if (command.startsWith("T")) {
-            toggleRelayTwice();
-        }
-        else if (command.startsWith("S")) {
-            toggleRelayOnce();
-        }
         else {
             // Handle regular pump commands
             int cmd = command.toInt(); // Convert command to integer

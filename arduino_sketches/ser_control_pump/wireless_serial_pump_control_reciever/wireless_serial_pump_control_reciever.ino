@@ -3,8 +3,8 @@
 #include <WiFi.h>
 
 // Define pin assignments for all pumps
-const int blackPump1Pin = 34;
-const int blackPump2Pin = 35;
+const int blackPump1Pin = 23;
+const int blackPump2Pin = 32;
 const int blackPump3Pin = 27;
 const int blackPump4Pin = 14;
 const int blackPump5Pin = 12;
@@ -37,11 +37,12 @@ int getPinForCommand(int cmd) {
     }
 }
 
-// Callback when data is received
-void OnDataRecv(const esp_now_recv_info* info, const uint8_t* incomingData, int len) {
+// Callback when data is received via ESP-NOW
+void OnDataRecv(const esp_now_recv_info *info, const uint8_t *incomingData, int len) {
     memcpy(&commandData, incomingData, sizeof(commandData));
-    if (strcmp(commandData.pcu_id, pcu_id) == 0) {
-        Serial.print("Received command: ");
+    Serial.println(commandData.pcu_id);
+    if (strcmp(commandData.pcu_id, pcu_id) == 0) { // Compare pcu_id in the command with the receiver's pcu_id
+        Serial.print("Received command via ESP-NOW: ");
         Serial.println(commandData.cmd);
         int pin = getPinForCommand(commandData.cmd);
         if (pin != -1) {
@@ -69,7 +70,7 @@ void setup() {
         return;
     }
 
-    // Register for a callback function when a data is received
+    // Register for a callback function when data is received via ESP-NOW
     esp_now_register_recv_cb(OnDataRecv);
 
     // Initialize all pins as outputs
@@ -86,5 +87,19 @@ void setup() {
 }
 
 void loop() {
-    // Empty loop
+    // Check for commands from the Serial Monitor
+    if (Serial.available() > 0) {
+        String command = Serial.readStringUntil('\n');
+        if (command.length() > 0) {
+            int cmd = command.toInt();
+            Serial.print("Received command via Serial: ");
+            Serial.println(cmd);
+            int pin = getPinForCommand(cmd);
+            if (pin != -1) {
+                controlPump(pin, cmd);
+            } else {
+                Serial.println("Invalid command received via Serial.");
+            }
+        }
+    }
 }
