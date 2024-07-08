@@ -5,7 +5,7 @@ import time
 
 class DeviceManagerMQTTClient:
     def __init__(self, broker_address):
-        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="sensor_unit")        
+        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="sensor_unit")
         self.client.on_message = self.on_message
         self.client.connect(broker_address, 1883, 60)
         self.client.subscribe("init_device_manager")
@@ -15,8 +15,8 @@ class DeviceManagerMQTTClient:
 
     def on_message(self, client, userdata, message):
         payload = json.loads(message.payload.decode("utf-8"))
+        print(payload)
         if message.topic == "init_device_manager":
-            print(payload)
             self.dm = self.init_device_manager(payload)
             
         elif message.topic == "get_data":
@@ -60,10 +60,9 @@ class DeviceManagerMQTTClient:
         # Create a new DeviceManager if not existing or values don't match
         self.dm = DeviceManager(loop_id, control_id, data_types, loop_devices, csv_name, test_name, devices)
         return self.dm
-
     def publish_data(self, data):
         self.client.publish("sensor_data", json.dumps(data))
-
+        print(f"data sent from sensor_unit: {data}")
     def stop(self):
         self.client.loop_stop()
         self.client.disconnect()

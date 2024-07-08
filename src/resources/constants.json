@@ -54,9 +54,9 @@
         {
             "loop_id": "server_consts",
             "interval": 4,
-            "testing": "False",
+            "testing": "True",
             "load_data": "False",
-            "devices_connected": "True",
+            "devices_connected": "False",
             "pumps_connected": "False",
             "error": "True",
             "control_running": "fermentation_loop"
