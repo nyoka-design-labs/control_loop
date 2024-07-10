@@ -15,10 +15,10 @@ from controller_mqtt_client import ControllerMQTTClient
 logger = setup_logger()
 
 #CONSTANTS
-port = '/dev/ttyACM0'
+port = '/dev/ttyUSB0'
 curr_dir = os.path.dirname(__file__)
 json_file_path = os.path.join(curr_dir, "resources","constants.json")
-baudrate = 9600
+baudrate = 460800
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 pumps = eval(get_loop_constant(loop_id="server_consts", const="pumps_connected"))
 
@@ -56,13 +56,17 @@ class Controller:
         Raises:
             AttributeError: If the connection to the Arduino cannot be established, typically due to the serial monitor being open in the Arduino IDE.
         """
-        try:
-            if pumps:
-                self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
-        except Exception as e:
-            print(f"failed to intialize arduino: \n{e}")
-            logger.error(f"Error in controller super class constructor: {e}\n{traceback.format_exc()}")
-            raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
+        # try:
+        if pumps:
+            self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+            time.sleep(2)
+            
+                
+        # except Exception as e:
+        #     print(f"failed to intialize arduino: \n{e}")
+        #     logger.error(f"Error in controller super class constructor: {e}\n{traceback.format_exc()}")
+        #     raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
+        pass
 
     def pump_control(self, state: str):
         """
@@ -74,10 +78,17 @@ class Controller:
         Logs the command sent to the Arduino and handles any exceptions that occur during the process.
         """
         try:
-            print(f"sent arduino: {state.encode()}")
-            logger.info(f"sent arduino: {state.encode()}")
+            command = state + self.pcu_id + '\n'
+            print(f"Sending command: {command.encode()}")
+            logger.info(f"Sending command: {command.encode()}")
             if pumps:
-                self.arduino.write((state + self.pcu_id + '\n').encode())
+                print("sending command to esp")
+                self.arduino.write(command.encode())
+                time.sleep(1)
+                if self.arduino.in_waiting > 0:
+                    response = self.arduino.read(self.arduino.in_waiting).decode('utf-8')
+                    print(f"Response from ESP32: {response}")
+
         except Exception as e:
             print(f"failed to control pump: \n state: {state}, \n{e}")
             logger.error(f"Error in pump_control: \n state: {state}, \n{e}\n{traceback.format_exc()}")

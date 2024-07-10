@@ -1,0 +1,303 @@
+2024-07-10 11:20:07 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-10 11:20:14 - INFO - Command received: toggle_feed
+2024-07-10 11:20:14 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:20:16 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:20:18 - INFO - Sending command: b'14pcu1\n'
+2024-07-10 11:20:20 - INFO - Sending command: b'4pcu1\n'
+2024-07-10 11:20:22 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:20:38 - INFO - Command received: toggle_feed
+2024-07-10 11:20:38 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:20:42 - INFO - Command received: toggle_feed
+2024-07-10 11:20:42 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:20:48 - INFO - Command received: toggle_feed
+2024-07-10 11:20:48 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:22:11 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-10 11:22:18 - INFO - Command received: toggle_feed
+2024-07-10 11:22:18 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:22:20 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:22:22 - INFO - Sending command: b'14pcu1\n'
+2024-07-10 11:22:24 - INFO - Sending command: b'4pcu1\n'
+2024-07-10 11:22:26 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:23:13 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-10 11:23:20 - INFO - Command received: toggle_feed
+2024-07-10 11:23:20 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:23:22 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:23:24 - INFO - Sending command: b'14pcu1\n'
+2024-07-10 11:23:26 - INFO - Sending command: b'4pcu1\n'
+2024-07-10 11:23:28 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:23:37 - INFO - Command received: toggle_feed
+2024-07-10 11:23:37 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:23:47 - INFO - Command received: toggle_feed
+2024-07-10 11:23:47 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:23:52 - INFO - Command received: toggle_feed
+2024-07-10 11:23:52 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:23:56 - INFO - Command received: toggle_feed
+2024-07-10 11:23:56 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:24:00 - INFO - Command received: toggle_feed
+2024-07-10 11:24:00 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:24:08 - INFO - Command received: toggle_base
+2024-07-10 11:24:08 - INFO - Sending command: b'3pcu1\n'
+2024-07-10 11:24:12 - INFO - Command received: toggle_base
+2024-07-10 11:24:12 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:24:36 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-10 11:24:56 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-10 11:24:59 - INFO - Command received: toggle_feed
+2024-07-10 11:25:01 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:25:04 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:25:07 - INFO - Sending command: b'14pcu1\n'
+2024-07-10 11:25:10 - INFO - Sending command: b'4pcu1\n'
+2024-07-10 11:25:13 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:25:24 - INFO - Command received: toggle_feed
+2024-07-10 11:25:24 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:25:29 - INFO - Command received: toggle_feed
+2024-07-10 11:25:29 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:25:34 - INFO - Command received: toggle_feed
+2024-07-10 11:25:34 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:25:40 - INFO - Command received: toggle_base
+2024-07-10 11:25:40 - INFO - Sending command: b'3pcu1\n'
+2024-07-10 11:25:45 - INFO - Command received: toggle_base
+2024-07-10 11:25:45 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:25:54 - INFO - Command received: toggle_lactose_const
+2024-07-10 11:26:18 - INFO - Command received: toggle_feed
+2024-07-10 11:26:18 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:26:23 - INFO - Command received: toggle_feed
+2024-07-10 11:26:23 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:27:18 - INFO - Command received: toggle_feed
+2024-07-10 11:27:18 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:27:25 - INFO - Command received: toggle_feed
+2024-07-10 11:27:25 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:27:37 - INFO - Command received: toggle_feed
+2024-07-10 11:27:37 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:27:43 - INFO - Command received: toggle_base
+2024-07-10 11:27:43 - INFO - Sending command: b'3pcu1\n'
+2024-07-10 11:27:48 - INFO - Command received: toggle_base
+2024-07-10 11:27:48 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:27:53 - INFO - Command received: toggle_feed
+2024-07-10 11:27:53 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:28:21 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-10 11:28:28 - INFO - Command received: toggle_feed
+2024-07-10 11:28:30 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:28:31 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:28:33 - INFO - Sending command: b'14pcu1\n'
+2024-07-10 11:28:34 - INFO - Sending command: b'4pcu1\n'
+2024-07-10 11:28:36 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:29:00 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 53, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-10 11:29:03 - INFO - Command received: toggle_feed
+2024-07-10 11:29:05 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:29:07 - INFO - Sending command: b'2pcu1\n'
+2024-07-10 11:29:09 - INFO - Sending command: b'14pcu1\n'
+2024-07-10 11:29:11 - INFO - Sending command: b'4pcu1\n'
+2024-07-10 11:29:13 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:29:20 - INFO - Command received: toggle_feed
+2024-07-10 11:29:20 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:29:24 - INFO - Command received: toggle_feed
+2024-07-10 11:29:24 - INFO - Sending command: b'1pcu1\n'
+2024-07-10 11:29:27 - INFO - Command received: toggle_feed
+2024-07-10 11:29:27 - INFO - Sending command: b'0pcu1\n'
+2024-07-10 11:29:32 - INFO - Command received: toggle_base
+2024-07-10 11:29:32 - INFO - Sending command: b'3pcu1\n'
+2024-07-10 11:29:35 - INFO - Command received: toggle_base
+2024-07-10 11:29:35 - INFO - Sending command: b'2pcu1\n'

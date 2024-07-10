@@ -14,7 +14,7 @@ const int whitePump3Pin = 5;
 
 typedef struct command {
   int cmd;
-  char pcu_id[4];
+  char pcu_id[5];
 } command;
 
 command commandData;
@@ -39,26 +39,46 @@ int getPinForCommand(int cmd) {
 
 // Callback when data is received via ESP-NOW
 void OnDataRecv(const esp_now_recv_info *info, const uint8_t *incomingData, int len) {
+    Serial.println("Data received via ESP-NOW");
+    Serial.print("Sender MAC: ");
+    for (int i = 0; i < 6; i++) {
+        Serial.print(info->src_addr[i], HEX);
+        if (i < 5) Serial.print(":");
+    }
+    Serial.println();
+    Serial.print("Data length: ");
+    Serial.println(len);
+
     memcpy(&commandData, incomingData, sizeof(commandData));
-    Serial.println(commandData.pcu_id);
+    commandData.pcu_id[4] = '\0'; // Ensure null-termination
+    Serial.print("Received pcu_id: ");
+    Serial.println(commandData.pcu_id); // Debugging line
+
     if (strcmp(commandData.pcu_id, pcu_id) == 0) { // Compare pcu_id in the command with the receiver's pcu_id
         Serial.print("Received command via ESP-NOW: ");
         Serial.println(commandData.cmd);
+
         int pin = getPinForCommand(commandData.cmd);
+        Serial.print("Pin determined: ");
+        Serial.println(pin);
+
         if (pin != -1) {
             controlPump(pin, commandData.cmd);
         } else {
             Serial.println("Invalid command received.");
         }
+    } else {
+        Serial.println("PCU ID mismatch");
     }
 }
 
 void controlPump(int pin, int cmd) {
+    Serial.println("pump being controlled");
     digitalWrite(pin, cmd % 2 == 1 ? HIGH : LOW); // Odd commands turn ON, even commands turn OFF
 }
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(460800);
     while (!Serial); // Wait for serial to be ready
     Serial.println("Starting receiver setup...");
 
@@ -70,7 +90,7 @@ void setup() {
         return;
     }
 
-    // Register for a callback function when data is received via ESP-NOW
+    // Register for a callback function when a data is received
     esp_now_register_recv_cb(OnDataRecv);
 
     // Initialize all pins as outputs
@@ -87,18 +107,36 @@ void setup() {
 }
 
 void loop() {
-    // Check for commands from the Serial Monitor
     if (Serial.available() > 0) {
-        String command = Serial.readStringUntil('\n');
-        if (command.length() > 0) {
-            int cmd = command.toInt();
-            Serial.print("Received command via Serial: ");
-            Serial.println(cmd);
-            int pin = getPinForCommand(cmd);
-            if (pin != -1) {
-                controlPump(pin, cmd);
+        String incomingCommand = Serial.readStringUntil('\n');
+        Serial.println("Command received: ");
+        Serial.println(incomingCommand + "\n");
+
+        if (incomingCommand.length() > 4) {
+            int cmd = incomingCommand.substring(0, incomingCommand.length() - 4).toInt();
+            String pcu_id = incomingCommand.substring(incomingCommand.length() - 4);
+
+            Serial.println("Pin command received: ");
+            Serial.println(cmd);  // Print the integer directly
+
+            Serial.println("PCU ID received: ");
+            Serial.println(pcu_id + "\n");
+
+            if (pcu_id == "pcu1") {
+                strncpy(commandData.pcu_id, pcu_id.c_str(), 4);
+                commandData.pcu_id[4] = '\0'; // Ensure null-termination
+
+                int pin = getPinForCommand(cmd);  // Correctly use cmd instead of commandData.cmd
+                Serial.println("Pin that needs to turn on: ");
+                Serial.println(pin);  // Print the integer directly
+
+                if (pin != -1) {
+                    controlPump(pin, cmd);  // Use cmd instead of commandData.cmd
+                } else {
+                    Serial.println("Invalid command received.");
+                }
             } else {
-                Serial.println("Invalid command received via Serial.");
+                Serial.println("Invalid PCU ID");
             }
         }
     }

@@ -7,7 +7,7 @@ uint8_t broadcastAddressPcu2[] = {0x24, 0x6F, 0x28, 0x4F, 0xF3, 0xD7}; // Replac
 
 typedef struct command {
   int cmd;
-  char pcu_id[4];
+  char pcu_id[5];
 } command;
 
 command commandData;
@@ -20,7 +20,7 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
 }
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(460800);
     while (!Serial); // Wait for serial to be ready
     Serial.println("Starting sender setup...");
 
@@ -57,15 +57,24 @@ void setup() {
 void loop() {
     if (Serial.available() > 0) {
         String incomingCommand = Serial.readStringUntil('\n');
+        Serial.println("Command received: ");
+        Serial.println(incomingCommand + "\n");
+
         if (incomingCommand.length() > 4) {
             int cmd = incomingCommand.substring(0, incomingCommand.length() - 4).toInt();
-            Serial.println(cmd);
             String pcu_id = incomingCommand.substring(incomingCommand.length() - 4);
 
-            if (pcu_id == "pcu1") {
-                sendCommand(cmd, broadcastAddressPcu1);
-            } else if (pcu_id == "pcu2") {
-                sendCommand(cmd, broadcastAddressPcu2);
+            Serial.println("Pin command received: ");
+            Serial.println(cmd);  // Print the integer directly
+            Serial.println("\n");
+
+            Serial.println("PCU ID received: ");
+            Serial.println(pcu_id + "\n");
+
+            if (pcu_id == "pcu1" || pcu_id == "pcu2") {
+                strncpy(commandData.pcu_id, pcu_id.c_str(), 4);
+                commandData.pcu_id[4] = '\0'; // Ensure null-termination
+                sendCommand(cmd, (pcu_id == "pcu1") ? broadcastAddressPcu1 : broadcastAddressPcu2);
             } else {
                 Serial.println("Invalid PCU ID");
             }
@@ -76,7 +85,20 @@ void loop() {
 void sendCommand(int cmd, uint8_t *address) {
     commandData.cmd = cmd;
     strcpy(commandData.pcu_id, (address == broadcastAddressPcu1) ? "pcu1" : "pcu2");
+
+    // Print the command details for debugging
+    Serial.println("Sending command:");
+    Serial.print("cmd: ");
+    Serial.println(commandData.cmd);
+    Serial.print("pcu_id: ");
     Serial.println(commandData.pcu_id);
+    Serial.print("Address: ");
+    for (int i = 0; i < 6; i++) {
+        Serial.print(address[i], HEX);
+        if (i < 5) Serial.print(":");
+    }
+    Serial.println();
+
     esp_err_t result = esp_now_send(address, (uint8_t *)&commandData, sizeof(commandData));
     if (result == ESP_OK) {
         Serial.println("Sent with success");
