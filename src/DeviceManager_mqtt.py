@@ -22,16 +22,16 @@ class DeviceManager:
     """
 
     def __init__(self, loop_id: str, control_id: str, data_types: list, loop_devices: list, csv_name: str, test_name: str, devices: bool) -> None:
-        self.loop_control_file = f"{self.loop_id}-{self.control_id}-{datetime.now().strftime('%Y%m%d')}.json"
-        # self.__init_loop_control_file()
+        self.loop_id = loop_id
+        self.control_id = control_id
+        self.csv_name = csv_name
+
+        self.loop_control_file = f"{self.loop_id}-{self.control_id}-{datetime.now().strftime('%Y-%m-%d')}.json"
         self.start_time = self.get_loop_control_file_data("start_time")
         self.index = self.get_loop_control_file_data("test_data_index")
 
         self.devices = devices
-        self.loop_id = loop_id
-        self.control_id = control_id
         self.data_types = data_types + ["time", "date", "time_of_day", "type"]
-        self.csv_name = csv_name
         self.test_name = test_name
 
         curr_directory = os.path.dirname(__file__)
@@ -111,7 +111,11 @@ class DeviceManager:
         with open(self.loop_control_file, "r") as f:
             data = json.load(f)
             return data[key]
-
+    def cleanup_resources(self):
+        # Close and release any resources such as serial ports
+        for device in self.devices:
+            if hasattr(device, 'close'):
+                device.close()
     def get_measurement(self, save_data=True) -> dict:
         devices_data = []
         for dev in self.devices:
@@ -194,13 +198,13 @@ class DeviceManager:
 
 if __name__ == "__main__":
     # Example values, these should be received via MQTT
-    data_types = ["do", "feed_weight"]
-    loop_devices = ["do_sensor", "uss_scale"]
+    data_types = ["do", "ph", "temp", "feed_weight", "base_weight"]
+    loop_devices = ["do_sensor", "ph_sensor", "uss_scale", "uss_scale"]
     csv_name = "sensor_data"
     loop_id = "fermentation_loop"
     control_id = "test_loop"
     test_name = "3_phase_control_test_data"
-    devices = False
+    devices = True
 
     dm = DeviceManager(loop_id, control_id, data_types, loop_devices, csv_name, test_name, devices)
     while True:
