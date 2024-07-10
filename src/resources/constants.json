@@ -169,6 +169,7 @@
                         "base_weight",
                         "acid_weight"
                     ],
+                    "pump_control_unit_id": "pcu1",
                     "pumps": {
                         "feed_pump": "blackPump1",
                         "base_pump": "blackPump2",
