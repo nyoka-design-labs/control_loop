@@ -259,38 +259,27 @@
                     "devices": [
                         "do_sensor",
                         "ph_sensor",
+                        "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
                         "do",
                         "ph",
                         "temp",
-                        "feed_weight"
+                        "feed_weight",
+                        "base_weight"
                     ],
                     "pumps": {
                         "feed_pump": "blackPump1",
-                        "lactose_pump": "blackPump3",
                         "base_pump": "blackPump2",
-                        "feed_const_pump": "whitePump1",
-                        "lactose_const_pump": "whitePump2",
                         "acid_pump": "whitePump3"
                     },
                     "start_time": 0,
                     "test_data_index": 0,
                     "csv_name": "test_sheet",
-                    "test_name": "3_phase_control_test_data",
+                    "test_name": "2_phase_test_1",
                     "control_consts": {
-                        "base_sp": 7,
-                        "acid_sp": 8,
-                        "feed_trigger_ph": 7.02,
-                        "ph_maintained_time": 0,
-                        "do_upper_sp": 25,
-                        "do_lower_sp": 21,
-                        "ph_window": 10,
-                        "start_feed": "False",
-                        "feed_media": "Lactose",
-                        "start_phase_1": "True",
-                        "start_counter": 3
+                        "cycles": 0
                     }
                 }
             ]

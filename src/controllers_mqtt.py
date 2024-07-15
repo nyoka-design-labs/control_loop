@@ -718,9 +718,18 @@ class FermentationController(Controller):
         return data, self.status
     
     def __test_loop(self):
-        data, status = self.__3_phase_feed_control()
+        data = self.get_data()
+        cyc = self.control_consts["cycles"]
+        self.pump_control(self.pumps["feed_pump"].toggle())
+        self.pump_control(self.pumps["base_pump"].toggle())
 
-        return data, status
+        cyc += 1
+
+        self.update_controller_consts("cycles", cyc)
+
+        self.update_status()
+
+        return data, self.status
     
     def __switch_feed_media(self):
         """
