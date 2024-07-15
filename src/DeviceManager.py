@@ -11,7 +11,7 @@ from datetime import datetime
 from resources.logging_config import setup_logger
 
 logger = setup_logger()
-DEV_CONTRUCTORS = {
+DEV_CONSTRUCTORS = {
     "uss_scale": USS_Scale,
     "dymo_scale": Scale,
     "do_sensor": DO,
@@ -22,29 +22,28 @@ curr_directory = os.path.dirname(__file__)
 CONSTANTS_DIR = os.path.join(curr_directory, "resources", "constants.json")
 TEST_DATA_DIR = os.path.join(curr_directory, "resources", "test_data.json")
 test_data = load_test_data(TEST_DATA_DIR)
-testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
-devices = eval(get_loop_constant(loop_id="server_consts", const="devices_connected"))
+
 class DeviceManager:
     """
     Represents a device manager.
     """
 
-    def __init__(self, loop_id: str, control_id: str, testing: bool=False) -> None:
+    def __init__(self, loop_id: str, control_id: str) -> None:
         self.test_data = test_data
         self.delete()
         self.loop_id = loop_id
         self.control_id = control_id
         self.data_types = self.__init_data_types()
-        self.constrol_consts = get_control_constant(self.loop_id, self.control_id, "control_consts")
+        self.control_consts = get_control_constant(self.loop_id, self.control_id, "control_consts")
         
         self.index =  get_control_constant(self.loop_id, self.control_id, "test_data_index")
         self.start_time =  get_control_constant(self.loop_id, self.control_id, "start_time")
-        self.csv_name = self.constrol_consts["csv_name"]
+        self.csv_name = self.control_consts["csv_name"]
         
         names = self.__get_loop_devices()
         dev2port = []
         idt = 0
-        if devices:
+        if eval(get_loop_constant(loop_id="server_consts", const="devices_connected")):
             try:
                 # finds the serial port for each device and creates dict
                 for name in names:
@@ -61,9 +60,9 @@ class DeviceManager:
             for name, port in dev2port:
                 # calling all device constructors
                 if name == "dymo_scale":
-                    self.devices.append(DEV_CONTRUCTORS[name](0x0922, 0x8003))
+                    self.devices.append(DEV_CONSTRUCTORS[name](0x0922, 0x8003))
                 else:
-                    self.devices.append(DEV_CONTRUCTORS[name](port))
+                    self.devices.append(DEV_CONSTRUCTORS[name](port))
 
         # self.devices = [USS_Scale(port="/dev/ttyUSB0"), Scale(0x0922, 0x8003)]
     def __init_data_types(self):

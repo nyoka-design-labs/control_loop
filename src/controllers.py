@@ -59,7 +59,7 @@ class Controller:
             if pumps:
                 self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
         except Exception as e:
-            print(f"failed to intialize arduino: \n{e}")
+            print(f"failed to initialize arduino: \n{e}")
             logger.error(f"Error in controller super class constructor: {e}\n{traceback.format_exc()}")
             raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
 
@@ -93,7 +93,7 @@ class Controller:
         """
         try:
             control_id = self.control_id
-
+            self.load_control_constants()
             if control_id:
                 control_method = getattr(self, f"_{self.__class__.__name__}__{control_id}", None)
                 if control_method:
@@ -397,13 +397,12 @@ class ConcentrationController(Controller):
 
         self.loop_id = "concentration_loop"
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
-        self.device_manager = DeviceManager(self.loop_id, self.control_id, testing)
+        self.device_manager = DeviceManager(self.loop_id, self.control_id)
 
         self.initial_buffer_mass = None
         self.initial_lysate_mass = None
 
         self.control_consts = {}
-        self.load_control_constants()
 
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
@@ -415,7 +414,7 @@ class ConcentrationController(Controller):
         data = self.get_data(test_data=self.control_consts["test_data"])
 
         self.__buffer_control(data['buffer_weight'])
-        # self.__lysate_control(data['lysate_weight'])
+        self.__lysate_control(data['lysate_weight'])
 
         self.update_status()   
    
@@ -468,7 +467,7 @@ class FermentationController(Controller):
         self.loop_id = "fermentation_loop"
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
 
-        self.device_manager = DeviceManager(self.loop_id, self.control_id, testing)
+        self.device_manager = DeviceManager(self.loop_id, self.control_id)
 
         self.control_consts = {}
         
@@ -498,7 +497,6 @@ class FermentationController(Controller):
         """
 
         data = self.get_data(self.control_consts["test_data"])
-        self.load_control_constants()
 
         start_feed = eval(self.control_consts["start_feed"])
 
@@ -560,8 +558,6 @@ class FermentationController(Controller):
             tuple: Contains the data collected during the process and the updated status of the controller.
         """
 
-        self.load_control_constants()
-
         data = self.get_data(self.control_consts["test_data"])
 
         pre_feed_trigger_type = 'do'
@@ -618,7 +614,6 @@ class FermentationController(Controller):
                 and any changes enacted during the control process.
         """
         data = self.get_data(self.control_consts["test_data"])
-        self.load_control_constants()
         
         start_feed = eval(self.control_consts["start_feed"])
 
