@@ -32,6 +32,8 @@ def handle_error(exception, context, data=None, notify=True):
     """
     error_message = f"Error in {context}\nUnexpected error: {exception}\n{traceback.format_exc()}"
     logger.error(error_message)
+    logger.error(f"type of exception: {type(exception)}")
+
     print(error_message)
     if data:
         logger.error(f"Input data: {data}")
@@ -53,6 +55,8 @@ async def handle_client(websocket):
             message = await asyncio.wait_for(websocket.recv(), timeout=60)
             data = json.loads(message)
             if data.get("type") == "ping":
+                print("recieved ping")
+                logger.error("recieved ping from frontend")
                 await websocket.send(json.dumps({"type": "pong"}))
             else:
                 await process_client_command(websocket, data)
