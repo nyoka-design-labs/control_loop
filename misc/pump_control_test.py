@@ -1,26 +1,21 @@
 import serial
 import time
+import logging
+from datetime import datetime
+
+# Setup logging
+logging.basicConfig(filename='pump_control.log', level=logging.INFO, format='%(asctime)s %(message)s')
 
 # Replace with the correct port for your ESP32
-port = '/dev/ttyUSB0'
+port = '/dev/cu.usbserial-0001'
 baudrate = 460800
-esp = serial.Serial(port=port, baudrate=baudrate, timeout=1)
-# time.sleep(2)
-# esp.reset_input_buffer()
-# esp.reset_output_buffer()
-time.sleep(2)
-# state = "5"
-# pcu_id = "pcu1"
-# command = state + pcu_id + '\n'
-# esp.write(command.encode())
-# time.sleep(1)
-# if esp.in_waiting > 0:
-#     response = esp.read(esp.in_waiting).decode('utf-8')
-#     print(f"Response from ESP32: {response}")
 
+# Initialize serial connection
+esp = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+time.sleep(2)  # Allow some time for the ESP32 to reset
 
 def control_pump(cmd):
-    print("controlling pump")
+    print(f"Controlling pump with command {cmd}")
     pcu_id = "pcu1"
     command = cmd + pcu_id + '\n'
     esp.write(command.encode())
@@ -28,26 +23,34 @@ def control_pump(cmd):
     if esp.in_waiting > 0:
         response = esp.read(esp.in_waiting).decode('utf-8')
         print(f"Response from ESP32: {response}")
+        logging.info(f"Command {cmd} sent successfully: {response}")
+        return True
+    else:
+        print(f"No response for command {cmd}")
+        logging.error(f"No response for command {cmd}")
+        return False
+
+commands = [
+    {"cmd": ["0", "1"], "index": 0},
+    {"cmd": ["2", "3"], "index": 0},
+    {"cmd": ["4", "5"], "index": 0},
+    {"cmd": ["6", "7"], "index": 0},
+    {"cmd": ["8", "9"], "index": 0},
+]
 
 try:
-    
-    control_pump("1")
+    while True:
+        for command in commands:
+            current_cmd = command["cmd"][command["index"] % 2]
+            if control_pump(current_cmd):
+                command["index"] += 1
+            else:
+                print(f"Retrying command {current_cmd} in the next cycle")
+                logging.warning(f"Retrying command {current_cmd} in the next cycle")
+        
 
-    control_pump("5")
-
-    control_pump("3")
-
-    control_pump("7")
-
-    control_pump("9")
-
-    control_pump("0")
-    # # Optionally, read back any response from the ESP32
-    # time.sleep(1)  # Wait a bit for response
-    # if esp.in_waiting > 0:
-    #     response = esp.read(esp.in_waiting).decode('utf-8')
-    #     print(f"Response from ESP32: {response}")
-
-    # esp.close()
-except serial.SerialException as e:
-    print(f"Error opening or communicating through serial port: {e}")
+except KeyboardInterrupt:
+    print("Testing interrupted by user")
+    logging.info("Testing interrupted by user")
+finally:
+    esp.close()

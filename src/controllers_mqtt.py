@@ -104,6 +104,7 @@ class Controller:
             ValueError: If no control method is configured for the current loop.
         """
         try:
+            self.load_control_constants()
             control_id = self.control_id
 
             if control_id:
@@ -129,6 +130,7 @@ class Controller:
             dict: The current status of the collection process, possibly along with collected data if control_status is False.
         """
         try:
+            self.load_control_constants()
             self.status.update({
                 "data_collection_status": "data_collection_on"
             })
@@ -437,7 +439,8 @@ class ConcentrationController(Controller):
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
         self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
         self.pcu_id = get_loop_constant(self.loop_id, "pcu_id")
-
+        self.load_control_constants()
+        
         self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
         self.init_device_manager()
 
@@ -454,7 +457,6 @@ class ConcentrationController(Controller):
         self.stop_control(data_col_is_on=False)
         
     def __concentration_loop(self):
-        self.load_control_constants()
         data = self.get_data()
 
         self.__buffer_control(data['buffer_weight'])
@@ -467,7 +469,6 @@ class ConcentrationController(Controller):
         return data, self.status
     
     def __concentration_buffer_loop(self):
-        self.load_control_constants()
         data = self.get_data()
 
         self.__buffer_control(data['buffer_weight'])
@@ -514,6 +515,7 @@ class FermentationController(Controller):
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
         self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
         self.pcu_id = get_loop_constant(self.loop_id, "pcu_id")
+        self.load_control_constants()
 
         self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
         self.init_device_manager()
@@ -546,7 +548,6 @@ class FermentationController(Controller):
         """
 
         data = self.get_data()
-        self.load_control_constants()
 
         start_feed = eval(self.control_consts["start_feed"])
 
@@ -608,7 +609,6 @@ class FermentationController(Controller):
             tuple: Contains the data collected during the process and the updated status of the controller.
         """
 
-        self.load_control_constants()
 
         data = self.get_data()
 
@@ -666,7 +666,6 @@ class FermentationController(Controller):
                 and any changes enacted during the control process.
         """
         data = self.get_data()
-        self.load_control_constants()
         
         start_feed = eval(self.control_consts["start_feed"])
 
@@ -979,8 +978,8 @@ if __name__ == "__main__":
     c = FermentationController()
     
     while True:
-        c.start_collection(control_status=False)
-
+        status, data = c.start_collection(control_status=False)
+        print(data)
         time.sleep(3)
 
        
