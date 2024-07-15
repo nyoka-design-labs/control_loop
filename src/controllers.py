@@ -584,6 +584,7 @@ class FermentationController(Controller):
         
 
         if start_feed:
+            self.__pH_balance(data['ph'], base_control=True, acid_control=False)
             self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
             self.__activate_antifoam_pump()
             

@@ -1,0 +1,2280 @@
+2024-07-12 12:59:00 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-12 12:59:00 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-12 12:59:21 - ERROR - recieved ping from frontend
+2024-07-12 12:59:41 - ERROR - recieved ping from frontend
+2024-07-12 13:00:01 - ERROR - recieved ping from frontend
+2024-07-12 13:00:21 - ERROR - recieved ping from frontend
+2024-07-12 13:00:41 - ERROR - recieved ping from frontend
+2024-07-12 13:01:01 - ERROR - recieved ping from frontend
+2024-07-12 13:01:21 - ERROR - recieved ping from frontend
+2024-07-12 13:01:41 - ERROR - recieved ping from frontend
+2024-07-12 13:02:01 - ERROR - recieved ping from frontend
+2024-07-12 13:02:21 - ERROR - recieved ping from frontend
+2024-07-12 13:02:41 - ERROR - recieved ping from frontend
+2024-07-12 13:03:01 - ERROR - recieved ping from frontend
+2024-07-12 13:03:21 - ERROR - recieved ping from frontend
+2024-07-12 13:03:41 - ERROR - recieved ping from frontend
+2024-07-12 13:04:01 - ERROR - recieved ping from frontend
+2024-07-12 13:04:21 - ERROR - recieved ping from frontend
+2024-07-12 13:04:41 - ERROR - recieved ping from frontend
+2024-07-12 13:05:01 - ERROR - recieved ping from frontend
+2024-07-12 13:05:21 - ERROR - recieved ping from frontend
+2024-07-12 13:05:41 - ERROR - recieved ping from frontend
+2024-07-12 13:06:01 - ERROR - recieved ping from frontend
+2024-07-12 13:06:21 - ERROR - recieved ping from frontend
+2024-07-12 13:06:41 - ERROR - recieved ping from frontend
+2024-07-12 13:07:01 - ERROR - recieved ping from frontend
+2024-07-12 13:07:21 - ERROR - recieved ping from frontend
+2024-07-12 13:07:41 - ERROR - recieved ping from frontend
+2024-07-12 13:08:01 - ERROR - recieved ping from frontend
+2024-07-12 13:08:21 - ERROR - recieved ping from frontend
+2024-07-12 13:08:41 - ERROR - recieved ping from frontend
+2024-07-12 13:09:01 - ERROR - recieved ping from frontend
+2024-07-12 13:09:21 - ERROR - recieved ping from frontend
+2024-07-12 13:09:41 - ERROR - recieved ping from frontend
+2024-07-12 13:10:01 - ERROR - recieved ping from frontend
+2024-07-12 13:10:21 - ERROR - recieved ping from frontend
+2024-07-12 13:10:41 - ERROR - recieved ping from frontend
+2024-07-12 13:11:01 - ERROR - recieved ping from frontend
+2024-07-12 13:11:21 - ERROR - recieved ping from frontend
+2024-07-12 13:11:41 - ERROR - recieved ping from frontend
+2024-07-12 13:12:01 - ERROR - recieved ping from frontend
+2024-07-12 13:12:21 - ERROR - recieved ping from frontend
+2024-07-12 13:12:41 - ERROR - recieved ping from frontend
+2024-07-12 13:13:01 - ERROR - recieved ping from frontend
+2024-07-12 13:13:21 - ERROR - recieved ping from frontend
+2024-07-12 13:13:41 - ERROR - recieved ping from frontend
+2024-07-12 13:14:01 - ERROR - recieved ping from frontend
+2024-07-12 13:14:21 - ERROR - recieved ping from frontend
+2024-07-12 13:14:41 - ERROR - recieved ping from frontend
+2024-07-12 13:15:01 - ERROR - recieved ping from frontend
+2024-07-12 13:15:21 - ERROR - recieved ping from frontend
+2024-07-12 13:16:45 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-12 13:16:45 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-12 13:17:14 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-12 13:17:14 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-12 13:17:35 - ERROR - recieved ping from frontend
+2024-07-12 13:17:56 - ERROR - recieved ping from frontend
+2024-07-12 13:18:15 - ERROR - recieved ping from frontend
+2024-07-12 13:18:35 - ERROR - recieved ping from frontend
+2024-07-12 13:18:56 - ERROR - recieved ping from frontend
+2024-07-12 13:19:16 - ERROR - recieved ping from frontend
+2024-07-12 13:19:36 - ERROR - recieved ping from frontend
+2024-07-12 13:19:56 - ERROR - recieved ping from frontend
+2024-07-12 13:20:16 - ERROR - recieved ping from frontend
+2024-07-12 13:20:36 - ERROR - recieved ping from frontend
+2024-07-12 13:20:56 - ERROR - recieved ping from frontend
+2024-07-12 13:21:16 - ERROR - recieved ping from frontend
+2024-07-12 13:21:36 - ERROR - recieved ping from frontend
+2024-07-12 13:21:56 - ERROR - recieved ping from frontend
+2024-07-12 13:22:16 - ERROR - recieved ping from frontend
+2024-07-12 13:22:36 - ERROR - recieved ping from frontend
+2024-07-12 13:22:56 - ERROR - recieved ping from frontend
+2024-07-12 13:23:16 - ERROR - recieved ping from frontend
+2024-07-12 13:23:36 - ERROR - recieved ping from frontend
+2024-07-12 13:23:56 - ERROR - recieved ping from frontend
+2024-07-12 13:24:16 - ERROR - recieved ping from frontend
+2024-07-12 13:24:36 - ERROR - recieved ping from frontend
+2024-07-12 13:24:56 - ERROR - recieved ping from frontend
+2024-07-12 13:25:16 - ERROR - recieved ping from frontend
+2024-07-12 13:25:36 - ERROR - recieved ping from frontend
+2024-07-12 13:25:56 - ERROR - recieved ping from frontend
+2024-07-12 13:26:16 - ERROR - recieved ping from frontend
+2024-07-12 13:26:36 - ERROR - recieved ping from frontend
+2024-07-12 13:26:56 - ERROR - recieved ping from frontend
+2024-07-12 13:27:16 - ERROR - recieved ping from frontend
+2024-07-12 13:27:36 - ERROR - recieved ping from frontend
+2024-07-12 13:27:56 - ERROR - recieved ping from frontend
+2024-07-12 13:28:16 - ERROR - recieved ping from frontend
+2024-07-12 13:28:36 - ERROR - recieved ping from frontend
+2024-07-12 13:28:56 - ERROR - recieved ping from frontend
+2024-07-12 13:29:16 - ERROR - recieved ping from frontend
+2024-07-12 13:29:36 - ERROR - recieved ping from frontend
+2024-07-12 13:29:56 - ERROR - recieved ping from frontend
+2024-07-12 13:30:16 - ERROR - recieved ping from frontend
+2024-07-12 13:30:36 - ERROR - recieved ping from frontend
+2024-07-12 13:30:56 - ERROR - recieved ping from frontend
+2024-07-12 13:31:16 - ERROR - recieved ping from frontend
+2024-07-12 13:31:36 - ERROR - recieved ping from frontend
+2024-07-12 13:31:56 - ERROR - recieved ping from frontend
+2024-07-12 13:32:16 - ERROR - recieved ping from frontend
+2024-07-12 13:32:36 - ERROR - recieved ping from frontend
+2024-07-12 13:32:56 - ERROR - recieved ping from frontend
+2024-07-12 13:33:16 - ERROR - recieved ping from frontend
+2024-07-12 13:33:36 - ERROR - recieved ping from frontend
+2024-07-12 13:33:56 - ERROR - recieved ping from frontend
+2024-07-12 13:34:16 - ERROR - recieved ping from frontend
+2024-07-12 13:34:36 - ERROR - recieved ping from frontend
+2024-07-12 13:34:56 - ERROR - recieved ping from frontend
+2024-07-12 13:35:16 - ERROR - recieved ping from frontend
+2024-07-12 13:35:36 - ERROR - recieved ping from frontend
+2024-07-12 13:35:56 - ERROR - recieved ping from frontend
+2024-07-12 13:36:16 - ERROR - recieved ping from frontend
+2024-07-12 13:36:36 - ERROR - recieved ping from frontend
+2024-07-12 13:36:56 - ERROR - recieved ping from frontend
+2024-07-12 13:37:16 - ERROR - recieved ping from frontend
+2024-07-12 13:37:36 - ERROR - recieved ping from frontend
+2024-07-12 13:37:56 - ERROR - recieved ping from frontend
+2024-07-12 13:38:16 - ERROR - recieved ping from frontend
+2024-07-12 13:38:36 - ERROR - recieved ping from frontend
+2024-07-12 13:38:56 - ERROR - recieved ping from frontend
+2024-07-12 13:39:17 - ERROR - recieved ping from frontend
+2024-07-12 13:39:37 - ERROR - recieved ping from frontend
+2024-07-12 13:39:57 - ERROR - recieved ping from frontend
+2024-07-12 13:40:17 - ERROR - recieved ping from frontend
+2024-07-12 13:40:37 - ERROR - recieved ping from frontend
+2024-07-12 13:40:57 - ERROR - recieved ping from frontend
+2024-07-12 13:41:17 - ERROR - recieved ping from frontend
+2024-07-12 13:41:37 - ERROR - recieved ping from frontend
+2024-07-12 13:41:57 - ERROR - recieved ping from frontend
+2024-07-12 13:42:17 - ERROR - recieved ping from frontend
+2024-07-12 13:42:37 - ERROR - recieved ping from frontend
+2024-07-12 13:42:57 - ERROR - recieved ping from frontend
+2024-07-12 13:43:17 - ERROR - recieved ping from frontend
+2024-07-12 13:43:37 - ERROR - recieved ping from frontend
+2024-07-12 13:43:57 - ERROR - recieved ping from frontend
+2024-07-12 13:44:17 - ERROR - recieved ping from frontend
+2024-07-12 13:44:37 - ERROR - recieved ping from frontend
+2024-07-12 13:44:57 - ERROR - recieved ping from frontend
+2024-07-12 13:45:17 - ERROR - recieved ping from frontend
+2024-07-12 13:45:37 - ERROR - recieved ping from frontend
+2024-07-12 13:45:57 - ERROR - recieved ping from frontend
+2024-07-12 13:46:17 - ERROR - recieved ping from frontend
+2024-07-12 13:46:37 - ERROR - recieved ping from frontend
+2024-07-12 13:46:57 - ERROR - recieved ping from frontend
+2024-07-12 13:47:17 - ERROR - recieved ping from frontend
+2024-07-12 13:47:37 - ERROR - recieved ping from frontend
+2024-07-12 13:47:57 - ERROR - recieved ping from frontend
+2024-07-12 13:48:17 - ERROR - recieved ping from frontend
+2024-07-12 13:48:37 - ERROR - recieved ping from frontend
+2024-07-12 13:48:57 - ERROR - recieved ping from frontend
+2024-07-12 13:49:17 - ERROR - recieved ping from frontend
+2024-07-12 13:49:37 - ERROR - recieved ping from frontend
+2024-07-12 13:49:57 - ERROR - recieved ping from frontend
+2024-07-12 13:50:17 - ERROR - recieved ping from frontend
+2024-07-12 13:50:37 - ERROR - recieved ping from frontend
+2024-07-12 13:50:57 - ERROR - recieved ping from frontend
+2024-07-12 13:51:17 - ERROR - recieved ping from frontend
+2024-07-12 13:51:37 - ERROR - recieved ping from frontend
+2024-07-12 13:51:57 - ERROR - recieved ping from frontend
+2024-07-12 13:52:17 - ERROR - recieved ping from frontend
+2024-07-12 13:52:37 - ERROR - recieved ping from frontend
+2024-07-12 13:52:57 - ERROR - recieved ping from frontend
+2024-07-12 13:53:17 - ERROR - recieved ping from frontend
+2024-07-12 13:53:37 - ERROR - recieved ping from frontend
+2024-07-12 13:53:57 - ERROR - recieved ping from frontend
+2024-07-12 13:54:17 - ERROR - recieved ping from frontend
+2024-07-12 13:54:37 - ERROR - recieved ping from frontend
+2024-07-12 13:54:57 - ERROR - recieved ping from frontend
+2024-07-12 13:55:17 - ERROR - recieved ping from frontend
+2024-07-12 13:55:37 - ERROR - recieved ping from frontend
+2024-07-12 13:55:57 - ERROR - recieved ping from frontend
+2024-07-12 13:56:17 - ERROR - recieved ping from frontend
+2024-07-12 13:56:37 - ERROR - recieved ping from frontend
+2024-07-12 13:56:57 - ERROR - recieved ping from frontend
+2024-07-12 13:57:17 - ERROR - recieved ping from frontend
+2024-07-12 13:57:37 - ERROR - recieved ping from frontend
+2024-07-12 13:57:57 - ERROR - recieved ping from frontend
+2024-07-12 13:58:17 - ERROR - recieved ping from frontend
+2024-07-12 13:58:37 - ERROR - recieved ping from frontend
+2024-07-12 13:58:57 - ERROR - recieved ping from frontend
+2024-07-12 13:59:17 - ERROR - recieved ping from frontend
+2024-07-12 13:59:37 - ERROR - recieved ping from frontend
+2024-07-12 13:59:57 - ERROR - recieved ping from frontend
+2024-07-12 14:00:17 - ERROR - recieved ping from frontend
+2024-07-12 14:00:37 - ERROR - recieved ping from frontend
+2024-07-12 14:00:57 - ERROR - recieved ping from frontend
+2024-07-12 14:01:17 - ERROR - recieved ping from frontend
+2024-07-12 14:01:37 - ERROR - recieved ping from frontend
+2024-07-12 14:01:57 - ERROR - recieved ping from frontend
+2024-07-12 14:02:17 - ERROR - recieved ping from frontend
+2024-07-12 14:02:37 - ERROR - recieved ping from frontend
+2024-07-12 14:02:57 - ERROR - recieved ping from frontend
+2024-07-12 14:03:17 - ERROR - recieved ping from frontend
+2024-07-12 14:03:37 - ERROR - recieved ping from frontend
+2024-07-12 14:03:57 - ERROR - recieved ping from frontend
+2024-07-12 14:04:17 - ERROR - recieved ping from frontend
+2024-07-12 14:04:37 - ERROR - recieved ping from frontend
+2024-07-12 14:04:57 - ERROR - recieved ping from frontend
+2024-07-12 14:05:17 - ERROR - recieved ping from frontend
+2024-07-12 14:05:37 - ERROR - recieved ping from frontend
+2024-07-12 14:05:57 - ERROR - recieved ping from frontend
+2024-07-12 14:06:17 - ERROR - recieved ping from frontend
+2024-07-12 14:06:37 - ERROR - recieved ping from frontend
+2024-07-12 14:06:57 - ERROR - recieved ping from frontend
+2024-07-12 14:07:17 - ERROR - recieved ping from frontend
+2024-07-12 14:07:37 - ERROR - recieved ping from frontend
+2024-07-12 14:07:57 - ERROR - recieved ping from frontend
+2024-07-12 14:08:17 - ERROR - recieved ping from frontend
+2024-07-12 14:08:37 - ERROR - recieved ping from frontend
+2024-07-12 14:08:57 - ERROR - recieved ping from frontend
+2024-07-12 14:09:17 - ERROR - recieved ping from frontend
+2024-07-12 14:09:37 - ERROR - recieved ping from frontend
+2024-07-12 14:09:57 - ERROR - recieved ping from frontend
+2024-07-12 14:10:17 - ERROR - recieved ping from frontend
+2024-07-12 14:10:37 - ERROR - recieved ping from frontend
+2024-07-12 14:10:57 - ERROR - recieved ping from frontend
+2024-07-12 14:11:17 - ERROR - recieved ping from frontend
+2024-07-12 14:11:37 - ERROR - recieved ping from frontend
+2024-07-12 14:11:57 - ERROR - recieved ping from frontend
+2024-07-12 14:12:17 - ERROR - recieved ping from frontend
+2024-07-12 14:12:37 - ERROR - recieved ping from frontend
+2024-07-12 14:12:57 - ERROR - recieved ping from frontend
+2024-07-12 14:13:17 - ERROR - recieved ping from frontend
+2024-07-12 14:13:37 - ERROR - recieved ping from frontend
+2024-07-12 14:13:57 - ERROR - recieved ping from frontend
+2024-07-12 14:14:17 - ERROR - recieved ping from frontend
+2024-07-12 14:14:37 - ERROR - recieved ping from frontend
+2024-07-12 14:14:57 - ERROR - recieved ping from frontend
+2024-07-12 14:15:17 - ERROR - recieved ping from frontend
+2024-07-12 14:15:37 - ERROR - recieved ping from frontend
+2024-07-12 14:15:57 - ERROR - recieved ping from frontend
+2024-07-12 14:16:17 - ERROR - recieved ping from frontend
+2024-07-12 14:16:37 - ERROR - recieved ping from frontend
+2024-07-12 14:16:57 - ERROR - recieved ping from frontend
+2024-07-12 14:17:17 - ERROR - recieved ping from frontend
+2024-07-12 14:17:37 - ERROR - recieved ping from frontend
+2024-07-12 14:17:57 - ERROR - recieved ping from frontend
+2024-07-12 14:18:17 - ERROR - recieved ping from frontend
+2024-07-12 14:18:37 - ERROR - recieved ping from frontend
+2024-07-12 14:18:57 - ERROR - recieved ping from frontend
+2024-07-12 14:19:17 - ERROR - recieved ping from frontend
+2024-07-12 14:19:37 - ERROR - recieved ping from frontend
+2024-07-12 14:19:57 - ERROR - recieved ping from frontend
+2024-07-12 14:20:17 - ERROR - recieved ping from frontend
+2024-07-12 14:20:37 - ERROR - recieved ping from frontend
+2024-07-12 14:20:57 - ERROR - recieved ping from frontend
+2024-07-12 14:21:17 - ERROR - recieved ping from frontend
+2024-07-12 14:21:37 - ERROR - recieved ping from frontend
+2024-07-12 14:21:57 - ERROR - recieved ping from frontend
+2024-07-12 14:22:17 - ERROR - recieved ping from frontend
+2024-07-12 14:22:37 - ERROR - recieved ping from frontend
+2024-07-12 14:22:57 - ERROR - recieved ping from frontend
+2024-07-12 14:23:17 - ERROR - recieved ping from frontend
+2024-07-12 14:23:38 - ERROR - recieved ping from frontend
+2024-07-12 14:24:02 - ERROR - recieved ping from frontend
+2024-07-12 14:24:19 - ERROR - recieved ping from frontend
+2024-07-12 14:24:41 - ERROR - recieved ping from frontend
+2024-07-12 14:25:00 - ERROR - recieved ping from frontend
+2024-07-12 14:25:20 - ERROR - recieved ping from frontend
+2024-07-12 14:25:43 - ERROR - recieved ping from frontend
+2024-07-12 14:26:00 - ERROR - recieved ping from frontend
+2024-07-12 14:26:22 - ERROR - recieved ping from frontend
+2024-07-12 14:26:40 - ERROR - recieved ping from frontend
+2024-07-12 14:27:01 - ERROR - recieved ping from frontend
+2024-07-12 14:27:20 - ERROR - recieved ping from frontend
+2024-07-12 14:27:41 - ERROR - recieved ping from frontend
+2024-07-12 14:28:04 - ERROR - recieved ping from frontend
+2024-07-12 14:28:22 - ERROR - recieved ping from frontend
+2024-07-12 14:28:43 - ERROR - recieved ping from frontend
+2024-07-12 14:29:42 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-12 14:29:42 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-12 14:30:05 - ERROR - recieved ping from frontend
+2024-07-12 14:30:22 - ERROR - recieved ping from frontend
+2024-07-12 14:30:45 - ERROR - recieved ping from frontend
+2024-07-12 14:31:02 - ERROR - recieved ping from frontend
+2024-07-12 14:31:24 - ERROR - recieved ping from frontend
+2024-07-12 14:31:47 - ERROR - recieved ping from frontend
+2024-07-12 14:32:04 - ERROR - recieved ping from frontend
+2024-07-12 14:36:50 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-12 14:36:50 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-12 14:37:10 - ERROR - recieved ping from frontend
+2024-07-12 14:37:30 - ERROR - recieved ping from frontend
+2024-07-12 14:37:47 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-12 14:37:47 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-12 14:37:48 - ERROR - Error in controller super class constructor: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+2024-07-12 14:37:48 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 270, in get_controller
+    controller, device_manager = c.create_controller(loop_id)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 40, in create_controller
+    controller = FermentationController()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 468, in __init__
+    super().__init__()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 64, in __init__
+    raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
+AttributeError: Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+
+2024-07-12 14:37:48 - ERROR - Error in collection: 
+Input: start_collection, 
+argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 71, in collection
+    if "collection_task" not in controller_info: # if data collection is not already happening then start it
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-12 14:37:52 - ERROR - Error in controller super class constructor: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+2024-07-12 14:37:52 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 270, in get_controller
+    controller, device_manager = c.create_controller(loop_id)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 40, in create_controller
+    controller = FermentationController()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 468, in __init__
+    super().__init__()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 64, in __init__
+    raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
+AttributeError: Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+
+2024-07-12 14:37:52 - ERROR - Error in collection: 
+Input: stop_collection, 
+argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 75, in collection
+    if "collection_task" in controller_info:
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-12 14:38:03 - ERROR - Error in controller super class constructor: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+2024-07-12 14:38:03 - ERROR - Error in get_controller: 
+ Input: concentration_loop, 
+ Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 270, in get_controller
+    controller, device_manager = c.create_controller(loop_id)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 38, in create_controller
+    controller = ConcentrationController()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 395, in __init__
+    super().__init__()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 64, in __init__
+    raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
+AttributeError: Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+
+2024-07-12 14:38:03 - ERROR - Error in collection: 
+Input: start_collection, 
+argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 71, in collection
+    if "collection_task" not in controller_info: # if data collection is not already happening then start it
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-12 14:38:07 - ERROR - Error in controller super class constructor: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+2024-07-12 14:38:07 - ERROR - Error in get_controller: 
+ Input: concentration_loop, 
+ Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 270, in get_controller
+    controller, device_manager = c.create_controller(loop_id)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 38, in create_controller
+    controller = ConcentrationController()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 395, in __init__
+    super().__init__()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 64, in __init__
+    raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
+AttributeError: Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+
+2024-07-12 14:38:07 - ERROR - Error in collection: 
+Input: stop_collection, 
+argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 75, in collection
+    if "collection_task" in controller_info:
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-12 14:38:07 - ERROR - recieved ping from frontend
+2024-07-12 14:38:13 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-12 14:38:13 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-12 14:38:17 - ERROR - Error in controller super class constructor: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+2024-07-12 14:38:17 - ERROR - Error in get_controller: 
+ Input: concentration_loop, 
+ Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+OSError: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 60, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 16] could not open port /dev/ttyACM0: [Errno 16] Device or resource busy: '/dev/ttyACM0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 270, in get_controller
+    controller, device_manager = c.create_controller(loop_id)
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 38, in create_controller
+    controller = ConcentrationController()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 395, in __init__
+    super().__init__()
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/controllers.py", line 64, in __init__
+    raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
+AttributeError: Unable to connect to Arduino; serial monitor in Arduino IDE may be open
+
+2024-07-12 14:38:17 - ERROR - Error in collection: 
+Input: start_collection, 
+argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/manager_server.py", line 71, in collection
+    if "collection_task" not in controller_info: # if data collection is not already happening then start it
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-12 14:41:12 - ERROR - Error in handle_client
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/framing.py", line 68, in read
+    data = await reader(2)
+  File "/usr/lib/python3.10/asyncio/streams.py", line 706, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-12 14:41:12 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-12 14:41:33 - ERROR - recieved ping from frontend
+2024-07-12 14:41:54 - ERROR - recieved ping from frontend
+2024-07-12 14:42:13 - ERROR - recieved ping from frontend
+2024-07-12 14:42:33 - ERROR - recieved ping from frontend
+2024-07-12 14:42:54 - ERROR - recieved ping from frontend
+2024-07-12 14:43:16 - ERROR - recieved ping from frontend
+2024-07-12 14:43:34 - ERROR - recieved ping from frontend
+2024-07-12 14:43:57 - ERROR - recieved ping from frontend
+2024-07-12 14:44:15 - ERROR - recieved ping from frontend
+2024-07-12 14:44:36 - ERROR - recieved ping from frontend
+2024-07-12 14:44:59 - ERROR - recieved ping from frontend
+2024-07-12 14:45:15 - ERROR - recieved ping from frontend
+2024-07-12 14:45:38 - ERROR - recieved ping from frontend
+2024-07-12 14:45:55 - ERROR - recieved ping from frontend
+2024-07-12 14:46:17 - ERROR - recieved ping from frontend
+2024-07-12 14:46:35 - ERROR - recieved ping from frontend
+2024-07-12 14:46:57 - ERROR - recieved ping from frontend
+2024-07-12 14:47:15 - ERROR - recieved ping from frontend
+2024-07-12 14:47:36 - ERROR - recieved ping from frontend
+2024-07-12 14:48:00 - ERROR - recieved ping from frontend
+2024-07-12 14:48:17 - ERROR - recieved ping from frontend
+2024-07-12 14:48:39 - ERROR - recieved ping from frontend
+2024-07-12 14:49:02 - ERROR - recieved ping from frontend
+2024-07-12 14:49:19 - ERROR - recieved ping from frontend
+2024-07-12 14:49:40 - ERROR - recieved ping from frontend
+2024-07-12 14:50:03 - ERROR - recieved ping from frontend
+2024-07-12 14:50:21 - ERROR - recieved ping from frontend
+2024-07-12 14:50:42 - ERROR - recieved ping from frontend
+2024-07-12 14:51:06 - ERROR - recieved ping from frontend
+2024-07-12 14:51:23 - ERROR - recieved ping from frontend
+2024-07-12 14:51:45 - ERROR - recieved ping from frontend
+2024-07-12 14:52:08 - ERROR - recieved ping from frontend
+2024-07-12 14:52:26 - ERROR - recieved ping from frontend
+2024-07-12 14:52:46 - ERROR - recieved ping from frontend
+2024-07-12 14:53:09 - ERROR - recieved ping from frontend
+2024-07-12 14:53:26 - ERROR - recieved ping from frontend
+2024-07-12 14:53:48 - ERROR - recieved ping from frontend
+2024-07-12 14:54:11 - ERROR - recieved ping from frontend
+2024-07-12 14:54:29 - ERROR - recieved ping from frontend
+2024-07-12 14:54:51 - ERROR - recieved ping from frontend
+2024-07-12 14:55:14 - ERROR - recieved ping from frontend
+2024-07-12 14:55:30 - ERROR - recieved ping from frontend
+2024-07-12 14:55:53 - ERROR - recieved ping from frontend
+2024-07-12 14:56:11 - ERROR - recieved ping from frontend
+2024-07-12 14:56:32 - ERROR - recieved ping from frontend
+2024-07-12 14:56:55 - ERROR - recieved ping from frontend
+2024-07-12 14:57:13 - ERROR - recieved ping from frontend
+2024-07-12 14:57:34 - ERROR - recieved ping from frontend
+2024-07-12 14:57:57 - ERROR - recieved ping from frontend
+2024-07-12 14:58:15 - ERROR - recieved ping from frontend
+2024-07-12 14:58:36 - ERROR - recieved ping from frontend
+2024-07-12 14:59:00 - ERROR - recieved ping from frontend
+2024-07-12 14:59:17 - ERROR - recieved ping from frontend
+2024-07-12 14:59:39 - ERROR - recieved ping from frontend
+2024-07-12 14:59:57 - ERROR - recieved ping from frontend
+2024-07-12 15:00:17 - ERROR - recieved ping from frontend
+2024-07-12 15:00:40 - ERROR - recieved ping from frontend
+2024-07-12 15:01:00 - ERROR - recieved ping from frontend
+2024-07-12 15:01:20 - ERROR - recieved ping from frontend
+2024-07-12 15:01:37 - ERROR - recieved ping from frontend
+2024-07-12 15:01:57 - ERROR - recieved ping from frontend
+2024-07-12 15:02:17 - ERROR - recieved ping from frontend
+2024-07-12 15:02:37 - ERROR - recieved ping from frontend
+2024-07-12 15:03:00 - ERROR - recieved ping from frontend
+2024-07-12 15:03:18 - ERROR - recieved ping from frontend
+2024-07-12 15:03:38 - ERROR - recieved ping from frontend
+2024-07-12 15:03:58 - ERROR - recieved ping from frontend
+2024-07-12 15:04:18 - ERROR - recieved ping from frontend
+2024-07-12 15:04:38 - ERROR - recieved ping from frontend
+2024-07-12 15:04:58 - ERROR - recieved ping from frontend
+2024-07-12 15:05:18 - ERROR - recieved ping from frontend
+2024-07-12 15:05:38 - ERROR - recieved ping from frontend
+2024-07-12 15:05:58 - ERROR - recieved ping from frontend
+2024-07-12 15:06:18 - ERROR - recieved ping from frontend
+2024-07-12 15:06:39 - ERROR - recieved ping from frontend
+2024-07-12 15:06:59 - ERROR - recieved ping from frontend
+2024-07-12 15:07:19 - ERROR - recieved ping from frontend
+2024-07-12 15:07:39 - ERROR - recieved ping from frontend
+2024-07-12 15:07:59 - ERROR - recieved ping from frontend
+2024-07-12 15:08:19 - ERROR - recieved ping from frontend
+2024-07-12 15:08:41 - ERROR - recieved ping from frontend
+2024-07-12 15:08:59 - ERROR - recieved ping from frontend
+2024-07-12 15:09:20 - ERROR - recieved ping from frontend
+2024-07-12 15:09:43 - ERROR - recieved ping from frontend
+2024-07-12 15:10:01 - ERROR - recieved ping from frontend
+2024-07-12 15:10:22 - ERROR - recieved ping from frontend
+2024-07-12 15:10:46 - ERROR - recieved ping from frontend
+2024-07-12 15:11:02 - ERROR - recieved ping from frontend
+2024-07-12 15:11:24 - ERROR - recieved ping from frontend
+2024-07-12 15:11:42 - ERROR - recieved ping from frontend
+2024-07-12 15:12:03 - ERROR - recieved ping from frontend
+2024-07-12 15:12:26 - ERROR - recieved ping from frontend
+2024-07-12 15:12:43 - ERROR - recieved ping from frontend
+2024-07-12 15:13:03 - ERROR - recieved ping from frontend
+2024-07-12 15:13:24 - ERROR - recieved ping from frontend
+2024-07-12 15:13:46 - ERROR - recieved ping from frontend
+2024-07-12 15:14:04 - ERROR - recieved ping from frontend
+2024-07-12 15:14:25 - ERROR - recieved ping from frontend
+2024-07-12 15:14:48 - ERROR - recieved ping from frontend
+2024-07-12 15:15:05 - ERROR - recieved ping from frontend
+2024-07-12 15:15:27 - ERROR - recieved ping from frontend
+2024-07-12 15:15:45 - ERROR - recieved ping from frontend
+2024-07-12 15:16:05 - ERROR - recieved ping from frontend
+2024-07-12 15:16:29 - ERROR - recieved ping from frontend
+2024-07-12 15:16:46 - ERROR - recieved ping from frontend
+2024-07-12 15:17:07 - ERROR - recieved ping from frontend
+2024-07-12 15:17:29 - ERROR - recieved ping from frontend
+2024-07-12 15:17:48 - ERROR - recieved ping from frontend
+2024-07-12 15:18:08 - ERROR - recieved ping from frontend
+2024-07-12 15:18:28 - ERROR - recieved ping from frontend
+2024-07-12 15:18:52 - ERROR - recieved ping from frontend
+2024-07-12 15:19:08 - ERROR - recieved ping from frontend
+2024-07-12 15:19:31 - ERROR - recieved ping from frontend
+2024-07-12 15:19:49 - ERROR - recieved ping from frontend
+2024-07-12 15:20:10 - ERROR - recieved ping from frontend
+2024-07-12 15:20:33 - ERROR - recieved ping from frontend
+2024-07-12 15:20:50 - ERROR - recieved ping from frontend
+2024-07-12 15:21:11 - ERROR - recieved ping from frontend
+2024-07-12 15:21:34 - ERROR - recieved ping from frontend
+2024-07-12 15:21:52 - ERROR - recieved ping from frontend
+2024-07-12 15:22:13 - ERROR - recieved ping from frontend
+2024-07-12 15:22:36 - ERROR - recieved ping from frontend
+2024-07-12 15:22:54 - ERROR - recieved ping from frontend
+2024-07-12 15:23:15 - ERROR - recieved ping from frontend
+2024-07-12 15:23:38 - ERROR - recieved ping from frontend
+2024-07-12 15:23:56 - ERROR - recieved ping from frontend
+2024-07-12 15:24:17 - ERROR - recieved ping from frontend
+2024-07-12 15:24:40 - ERROR - recieved ping from frontend
+2024-07-12 15:24:57 - ERROR - recieved ping from frontend
+2024-07-12 15:25:18 - ERROR - recieved ping from frontend
+2024-07-12 15:25:41 - ERROR - recieved ping from frontend
+2024-07-12 15:25:58 - ERROR - recieved ping from frontend
+2024-07-12 15:26:19 - ERROR - recieved ping from frontend
+2024-07-12 15:26:42 - ERROR - recieved ping from frontend
+2024-07-12 15:26:59 - ERROR - recieved ping from frontend
+2024-07-12 15:27:19 - ERROR - recieved ping from frontend
+2024-07-12 15:27:42 - ERROR - recieved ping from frontend
+2024-07-12 15:27:59 - ERROR - recieved ping from frontend
+2024-07-12 15:28:21 - ERROR - recieved ping from frontend
+2024-07-12 15:28:44 - ERROR - recieved ping from frontend
+2024-07-12 15:29:01 - ERROR - recieved ping from frontend
+2024-07-12 15:29:22 - ERROR - recieved ping from frontend
+2024-07-12 15:29:44 - ERROR - recieved ping from frontend
+2024-07-12 15:30:02 - ERROR - recieved ping from frontend
+2024-07-12 15:30:23 - ERROR - recieved ping from frontend
+2024-07-12 15:30:46 - ERROR - recieved ping from frontend
+2024-07-12 15:31:05 - ERROR - recieved ping from frontend
+2024-07-12 15:31:25 - ERROR - recieved ping from frontend
+2024-07-12 15:31:47 - ERROR - recieved ping from frontend
+2024-07-12 15:32:05 - ERROR - recieved ping from frontend
+2024-07-12 15:32:26 - ERROR - recieved ping from frontend
+2024-07-12 15:32:48 - ERROR - recieved ping from frontend
+2024-07-12 15:33:06 - ERROR - recieved ping from frontend
+2024-07-12 15:33:27 - ERROR - recieved ping from frontend
+2024-07-12 15:33:46 - ERROR - recieved ping from frontend
+2024-07-12 15:34:07 - ERROR - recieved ping from frontend
+2024-07-12 15:34:26 - ERROR - recieved ping from frontend
+2024-07-12 15:34:47 - ERROR - recieved ping from frontend
+2024-07-12 15:35:07 - ERROR - recieved ping from frontend
+2024-07-12 15:35:27 - ERROR - recieved ping from frontend
+2024-07-12 15:35:47 - ERROR - recieved ping from frontend
+2024-07-12 15:36:09 - ERROR - recieved ping from frontend
+2024-07-12 15:36:28 - ERROR - recieved ping from frontend
+2024-07-12 15:36:49 - ERROR - recieved ping from frontend
+2024-07-12 15:37:08 - ERROR - recieved ping from frontend
+2024-07-12 15:37:28 - ERROR - recieved ping from frontend
+2024-07-12 15:37:48 - ERROR - recieved ping from frontend
+2024-07-12 15:38:08 - ERROR - recieved ping from frontend
+2024-07-12 15:38:29 - ERROR - recieved ping from frontend
+2024-07-12 15:38:49 - ERROR - recieved ping from frontend
+2024-07-12 15:39:09 - ERROR - recieved ping from frontend
+2024-07-12 15:39:29 - ERROR - recieved ping from frontend
+2024-07-12 15:40:17 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 107, in save_dict_to_sheet
+    existing_permissions = client.list_permissions(spreadsheet.id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 403, in list_permissions
+    return self.http_client.list_permissions(file_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 454, in list_permissions
+    r = self.request("get", url, params=params).json()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-12 15:40:17 - ERROR - recieved ping from frontend
+2024-07-12 15:40:17 - ERROR - recieved ping from frontend
+2024-07-12 15:40:29 - ERROR - recieved ping from frontend
+2024-07-12 15:40:49 - ERROR - recieved ping from frontend
+2024-07-12 15:41:09 - ERROR - recieved ping from frontend
+2024-07-12 15:41:29 - ERROR - recieved ping from frontend
+2024-07-12 15:41:50 - ERROR - recieved ping from frontend
+2024-07-12 15:42:10 - ERROR - recieved ping from frontend
+2024-07-12 15:42:30 - ERROR - recieved ping from frontend
+2024-07-12 15:42:50 - ERROR - recieved ping from frontend
+2024-07-12 15:43:10 - ERROR - recieved ping from frontend
+2024-07-12 15:43:30 - ERROR - recieved ping from frontend
+2024-07-12 15:43:50 - ERROR - recieved ping from frontend
+2024-07-12 15:44:10 - ERROR - recieved ping from frontend
+2024-07-12 15:44:30 - ERROR - recieved ping from frontend
+2024-07-12 15:44:50 - ERROR - recieved ping from frontend
+2024-07-12 15:45:10 - ERROR - recieved ping from frontend
+2024-07-12 15:45:32 - ERROR - recieved ping from frontend
+2024-07-12 15:45:51 - ERROR - recieved ping from frontend
+2024-07-12 15:46:11 - ERROR - recieved ping from frontend
+2024-07-12 15:46:31 - ERROR - recieved ping from frontend
+2024-07-12 15:46:52 - ERROR - recieved ping from frontend
+2024-07-12 15:47:12 - ERROR - recieved ping from frontend
+2024-07-12 15:47:34 - ERROR - recieved ping from frontend
+2024-07-12 15:47:52 - ERROR - recieved ping from frontend
+2024-07-12 15:48:13 - ERROR - recieved ping from frontend
+2024-07-12 15:48:32 - ERROR - recieved ping from frontend
+2024-07-12 15:48:53 - ERROR - recieved ping from frontend
+2024-07-12 15:49:13 - ERROR - recieved ping from frontend
+2024-07-12 15:49:33 - ERROR - recieved ping from frontend
+2024-07-12 15:49:53 - ERROR - recieved ping from frontend
+2024-07-12 15:50:13 - ERROR - recieved ping from frontend
+2024-07-12 15:50:33 - ERROR - recieved ping from frontend
+2024-07-12 15:50:53 - ERROR - recieved ping from frontend
+2024-07-12 15:51:13 - ERROR - recieved ping from frontend
+2024-07-12 15:51:33 - ERROR - recieved ping from frontend
+2024-07-12 15:51:53 - ERROR - recieved ping from frontend
+2024-07-12 15:52:15 - ERROR - recieved ping from frontend
+2024-07-12 15:52:34 - ERROR - recieved ping from frontend
+2024-07-12 15:52:54 - ERROR - recieved ping from frontend
+2024-07-12 15:53:14 - ERROR - recieved ping from frontend
+2024-07-12 15:53:34 - ERROR - recieved ping from frontend
+2024-07-12 15:53:54 - ERROR - recieved ping from frontend
+2024-07-12 15:54:14 - ERROR - recieved ping from frontend
+2024-07-12 15:54:37 - ERROR - recieved ping from frontend
+2024-07-12 15:54:56 - ERROR - recieved ping from frontend
+2024-07-12 15:55:16 - ERROR - recieved ping from frontend
+2024-07-12 15:55:37 - ERROR - recieved ping from frontend
+2024-07-12 15:55:57 - ERROR - recieved ping from frontend
+2024-07-12 15:56:17 - ERROR - recieved ping from frontend
+2024-07-12 15:56:37 - ERROR - recieved ping from frontend
+2024-07-12 15:56:59 - ERROR - recieved ping from frontend
+2024-07-12 15:57:18 - ERROR - recieved ping from frontend
+2024-07-12 15:57:38 - ERROR - recieved ping from frontend
+2024-07-12 15:57:58 - ERROR - recieved ping from frontend
+2024-07-12 15:58:19 - ERROR - recieved ping from frontend
+2024-07-12 15:58:38 - ERROR - recieved ping from frontend
+2024-07-12 15:58:59 - ERROR - recieved ping from frontend
+2024-07-12 15:59:18 - ERROR - recieved ping from frontend
+2024-07-12 15:59:39 - ERROR - recieved ping from frontend
+2024-07-12 15:59:58 - ERROR - recieved ping from frontend
+2024-07-12 16:00:20 - ERROR - recieved ping from frontend
+2024-07-12 16:00:38 - ERROR - recieved ping from frontend
+2024-07-12 16:01:01 - ERROR - recieved ping from frontend
+2024-07-12 16:01:19 - ERROR - recieved ping from frontend
+2024-07-12 16:01:39 - ERROR - recieved ping from frontend
+2024-07-12 16:01:59 - ERROR - recieved ping from frontend
+2024-07-12 16:02:20 - ERROR - recieved ping from frontend
+2024-07-12 16:02:40 - ERROR - recieved ping from frontend
+2024-07-12 16:03:00 - ERROR - recieved ping from frontend
+2024-07-12 16:03:20 - ERROR - recieved ping from frontend
+2024-07-12 16:03:42 - ERROR - recieved ping from frontend
+2024-07-12 16:04:02 - ERROR - recieved ping from frontend
+2024-07-12 16:04:22 - ERROR - recieved ping from frontend
+2024-07-12 16:04:42 - ERROR - recieved ping from frontend
+2024-07-12 16:05:06 - ERROR - recieved ping from frontend
+2024-07-12 16:05:24 - ERROR - recieved ping from frontend
+2024-07-12 16:05:42 - ERROR - recieved ping from frontend
+2024-07-12 16:06:02 - ERROR - recieved ping from frontend
+2024-07-12 16:06:22 - ERROR - recieved ping from frontend
+2024-07-12 16:06:44 - ERROR - recieved ping from frontend
+2024-07-12 16:07:02 - ERROR - recieved ping from frontend
+2024-07-12 16:07:24 - ERROR - recieved ping from frontend
+2024-07-12 16:07:43 - ERROR - recieved ping from frontend
+2024-07-12 16:08:04 - ERROR - recieved ping from frontend
+2024-07-12 16:08:23 - ERROR - recieved ping from frontend
+2024-07-12 16:08:44 - ERROR - recieved ping from frontend
+2024-07-12 16:09:04 - ERROR - recieved ping from frontend
+2024-07-12 16:09:24 - ERROR - recieved ping from frontend
+2024-07-12 16:09:44 - ERROR - recieved ping from frontend
+2024-07-12 16:10:04 - ERROR - recieved ping from frontend
+2024-07-12 16:10:26 - ERROR - recieved ping from frontend
+2024-07-12 16:10:45 - ERROR - recieved ping from frontend
+2024-07-12 16:11:06 - ERROR - recieved ping from frontend
+2024-07-12 16:11:25 - ERROR - recieved ping from frontend
+2024-07-12 16:11:46 - ERROR - recieved ping from frontend
+2024-07-12 16:12:05 - ERROR - recieved ping from frontend
+2024-07-12 16:12:26 - ERROR - recieved ping from frontend
+2024-07-12 16:12:46 - ERROR - recieved ping from frontend
+2024-07-12 16:13:07 - ERROR - recieved ping from frontend
+2024-07-12 16:13:26 - ERROR - recieved ping from frontend
+2024-07-12 16:13:46 - ERROR - recieved ping from frontend
+2024-07-12 16:14:06 - ERROR - recieved ping from frontend
+2024-07-12 16:14:26 - ERROR - recieved ping from frontend
+2024-07-12 16:14:46 - ERROR - recieved ping from frontend
+2024-07-12 16:15:06 - ERROR - recieved ping from frontend
+2024-07-12 16:15:28 - ERROR - recieved ping from frontend
+2024-07-12 16:15:47 - ERROR - recieved ping from frontend
+2024-07-12 16:16:08 - ERROR - recieved ping from frontend
+2024-07-12 16:16:27 - ERROR - recieved ping from frontend
+2024-07-12 16:16:47 - ERROR - recieved ping from frontend
+2024-07-12 16:17:07 - ERROR - recieved ping from frontend
+2024-07-12 16:17:27 - ERROR - recieved ping from frontend
+2024-07-12 16:17:47 - ERROR - recieved ping from frontend
+2024-07-12 16:18:07 - ERROR - recieved ping from frontend
+2024-07-12 16:18:29 - ERROR - recieved ping from frontend
+2024-07-12 16:18:49 - ERROR - recieved ping from frontend
+2024-07-12 16:19:09 - ERROR - recieved ping from frontend
+2024-07-12 16:19:29 - ERROR - recieved ping from frontend
+2024-07-12 16:19:49 - ERROR - recieved ping from frontend
+2024-07-12 16:20:09 - ERROR - recieved ping from frontend
+2024-07-12 16:20:29 - ERROR - recieved ping from frontend
+2024-07-12 16:20:49 - ERROR - recieved ping from frontend
+2024-07-12 16:21:10 - ERROR - recieved ping from frontend
+2024-07-12 16:21:30 - ERROR - recieved ping from frontend
+2024-07-12 16:21:50 - ERROR - recieved ping from frontend
+2024-07-12 16:22:10 - ERROR - recieved ping from frontend
+2024-07-12 16:22:30 - ERROR - recieved ping from frontend
+2024-07-12 16:22:50 - ERROR - recieved ping from frontend
+2024-07-12 16:23:10 - ERROR - recieved ping from frontend
+2024-07-12 16:23:30 - ERROR - recieved ping from frontend
+2024-07-12 16:23:50 - ERROR - recieved ping from frontend
+2024-07-12 16:24:10 - ERROR - recieved ping from frontend
+2024-07-12 16:24:31 - ERROR - recieved ping from frontend
+2024-07-12 16:24:51 - ERROR - recieved ping from frontend
+2024-07-12 16:25:11 - ERROR - recieved ping from frontend
+2024-07-12 16:25:31 - ERROR - recieved ping from frontend
+2024-07-12 16:25:51 - ERROR - recieved ping from frontend
+2024-07-12 16:26:11 - ERROR - recieved ping from frontend
+2024-07-12 16:26:31 - ERROR - recieved ping from frontend
+2024-07-12 16:26:51 - ERROR - recieved ping from frontend
+2024-07-12 16:27:11 - ERROR - recieved ping from frontend
+2024-07-12 16:27:31 - ERROR - recieved ping from frontend
+2024-07-12 16:27:51 - ERROR - recieved ping from frontend
+2024-07-12 16:28:11 - ERROR - recieved ping from frontend
+2024-07-12 16:28:31 - ERROR - recieved ping from frontend
+2024-07-12 16:28:53 - ERROR - recieved ping from frontend
+2024-07-12 16:29:13 - ERROR - recieved ping from frontend
+2024-07-12 16:29:33 - ERROR - recieved ping from frontend
+2024-07-12 16:29:53 - ERROR - recieved ping from frontend
+2024-07-12 16:30:13 - ERROR - recieved ping from frontend
+2024-07-12 16:30:33 - ERROR - recieved ping from frontend
+2024-07-12 16:30:53 - ERROR - recieved ping from frontend
+2024-07-12 16:31:13 - ERROR - recieved ping from frontend
+2024-07-12 16:31:33 - ERROR - recieved ping from frontend
+2024-07-12 16:31:55 - ERROR - recieved ping from frontend
+2024-07-12 16:32:14 - ERROR - recieved ping from frontend
+2024-07-12 16:32:35 - ERROR - recieved ping from frontend
+2024-07-12 16:32:54 - ERROR - recieved ping from frontend
+2024-07-12 16:33:14 - ERROR - recieved ping from frontend
+2024-07-12 16:33:36 - ERROR - recieved ping from frontend
+2024-07-12 16:33:55 - ERROR - recieved ping from frontend
+2024-07-12 16:34:16 - ERROR - recieved ping from frontend
+2024-07-12 16:34:38 - ERROR - recieved ping from frontend
+2024-07-12 16:34:56 - ERROR - recieved ping from frontend
+2024-07-12 16:35:18 - ERROR - recieved ping from frontend
+2024-07-12 16:35:37 - ERROR - recieved ping from frontend
+2024-07-12 16:35:57 - ERROR - recieved ping from frontend
+2024-07-12 16:36:17 - ERROR - recieved ping from frontend
+2024-07-12 16:36:37 - ERROR - recieved ping from frontend
+2024-07-12 16:36:57 - ERROR - recieved ping from frontend
+2024-07-12 16:37:17 - ERROR - recieved ping from frontend
+2024-07-12 16:37:37 - ERROR - recieved ping from frontend
+2024-07-12 16:37:57 - ERROR - recieved ping from frontend
+2024-07-12 16:38:17 - ERROR - recieved ping from frontend
+2024-07-12 16:38:37 - ERROR - recieved ping from frontend
+2024-07-12 16:38:57 - ERROR - recieved ping from frontend
+2024-07-12 16:39:17 - ERROR - recieved ping from frontend
+2024-07-12 16:39:37 - ERROR - recieved ping from frontend
+2024-07-12 16:39:57 - ERROR - recieved ping from frontend
+2024-07-12 16:40:17 - ERROR - recieved ping from frontend
+2024-07-12 16:40:38 - ERROR - recieved ping from frontend
+2024-07-12 16:40:58 - ERROR - recieved ping from frontend
+2024-07-12 16:41:18 - ERROR - recieved ping from frontend
+2024-07-12 16:41:38 - ERROR - recieved ping from frontend
+2024-07-12 16:41:58 - ERROR - recieved ping from frontend
+2024-07-12 16:42:18 - ERROR - recieved ping from frontend
+2024-07-12 16:42:38 - ERROR - recieved ping from frontend
+2024-07-12 16:42:58 - ERROR - recieved ping from frontend
+2024-07-12 16:43:18 - ERROR - recieved ping from frontend
+2024-07-12 16:43:38 - ERROR - recieved ping from frontend
+2024-07-12 16:43:59 - ERROR - recieved ping from frontend
+2024-07-12 16:44:19 - ERROR - recieved ping from frontend
+2024-07-12 16:44:39 - ERROR - recieved ping from frontend
+2024-07-12 16:45:00 - ERROR - recieved ping from frontend
+2024-07-12 16:45:20 - ERROR - recieved ping from frontend
+2024-07-12 16:45:40 - ERROR - recieved ping from frontend
+2024-07-12 16:46:00 - ERROR - recieved ping from frontend
+2024-07-12 16:46:20 - ERROR - recieved ping from frontend
+2024-07-12 16:46:40 - ERROR - recieved ping from frontend
+2024-07-12 16:47:01 - ERROR - recieved ping from frontend
+2024-07-12 16:47:20 - ERROR - recieved ping from frontend
+2024-07-12 16:47:41 - ERROR - recieved ping from frontend
+2024-07-12 16:48:01 - ERROR - recieved ping from frontend
+2024-07-12 16:48:22 - ERROR - recieved ping from frontend
+2024-07-12 16:48:41 - ERROR - recieved ping from frontend
+2024-07-12 16:49:01 - ERROR - recieved ping from frontend
+2024-07-12 16:49:21 - ERROR - recieved ping from frontend
+2024-07-12 16:49:43 - ERROR - recieved ping from frontend
+2024-07-12 16:50:02 - ERROR - recieved ping from frontend
+2024-07-12 16:50:23 - ERROR - recieved ping from frontend
+2024-07-12 16:50:42 - ERROR - recieved ping from frontend
+2024-07-12 16:51:04 - ERROR - recieved ping from frontend
+2024-07-12 16:51:22 - ERROR - recieved ping from frontend
+2024-07-12 16:51:44 - ERROR - recieved ping from frontend
+2024-07-12 16:52:04 - ERROR - recieved ping from frontend
+2024-07-12 16:52:25 - ERROR - recieved ping from frontend
+2024-07-12 16:52:44 - ERROR - recieved ping from frontend
+2024-07-12 16:53:05 - ERROR - recieved ping from frontend
+2024-07-12 16:53:24 - ERROR - recieved ping from frontend
+2024-07-12 16:53:45 - ERROR - recieved ping from frontend
+2024-07-12 16:54:05 - ERROR - recieved ping from frontend
+2024-07-12 16:54:26 - ERROR - recieved ping from frontend
+2024-07-12 16:54:46 - ERROR - recieved ping from frontend
+2024-07-12 16:55:06 - ERROR - recieved ping from frontend
+2024-07-12 16:55:26 - ERROR - recieved ping from frontend
+2024-07-12 16:55:47 - ERROR - recieved ping from frontend
+2024-07-12 16:56:07 - ERROR - recieved ping from frontend
+2024-07-12 16:56:28 - ERROR - recieved ping from frontend
+2024-07-12 16:56:47 - ERROR - recieved ping from frontend
+2024-07-12 16:57:07 - ERROR - recieved ping from frontend
+2024-07-12 16:57:27 - ERROR - recieved ping from frontend
+2024-07-12 16:57:47 - ERROR - recieved ping from frontend
+2024-07-12 16:58:07 - ERROR - recieved ping from frontend
+2024-07-12 16:58:27 - ERROR - recieved ping from frontend
+2024-07-12 16:58:47 - ERROR - recieved ping from frontend
+2024-07-12 16:59:07 - ERROR - recieved ping from frontend
+2024-07-12 16:59:28 - ERROR - recieved ping from frontend
+2024-07-12 16:59:48 - ERROR - recieved ping from frontend
+2024-07-12 17:00:08 - ERROR - recieved ping from frontend
+2024-07-12 17:00:28 - ERROR - recieved ping from frontend
+2024-07-12 17:00:50 - ERROR - recieved ping from frontend
+2024-07-12 17:01:08 - ERROR - recieved ping from frontend
+2024-07-12 17:01:28 - ERROR - recieved ping from frontend
+2024-07-12 17:01:48 - ERROR - recieved ping from frontend
+2024-07-12 17:02:11 - ERROR - recieved ping from frontend
+2024-07-12 17:02:30 - ERROR - recieved ping from frontend
+2024-07-12 17:02:51 - ERROR - recieved ping from frontend
+2024-07-12 17:03:10 - ERROR - recieved ping from frontend
+2024-07-12 17:03:31 - ERROR - recieved ping from frontend
+2024-07-12 17:03:50 - ERROR - recieved ping from frontend
+2024-07-12 17:04:11 - ERROR - recieved ping from frontend
+2024-07-12 17:04:30 - ERROR - recieved ping from frontend
+2024-07-12 17:04:52 - ERROR - recieved ping from frontend
+2024-07-12 17:05:11 - ERROR - recieved ping from frontend
+2024-07-12 17:05:31 - ERROR - recieved ping from frontend
+2024-07-12 17:05:51 - ERROR - recieved ping from frontend
+2024-07-12 17:06:11 - ERROR - recieved ping from frontend
+2024-07-12 17:06:31 - ERROR - recieved ping from frontend
+2024-07-12 17:06:51 - ERROR - recieved ping from frontend
+2024-07-12 17:07:11 - ERROR - recieved ping from frontend
+2024-07-12 17:07:31 - ERROR - recieved ping from frontend
+2024-07-12 17:07:51 - ERROR - recieved ping from frontend
+2024-07-12 17:08:11 - ERROR - recieved ping from frontend
+2024-07-12 17:08:31 - ERROR - recieved ping from frontend
+2024-07-12 17:08:51 - ERROR - recieved ping from frontend
+2024-07-12 17:09:11 - ERROR - recieved ping from frontend
+2024-07-12 17:09:31 - ERROR - recieved ping from frontend
+2024-07-12 17:09:51 - ERROR - recieved ping from frontend
+2024-07-12 17:10:11 - ERROR - recieved ping from frontend
+2024-07-12 17:10:31 - ERROR - recieved ping from frontend
+2024-07-12 17:10:51 - ERROR - recieved ping from frontend
+2024-07-12 17:11:12 - ERROR - recieved ping from frontend
+2024-07-12 17:11:31 - ERROR - recieved ping from frontend
+2024-07-12 17:11:51 - ERROR - recieved ping from frontend
+2024-07-12 17:12:13 - ERROR - recieved ping from frontend
+2024-07-12 17:12:32 - ERROR - recieved ping from frontend
+2024-07-12 17:12:53 - ERROR - recieved ping from frontend
+2024-07-12 17:13:12 - ERROR - recieved ping from frontend
+2024-07-12 17:13:32 - ERROR - recieved ping from frontend
+2024-07-12 17:13:52 - ERROR - recieved ping from frontend
+2024-07-12 17:14:12 - ERROR - recieved ping from frontend
+2024-07-12 17:14:34 - ERROR - recieved ping from frontend
+2024-07-12 17:14:53 - ERROR - recieved ping from frontend
+2024-07-12 17:15:13 - ERROR - recieved ping from frontend
+2024-07-12 17:15:33 - ERROR - recieved ping from frontend
+2024-07-12 17:15:54 - ERROR - recieved ping from frontend
+2024-07-12 17:16:14 - ERROR - recieved ping from frontend
+2024-07-12 17:16:36 - ERROR - recieved ping from frontend
+2024-07-12 17:16:54 - ERROR - recieved ping from frontend
+2024-07-12 17:17:14 - ERROR - recieved ping from frontend
+2024-07-12 17:17:35 - ERROR - recieved ping from frontend
+2024-07-12 17:17:55 - ERROR - recieved ping from frontend
+2024-07-12 17:18:15 - ERROR - recieved ping from frontend
+2024-07-12 17:18:37 - ERROR - recieved ping from frontend
+2024-07-12 17:18:55 - ERROR - recieved ping from frontend
+2024-07-12 17:19:15 - ERROR - recieved ping from frontend
+2024-07-12 17:19:35 - ERROR - recieved ping from frontend
+2024-07-12 17:19:55 - ERROR - recieved ping from frontend
+2024-07-12 17:20:15 - ERROR - recieved ping from frontend
+2024-07-12 17:20:36 - ERROR - recieved ping from frontend
+2024-07-12 17:20:55 - ERROR - recieved ping from frontend
+2024-07-12 17:21:17 - ERROR - recieved ping from frontend
+2024-07-12 17:21:36 - ERROR - recieved ping from frontend
+2024-07-12 17:21:57 - ERROR - recieved ping from frontend
+2024-07-12 17:22:17 - ERROR - recieved ping from frontend
+2024-07-12 17:22:38 - ERROR - recieved ping from frontend
+2024-07-12 17:22:57 - ERROR - recieved ping from frontend
+2024-07-12 17:23:19 - ERROR - recieved ping from frontend
+2024-07-12 17:23:37 - ERROR - recieved ping from frontend
+2024-07-12 17:23:57 - ERROR - recieved ping from frontend
+2024-07-12 17:24:18 - ERROR - recieved ping from frontend
+2024-07-12 17:24:38 - ERROR - recieved ping from frontend
+2024-07-12 17:24:58 - ERROR - recieved ping from frontend
+2024-07-12 17:25:18 - ERROR - recieved ping from frontend
+2024-07-12 17:25:38 - ERROR - recieved ping from frontend
+2024-07-12 17:25:58 - ERROR - recieved ping from frontend
+2024-07-12 17:26:18 - ERROR - recieved ping from frontend
+2024-07-12 17:26:39 - ERROR - recieved ping from frontend
+2024-07-12 17:26:59 - ERROR - recieved ping from frontend
+2024-07-12 17:27:19 - ERROR - recieved ping from frontend
+2024-07-12 17:27:40 - ERROR - recieved ping from frontend
+2024-07-12 17:27:59 - ERROR - recieved ping from frontend
+2024-07-12 17:28:21 - ERROR - recieved ping from frontend
+2024-07-12 17:28:40 - ERROR - recieved ping from frontend
+2024-07-12 17:29:01 - ERROR - recieved ping from frontend
+2024-07-12 17:29:21 - ERROR - recieved ping from frontend
+2024-07-12 17:29:42 - ERROR - recieved ping from frontend
+2024-07-12 17:30:01 - ERROR - recieved ping from frontend
+2024-07-12 17:30:21 - ERROR - recieved ping from frontend
+2024-07-12 17:30:41 - ERROR - recieved ping from frontend
+2024-07-12 17:31:01 - ERROR - recieved ping from frontend
+2024-07-12 17:31:21 - ERROR - recieved ping from frontend
+2024-07-12 17:31:42 - ERROR - recieved ping from frontend
+2024-07-12 17:32:02 - ERROR - recieved ping from frontend
+2024-07-12 17:32:22 - ERROR - recieved ping from frontend
+2024-07-12 17:32:42 - ERROR - recieved ping from frontend
+2024-07-12 17:33:02 - ERROR - recieved ping from frontend
+2024-07-12 17:33:22 - ERROR - recieved ping from frontend
+2024-07-12 17:33:42 - ERROR - recieved ping from frontend
+2024-07-12 17:34:03 - ERROR - recieved ping from frontend
+2024-07-12 17:34:23 - ERROR - recieved ping from frontend
+2024-07-12 17:34:44 - ERROR - recieved ping from frontend
+2024-07-12 17:35:03 - ERROR - recieved ping from frontend
+2024-07-12 17:35:24 - ERROR - recieved ping from frontend
+2024-07-12 17:35:43 - ERROR - recieved ping from frontend
+2024-07-12 17:36:05 - ERROR - recieved ping from frontend
+2024-07-12 17:36:23 - ERROR - recieved ping from frontend
+2024-07-12 17:36:45 - ERROR - recieved ping from frontend
+2024-07-12 17:37:04 - ERROR - recieved ping from frontend
+2024-07-12 17:37:24 - ERROR - recieved ping from frontend
+2024-07-12 17:37:44 - ERROR - recieved ping from frontend
+2024-07-12 17:38:04 - ERROR - recieved ping from frontend
+2024-07-12 17:38:24 - ERROR - recieved ping from frontend
+2024-07-12 17:38:44 - ERROR - recieved ping from frontend
+2024-07-12 17:39:05 - ERROR - recieved ping from frontend
+2024-07-12 17:39:24 - ERROR - recieved ping from frontend
+2024-07-12 17:39:45 - ERROR - recieved ping from frontend
+2024-07-12 17:40:04 - ERROR - recieved ping from frontend
+2024-07-12 17:40:25 - ERROR - recieved ping from frontend
+2024-07-12 17:40:44 - ERROR - recieved ping from frontend
+2024-07-12 17:41:06 - ERROR - recieved ping from frontend
+2024-07-12 17:41:25 - ERROR - recieved ping from frontend
+2024-07-12 17:41:47 - ERROR - recieved ping from frontend
+2024-07-12 17:42:06 - ERROR - recieved ping from frontend
+2024-07-12 17:42:27 - ERROR - recieved ping from frontend
+2024-07-12 17:42:47 - ERROR - recieved ping from frontend
+2024-07-12 17:43:07 - ERROR - recieved ping from frontend
+2024-07-12 17:43:28 - ERROR - recieved ping from frontend
+2024-07-12 17:43:47 - ERROR - recieved ping from frontend
+2024-07-12 17:44:07 - ERROR - recieved ping from frontend
+2024-07-12 17:44:28 - ERROR - recieved ping from frontend
+2024-07-12 17:44:48 - ERROR - recieved ping from frontend
+2024-07-12 17:45:09 - ERROR - recieved ping from frontend
+2024-07-12 17:45:28 - ERROR - recieved ping from frontend
+2024-07-12 17:45:51 - ERROR - recieved ping from frontend
+2024-07-12 17:46:09 - ERROR - recieved ping from frontend
+2024-07-12 17:46:29 - ERROR - recieved ping from frontend
+2024-07-12 17:46:49 - ERROR - recieved ping from frontend
+2024-07-12 17:47:09 - ERROR - recieved ping from frontend
+2024-07-12 17:47:30 - ERROR - recieved ping from frontend
+2024-07-12 17:47:49 - ERROR - recieved ping from frontend
+2024-07-12 17:48:11 - ERROR - recieved ping from frontend
+2024-07-12 17:48:30 - ERROR - recieved ping from frontend
+2024-07-12 17:48:52 - ERROR - recieved ping from frontend
+2024-07-12 17:49:10 - ERROR - recieved ping from frontend
+2024-07-12 17:49:30 - ERROR - recieved ping from frontend
+2024-07-12 17:49:51 - ERROR - recieved ping from frontend
+2024-07-12 17:50:11 - ERROR - recieved ping from frontend
+2024-07-12 17:50:32 - ERROR - recieved ping from frontend
+2024-07-12 17:50:52 - ERROR - recieved ping from frontend
+2024-07-12 17:51:14 - ERROR - recieved ping from frontend
+2024-07-12 17:51:34 - ERROR - recieved ping from frontend
+2024-07-12 17:51:56 - ERROR - recieved ping from frontend
+2024-07-12 17:52:14 - ERROR - recieved ping from frontend
+2024-07-12 17:52:34 - ERROR - recieved ping from frontend
+2024-07-12 17:52:55 - ERROR - recieved ping from frontend
+2024-07-12 17:53:14 - ERROR - recieved ping from frontend
+2024-07-12 17:53:35 - ERROR - recieved ping from frontend
+2024-07-12 17:53:54 - ERROR - recieved ping from frontend
+2024-07-12 17:54:14 - ERROR - recieved ping from frontend
+2024-07-12 17:54:34 - ERROR - recieved ping from frontend
+2024-07-12 17:54:54 - ERROR - recieved ping from frontend
+2024-07-12 17:55:15 - ERROR - recieved ping from frontend
+2024-07-12 17:55:34 - ERROR - recieved ping from frontend
+2024-07-12 17:55:55 - ERROR - recieved ping from frontend
+2024-07-12 17:56:14 - ERROR - recieved ping from frontend
+2024-07-12 17:56:36 - ERROR - recieved ping from frontend
+2024-07-12 17:56:56 - ERROR - recieved ping from frontend
+2024-07-12 17:57:16 - ERROR - recieved ping from frontend
+2024-07-12 17:57:36 - ERROR - recieved ping from frontend
+2024-07-12 17:57:57 - ERROR - recieved ping from frontend
+2024-07-12 17:58:17 - ERROR - recieved ping from frontend
+2024-07-12 17:58:38 - ERROR - recieved ping from frontend
+2024-07-12 17:58:57 - ERROR - recieved ping from frontend
+2024-07-12 17:59:17 - ERROR - recieved ping from frontend
+2024-07-12 17:59:37 - ERROR - recieved ping from frontend
+2024-07-12 17:59:57 - ERROR - recieved ping from frontend
+2024-07-12 18:00:17 - ERROR - recieved ping from frontend
+2024-07-12 18:00:38 - ERROR - recieved ping from frontend
+2024-07-12 18:00:58 - ERROR - recieved ping from frontend
+2024-07-12 18:01:18 - ERROR - recieved ping from frontend
+2024-07-12 18:01:38 - ERROR - recieved ping from frontend
+2024-07-12 18:01:58 - ERROR - recieved ping from frontend
+2024-07-12 18:02:18 - ERROR - recieved ping from frontend
+2024-07-12 18:02:38 - ERROR - recieved ping from frontend
+2024-07-12 18:02:59 - ERROR - recieved ping from frontend
+2024-07-12 18:03:18 - ERROR - recieved ping from frontend
+2024-07-12 18:03:39 - ERROR - recieved ping from frontend
+2024-07-12 18:03:58 - ERROR - recieved ping from frontend
+2024-07-12 18:04:19 - ERROR - recieved ping from frontend
+2024-07-12 18:04:39 - ERROR - recieved ping from frontend
+2024-07-12 18:05:00 - ERROR - recieved ping from frontend
+2024-07-12 18:05:19 - ERROR - recieved ping from frontend
+2024-07-12 18:05:40 - ERROR - recieved ping from frontend
+2024-07-12 18:05:59 - ERROR - recieved ping from frontend
+2024-07-12 18:06:21 - ERROR - recieved ping from frontend
+2024-07-12 18:06:40 - ERROR - recieved ping from frontend
+2024-07-12 18:07:01 - ERROR - recieved ping from frontend
+2024-07-12 18:07:20 - ERROR - recieved ping from frontend
+2024-07-12 18:07:42 - ERROR - recieved ping from frontend
+2024-07-12 18:08:01 - ERROR - recieved ping from frontend
+2024-07-12 18:08:22 - ERROR - recieved ping from frontend
+2024-07-12 18:08:41 - ERROR - recieved ping from frontend
+2024-07-12 18:09:03 - ERROR - recieved ping from frontend
+2024-07-12 18:09:21 - ERROR - recieved ping from frontend
+2024-07-12 18:09:41 - ERROR - recieved ping from frontend
+2024-07-12 18:10:01 - ERROR - recieved ping from frontend
+2024-07-12 18:10:21 - ERROR - recieved ping from frontend
+2024-07-12 18:10:42 - ERROR - recieved ping from frontend
+2024-07-12 18:11:02 - ERROR - recieved ping from frontend
+2024-07-12 18:11:23 - ERROR - recieved ping from frontend
+2024-07-12 18:11:42 - ERROR - recieved ping from frontend
+2024-07-12 18:12:04 - ERROR - recieved ping from frontend
+2024-07-12 18:12:23 - ERROR - recieved ping from frontend
+2024-07-12 18:12:44 - ERROR - recieved ping from frontend
+2024-07-12 18:13:04 - ERROR - recieved ping from frontend
+2024-07-12 18:13:25 - ERROR - recieved ping from frontend
+2024-07-12 18:13:44 - ERROR - recieved ping from frontend
+2024-07-12 18:14:04 - ERROR - recieved ping from frontend
+2024-07-12 18:14:26 - ERROR - recieved ping from frontend
+2024-07-12 18:14:46 - ERROR - recieved ping from frontend
+2024-07-12 18:15:08 - ERROR - recieved ping from frontend
+2024-07-12 18:15:26 - ERROR - recieved ping from frontend
+2024-07-12 18:15:46 - ERROR - recieved ping from frontend
+2024-07-12 18:16:07 - ERROR - recieved ping from frontend
+2024-07-12 18:16:27 - ERROR - recieved ping from frontend
+2024-07-12 18:16:47 - ERROR - recieved ping from frontend
+2024-07-12 18:17:07 - ERROR - recieved ping from frontend
+2024-07-12 18:17:27 - ERROR - recieved ping from frontend
+2024-07-12 18:17:47 - ERROR - recieved ping from frontend
+2024-07-12 18:18:08 - ERROR - recieved ping from frontend
+2024-07-12 18:18:27 - ERROR - recieved ping from frontend
+2024-07-12 18:18:47 - ERROR - recieved ping from frontend
+2024-07-12 18:19:07 - ERROR - recieved ping from frontend
+2024-07-12 18:19:27 - ERROR - recieved ping from frontend
+2024-07-12 18:19:48 - ERROR - recieved ping from frontend
+2024-07-12 18:20:07 - ERROR - recieved ping from frontend
+2024-07-12 18:20:29 - ERROR - recieved ping from frontend
+2024-07-12 18:20:48 - ERROR - recieved ping from frontend
+2024-07-12 18:21:09 - ERROR - recieved ping from frontend
+2024-07-12 18:21:28 - ERROR - recieved ping from frontend
+2024-07-12 18:21:50 - ERROR - recieved ping from frontend
+2024-07-12 18:22:09 - ERROR - recieved ping from frontend
+2024-07-12 18:22:30 - ERROR - recieved ping from frontend
+2024-07-12 18:22:49 - ERROR - recieved ping from frontend
+2024-07-12 18:23:10 - ERROR - recieved ping from frontend
+2024-07-12 18:23:30 - ERROR - recieved ping from frontend
+2024-07-12 18:23:51 - ERROR - recieved ping from frontend
+2024-07-12 18:24:10 - ERROR - recieved ping from frontend
+2024-07-12 18:24:31 - ERROR - recieved ping from frontend
+2024-07-12 18:24:50 - ERROR - recieved ping from frontend
+2024-07-12 18:25:11 - ERROR - recieved ping from frontend
+2024-07-12 18:25:30 - ERROR - recieved ping from frontend
+2024-07-12 18:25:50 - ERROR - recieved ping from frontend
+2024-07-12 18:26:10 - ERROR - recieved ping from frontend
+2024-07-12 18:26:31 - ERROR - recieved ping from frontend
+2024-07-12 18:26:52 - ERROR - recieved ping from frontend
+2024-07-12 18:27:11 - ERROR - recieved ping from frontend
+2024-07-12 18:27:31 - ERROR - recieved ping from frontend
+2024-07-12 18:27:51 - ERROR - recieved ping from frontend
+2024-07-12 18:28:11 - ERROR - recieved ping from frontend
+2024-07-12 18:28:31 - ERROR - recieved ping from frontend
+2024-07-12 18:28:51 - ERROR - recieved ping from frontend
+2024-07-12 18:29:13 - ERROR - recieved ping from frontend
+2024-07-12 18:29:33 - ERROR - recieved ping from frontend
+2024-07-12 18:29:53 - ERROR - recieved ping from frontend
+2024-07-12 18:30:13 - ERROR - recieved ping from frontend
+2024-07-12 18:30:34 - ERROR - recieved ping from frontend
+2024-07-12 18:30:53 - ERROR - recieved ping from frontend
+2024-07-12 18:31:14 - ERROR - recieved ping from frontend
+2024-07-12 18:31:34 - ERROR - recieved ping from frontend
+2024-07-12 18:31:54 - ERROR - recieved ping from frontend
+2024-07-12 18:32:14 - ERROR - recieved ping from frontend
+2024-07-12 18:32:35 - ERROR - recieved ping from frontend
+2024-07-12 18:32:54 - ERROR - recieved ping from frontend
+2024-07-12 18:33:14 - ERROR - recieved ping from frontend
+2024-07-12 18:33:34 - ERROR - recieved ping from frontend
+2024-07-12 18:33:54 - ERROR - recieved ping from frontend
+2024-07-12 18:34:14 - ERROR - recieved ping from frontend
+2024-07-12 18:34:34 - ERROR - recieved ping from frontend
+2024-07-12 18:34:54 - ERROR - recieved ping from frontend
+2024-07-12 18:35:15 - ERROR - recieved ping from frontend
+2024-07-12 18:35:34 - ERROR - recieved ping from frontend
+2024-07-12 18:35:56 - ERROR - recieved ping from frontend
+2024-07-12 18:36:14 - ERROR - recieved ping from frontend
+2024-07-12 18:36:35 - ERROR - recieved ping from frontend
+2024-07-12 18:36:54 - ERROR - recieved ping from frontend
+2024-07-12 18:37:14 - ERROR - recieved ping from frontend
+2024-07-12 18:37:35 - ERROR - recieved ping from frontend
+2024-07-12 18:37:55 - ERROR - recieved ping from frontend
+2024-07-12 18:38:15 - ERROR - recieved ping from frontend
+2024-07-12 18:38:35 - ERROR - recieved ping from frontend
+2024-07-12 18:38:55 - ERROR - recieved ping from frontend
+2024-07-12 18:39:15 - ERROR - recieved ping from frontend
+2024-07-12 18:39:35 - ERROR - recieved ping from frontend
+2024-07-12 18:39:55 - ERROR - recieved ping from frontend
+2024-07-12 18:40:15 - ERROR - recieved ping from frontend
+2024-07-12 18:40:35 - ERROR - recieved ping from frontend
+2024-07-12 18:40:55 - ERROR - recieved ping from frontend
+2024-07-12 18:41:16 - ERROR - recieved ping from frontend
+2024-07-12 18:41:37 - ERROR - recieved ping from frontend
+2024-07-12 18:41:57 - ERROR - recieved ping from frontend
+2024-07-12 18:42:17 - ERROR - recieved ping from frontend
+2024-07-12 18:42:37 - ERROR - recieved ping from frontend
+2024-07-12 18:42:57 - ERROR - recieved ping from frontend
+2024-07-12 18:43:17 - ERROR - recieved ping from frontend
+2024-07-12 18:43:39 - ERROR - recieved ping from frontend
+2024-07-12 18:43:57 - ERROR - recieved ping from frontend
+2024-07-12 18:44:17 - ERROR - recieved ping from frontend
+2024-07-12 18:44:37 - ERROR - recieved ping from frontend
+2024-07-12 18:44:57 - ERROR - recieved ping from frontend
+2024-07-12 18:45:17 - ERROR - recieved ping from frontend
+2024-07-12 18:45:37 - ERROR - recieved ping from frontend
+2024-07-12 18:45:58 - ERROR - recieved ping from frontend
+2024-07-12 18:46:17 - ERROR - recieved ping from frontend
+2024-07-12 18:46:37 - ERROR - recieved ping from frontend
+2024-07-12 18:46:57 - ERROR - recieved ping from frontend
+2024-07-12 18:47:19 - ERROR - recieved ping from frontend
+2024-07-12 18:47:38 - ERROR - recieved ping from frontend
+2024-07-12 18:47:59 - ERROR - recieved ping from frontend
+2024-07-12 18:48:20 - ERROR - recieved ping from frontend
+2024-07-12 18:48:39 - ERROR - recieved ping from frontend
+2024-07-12 18:49:00 - ERROR - recieved ping from frontend
+2024-07-12 18:49:20 - ERROR - recieved ping from frontend
+2024-07-12 18:49:40 - ERROR - recieved ping from frontend
+2024-07-12 18:50:02 - ERROR - recieved ping from frontend
+2024-07-12 18:50:22 - ERROR - recieved ping from frontend
+2024-07-12 18:50:43 - ERROR - recieved ping from frontend
+2024-07-12 18:51:02 - ERROR - recieved ping from frontend
+2024-07-12 18:51:23 - ERROR - recieved ping from frontend
+2024-07-12 18:51:43 - ERROR - recieved ping from frontend
+2024-07-12 18:52:03 - ERROR - recieved ping from frontend
+2024-07-12 18:52:24 - ERROR - recieved ping from frontend
+2024-07-12 18:52:43 - ERROR - recieved ping from frontend
+2024-07-12 18:53:03 - ERROR - recieved ping from frontend
+2024-07-12 18:53:23 - ERROR - recieved ping from frontend
+2024-07-12 18:53:43 - ERROR - recieved ping from frontend
+2024-07-12 18:54:03 - ERROR - recieved ping from frontend
+2024-07-12 18:54:23 - ERROR - recieved ping from frontend
+2024-07-12 18:54:43 - ERROR - recieved ping from frontend
+2024-07-12 18:55:04 - ERROR - recieved ping from frontend
+2024-07-12 18:55:23 - ERROR - recieved ping from frontend
+2024-07-12 18:55:44 - ERROR - recieved ping from frontend
+2024-07-12 18:56:04 - ERROR - recieved ping from frontend
+2024-07-12 18:56:24 - ERROR - recieved ping from frontend
+2024-07-12 18:56:46 - ERROR - recieved ping from frontend
+2024-07-12 18:57:05 - ERROR - recieved ping from frontend
+2024-07-12 18:57:27 - ERROR - recieved ping from frontend
+2024-07-12 18:57:45 - ERROR - recieved ping from frontend
+2024-07-12 18:58:05 - ERROR - recieved ping from frontend
+2024-07-12 18:58:25 - ERROR - recieved ping from frontend
+2024-07-12 18:58:45 - ERROR - recieved ping from frontend
+2024-07-12 18:59:05 - ERROR - recieved ping from frontend
+2024-07-12 18:59:27 - ERROR - recieved ping from frontend
+2024-07-12 18:59:45 - ERROR - recieved ping from frontend
+2024-07-12 19:00:06 - ERROR - recieved ping from frontend
+2024-07-12 19:00:26 - ERROR - recieved ping from frontend
+2024-07-12 19:00:47 - ERROR - recieved ping from frontend
+2024-07-12 19:01:06 - ERROR - recieved ping from frontend
+2024-07-12 19:01:27 - ERROR - recieved ping from frontend
+2024-07-12 19:01:46 - ERROR - recieved ping from frontend
+2024-07-12 19:02:07 - ERROR - recieved ping from frontend
+2024-07-12 19:02:27 - ERROR - recieved ping from frontend
+2024-07-12 19:02:47 - ERROR - recieved ping from frontend
+2024-07-12 19:03:07 - ERROR - recieved ping from frontend
+2024-07-12 19:03:27 - ERROR - recieved ping from frontend
+2024-07-12 19:03:47 - ERROR - recieved ping from frontend
+2024-07-12 19:04:07 - ERROR - recieved ping from frontend
+2024-07-12 19:04:29 - ERROR - recieved ping from frontend
+2024-07-12 19:04:48 - ERROR - recieved ping from frontend
+2024-07-12 19:05:09 - ERROR - recieved ping from frontend
+2024-07-12 19:05:29 - ERROR - recieved ping from frontend
+2024-07-12 19:05:49 - ERROR - recieved ping from frontend
+2024-07-12 19:06:09 - ERROR - recieved ping from frontend
+2024-07-12 19:06:29 - ERROR - recieved ping from frontend
+2024-07-12 19:06:49 - ERROR - recieved ping from frontend
+2024-07-12 19:07:09 - ERROR - recieved ping from frontend
+2024-07-12 19:07:29 - ERROR - recieved ping from frontend
+2024-07-12 19:07:49 - ERROR - recieved ping from frontend
+2024-07-12 19:08:09 - ERROR - recieved ping from frontend
+2024-07-12 19:08:29 - ERROR - recieved ping from frontend
+2024-07-12 19:08:50 - ERROR - recieved ping from frontend
+2024-07-12 19:09:10 - ERROR - recieved ping from frontend
+2024-07-12 19:09:30 - ERROR - recieved ping from frontend
+2024-07-12 19:09:50 - ERROR - recieved ping from frontend
+2024-07-12 19:10:10 - ERROR - recieved ping from frontend
+2024-07-12 19:11:21 - ERROR - Error in handle_client
+Unexpected error: 
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+2024-07-12 19:11:21 - ERROR - type of exception: <class 'asyncio.exceptions.TimeoutError'>
+2024-07-12 19:11:21 - ERROR - Error in handle_client
+Unexpected error: 
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+2024-07-12 19:11:21 - ERROR - type of exception: <class 'asyncio.exceptions.TimeoutError'>
+2024-07-12 19:11:21 - ERROR - Error in send_notification: 'receipt'
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/error_notification.py", line 18, in send_notification
+    message = user.send_message(f"{message}", priority=priority)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 569, in send_message
+    message.send()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/chump/__init__.py", line 855, in send
+    self.receipt = self._response['receipt']
+KeyError: 'receipt'
+
+2024-07-12 19:11:21 - ERROR - Backup Server Starting
+2024-07-12 19:42:14 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-12 19:45:49 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-12 21:10:18 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-12 21:11:32 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-12 22:18:43 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-13 00:01:16 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-13 00:18:24 - ERROR - Error in save_dict_to_sheet: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 589, in send
+    resp = conn.urlopen(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 114, in request
+    response = self.session.request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/google/auth/transport/requests.py", line 541, in request
+    response = super(AuthorizedSession, self).request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 604, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+2024-07-13 00:32:41 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-13 01:09:17 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Unknown Error.
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Unknown Error.
+
+2024-07-13 01:38:54 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-13 03:19:13 - ERROR - Error in save_dict_to_sheet: APIError: [500]: Internal Error
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 107, in save_dict_to_sheet
+    existing_permissions = client.list_permissions(spreadsheet.id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 403, in list_permissions
+    return self.http_client.list_permissions(file_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 454, in list_permissions
+    r = self.request("get", url, params=params).json()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 128, in request
+    raise APIError(response)
+gspread.exceptions.APIError: APIError: [500]: Internal Error
+
+2024-07-13 07:38:00 - ERROR - Error in save_dict_to_sheet: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 384, in wait
+    return await _wait(fs, timeout, return_when, loop)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 491, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 456, in wait_for
+    return fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/api_server.py", line 55, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+  File "/usr/lib/python3.10/asyncio/tasks.py", line 458, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 589, in send
+    resp = conn.urlopen(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 537, in _make_request
+    response = conn.getresponse()
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/urllib3/connection.py", line 466, in getresponse
+    httplib_response = super().getresponse()
+  File "/usr/lib/python3.10/http/client.py", line 1375, in getresponse
+    response.begin()
+  File "/usr/lib/python3.10/http/client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.10/http/client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sam/Desktop/control_loop/webapp/backend/../../src/resources/google_api/sheets.py", line 104, in save_dict_to_sheet
+    spreadsheet = client.open(sheet_name)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 132, in open
+    spreadsheet_files, response = self._list_spreadsheet_files(title, folder_id)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/client.py", line 105, in _list_spreadsheet_files
+    response = self.http_client.request("get", url, params=params)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/gspread/http_client.py", line 114, in request
+    response = self.session.request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/google/auth/transport/requests.py", line 541, in request
+    response = super(AuthorizedSession, self).request(
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/sam/Desktop/control_loop/env/lib/python3.10/site-packages/requests/adapters.py", line 604, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+2024-07-15 10:54:34 - ERROR - Backup Server Started

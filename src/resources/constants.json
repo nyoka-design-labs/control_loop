@@ -4,15 +4,15 @@
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
-            "data_type": "feed_weight"
+            "port": "/dev/ttyUSB0",
+            "data_type": "buffer_weight"
         },
         {
             "name": "uss_scale",
             "vendor_id": "1a86",
             "product_id": "7523",
-            "port": "",
-            "data_type": "base_weight"
+            "port": "/dev/ttyUSB1",
+            "data_type": "lysate_weight"
         },
         {
             "name": "uss_scale",
@@ -54,16 +54,16 @@
         {
             "loop_id": "server_consts",
             "interval": 4,
-            "testing": "True",
+            "testing": "False",
             "load_data": "False",
             "devices_connected": "True",
-            "pumps_connected": "False",
+            "pumps_connected": "True",
             "error": "False",
-            "control_running": "fermentation_loop"
+            "control_running": "concentration_loop"
         },
         {
             "loop_id": "concentration_loop",
-            "chosen_control": "concentration_buffer_loop",
+            "chosen_control": "concentration_loop",
             "controllers": [
                 {
                     "controller_id": "concentration_loop",
@@ -80,13 +80,13 @@
                         "buffer_pump": "whitePump1",
                         "lysate_pump": "whitePump2"
                     },
-                    "start_time": 1718729731.79507,
+                    "start_time": 1720819792.5780506,
                     "test_data_index": 0,
                     "control_consts": {
-                        "buffer_sp": 400,
-                        "lysate_upper_sp": 300,
-                        "lysate_lower_sp": 250,
-                        "csv_name": "concentration_06-18-2024",
+                        "buffer_sp": 900,
+                        "lysate_upper_sp": 900,
+                        "lysate_lower_sp": 800,
+                        "csv_name": "concentration_07-11-2024",
                         "test_data": "concentration_test_data_1"
                     }
                 },
@@ -176,7 +176,7 @@
                         "acid_pump": "whitePump3",
                         "antifoam_pump": "blackPump3"
                     },
-                    "start_time": 0,
+                    "start_time": 1720730373.6212952,
                     "test_data_index": 0,
                     "control_consts": {
                         "base_sp": 6.95,
