@@ -56,14 +56,14 @@
             "interval": 4,
             "testing": "False",
             "load_data": "False",
-            "devices_connected": "True",
+            "devices_connected": "False",
             "pumps_connected": "False",
-            "error": "False",
+            "error": "True",
             "control_running": "fermentation_loop"
         },
         {
             "loop_id": "concentration_loop",
-            "chosen_control": "concentration_buffer_loop",
+            "chosen_control": "concentration_loop",
             "pcu_id": "pcu1",
             "controllers": [
                 {

@@ -13,7 +13,8 @@ export const DataProvider = ({ children }) => {
         expected_weight: "---",
         buffer_weight: "---",
         lysate_weight: "---"
-      });
+    });
+    const [pumpData, setPumpData] = useState({});
 
     useEffect(() => {
         const ws = new WebSocket("ws://localhost:8765");
@@ -51,6 +52,11 @@ export const DataProvider = ({ children }) => {
                 });
             }
 
+            if (data.type === 'button_setup') {
+                console.log("Button setup data received:", data.data);
+                setPumpData(data.data);
+            }
+
             // Handle pong response
             if (data.type === 'pong') {
                 console.log("Pong received from server");
@@ -66,7 +72,7 @@ export const DataProvider = ({ children }) => {
     }, []);
 
     return (
-        <DataContext.Provider value={{ systemData, currentMeasurements, websocket }}>
+        <DataContext.Provider value={{ systemData, currentMeasurements, websocket, pumpData }}>
             {children}
         </DataContext.Provider>
     );

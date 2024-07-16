@@ -10,7 +10,6 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
   useEffect(() => {
     const handleMessage = (event) => {
       const data = JSON.parse(event.data);
-      // console.log(data)
       if (data.type === 'status') {
         if (data[key] === "1" || data[key] === "3" || data[key] === "5" || data[key] === "7" || data[key] === "9" || data[key] === "11" || data[key] === "13" || data[key] === "15" || data[key] === "control_on" || data[key] === "data_collection_on" || data[key] === "Lactose") {
           clearTimeout(statusTimeout.current);
@@ -37,7 +36,7 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
       }
       clearTimeout(statusTimeout.current);
     };
-  }, [websocket, key, onMessage, offMessage, shouldTimeout]); // Added all dependencies to useEffect to adhere to linting rules
+  }, [websocket, key, onMessage, offMessage, shouldTimeout]);
 
   return (
     <div className={`status-box`} style={{ color: status.includes("ON") ? 'green' : 'red' }}>
@@ -46,14 +45,4 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
   );
 };
 
-export const useFeedPumpStatus = () => useStatusBox("feed_pump_status", "ON", "OFF");
-export const useBasePumpStatus = () => useStatusBox("base_pump_status", "ON", "OFF");
-export const useLactosePumpStatus = () => useStatusBox("lactose_pump_status", "ON", "OFF");
-export const useLactoseConstPumpStatus = () => useStatusBox("lactose_const_pump_status", "ON", "OFF");
-export const useFeedConstPumpStatus = () => useStatusBox("feed_const_pump_status", "ON", "OFF");
-export const useBufferPumpStatus = () => useStatusBox("buffer_pump_status", "ON", "OFF");
-export const useLysatePumpStatus = () => useStatusBox("lysate_pump_status", "ON", "OFF");
-export const useAcidPumpStatus = () => useStatusBox("acid_pump_status", "ON", "OFF");
-export const useControlLoopStatus = () => useStatusBox("control_loop_status", "ON", "OFF", true);
-export const useDataCollectionStatus = () => useStatusBox("data_collection_status", "ON", "OFF", true);
-export const useFeedMediaStatus = () => useStatusBox("feed_media", "Lactose Feed", "Glucose Feed");
+export default useStatusBox;

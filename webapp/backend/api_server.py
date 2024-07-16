@@ -4,7 +4,6 @@ import json
 import sys
 import os
 import traceback
-from websockets.exceptions import ConnectionClosedError
 import manager_server
 import backup_server
 from resources.logging_config import setup_logger
@@ -32,6 +31,8 @@ def handle_error(exception, context, data=None, notify=True):
     """
     error_message = f"Error in {context}\nUnexpected error: {exception}\n{traceback.format_exc()}"
     logger.error(error_message)
+    logger.error(f"type of exception: {type(exception)}")
+
     print(error_message)
     if data:
         logger.error(f"Input data: {data}")
@@ -39,6 +40,32 @@ def handle_error(exception, context, data=None, notify=True):
     if notify:
         send_notification(f"Unexpected error in {context}")
 
+async def send_pump_data(websocket):
+    """
+    Sends the pump data to the frontend.
+
+    Args:
+        websocket (websockets.WebSocketServerProtocol): The WebSocket connection to send data through.
+    """
+    try:
+        fer_control_id = get_loop_constant("fermentation_loop", "chosen_control")
+        fermentation_pumps = get_control_constant("fermentation_loop", fer_control_id, "pumps")
+
+        con_control_id = get_loop_constant("concentration_loop", "chosen_control")
+        concentration_pumps = get_control_constant("concentration_loop", con_control_id, "pumps")
+
+        pump_data = {
+            "fermentation_loop": fermentation_pumps,
+            "concentration_loop": concentration_pumps
+        }
+
+        await websocket.send(json.dumps({
+            "type": "button_setup",
+            "data": pump_data
+        }))
+    except Exception as e:
+        handle_error(e, "send_pump_data")
+        
 async def handle_client(websocket):
     """
     Continuously listens for and processes messages from clients over a WebSocket.
@@ -49,10 +76,13 @@ async def handle_client(websocket):
     Listens for incoming messages on the websocket, processes them based on type ('ping' or command), and sends appropriate responses. Handles exceptions by logging and notifying errors, and potentially initiating backup procedures.
     """
     try:
+        await send_pump_data(websocket)
         while True:
             message = await asyncio.wait_for(websocket.recv(), timeout=60)
             data = json.loads(message)
             if data.get("type") == "ping":
+                print("recieved ping")
+                logger.error("recieved ping from frontend")
                 await websocket.send(json.dumps({"type": "pong"}))
             else:
                 await process_client_command(websocket, data)

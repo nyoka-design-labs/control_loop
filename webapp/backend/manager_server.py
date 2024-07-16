@@ -207,12 +207,11 @@ async def stop_all(loop_id):
     # Return the controller object for further use
     return controller_info.get("controller", None)
 
-async def load_previous_data(controller, websocket: websockets.WebSocketServerProtocol, loop_id: str):
+async def load_previous_data(websocket: websockets.WebSocketServerProtocol, loop_id: str):
     """
     Loads previously saved control data from a CSV file and sends it via WebSocket.
 
     Args:
-        controller (Controller): The controller instance associated with the control loop.
         websocket (WebSocketServerProtocol): WebSocket connection to send data.
         loop_id (str): The loop identifier for which previous data is loaded.
 
