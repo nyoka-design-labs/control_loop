@@ -15,21 +15,20 @@ export const DataProvider = ({ children }) => {
         lysate_weight: "---"
     });
     const [pumpData, setPumpData] = useState({});
+    const [configData, setConfigData] = useState({});
 
     useEffect(() => {
         const ws = new WebSocket("ws://localhost:8765");
 
         ws.onopen = () => {
             console.log("WebSocket connection established");
-            
-            // Send a ping message every 20 seconds to keep the connection alive
+
             const pingInterval = setInterval(() => {
                 if (ws.readyState === WebSocket.OPEN) {
                     ws.send(JSON.stringify({ type: "ping" }));
                 }
             }, 20000);
 
-            // Clear the interval on close
             ws.onclose = () => {
                 clearInterval(pingInterval);
                 console.log("WebSocket connection closed");
@@ -57,7 +56,11 @@ export const DataProvider = ({ children }) => {
                 setPumpData(data.data);
             }
 
-            // Handle pong response
+            if (data.type === 'config_setup') {
+                console.log("Config setup data received:", data.data);
+                setConfigData(data.data);
+            }
+
             if (data.type === 'pong') {
                 console.log("Pong received from server");
             }
@@ -72,7 +75,7 @@ export const DataProvider = ({ children }) => {
     }, []);
 
     return (
-        <DataContext.Provider value={{ systemData, currentMeasurements, websocket, pumpData }}>
+        <DataContext.Provider value={{ systemData, currentMeasurements, websocket, pumpData, configData }}>
             {children}
         </DataContext.Provider>
     );

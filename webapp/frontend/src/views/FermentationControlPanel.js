@@ -4,6 +4,7 @@ import { useData } from '../DataContext';
 import { useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
 import useStatusBox from '../components/StatusBoxes';
 import DynamicComponents from '../components/DynamicComponents';
+import DynamicConfigComponent from '../components/DynamicConfigComponent';
 import { Chart } from '../components/Charts';
 import '../App.css';
 import 'chart.js/auto';
@@ -22,7 +23,7 @@ const FermentationControlPanel = () => {
 
     return (
         <div className="App container mt-5">
-            <h1>Fermentaion Control Panel</h1>
+            <h1>Fermentation Control Panel</h1>
             <div className="mb-3">
                 <div className="button-status-container">
                     {dataCollectionButton}
@@ -55,13 +56,20 @@ const FermentationControlPanel = () => {
                 </Tab>
             </Tabs>
 
-            <div className="right-aligned-buttons">
-                <div className="mb-3">
-                    <div className="button-status-container">
-                        {controlLoopButton}
-                        {controlLoopStatus}
+            <div className="control-panel">
+                <div className="config-section">
+                    <h2>Configuration</h2>
+                    <DynamicConfigComponent loopIdentifier={fermentationLoopIdentifier} />
+                </div>
+
+                <div className="right-aligned-buttons">
+                    <div className="mb-3">
+                        <div className="button-status-container">
+                            {controlLoopButton}
+                            {controlLoopStatus}
+                        </div>
+                        <DynamicComponents pumps={currentPumps} loopIdentifier={fermentationLoopIdentifier} />
                     </div>
-                    <DynamicComponents pumps={currentPumps} loopIdentifier={fermentationLoopIdentifier} />
                 </div>
             </div>
         </div>

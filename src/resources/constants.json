@@ -58,7 +58,7 @@
             "load_data": "False",
             "devices_connected": "False",
             "pumps_connected": "False",
-            "error": "True",
+            "error": "False",
             "control_running": "fermentation_loop"
         },
         {
@@ -85,7 +85,7 @@
                     "test_data_index": 0,
                     "csv_name": "concentration_06-18-2024",
                     "test_name": "concentration_test_data_1",
-                    "control_consts": {
+                    "control_config": {
                         "buffer_sp": 400,
                         "lysate_upper_sp": 300,
                         "lysate_lower_sp": 250
@@ -115,7 +115,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "test_loop",
+            "chosen_control": "2_phase_do_trig_ph_feed_control",
             "pcu_id": "pcu1",
             "controllers": [
                 {
@@ -146,12 +146,14 @@
                     "test_data_index": 0,
                     "csv_name": "fermentation_3_phase_feed_control_loop_06-20-2024",
                     "test_name": "3_phase_control_test_data",
-                    "control_consts": {
+                    "control_config": {
                         "base_sp": 7,
                         "acid_sp": 8,
                         "feed_trigger_sp": 7.02,
                         "start_feed_trig_value": 7.02,
-                        "required_readings": 3,
+                        "required_readings": 3
+                    },
+                    "control_const": {
                         "feed_counter": 3,
                         "start_feed": "True"
                     }
@@ -182,17 +184,19 @@
                     "test_data_index": 0,
                     "csv_name": "test_sheet",
                     "test_name": "2_phase_test_1",
-                    "control_consts": {
+                    "control_config": {
                         "base_sp": 6.95,
                         "acid_sp": 8,
                         "feed_trigger_sp": 7.0,
                         "start_feed_trig_value": 50,
                         "start_trig_value": 30,
+                        "required_readings": 3,
+                        "antifoam_edition_rate": 1
+                    },
+                    "control_consts": {
                         "feed_counter": 0,
                         "start_counter": 0,
-                        "required_readings": 3,
                         "last_antifoam_edition": 0,
-                        "antifoam_edition_rate": 1,
                         "start_feed": "True",
                         "start_phase_1": "True"
                     },
@@ -236,14 +240,16 @@
                     "test_data_index": 0,
                     "csv_name": "fermentation_3_phase_do_feed_control_loop_06-20-2024",
                     "test_name": "do_der_test_1",
-                    "control_consts": {
+                    "control_config": {
                         "base_sp": 7,
                         "acid_sp": 7.1,
                         "feed_trigger_upper_sp": 25,
                         "feed_trigger_lower_sp": 22,
-                        "derivs": [],
                         "required_readings": 5,
-                        "deriv_window": 8,
+                        "deriv_window": 8
+                    },
+                    "control_consts": {
+                        "derivs": [],
                         "feed_counter": 0,
                         "start_feed": "False"
                     },

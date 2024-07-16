@@ -4,6 +4,7 @@ import { useData } from '../DataContext';
 import { useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
 import useStatusBox from '../components/StatusBoxes';
 import DynamicComponents from '../components/DynamicComponents';
+import DynamicConfigComponent from '../components/DynamicConfigComponent';
 import { Chart } from '../components/Charts';
 import '../App.css';
 import 'chart.js/auto';
@@ -42,13 +43,20 @@ const ConcentrationControlPanel = () => {
                 </Tab>
             </Tabs>
 
-            <div className="right-aligned-buttons">
-                <div className="mb-3">
-                    <div className="button-status-container">
-                        {controlLoopButton}
-                        {controlLoopStatus}
+            <div className="control-panel">
+                <div className="config-section">
+                    <h2>Configuration</h2>
+                    <DynamicConfigComponent loopIdentifier={concentrationLoopIdentifier} />
+                </div>
+
+                <div className="right-aligned-buttons">
+                    <div className="mb-3">
+                        <div className="button-status-container">
+                            {controlLoopButton}
+                            {controlLoopStatus}
+                        </div>
+                        <DynamicComponents pumps={currentPumps} loopIdentifier={concentrationLoopIdentifier} />
                     </div>
-                    <DynamicComponents pumps={currentPumps} loopIdentifier={concentrationLoopIdentifier} />
                 </div>
             </div>
         </div>

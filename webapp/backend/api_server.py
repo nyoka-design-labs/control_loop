@@ -40,6 +40,29 @@ def handle_error(exception, context, data=None, notify=True):
     if notify:
         send_notification(f"Unexpected error in {context}")
 
+async def send_config_data(websocket):
+    try:
+        # Fetch configuration for fermentation loop
+        fer_control_id = get_loop_constant("fermentation_loop", "chosen_control")
+        fermentation_config = get_control_constant("fermentation_loop", fer_control_id, "control_config")
+
+        # Fetch configuration for concentration loop
+        con_control_id = get_loop_constant("concentration_loop", "chosen_control")
+        concentration_config = get_control_constant("concentration_loop", con_control_id, "control_config")
+
+        # Combine both configurations into a single data structure
+        combined_config = {
+            "fermentation_loop": fermentation_config,
+            "concentration_loop": concentration_config
+        }
+
+        await websocket.send(json.dumps({
+            "type": "config_setup",
+            "data": combined_config
+        }))
+    except Exception as e:
+        handle_error(e, "send_config_data")
+
 async def send_pump_data(websocket):
     """
     Sends the pump data to the frontend.
@@ -65,6 +88,21 @@ async def send_pump_data(websocket):
         }))
     except Exception as e:
         handle_error(e, "send_pump_data")
+
+async def update_config(data):
+    try:
+        control_id = get_loop_constant(data["loop_id"], "chosen_control")
+        control_config = get_control_constant(data["loop_id"], control_id, "control_config")
+
+        key = data["key"]
+        value = float(data["value"])
+        control_config[key] = value
+
+        update_control_constant(data["loop_id"], control_id, "control_config", control_config)
+
+        logger.info(f"Updated {key} to {value} in control_config")
+    except Exception as e:
+        handle_error(e, "update_config", data)
         
 async def handle_client(websocket):
     """
@@ -77,6 +115,7 @@ async def handle_client(websocket):
     """
     try:
         await send_pump_data(websocket)
+        await send_config_data(websocket)
         while True:
             message = await asyncio.wait_for(websocket.recv(), timeout=60)
             data = json.loads(message)
@@ -84,6 +123,8 @@ async def handle_client(websocket):
                 print("recieved ping")
                 logger.error("recieved ping from frontend")
                 await websocket.send(json.dumps({"type": "pong"}))
+            elif data.get("type") == "update_config":
+                await update_config(data)
             else:
                 await process_client_command(websocket, data)
     except Exception as e:

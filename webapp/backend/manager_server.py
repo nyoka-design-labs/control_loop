@@ -219,8 +219,7 @@ async def load_previous_data(websocket: websockets.WebSocketServerProtocol, loop
     """
     try:
         control_id = get_loop_constant(loop_id=loop_id, const="chosen_control")
-        control_consts = get_control_constant(loop_id, control_id, "control_consts")
-        csv_name = control_consts["csv_name"]
+        csv_name = get_control_constant(loop_id, control_id, "csv_name")
         data = read_csv_file(f"{csv_name}.csv")
 
         # Make sure there is data and a header was found and read
