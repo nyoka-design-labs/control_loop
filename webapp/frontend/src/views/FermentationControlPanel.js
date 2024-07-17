@@ -40,7 +40,7 @@ const FermentationControlPanel = () => {
                                     <h3>Feed Weight: {currentMeasurements.weight} g</h3>
                                     <h3>Lactose Weight: {currentMeasurements.expected_weight} g</h3>
                                     <Graph systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)"
-                                        expectedDataKey="lactose_weight" expectedColor="rgb(255, 99, 132)" />
+                                        expectedDataKey="feed_weight" expectedColor="rgb(255, 99, 132)" />
                                 </Tab>
                                 <Tab eventKey="do" title="DO">
                                     <h3>DO: {currentMeasurements.do} %</h3>

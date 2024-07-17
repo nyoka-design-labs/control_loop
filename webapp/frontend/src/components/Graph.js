@@ -5,7 +5,7 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, expectedColor = 'rgb(255, 99, 132)' }) => {
     const dataPoints = systemData.map(data => ({ x: new Date(data.time), y: data[label.toLowerCase()] }));
-    const expectedDataPoints = expectedDataKey ? systemData.map(data => ({ x: new Date(data.time), y: data[expectedDataKey.toLowerCase()] })) : [];
+    const expectedDataPoints = expectedDataKey ? systemData.map(data => ({ x: new data.time, y: data[expectedDataKey.toLowerCase()] })) : [];
 
     const options = {
         theme: "light",
@@ -15,7 +15,7 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
             text: ""
         },
         axisX: {
-            valueFormatString: "HH:mm:ss"
+            
         },
         axisY: {
             title: '',
@@ -25,7 +25,6 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
             type: "line",
             name: `${label} Actual`,
             showInLegend: true,
-            xValueFormatString: "HH:mm:ss",
             yValueFormatString: "#,##0.##",
             dataPoints: dataPoints,
             lineColor: actualColor
@@ -33,7 +32,6 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
             type: "line",
             name: `${expectedDataKey}`,
             showInLegend: true,
-            xValueFormatString: "HH:mm:ss",
             yValueFormatString: "#,##0.##",
             dataPoints: expectedDataPoints,
             lineColor: expectedColor
