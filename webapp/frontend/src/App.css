@@ -9,7 +9,7 @@
   --input-text-color: #000000; /* Input text */
 }
 
-html, body, #root {
+html, body, #root { 
   height: 100%;
   margin: 0;
   background-color: var(--background-color); /* Ensures the background color extends to the whole screen */
