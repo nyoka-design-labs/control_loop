@@ -6,7 +6,7 @@ import useStatusBox from '../components/StatusBoxes';
 import DynamicComponents from '../components/DynamicComponents';
 import DynamicConfigComponent from '../components/DynamicConfigComponent';
 import { Chart } from '../components/Charts';
-import '../App.css';
+import './views.css';
 import 'chart.js/auto';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

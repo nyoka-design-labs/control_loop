@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useData } from '../DataContext';
+import './components.css';
 
 const DynamicConfigComponent = ({ loopIdentifier }) => {
     const { configData, websocket } = useData();

@@ -58,7 +58,7 @@
             "load_data": "False",
             "devices_connected": "False",
             "pumps_connected": "False",
-            "error": "False",
+            "error": "True",
             "control_running": "fermentation_loop"
         },
         {
