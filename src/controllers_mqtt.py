@@ -797,7 +797,7 @@ class FermentationController(Controller):
 
         self.update_status()
 
-    def __pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: int, start_counter: int, start_phase_1: bool, trigger_below = True):
+    def __pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: float, start_counter: int, start_phase_1: bool, trigger_below = True):
         """
         Checks and activates pre-phase based on the specified trigger value conditions.
 
@@ -831,10 +831,10 @@ class FermentationController(Controller):
 
         return start_phase_1
     
-    def test_pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: int, start_counter: int, start_phase_1: bool, trigger_below = True):
+    def test_pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: float, start_counter: int, start_phase_1: bool, trigger_below = True):
         return self.__pre_phase_check(data, trigger_type, start_trig_value, required_readings, start_counter, start_phase_1, trigger_below)
 
-    def __start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1=True, trigger_below=False, start_feed=False):
+    def __start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: float, feed_counter: int, start_phase_1=True, trigger_below=False, start_feed=False):
         """
         Checks and determines if feeding should start based on sensor data exceeding/subceeding a set threshold.
 
@@ -868,10 +868,10 @@ class FermentationController(Controller):
 
         return start_feed
     
-    def test_start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1=True, trigger_below = False, start_feed = False):
+    def test_start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: float, feed_counter: int, start_phase_1=True, trigger_below = False, start_feed = False):
         return self.__start_feed_check_bool(data, trigger_type, start_feed_trig_value, required_readings, feed_counter, start_phase_1, trigger_below, start_feed)
 
-    def __start_feed_check_der(self, trigger_type: str, feed_counter: int, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
+    def __start_feed_check_der(self, trigger_type: str, feed_counter: float, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
         """
         Determines whether to initiate feed based on the derivative of sensor data, considering either positive or negative trends as specified.
 
@@ -913,7 +913,7 @@ class FermentationController(Controller):
         self.update_status()
         return start_feed
     
-    def test_start_feed_check_der(self, trigger_type: str, feed_counter: int, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
+    def test_start_feed_check_der(self, trigger_type: str, feed_counter: float, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
         return self.__start_feed_check_der(trigger_type, feed_counter, derivs, csv_name, required_readings, deriv_window, der_positive, start_phase_1, start_feed)
 
     def __control_pump_activation(self, data: dict, pump_name: str, feed_trigger_type: str, feed_trigger_upper_sp: float, feed_trigger_lower_sp: float,trigger_above = True):
