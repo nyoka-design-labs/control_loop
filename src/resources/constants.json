@@ -164,15 +164,13 @@
                     "devices": [
                         "do_sensor",
                         "ph_sensor",
-                        "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
                         "do",
                         "ph",
                         "temp",
-                        "feed_weight",
-                        "base_weight"
+                        "feed_weight"
                     ],
                     "pumps": {
                         "feed_pump": "blackPump1",
