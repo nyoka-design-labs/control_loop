@@ -179,32 +179,56 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  background-color: var(–background-color);
+  background-color: var(--background-color);
   padding: 10px;
   border-radius: 8px;
-  }
-  
-  .button-status-container-dark .btn {
-  background-color: var(–button-background);
-  color: var(–button-text-color);
-  border: 1px solid var(–border-color);
+}
+
+.button-status-container-dark .btn {
+  background-color: var(--button-background);
+  color: var(--button-text-color);
+  border: 1px solid var(--border-color);
   padding: 10px 15px;
   margin-right: 10px;
   border-radius: 4px;
   cursor: pointer;
-  }
-  
-  .button-status-container-dark .btn:hover {
+}
+
+.button-status-container-dark .btn:hover {
   background-color: #444;
-  }
-  
-  .status-box-dark {
-  border: 3px solid var(–border-color);
-  color: var(–text-color);
-  background-color: var(–background-color);
+}
+
+.status-box-dark {
+  border: 3px solid var(--border-color);
+  color: var(--text-color);
+  background-color: var(--background-color);
   font-size: 16px;
   font-weight: bold;
   padding: 5px;
   margin: 10px;
   display: inline-block;
-  }
+}
+
+.custom-menu-button {
+  background-color: #2e2e2d !important; /* Custom background color */
+  border-color: #424242 !important;     /* Custom border color */
+  color: #ffffff !important;            /* Custom text color */
+}
+
+.custom-menu-button:hover {
+  background-color: #696969 !important; /* Custom hover color */
+  border-color: #696969 !important;
+}
+
+.custom-tabs .nav-link {
+  color: var(--text-color) !important; /* Default text color */
+  background-color: var(--background-color) !important; /* Default background color */
+  border: 2px solid var(--border-color) !important; /* Border color */
+  margin-right: 5px;
+}
+
+.custom-tabs .nav-link.active {
+  color: var(--button-text-color) !important; /* Active tab text color */
+  background-color: var(--button-background) !important; /* Active tab background color */
+  border-color: var(--button-background) !important; /* Active tab border color */
+}

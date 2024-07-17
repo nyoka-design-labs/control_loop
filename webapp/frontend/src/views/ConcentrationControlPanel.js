@@ -32,7 +32,7 @@ const ConcentrationControlPanel = () => {
                     {controlLoopStatus}
                 </div>
             </div>
-            <Tabs defaultActiveKey="buffer_weight" id="uncontrolled-tab-example" className="mb-3">
+            <Tabs defaultActiveKey="buffer_weight" className="mb-3">
                 <Tab eventKey="buffer_weight" title="Buffer Weight">
                     <h3>Buffer Weight: {currentMeasurements.buffer_weight} g</h3>
                     <Chart systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)"
@@ -49,12 +49,11 @@ const ConcentrationControlPanel = () => {
                 
 
                 <div className="right-aligned-buttons">
-                    <div className="config-section">
-                        <h2>Set Points</h2>
-                        <DynamicConfigComponent loopIdentifier={concentrationLoopIdentifier} />
-                    </div>
                     <div className="mb-3">
                         <DynamicComponents pumps={currentPumps} loopIdentifier={concentrationLoopIdentifier} />
+                    </div>
+                    <div className="config-section">
+\                        <DynamicConfigComponent loopIdentifier={concentrationLoopIdentifier} />
                     </div>
                 </div>
             </div>

@@ -32,7 +32,7 @@ const FermentationControlPanel = () => {
                     {controlLoopStatus}
                 </div>
             </div>
-            <Tabs defaultActiveKey="weight" id="uncontrolled-tab-example" className="mb-3">
+            <Tabs defaultActiveKey="weight" className="mb-3 custom-tabs">
                 <Tab eventKey="weight" title="Weight">
                     <h3>Feed Weight: {currentMeasurements.weight} g</h3>
                     <h3>Lactose Weight: {currentMeasurements.expected_weight} g</h3>
@@ -60,12 +60,11 @@ const FermentationControlPanel = () => {
 
             <div className="control-panel">
                 <div className="right-aligned-buttons">
-                    <div className="config-section">
-                        <h2>Set Points</h2>
-                        <DynamicConfigComponent loopIdentifier={fermentationLoopIdentifier} />
-                    </div>
                     <div className="mb-3">
                         <DynamicComponents pumps={currentPumps} loopIdentifier={fermentationLoopIdentifier} />
+                    </div>
+                    <div className="config-section">
+                        <DynamicConfigComponent loopIdentifier={fermentationLoopIdentifier} />
                     </div>
                 </div>
             </div>
