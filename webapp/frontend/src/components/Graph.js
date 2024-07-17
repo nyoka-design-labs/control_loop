@@ -24,7 +24,7 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
         data: [
             {
                 type: "line",
-                name: `${label} Actual`,
+                name: `${label}`,
                 showInLegend: true,
                 yValueFormatString: "#,##0.##",
                 dataPoints: dataPoints,
@@ -41,5 +41,9 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
         ]
     };
 
-    return <CanvasJSChart options={options} />;
+    return (
+        <div className="graph-container">
+            <CanvasJSChart options={options} />
+        </div>
+    );
 };
