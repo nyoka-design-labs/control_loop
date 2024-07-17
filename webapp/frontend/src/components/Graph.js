@@ -11,11 +11,12 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
         theme: "light",
         animationEnabled: true,
         zoomEnabled: true,
+        height: 650, // Set the height of the chart
         title: {
             text: ""
         },
         axisX: {
-            
+            interval: 1,
         },
         axisY: {
             title: '',
@@ -24,7 +25,7 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
         data: [
             {
                 type: "line",
-                name: `${label}`,
+                name: `${label} Actual`,
                 showInLegend: true,
                 yValueFormatString: "#,##0.##",
                 dataPoints: dataPoints,
@@ -43,7 +44,7 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
 
     return (
         <div className="graph-container">
-            <CanvasJSChart options={options} />
+            <CanvasJSChart options={options} containerProps={{ height: "100%" }} />
         </div>
     );
 };
