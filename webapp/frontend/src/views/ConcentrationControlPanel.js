@@ -28,6 +28,8 @@ const ConcentrationControlPanel = () => {
                 <div className="button-status-container">
                     {dataCollectionButton}
                     {dataCollectionStatus}
+                    {controlLoopButton}
+                    {controlLoopStatus}
                 </div>
             </div>
             <Tabs defaultActiveKey="buffer_weight" id="uncontrolled-tab-example" className="mb-3">
@@ -44,17 +46,14 @@ const ConcentrationControlPanel = () => {
             </Tabs>
 
             <div className="control-panel">
-                <div className="config-section">
-                    <h2>Configuration</h2>
-                    <DynamicConfigComponent loopIdentifier={concentrationLoopIdentifier} />
-                </div>
+                
 
                 <div className="right-aligned-buttons">
+                    <div className="config-section">
+                        <h2>Set Points</h2>
+                        <DynamicConfigComponent loopIdentifier={concentrationLoopIdentifier} />
+                    </div>
                     <div className="mb-3">
-                        <div className="button-status-container">
-                            {controlLoopButton}
-                            {controlLoopStatus}
-                        </div>
                         <DynamicComponents pumps={currentPumps} loopIdentifier={concentrationLoopIdentifier} />
                     </div>
                 </div>

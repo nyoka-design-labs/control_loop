@@ -1,5 +1,37 @@
+:root {
+  --background-color: #121212; /* Dark background */
+  --text-color: #ffffff;       /* Light text */
+  --link-color: #3794ff;       /* Link color */
+  --border-color: #333333;     /* Dark border */
+  --button-background: #333333;/* Button background */
+  --button-text-color: #ffffff;/* Button text */
+  --input-background: #1e1e1e; /* Input background */
+  --input-text-color: #ffffff; /* Input text */
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background-color: var(--background-color); /* Ensures the background color extends to the whole screen */
+  color: var(--text-color);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
 .App {
   text-align: left;
+  background-color: var(--background-color); /* Ensures the App background is dark */
+  color: var(--text-color);                 /* Ensures the text is light */
+  min-height: 100vh;
+}
+
+.container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .App-logo {
@@ -14,18 +46,17 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--text-color);
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--link-color);
 }
 
 /* Styles for sidebar button spacing */
@@ -51,19 +82,20 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px; /* Or any other value for space between rows */
+  background-color: var(--background-color); /* Keep the default background for buttons */
 }
 
 .status-box {
-  border: 3px solid black; /* Adds a black border around the status box */
-  color: inherit; /* Uses the color set dynamically in the component */
-  font-size: 16px; /* Sets a larger font size */
-  font-weight: bold; /* Makes the font bold */
-  padding: 5px; /* Adds some padding inside the status box */
-  margin: 10px; /* Adds slight space around the box */
-  display: inline-block; /* Ensures the box does not stretch */
+  border: 3px solid var(--border-color); /* Adds a dark border around the status box */
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+  margin: 10px;
+  display: inline-block;
 }
 
-/* New styles for the control panel layout */
 .control-panel {
   display: flex;
   justify-content: flex-end;
@@ -87,6 +119,8 @@
 .right-aligned-buttons .btn {
   display: block; /* Stack buttons vertically */
   margin-bottom: 10px; /* Space out buttons */
+  background-color: var(--button-background);
+  color: var(--button-text-color);
 }
 
 @media (max-width: 576px) {
@@ -95,3 +129,82 @@
     margin-top: 20px;
   }
 }
+
+/* Dark theme for config panel */
+.config-panel-dark {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.config-panel-dark .config-item {
+  margin-bottom: 15px;
+}
+
+.config-panel-dark label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.config-panel-dark input {
+  background-color: var(--input-background);
+  color: var(--input-text-color);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  margin-right: 10px;
+  border-radius: 4px;
+  width: calc(100% - 110px);
+  box-sizing: border-box;
+}
+
+.config-panel-dark button {
+  background-color: var(--button-background);
+  color: var(--button-text-color);
+  border: 1px solid var(--border-color);
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.config-panel-dark button:hover {
+  background-color: #444;
+}
+
+/* Dark theme for button and status containers */
+.button-status-container-dark {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: var(–background-color);
+  padding: 10px;
+  border-radius: 8px;
+  }
+  
+  .button-status-container-dark .btn {
+  background-color: var(–button-background);
+  color: var(–button-text-color);
+  border: 1px solid var(–border-color);
+  padding: 10px 15px;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+  
+  .button-status-container-dark .btn:hover {
+  background-color: #444;
+  }
+  
+  .status-box-dark {
+  border: 3px solid var(–border-color);
+  color: var(–text-color);
+  background-color: var(–background-color);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+  margin: 10px;
+  display: inline-block;
+  }

@@ -25,7 +25,7 @@ const DynamicConfigComponent = ({ loopIdentifier }) => {
     };
 
     return (
-        <div>
+        <div className="config-panel-dark">
             {Object.keys(config).map((key) => (
                 <div key={key} className="config-item">
                     <label>{key}:</label>

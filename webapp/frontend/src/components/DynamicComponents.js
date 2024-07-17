@@ -9,7 +9,7 @@ const DynamicComponent = ({ pumpKey, loopIdentifier }) => {
   const statusBox = useStatusBox(statusKey, "ON", "OFF");
 
   return (
-    <div className="button-status-container">
+    <div className="button-status-container-dark">
       {toggleButton}
       {statusBox}
     </div>
