@@ -65,23 +65,24 @@ async def collection(loop_id, command, websocket):
 
     This function manages the lifecycle of data collection tasks based on received commands.
     """
-    try:
-        controller_info = get_controller(loop_id)
-        if command == "start_collection":
-            if "collection_task" not in controller_info: # if data collection is not already happening then start it
-                controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket, loop_id))
+    await load_previous_data(websocket, loop_id)
+    # try:
+    #     controller_info = get_controller(loop_id)
+    #     if command == "start_collection":
+    #         if "collection_task" not in controller_info: # if data collection is not already happening then start it
+    #             controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], websocket, loop_id))
 
-        elif command == "stop_collection":
-            if "collection_task" in controller_info:
-                controller_info["collection_task"].cancel()
-                await controller_info["collection_task"]  # Ensure cancellation is handled properly
-                del controller_info["collection_task"]
+    #     elif command == "stop_collection":
+    #         if "collection_task" in controller_info:
+    #             controller_info["collection_task"].cancel()
+    #             await controller_info["collection_task"]  # Ensure cancellation is handled properly
+    #             del controller_info["collection_task"]
 
-        else:
-            print("Invalid control command")
-    except Exception as e:
-        print(f"Error in collection: \nInput: command: {command}, \n{e}")
-        logger.error(f"Error in collection: \nInput: {command}, \n{e}\n{traceback.format_exc()}")
+    #     else:
+    #         print("Invalid control command")
+    # except Exception as e:
+    #     print(f"Error in collection: \nInput: command: {command}, \n{e}")
+    #     logger.error(f"Error in collection: \nInput: {command}, \n{e}\n{traceback.format_exc()}")
 
 async def control_task(controller, websocket):
     """
@@ -126,7 +127,7 @@ async def collection_task(controller, websocket, loop_id):
         try: 
             global load_data
             if load_data:
-                await load_previous_data(controller, websocket, loop_id)
+                await load_previous_data(websocket, loop_id)
                 load_data = False
 
             while True:

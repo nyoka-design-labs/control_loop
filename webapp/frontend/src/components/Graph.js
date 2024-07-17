@@ -8,17 +8,17 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
     const expectedDataPoints = expectedDataKey ? systemData.map(data => ({ x: new Date(data.time), y: data[expectedDataKey.toLowerCase()] })) : [];
 
     const options = {
-        theme: "dark2",
+        theme: "light",
         animationEnabled: true,
         zoomEnabled: true,
         title: {
-            text: label
+            text: ""
         },
         axisX: {
             valueFormatString: "HH:mm:ss"
         },
         axisY: {
-            title: label,
+            title: '',
             includeZero: false
         },
         data: [{

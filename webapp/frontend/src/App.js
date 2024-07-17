@@ -17,16 +17,18 @@ function App() {
 
     return (
         <DataProvider>
-            <div className="App container mt-5">
-                <Button className="custom-menu-button" onClick={() => setShowOffcanvas(true)}>MENU</Button>
+            <div className="full-page-container">
+                <div className="menu-button-container">
+                    <Button className="custom-menu-button" onClick={() => setShowOffcanvas(true)}>MENU</Button>
+                </div>
                 <Offcanvas show={showOffcanvas} onHide={() => setShowOffcanvas(false)} placement="start">
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title>MENU</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <div className="nav flex-column">
-                            <Button variant="dark" onClick={() => selectTab('FermentationControl')}>Fermentation Control Panel</Button>
                             <Button variant="dark" onClick={() => selectTab('devices')}>Devices</Button>
+                            <Button variant="dark" onClick={() => selectTab('FermentationControl')}>Fermentation Control Panel</Button>
                             <Button variant="dark" onClick={() => selectTab('ConcentrationControlPanel')}>Concentration Control Panel</Button>
                         </div>
                     </Offcanvas.Body>

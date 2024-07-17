@@ -1,12 +1,12 @@
 :root {
-    --background-color: #121212; /* Dark background */
-    --text-color: #ffffff;       /* Light text */
+    --background-color: #a6a9aa; /* Dark background */
+    --text-color: #000000;       /* Light text */
     --link-color: #3794ff;       /* Link color */
     --border-color: #333333;     /* Dark border */
-    --button-background: #333333;/* Button background */
+    --button-background-views: #6c757d;/* Button background */
     --button-text-color: #ffffff;/* Button text */
-    --input-background: #1e1e1e; /* Input background */
-    --input-text-color: #ffffff; /* Input text */
+    --input-background: #dfe3e8; /* Input background */
+    --input-text-color: #000000; /* Input text */
   }
   
   html, body, #root {
@@ -27,29 +27,17 @@
     min-height: 100vh;
   }
   
-  .container {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .custom-menu-button:hover {
-    background-color: #ffea00; /* Custom hover color */
-    border-color: #ffea00;
-  }
-  
   .button-status-container {
     display: flex;
     align-items: center;
     margin-bottom: 10px; /* Or any other value for space between rows */
-    background-color: var(--input-color); /* Keep the default background for buttons */
+    background-color: var(--input-background); /* Keep the default background for buttons */
   }
   
   .status-box {
     border: 3px solid var(--border-color); /* Adds a dark border around the status box */
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: var(--input-background);
     font-size: 16px;
     font-weight: bold;
     padding: 5px;
@@ -57,28 +45,15 @@
     display: inline-block;
   }
   
-  .control-panel {
-    display: flex;
-    flex-direction: column; /* Stack config and buttons vertically */
-    width: 30%; /* Adjust width as needed */
-  }
-  
-  .graph-section {
-    flex: 1;
-    margin-right: 20px;
-  }
-  
-  .right-aligned-buttons {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .right-aligned-buttons .btn {
+.right-aligned-buttons .btn {
     display: block; /* Stack buttons vertically */
     margin-bottom: 10px; /* Space out buttons */
     background-color: var(--button-background);
     color: var(--button-text-color);
-  }
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis if text is too long */
+}
   
   @media (max-width: 576px) {
     .right-aligned-buttons {
@@ -98,7 +73,7 @@
   .custom-tabs .nav-link.active {
     color: var(--button-text-color) !important; /* Active tab text color */
     background-color: var(--button-background) !important; /* Active tab background color */
-    border-color: var(--button-background) !important; /* Active tab border color */
+    border-color: var(--button-background-views) !important; /* Active tab border color */
   }
   
   /* Devices Page Specific Styles */
@@ -116,7 +91,8 @@
     flex-direction: row;
     justify-content: space-between;
     margin-top: 20px;
-    height: 90vh; /* Adjust based on your layout requirements */
+    height: calc(100vh - 60px); /* Adjust based on your layout requirements */
+    width: 100%; /* Ensure it takes the full width of the viewport */
   }
   
   .graphs-section,
@@ -127,11 +103,12 @@
   }
   
   .graphs-section {
-    flex: 3;
+    flex-grow: 1; /* Take up remaining space */
     margin-right: 20px;
+    width: calc(100vh - 300px); /* Ensure it takes up the rest of the space */
   }
   
   .controls-section {
-    flex: 1;
+    width: 300px; /* Set a fixed width */
     overflow-y: auto; /* Add scroll if content overflows */
   }

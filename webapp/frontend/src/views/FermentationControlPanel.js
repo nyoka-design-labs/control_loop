@@ -1,3 +1,4 @@
+// FermentationControlPanel.js
 import React from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
@@ -5,9 +6,8 @@ import { useDataCollectionButton, useControlLoopButton } from '../components/But
 import useStatusBox from '../components/StatusBoxes';
 import DynamicComponents from '../components/DynamicComponents';
 import DynamicConfigComponent from '../components/DynamicConfigComponent';
-import { Chart } from '../components/Charts';
+import { Graph } from '../components/Graph'; // Use the new Graph component
 import './views.css';
-import 'chart.js/auto';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const FermentationControlPanel = () => {
@@ -31,8 +31,6 @@ const FermentationControlPanel = () => {
                         <div className="button-status-container">
                             {dataCollectionButton}
                             {dataCollectionStatus}
-                            {controlLoopButton}
-                            {controlLoopStatus}
                         </div>
                     </div>
                     <div className="content">
@@ -41,35 +39,39 @@ const FermentationControlPanel = () => {
                                 <Tab eventKey="weight" title="Weight">
                                     <h3>Feed Weight: {currentMeasurements.weight} g</h3>
                                     <h3>Lactose Weight: {currentMeasurements.expected_weight} g</h3>
-                                    <Chart systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)"
+                                    <Graph systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)"
                                         expectedDataKey="lactose_weight" expectedColor="rgb(255, 99, 132)" />
                                 </Tab>
                                 <Tab eventKey="do" title="DO">
                                     <h3>DO: {currentMeasurements.do} %</h3>
-                                    <Chart systemData={systemData} label="do" color="rgb(75, 192, 192)"
+                                    <Graph systemData={systemData} label="do" actualColor="rgb(75, 192, 192)"
                                         expectedDataKey="do" expectedColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="temp" title="Temperature">
                                     <h3>Temp: {currentMeasurements.temp} °C</h3>
-                                    <Chart systemData={systemData} label="Temperature" color="rgb(75, 192, 192)"
+                                    <Graph systemData={systemData} label="Temperature" actualColor="rgb(75, 192, 192)"
                                         expectedDataKey="Temperature" expectedColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="ph" title="pH">
                                     <div className="mb-3">
                                         <h3>pH: {currentMeasurements.ph}</h3>
                                     </div>
-                                    <Chart systemData={systemData} label="PH" color="rgb(75, 192, 192)"
+                                    <Graph systemData={systemData} label="PH" actualColor="rgb(75, 192, 192)"
                                         expectedDataKey="PH" expectedColor="rgb(75, 192, 192)" />
                                 </Tab>
                             </Tabs>
-                        </div>
-                        
+                        </div> 
                     </div>
                 </div>
                 <div className="controls-section">
+                    <div className="button-status-container">
+                        {controlLoopButton}
+                        {controlLoopStatus}
+                    </div>
                     <div className="config-panel-dark">
                         <div className="right-aligned-buttons">
                             <div className="mb-3">
+                                
                                 <DynamicComponents pumps={currentPumps} loopIdentifier={fermentationLoopIdentifier} />
                             </div>
                             <div className="config-section">
@@ -77,7 +79,6 @@ const FermentationControlPanel = () => {
                             </div>
                         </div>
                     </div>
-                        
                 </div>
             </div>
         </div>
