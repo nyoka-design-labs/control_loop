@@ -38,26 +38,21 @@ const FermentationControlPanel = () => {
                             <Tabs defaultActiveKey="weight" className="mb-3 custom-tabs">
                                 <Tab eventKey="weight" title="Weight">
                                     <h3>Feed Weight: {currentMeasurements.weight} g</h3>
-                                    <h3>Lactose Weight: {currentMeasurements.expected_weight} g</h3>
-                                    <Graph systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)"
-                                        expectedDataKey="feed_weight" expectedColor="rgb(255, 99, 132)" />
+                                    <Graph systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="do" title="DO">
                                     <h3>DO: {currentMeasurements.do} %</h3>
-                                    <Graph systemData={systemData} label="do" actualColor="rgb(75, 192, 192)"
-                                        expectedDataKey="do" expectedColor="rgb(75, 192, 192)" />
+                                    <Graph systemData={systemData} label="do" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="temp" title="Temperature">
                                     <h3>Temp: {currentMeasurements.temp} °C</h3>
-                                    <Graph systemData={systemData} label="Temperature" actualColor="rgb(75, 192, 192)"
-                                        expectedDataKey="Temperature" expectedColor="rgb(75, 192, 192)" />
+                                    <Graph systemData={systemData} label="Temp" actualColor="rgb(75, 192, 192)"/>
                                 </Tab>
                                 <Tab eventKey="ph" title="pH">
-                                    <div className="mb-3">
+                                   
                                         <h3>pH: {currentMeasurements.ph}</h3>
-                                    </div>
-                                    <Graph systemData={systemData} label="PH" actualColor="rgb(75, 192, 192)"
-                                        expectedDataKey="PH" expectedColor="rgb(75, 192, 192)" />
+                                    
+                                    <Graph systemData={systemData} label="PH" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                             </Tabs>
                         </div> 

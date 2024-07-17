@@ -5,7 +5,7 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, expectedColor = 'rgb(255, 99, 132)' }) => {
     const dataPoints = systemData.map(data => ({ x: data.time, y: data[label.toLowerCase()] }));
-    const expectedDataPoints = expectedDataKey ? systemData.map(data => ({ x: new data.time, y: data[expectedDataKey.toLowerCase()] })) : [];
+    const expectedDataPoints = expectedDataKey ? systemData.map(data => ({ x: data.time, y: data[expectedDataKey.toLowerCase()] })) : [];
 
     const options = {
         theme: "light",
@@ -21,21 +21,24 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
             title: '',
             includeZero: false
         },
-        data: [{
-            type: "line",
-            name: `${label} Actual`,
-            showInLegend: true,
-            yValueFormatString: "#,##0.##",
-            dataPoints: dataPoints,
-            lineColor: actualColor
-        }, {
-            type: "line",
-            name: `${expectedDataKey}`,
-            showInLegend: true,
-            yValueFormatString: "#,##0.##",
-            dataPoints: expectedDataPoints,
-            lineColor: expectedColor
-        }]
+        data: [
+            {
+                type: "line",
+                name: `${label} Actual`,
+                showInLegend: true,
+                yValueFormatString: "#,##0.##",
+                dataPoints: dataPoints,
+                lineColor: actualColor
+            },
+            ...(expectedDataKey ? [{
+                type: "line",
+                name: `${expectedDataKey}`,
+                showInLegend: true,
+                yValueFormatString: "#,##0.##",
+                dataPoints: expectedDataPoints,
+                lineColor: expectedColor
+            }] : [])
+        ]
     };
 
     return <CanvasJSChart options={options} />;
