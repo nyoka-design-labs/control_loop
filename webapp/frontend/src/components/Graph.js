@@ -9,7 +9,7 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
 
     const options = {
         theme: "light",
-        animationEnabled: true,
+        animationEnabled: false,
         zoomEnabled: true,
         height: 650,
         title: {
