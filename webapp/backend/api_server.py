@@ -121,7 +121,7 @@ async def handle_client(websocket):
             data = json.loads(message)
             if data.get("type") == "ping":
                 print("recieved ping")
-                logger.error("recieved ping from frontend")
+                logger.info("recieved ping from frontend")
                 await websocket.send(json.dumps({"type": "pong"}))
             elif data.get("type") == "update_config":
                 await update_config(data)
