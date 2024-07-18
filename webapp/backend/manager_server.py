@@ -49,9 +49,9 @@ async def control(loop_id, command, websocket):
             controller_info["controller"].stop_control()
 
         else:
-            print("Invalid control command")
+            logger.info("Invalid control command")
     except Exception as e:
-        print(f"Error in control: \n Input: {command}, \n{e}")
+        # print(f"Error in control: \n Input: {command}, \n{e}")
         logger.error(f"Error in control: \n Input: {command}, \n{e}\n{traceback.format_exc()}")
 
 async def collection(loop_id, command, websocket):
@@ -78,9 +78,9 @@ async def collection(loop_id, command, websocket):
                 del controller_info["collection_task"]
 
         else:
-            print("Invalid control command")
+            logger.info("Invalid control command")
     except Exception as e:
-        print(f"Error in collection: \nInput: command: {command}, \n{e}")
+        # print(f"Error in collection: \nInput: command: {command}, \n{e}")
         logger.error(f"Error in collection: \nInput: {command}, \n{e}\n{traceback.format_exc()}")
 
 async def control_task(controller, websocket):
@@ -96,7 +96,7 @@ async def control_task(controller, websocket):
     try:
         try:
             while True:
-                print("loop controlled")
+                # print("loop controlled")
                 logger.info("loop controlled")
                 data, status = controller.start_control()
                 logger.info(f"data sent from control: {data}")
@@ -104,11 +104,11 @@ async def control_task(controller, websocket):
                 await send_status_update(websocket, status)
                 await asyncio.sleep(INTERVAL)
         except asyncio.CancelledError:
-            print("Control task was cancelled")
+            logger.info("Control task was cancelled")
             status = controller.stop_control() # first stop_all error
             await send_status_update(websocket, status) # does when there is an error
     except Exception as e:
-        print(f"Error in control_task: {e}")
+        #print(f"Error in control_task: {e}")
         logger.error(f"Error in control_task: {e}\n{traceback.format_exc()}")
 
 async def collection_task(controller, websocket, loop_id):
@@ -130,7 +130,7 @@ async def collection_task(controller, websocket, loop_id):
                 load_data = False
 
             while True:
-                print(f"data being collected")
+                logger.info(f"data being collected")
                 if controller.status["control_loop_status"] == "control_off":
                     status, data = controller.start_collection(False)
                     logger.info(f"data sent from collect: {data}")
@@ -139,7 +139,7 @@ async def collection_task(controller, websocket, loop_id):
                 await asyncio.sleep(INTERVAL)
         
         except asyncio.CancelledError:
-            print("Collection task was cancelled")
+            logger.info("Collection task was cancelled")
             status = controller.status
             
             status.update({
@@ -147,7 +147,7 @@ async def collection_task(controller, websocket, loop_id):
             })
             await send_status_update(websocket, status)
     except Exception as e:
-        print(f"Error in collection_task: {e}")
+        # print(f"Error in collection_task: {e}")
         logger.error(f"Error in collection_task: {e}\n{traceback.format_exc()}")
 
 async def toggle(loop_id, command, websocket):
@@ -172,7 +172,7 @@ async def toggle(loop_id, command, websocket):
         status = controller_info["controller"].status
         await send_status_update(websocket, status)
     except Exception as e:
-        print(f"Error in toggle: \n Input: {command}, \n{e}")
+        # print(f"Error in toggle: \n Input: {command}, \n{e}")
         logger.error(f"Error in toggle: \n Input: {command}, \n{e}\n{traceback.format_exc()}")
 
 async def stop_all(loop_id):
@@ -231,7 +231,7 @@ async def load_previous_data(websocket: websockets.WebSocketServerProtocol, loop
                 row_dict["type"] = "data"
                 await websocket.send(json.dumps(row_dict))
     except Exception as e:
-        print(f"Error in load_previous_data: {e}")
+        # print(f"Error in load_previous_data: {e}")
         logger.error(f"Error in load_previous_data: {e}\n{traceback.format_exc()}")
 
 async def send_status_update(websocket, status):
@@ -247,7 +247,7 @@ async def send_status_update(websocket, status):
     try:
         await websocket.send(json.dumps({"type": "status", **status}))
     except Exception as e:
-        print(f"Error in send_status_update: \n Input: {status}, \n {e}")
+        # print(f"Error in send_status_update: \n Input: {status}, \n {e}")
         logger.error(f"Error in send_status_update: \n Input: {status}, \n {e}\n{traceback.format_exc()}")
 
 def get_controller(loop_id):
@@ -271,5 +271,5 @@ def get_controller(loop_id):
             }
         return controllers[loop_id]
     except Exception as e:
-        print(f"Error in get_controller: \n Input: {loop_id}, \n {e}")
+        # print(f"Error in get_controller: \n Input: {loop_id}, \n {e}")
         logger.error(f"Error in get_controller: \n Input: {loop_id}, \n {e}\n{traceback.format_exc()}")

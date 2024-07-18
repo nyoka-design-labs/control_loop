@@ -33,10 +33,10 @@ def handle_error(exception, context, data=None, notify=True):
     logger.error(error_message)
     logger.error(f"type of exception: {type(exception)}")
 
-    print(error_message)
+    # print(error_message)
     if data:
         logger.error(f"Input data: {data}")
-        print(f"Input data: {data}")
+        # print(f"Input data: {data}")
     if notify:
         send_notification(f"Unexpected error in {context}")
 
@@ -120,7 +120,7 @@ async def handle_client(websocket):
             message = await asyncio.wait_for(websocket.recv(), timeout=60)
             data = json.loads(message)
             if data.get("type") == "ping":
-                print("recieved ping")
+                # print("recieved ping")
                 logger.info("recieved ping from frontend")
                 await websocket.send(json.dumps({"type": "pong"}))
             elif data.get("type") == "update_config":
@@ -133,6 +133,7 @@ async def handle_client(websocket):
         if error:
             try:
                 handle_error(e, "handle_client")
+                # print("starting backup server")
                 logger.error("Backup Server Starting")
                 await handle_server_error()
             except Exception as e:
@@ -153,7 +154,7 @@ async def process_client_command(websocket, data):
     try:
         command = data.get("command")
         loop_id = data.get("loopID")
-        print(f"Command received: {command}")
+        # print(f"Command received: {command}")
         logger.info(f"Command received: {command}")
         update_loop_constant("server_consts", "control_running", loop_id)
         if "control" in command:
@@ -197,7 +198,7 @@ def start_backup_server(controller, loop_id):
     Starts a backup server using the given controller and loop ID to ensure continued operation despite failures in the primary server setup.
     """
     try:
-        print("Starting backup server due to critical failure.")
+        # print("Starting backup server due to critical failure.")
         logger.info("Starting backup server due to critical failure.")
         backup_server.control(loop_id, controller)
         logger.error("Backup Server Started")
@@ -214,10 +215,12 @@ async def handle_server_error():
     try:
         controller = await manager_server.stop_all(loop_id)
         if controller:
-            print("Controller retrieved, starting backup server.")
+            # print("Controller retrieved, starting backup server.")
+            logger.info("Controller retrieved, starting backup server.")
             start_backup_server(controller, loop_id)
         else:
-            print("No controller was active or available.")
+            # print("No controller was active or available.")
+            logger.info("No controller was active or available.")
     except Exception as e:
         handle_error(e, "handle_server_error")
 
@@ -234,4 +237,4 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         update_loop_constant("server_consts", "error", "False")
-        print("\nProgram terminated")
+        logger.info("\nProgram terminated")

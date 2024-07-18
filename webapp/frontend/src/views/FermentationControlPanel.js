@@ -1,4 +1,3 @@
-// FermentationControlPanel.js
 import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
@@ -38,19 +37,19 @@ const FermentationControlPanel = () => {
                             >
                                 <Tab eventKey="weight" title="Weight">
                                     <h3>Feed Weight: {currentMeasurements.weight} g</h3>
-                                    <Graph key={graphKey} systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)" />
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="do" title="DO">
                                     <h3>DO: {currentMeasurements.do} %</h3>
-                                    <Graph key={graphKey} systemData={systemData} label="do" actualColor="rgb(75, 192, 192)" />
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="do" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="temp" title="Temperature">
                                     <h3>Temp: {currentMeasurements.temp} °C</h3>
-                                    <Graph key={graphKey} systemData={systemData} label="Temp" actualColor="rgb(75, 192, 192)" />
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="Temp" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="ph" title="pH">
                                     <h3>pH: {currentMeasurements.ph}</h3>
-                                    <Graph key={graphKey} systemData={systemData} label="PH" actualColor="rgb(75, 192, 192)" />
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="PH" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                             </Tabs>
                         </div> 

@@ -1,15 +1,21 @@
-// Graph.js
 import React from 'react';
 import CanvasJSReact from './canvasjs.react'; // Make sure the path is correct
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, expectedColor = 'rgb(255, 99, 132)', key }) => {
-    const dataPoints = systemData.map(data => ({ x: data.time, y: data[label.toLowerCase()] }));
-    const expectedDataPoints = expectedDataKey ? systemData.map(data => ({ x: data.time, y: data[expectedDataKey.toLowerCase()] })) : [];
+export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, expectedColor = 'rgb(255, 99, 132)', graphInstanceKey }) => {
+    const dataPoints = systemData.map(data => ({
+        x: data.time, // Use the float value directly
+        y: data[label.toLowerCase()]
+    }));
+
+    const expectedDataPoints = expectedDataKey ? systemData.map(data => ({
+        x: data.time, // Use the float value directly
+        y: data[expectedDataKey.toLowerCase()]
+    })) : [];
 
     const options = {
-        theme: "light",
-        animationEnabled: false,
+        theme: "light2",
+        animationEnabled: true,
         zoomEnabled: true,
         height: 650,
         title: {
@@ -17,7 +23,7 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
         },
         axisX: {
             title: "",
-            valueFormatString: "#,##0.####", // Format to show the float values\
+            valueFormatString: "#,##0.########", // Format to show up to 8 decimal places
         },
         axisY: {
             title: '',
@@ -45,7 +51,7 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
 
     return (
         <div className="graph-container">
-            <CanvasJSChart key={key} options={options} />
+            <CanvasJSChart options={options} />
         </div>
     );
 };

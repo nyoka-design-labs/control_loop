@@ -36,7 +36,7 @@ def control(loop_id, controller):
             control_task(controller_info["controller"])
     except Exception as e:
         send_notification(f"Backup Server Crashed")
-        print(f"Error in backup server control_task: {e}")
+        # print(f"Error in backup server control_task: {e}")
         logger.error(f"Error in backup server control_task: {e}\n{traceback.format_exc()}")
         
 
@@ -51,14 +51,14 @@ def control_task(controller):
     """
     try:
         while True:
-            print("back up server running")
+            # print("back up server running")
             logger.info("back up server running")
             data, status = controller.start_control()
-            print(f"data: {data}")
+            logger.info(f"data: {data}")
             time.sleep(INTERVAL)
     except Exception as e:
         send_notification(f"Backup Server Crashed in control_task")
-        print(f"Error in backup server control_task: {e}")
+        # print(f"Error in backup server control_task: {e}")
         logger.error(f"Error in backup server control_task: {e}\n{traceback.format_exc()}")
     except KeyboardInterrupt as e:
         controller.stop_control()

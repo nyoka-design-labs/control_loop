@@ -1,6 +1,9 @@
 import paho.mqtt.client as mqtt
 import json
 import time
+from resources.logging_config import setup_logger
+
+logger = setup_logger()
 
 class ControllerMQTTClient:
     def __init__(self, broker_address="localhost"):
@@ -15,7 +18,7 @@ class ControllerMQTTClient:
     def on_message(self, client, userdata, message):
         self.data_received = json.loads(message.payload.decode("utf-8"))
         self.data_ready = True
-        print("Data received from sensor unit:", self.data_received)
+        logger.info("Data received from sensor unit:", self.data_received)
 
     def request_data(self, testing=False):
         self.data_ready = False

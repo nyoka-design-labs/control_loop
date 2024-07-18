@@ -37,11 +37,13 @@ const ConcentrationControlPanel = () => {
                             >
                                 <Tab eventKey="buffer_weight" title="Buffer Weight">
                                     <h3>Buffer Weight: {currentMeasurements.buffer_weight} g</h3>
-                                    <Graph key={graphKey} systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)" />
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)"
+                                        expectedDataKey="buffer_weight" expectedColor="rgb(255, 99, 132)" />
                                 </Tab>
                                 <Tab eventKey="lysate_weight" title="Lysate Weight">
                                     <h3>Lysate Weight: {currentMeasurements.lysate_weight} g</h3>
-                                    <Graph key={graphKey} systemData={systemData} label="lysate_weight" actualColor="rgb(75, 192, 192)" />
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="lysate_weight" actualColor="rgb(75, 192, 192)"
+                                        expectedDataKey="lysate_weight" expectedColor="rgb(75, 192, 192)" />
                                 </Tab>
                             </Tabs>
                         </div>
@@ -52,8 +54,6 @@ const ConcentrationControlPanel = () => {
                         <div className="button-status-container">
                             {dataCollectionButton}
                             {dataCollectionStatus}
-                        </div>
-                        <div className="button-status-container">
                             {controlLoopButton}
                             {controlLoopStatus}
                         </div>
