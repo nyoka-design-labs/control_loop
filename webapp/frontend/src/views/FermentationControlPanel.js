@@ -47,7 +47,7 @@ const FermentationControlPanel = () => {
                                 </Tab>
                                 <Tab eventKey="temp" title="Temperature">
                                     <h3>Temp: {currentMeasurements.temp} °C</h3>
-                                    <Graph systemData={systemData} label="Temperature" actualColor="rgb(75, 192, 192)" />
+                                    <Graph systemData={systemData} label="Temp" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="ph" title="pH">
                                     <h3>pH: {currentMeasurements.ph}</h3>
