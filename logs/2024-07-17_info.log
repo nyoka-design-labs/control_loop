@@ -1,0 +1,887 @@
+2024-07-17 09:46:48 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-17 09:46:48 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-17 09:47:09 - ERROR - recieved ping from frontend
+2024-07-17 09:47:29 - ERROR - recieved ping from frontend
+2024-07-17 09:47:49 - ERROR - recieved ping from frontend
+2024-07-17 09:48:09 - ERROR - recieved ping from frontend
+2024-07-17 09:49:01 - ERROR - recieved ping from frontend
+2024-07-17 09:50:01 - ERROR - recieved ping from frontend
+2024-07-17 09:51:01 - ERROR - Error in handle_client
+Unexpected error: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+2024-07-17 09:51:01 - ERROR - type of exception: <class 'TimeoutError'>
+2024-07-17 09:51:01 - ERROR - Error in handle_client
+Unexpected error: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+2024-07-17 09:51:01 - ERROR - type of exception: <class 'TimeoutError'>
+2024-07-17 09:51:01 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-17 09:51:01 - ERROR - Backup Server Starting
+2024-07-17 09:51:01 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-17 09:51:01 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-17 09:51:06 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ timed out
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 268, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 525, in __init__
+    self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controller_mqtt_client.py", line 9, in __init__
+    self.client.connect(broker_address, 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+2024-07-17 09:51:06 - ERROR - Error in handle_server_error
+Unexpected error: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 215, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-17 09:51:06 - ERROR - type of exception: <class 'TypeError'>
+2024-07-17 09:51:06 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 215, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-17 13:39:12 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-17 13:39:12 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-17 13:39:32 - ERROR - recieved ping from frontend
+2024-07-17 13:39:52 - ERROR - recieved ping from frontend
+2024-07-17 13:40:12 - ERROR - recieved ping from frontend
+2024-07-17 13:40:32 - ERROR - recieved ping from frontend
+2024-07-17 13:40:52 - ERROR - recieved ping from frontend
+2024-07-17 13:41:12 - ERROR - recieved ping from frontend
+2024-07-17 13:41:32 - ERROR - recieved ping from frontend
+2024-07-17 13:41:52 - ERROR - recieved ping from frontend
+2024-07-17 13:42:12 - ERROR - recieved ping from frontend
+2024-07-17 13:42:32 - ERROR - recieved ping from frontend
+2024-07-17 13:42:52 - ERROR - recieved ping from frontend
+2024-07-17 13:43:12 - ERROR - recieved ping from frontend
+2024-07-17 13:43:32 - ERROR - recieved ping from frontend
+2024-07-17 13:43:52 - ERROR - recieved ping from frontend
+2024-07-17 13:44:12 - ERROR - recieved ping from frontend
+2024-07-17 13:44:32 - ERROR - recieved ping from frontend
+2024-07-17 13:44:52 - ERROR - recieved ping from frontend
+2024-07-17 13:45:12 - ERROR - recieved ping from frontend
+2024-07-17 13:45:32 - ERROR - recieved ping from frontend
+2024-07-17 13:45:52 - ERROR - recieved ping from frontend
+2024-07-17 13:46:12 - ERROR - recieved ping from frontend
+2024-07-17 13:46:32 - ERROR - recieved ping from frontend
+2024-07-17 13:46:52 - ERROR - recieved ping from frontend
+2024-07-17 13:47:12 - ERROR - recieved ping from frontend
+2024-07-17 13:47:32 - ERROR - recieved ping from frontend
+2024-07-17 13:47:52 - ERROR - recieved ping from frontend
+2024-07-17 13:48:12 - ERROR - recieved ping from frontend
+2024-07-17 13:48:33 - ERROR - recieved ping from frontend
+2024-07-17 13:48:52 - ERROR - recieved ping from frontend
+2024-07-17 13:49:13 - ERROR - recieved ping from frontend
+2024-07-17 13:49:33 - ERROR - recieved ping from frontend
+2024-07-17 13:49:52 - ERROR - recieved ping from frontend
+2024-07-17 13:50:12 - ERROR - recieved ping from frontend
+2024-07-17 13:50:32 - ERROR - recieved ping from frontend
+2024-07-17 13:50:52 - ERROR - recieved ping from frontend
+2024-07-17 13:51:12 - ERROR - recieved ping from frontend
+2024-07-17 13:51:32 - ERROR - recieved ping from frontend
+2024-07-17 13:51:52 - ERROR - recieved ping from frontend
+2024-07-17 13:52:12 - ERROR - recieved ping from frontend
+2024-07-17 13:52:32 - ERROR - recieved ping from frontend
+2024-07-17 13:52:52 - ERROR - recieved ping from frontend
+2024-07-17 13:53:12 - ERROR - recieved ping from frontend
+2024-07-17 13:53:32 - ERROR - recieved ping from frontend
+2024-07-17 13:53:52 - ERROR - recieved ping from frontend
+2024-07-17 13:54:12 - ERROR - recieved ping from frontend
+2024-07-17 13:54:32 - ERROR - recieved ping from frontend
+2024-07-17 13:54:52 - ERROR - recieved ping from frontend
+2024-07-17 13:55:12 - ERROR - recieved ping from frontend
+2024-07-17 13:55:32 - ERROR - recieved ping from frontend
+2024-07-17 13:55:52 - ERROR - recieved ping from frontend
+2024-07-17 13:56:12 - ERROR - recieved ping from frontend
+2024-07-17 13:56:32 - ERROR - recieved ping from frontend
+2024-07-17 13:56:52 - ERROR - recieved ping from frontend
+2024-07-17 13:57:12 - ERROR - recieved ping from frontend
+2024-07-17 13:57:32 - ERROR - recieved ping from frontend
+2024-07-17 13:57:52 - ERROR - recieved ping from frontend
+2024-07-17 13:58:12 - ERROR - recieved ping from frontend
+2024-07-17 13:58:33 - ERROR - recieved ping from frontend
+2024-07-17 13:58:53 - ERROR - recieved ping from frontend
+2024-07-17 13:59:12 - ERROR - recieved ping from frontend
+2024-07-17 13:59:32 - ERROR - recieved ping from frontend
+2024-07-17 13:59:52 - ERROR - recieved ping from frontend
+2024-07-17 14:00:12 - ERROR - recieved ping from frontend
+2024-07-17 14:00:32 - ERROR - recieved ping from frontend
+2024-07-17 14:00:52 - ERROR - recieved ping from frontend
+2024-07-17 14:01:12 - ERROR - recieved ping from frontend
+2024-07-17 14:01:32 - ERROR - recieved ping from frontend
+2024-07-17 14:01:52 - ERROR - recieved ping from frontend
+2024-07-17 14:02:12 - ERROR - recieved ping from frontend
+2024-07-17 14:02:33 - ERROR - recieved ping from frontend
+2024-07-17 14:02:53 - ERROR - recieved ping from frontend
+2024-07-17 14:03:13 - ERROR - recieved ping from frontend
+2024-07-17 14:04:01 - ERROR - recieved ping from frontend
+2024-07-17 14:04:55 - ERROR - recieved ping from frontend
+2024-07-17 14:05:12 - ERROR - recieved ping from frontend
+2024-07-17 14:05:32 - ERROR - recieved ping from frontend
+2024-07-17 14:05:52 - ERROR - recieved ping from frontend
+2024-07-17 14:06:12 - ERROR - recieved ping from frontend
+2024-07-17 14:06:32 - ERROR - recieved ping from frontend
+2024-07-17 14:06:52 - ERROR - recieved ping from frontend
+2024-07-17 14:07:13 - ERROR - recieved ping from frontend
+2024-07-17 14:07:33 - ERROR - recieved ping from frontend
+2024-07-17 14:08:01 - ERROR - recieved ping from frontend
+2024-07-17 14:08:13 - ERROR - recieved ping from frontend
+2024-07-17 14:08:32 - ERROR - recieved ping from frontend
+2024-07-17 14:08:52 - ERROR - recieved ping from frontend
+2024-07-17 14:09:12 - ERROR - recieved ping from frontend
+2024-07-17 14:09:32 - ERROR - recieved ping from frontend
+2024-07-17 14:09:52 - ERROR - recieved ping from frontend
+2024-07-17 14:10:12 - ERROR - recieved ping from frontend
+2024-07-17 14:10:32 - ERROR - recieved ping from frontend
+2024-07-17 14:10:52 - ERROR - recieved ping from frontend
+2024-07-17 14:11:12 - ERROR - recieved ping from frontend
+2024-07-17 14:11:32 - ERROR - recieved ping from frontend
+2024-07-17 14:11:52 - ERROR - recieved ping from frontend
+2024-07-17 14:12:12 - ERROR - recieved ping from frontend
+2024-07-17 14:12:32 - ERROR - recieved ping from frontend
+2024-07-17 14:12:52 - ERROR - recieved ping from frontend
+2024-07-17 14:13:12 - ERROR - recieved ping from frontend
+2024-07-17 14:13:32 - ERROR - recieved ping from frontend
+2024-07-17 14:13:52 - ERROR - recieved ping from frontend
+2024-07-17 14:14:12 - ERROR - recieved ping from frontend
+2024-07-17 14:14:32 - ERROR - recieved ping from frontend
+2024-07-17 14:14:52 - ERROR - recieved ping from frontend
+2024-07-17 14:15:12 - ERROR - recieved ping from frontend
+2024-07-17 14:15:32 - ERROR - recieved ping from frontend
+2024-07-17 14:15:52 - ERROR - recieved ping from frontend
+2024-07-17 14:16:12 - ERROR - recieved ping from frontend
+2024-07-17 14:16:32 - ERROR - recieved ping from frontend
+2024-07-17 14:16:52 - ERROR - recieved ping from frontend
+2024-07-17 14:17:12 - ERROR - recieved ping from frontend
+2024-07-17 14:17:32 - ERROR - recieved ping from frontend
+2024-07-17 14:17:52 - ERROR - recieved ping from frontend
+2024-07-17 14:18:12 - ERROR - recieved ping from frontend
+2024-07-17 14:18:32 - ERROR - recieved ping from frontend
+2024-07-17 14:18:52 - ERROR - recieved ping from frontend
+2024-07-17 14:19:12 - ERROR - recieved ping from frontend
+2024-07-17 14:19:32 - ERROR - recieved ping from frontend
+2024-07-17 14:19:52 - ERROR - recieved ping from frontend
+2024-07-17 14:20:12 - ERROR - recieved ping from frontend
+2024-07-17 14:20:32 - ERROR - recieved ping from frontend
+2024-07-17 14:20:52 - ERROR - recieved ping from frontend
+2024-07-17 14:21:12 - ERROR - recieved ping from frontend
+2024-07-17 14:21:32 - ERROR - recieved ping from frontend
+2024-07-17 14:21:52 - ERROR - recieved ping from frontend
+2024-07-17 14:22:12 - ERROR - recieved ping from frontend
+2024-07-17 14:22:32 - ERROR - recieved ping from frontend
+2024-07-17 14:22:52 - ERROR - recieved ping from frontend
+2024-07-17 14:23:12 - ERROR - recieved ping from frontend
+2024-07-17 14:23:32 - ERROR - recieved ping from frontend
+2024-07-17 14:23:52 - ERROR - recieved ping from frontend
+2024-07-17 14:24:12 - ERROR - recieved ping from frontend
+2024-07-17 14:24:32 - ERROR - recieved ping from frontend
+2024-07-17 14:24:52 - ERROR - recieved ping from frontend
+2024-07-17 14:25:12 - ERROR - recieved ping from frontend
+2024-07-17 14:25:32 - ERROR - recieved ping from frontend
+2024-07-17 14:25:52 - ERROR - recieved ping from frontend
+2024-07-17 14:26:12 - ERROR - recieved ping from frontend
+2024-07-17 14:26:32 - ERROR - recieved ping from frontend
+2024-07-17 14:26:52 - ERROR - recieved ping from frontend
+2024-07-17 14:27:12 - ERROR - recieved ping from frontend
+2024-07-17 14:27:32 - ERROR - recieved ping from frontend
+2024-07-17 14:27:52 - ERROR - recieved ping from frontend
+2024-07-17 14:28:12 - ERROR - recieved ping from frontend
+2024-07-17 14:28:32 - ERROR - recieved ping from frontend
+2024-07-17 14:28:52 - ERROR - recieved ping from frontend
+2024-07-17 14:29:12 - ERROR - recieved ping from frontend
+2024-07-17 14:29:32 - ERROR - recieved ping from frontend
+2024-07-17 14:29:52 - ERROR - recieved ping from frontend
+2024-07-17 14:30:12 - ERROR - recieved ping from frontend
+2024-07-17 14:30:32 - ERROR - recieved ping from frontend
+2024-07-17 14:30:53 - ERROR - recieved ping from frontend
+2024-07-17 14:31:13 - ERROR - recieved ping from frontend
+2024-07-17 14:31:32 - ERROR - recieved ping from frontend
+2024-07-17 14:31:52 - ERROR - recieved ping from frontend
+2024-07-17 14:32:12 - ERROR - recieved ping from frontend
+2024-07-17 14:32:32 - ERROR - recieved ping from frontend
+2024-07-17 14:32:53 - ERROR - recieved ping from frontend
+2024-07-17 14:33:13 - ERROR - recieved ping from frontend
+2024-07-17 14:33:32 - ERROR - recieved ping from frontend
+2024-07-17 14:33:52 - ERROR - recieved ping from frontend
+2024-07-17 14:34:12 - ERROR - recieved ping from frontend
+2024-07-17 14:34:32 - ERROR - recieved ping from frontend
+2024-07-17 14:34:52 - ERROR - recieved ping from frontend
+2024-07-17 14:35:12 - ERROR - recieved ping from frontend
+2024-07-17 14:35:32 - ERROR - recieved ping from frontend
+2024-07-17 14:35:53 - ERROR - recieved ping from frontend
+2024-07-17 14:36:13 - ERROR - recieved ping from frontend
+2024-07-17 14:36:32 - ERROR - recieved ping from frontend
+2024-07-17 14:36:52 - ERROR - recieved ping from frontend
+2024-07-17 14:37:12 - ERROR - recieved ping from frontend
+2024-07-17 14:37:32 - ERROR - recieved ping from frontend
+2024-07-17 14:37:52 - ERROR - recieved ping from frontend
+2024-07-17 14:38:12 - ERROR - recieved ping from frontend
+2024-07-17 14:38:32 - ERROR - recieved ping from frontend
+2024-07-17 14:38:52 - ERROR - recieved ping from frontend
+2024-07-17 14:39:12 - ERROR - recieved ping from frontend
+2024-07-17 14:39:32 - ERROR - recieved ping from frontend
+2024-07-17 14:39:52 - ERROR - recieved ping from frontend
+2024-07-17 14:40:12 - ERROR - recieved ping from frontend
+2024-07-17 14:40:33 - ERROR - recieved ping from frontend
+2024-07-17 14:40:53 - ERROR - recieved ping from frontend
+2024-07-17 14:41:13 - ERROR - recieved ping from frontend
+2024-07-17 14:41:33 - ERROR - recieved ping from frontend
+2024-07-17 14:41:52 - ERROR - recieved ping from frontend
+2024-07-17 14:42:12 - ERROR - recieved ping from frontend
+2024-07-17 14:42:32 - ERROR - recieved ping from frontend
+2024-07-17 14:42:52 - ERROR - recieved ping from frontend
+2024-07-17 14:43:12 - ERROR - recieved ping from frontend
+2024-07-17 14:43:32 - ERROR - recieved ping from frontend
+2024-07-17 14:43:52 - ERROR - recieved ping from frontend
+2024-07-17 14:44:12 - ERROR - recieved ping from frontend
+2024-07-17 14:44:32 - ERROR - recieved ping from frontend
+2024-07-17 14:44:52 - ERROR - recieved ping from frontend
+2024-07-17 14:45:12 - ERROR - recieved ping from frontend
+2024-07-17 14:45:32 - ERROR - recieved ping from frontend
+2024-07-17 14:45:52 - ERROR - recieved ping from frontend
+2024-07-17 14:46:12 - ERROR - recieved ping from frontend
+2024-07-17 14:46:32 - ERROR - recieved ping from frontend
+2024-07-17 14:46:52 - ERROR - recieved ping from frontend
+2024-07-17 14:47:12 - ERROR - recieved ping from frontend
+2024-07-17 14:47:32 - ERROR - recieved ping from frontend
+2024-07-17 14:47:52 - ERROR - recieved ping from frontend
+2024-07-17 14:48:12 - ERROR - recieved ping from frontend
+2024-07-17 14:48:32 - ERROR - recieved ping from frontend
+2024-07-17 14:48:52 - ERROR - recieved ping from frontend
+2024-07-17 14:49:12 - ERROR - recieved ping from frontend
+2024-07-17 14:49:32 - ERROR - recieved ping from frontend
+2024-07-17 14:49:52 - ERROR - recieved ping from frontend
+2024-07-17 14:50:12 - ERROR - recieved ping from frontend
+2024-07-17 14:50:32 - ERROR - recieved ping from frontend
+2024-07-17 14:50:52 - ERROR - recieved ping from frontend
+2024-07-17 14:51:12 - ERROR - recieved ping from frontend
+2024-07-17 14:51:32 - ERROR - recieved ping from frontend
+2024-07-17 14:51:52 - ERROR - recieved ping from frontend
+2024-07-17 14:52:12 - ERROR - recieved ping from frontend
+2024-07-17 14:52:32 - ERROR - recieved ping from frontend
+2024-07-17 14:52:52 - ERROR - recieved ping from frontend
+2024-07-17 14:53:12 - ERROR - recieved ping from frontend
+2024-07-17 14:53:32 - ERROR - recieved ping from frontend
+2024-07-17 14:53:52 - ERROR - recieved ping from frontend
+2024-07-17 14:54:12 - ERROR - recieved ping from frontend
+2024-07-17 14:54:32 - ERROR - recieved ping from frontend
+2024-07-17 14:54:52 - ERROR - recieved ping from frontend
+2024-07-17 14:55:12 - ERROR - recieved ping from frontend
+2024-07-17 14:55:32 - ERROR - recieved ping from frontend
+2024-07-17 14:55:52 - ERROR - recieved ping from frontend
+2024-07-17 14:56:12 - ERROR - recieved ping from frontend
+2024-07-17 14:56:32 - ERROR - recieved ping from frontend
+2024-07-17 14:56:52 - ERROR - recieved ping from frontend
+2024-07-17 14:57:12 - ERROR - recieved ping from frontend
+2024-07-17 14:57:32 - ERROR - recieved ping from frontend
+2024-07-17 14:57:52 - ERROR - recieved ping from frontend
+2024-07-17 14:58:12 - ERROR - recieved ping from frontend
+2024-07-17 14:58:32 - ERROR - recieved ping from frontend
+2024-07-17 14:58:52 - ERROR - recieved ping from frontend
+2024-07-17 14:59:12 - ERROR - recieved ping from frontend
+2024-07-17 14:59:32 - ERROR - recieved ping from frontend
+2024-07-17 14:59:52 - ERROR - recieved ping from frontend
+2024-07-17 15:00:12 - ERROR - recieved ping from frontend
+2024-07-17 15:00:32 - ERROR - recieved ping from frontend
+2024-07-17 15:00:52 - ERROR - recieved ping from frontend
+2024-07-17 15:01:12 - ERROR - recieved ping from frontend
+2024-07-17 15:01:32 - ERROR - recieved ping from frontend
+2024-07-17 15:01:52 - ERROR - recieved ping from frontend
+2024-07-17 15:02:12 - ERROR - recieved ping from frontend
+2024-07-17 15:02:32 - ERROR - recieved ping from frontend
+2024-07-17 15:02:52 - ERROR - recieved ping from frontend
+2024-07-17 15:03:12 - ERROR - recieved ping from frontend
+2024-07-17 15:03:32 - ERROR - recieved ping from frontend
+2024-07-17 15:03:52 - ERROR - recieved ping from frontend
+2024-07-17 15:04:12 - ERROR - recieved ping from frontend
+2024-07-17 15:04:32 - ERROR - recieved ping from frontend
+2024-07-17 15:04:52 - ERROR - recieved ping from frontend
+2024-07-17 15:05:12 - ERROR - recieved ping from frontend
+2024-07-17 15:05:32 - ERROR - recieved ping from frontend
+2024-07-17 15:05:52 - ERROR - recieved ping from frontend
+2024-07-17 15:06:12 - ERROR - recieved ping from frontend
+2024-07-17 15:06:32 - ERROR - recieved ping from frontend
+2024-07-17 15:06:52 - ERROR - recieved ping from frontend
+2024-07-17 15:07:12 - ERROR - recieved ping from frontend
+2024-07-17 15:07:32 - ERROR - recieved ping from frontend
+2024-07-17 15:07:52 - ERROR - recieved ping from frontend
+2024-07-17 15:08:12 - ERROR - recieved ping from frontend
+2024-07-17 15:08:32 - ERROR - recieved ping from frontend
+2024-07-17 15:08:52 - ERROR - recieved ping from frontend
+2024-07-17 15:09:12 - ERROR - recieved ping from frontend
+2024-07-17 15:09:32 - ERROR - recieved ping from frontend
+2024-07-17 15:09:52 - ERROR - recieved ping from frontend
+2024-07-17 15:10:12 - ERROR - recieved ping from frontend
+2024-07-17 15:10:32 - ERROR - recieved ping from frontend
+2024-07-17 15:10:52 - ERROR - recieved ping from frontend
+2024-07-17 15:11:12 - ERROR - recieved ping from frontend
+2024-07-17 15:11:32 - ERROR - recieved ping from frontend
+2024-07-17 15:11:52 - ERROR - recieved ping from frontend
+2024-07-17 15:12:12 - ERROR - recieved ping from frontend
+2024-07-17 15:12:32 - ERROR - recieved ping from frontend
+2024-07-17 15:12:52 - ERROR - recieved ping from frontend
+2024-07-17 15:13:12 - ERROR - recieved ping from frontend
+2024-07-17 15:13:32 - ERROR - recieved ping from frontend
+2024-07-17 15:13:52 - ERROR - recieved ping from frontend
+2024-07-17 15:14:12 - ERROR - recieved ping from frontend
+2024-07-17 15:14:32 - ERROR - recieved ping from frontend
+2024-07-17 15:14:52 - ERROR - recieved ping from frontend
+2024-07-17 15:15:12 - ERROR - recieved ping from frontend
+2024-07-17 15:15:32 - ERROR - recieved ping from frontend
+2024-07-17 15:15:52 - ERROR - recieved ping from frontend
+2024-07-17 15:16:12 - ERROR - recieved ping from frontend
+2024-07-17 15:16:33 - ERROR - recieved ping from frontend
+2024-07-17 15:16:53 - ERROR - recieved ping from frontend
+2024-07-17 15:17:13 - ERROR - recieved ping from frontend
+2024-07-17 15:18:01 - ERROR - recieved ping from frontend
+2024-07-17 15:19:01 - ERROR - recieved ping from frontend
+2024-07-17 15:20:01 - ERROR - recieved ping from frontend
+2024-07-17 15:21:01 - ERROR - recieved ping from frontend
+2024-07-17 15:22:01 - ERROR - Error in handle_client
+Unexpected error: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+2024-07-17 15:22:01 - ERROR - type of exception: <class 'TimeoutError'>
+2024-07-17 15:22:01 - ERROR - Error in handle_client
+Unexpected error: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+2024-07-17 15:22:01 - ERROR - type of exception: <class 'TimeoutError'>
+2024-07-17 15:22:01 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-17 15:22:01 - ERROR - Backup Server Starting
+2024-07-17 15:22:01 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-17 15:22:01 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-17 15:22:06 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ timed out
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 268, in get_controller
+    if loop_id not in controllers:
+                     ^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 525, in __init__
+    self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controller_mqtt_client.py", line 9, in __init__
+    self.client.connect(broker_address, 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+2024-07-17 15:22:06 - ERROR - Error in handle_server_error
+Unexpected error: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 215, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    # Collect tasks that need to be cancelled if they exist
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-17 15:22:06 - ERROR - type of exception: <class 'TypeError'>
+2024-07-17 15:22:06 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 215, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    # Collect tasks that need to be cancelled if they exist
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+

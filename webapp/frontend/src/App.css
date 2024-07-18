@@ -1,52 +1,81 @@
+:root {
+  --background-color: #ffffff; /* Light background */
+  --text-color: #000000;       /* Dark text */
+  --link-color: #3794ff;       /* Link color */
+  --border-color: #333333;     /* Dark border */
+  --button-background: #333333;/* Button background */
+  --button-text-color: #ffffff;/* Button text */
+  --input-background: #e2e2e2; /* Input background */
+  --input-text-color: #000000; /* Input text */
+}
+
+html, body, #root { 
+  height: 100%;
+  margin: 0;
+  background-color: var(--background-color); /* Ensures the background color extends to the whole screen */
+  color: var(--text-color);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
 .App {
   text-align: left;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: var(--background-color); /* Ensures the App background is light */
+  color: var(--text-color);                 /* Ensures the text is dark */
   min-height: 100vh;
+}
+
+.full-page-container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  background-color: var(--background-color); /* Ensures the container background is light */
+  color: var(--text-color);
+}
+
+.menu-button-container {
+  display: flex;
+  justify-content: flex-start; /* Aligns the button to the left */
+  margin-bottom: 20px; /* Adds some space below the button */
+}
+
+.custom-menu-button {
+  background-color: var(--button-background)!important; /* Button background color */
+  color: var(--button-text-color); /* Button text color */
+  border: 1px solid var(--button-background)!important; /* Button border color */
+}
+
+.custom-menu-button:hover {
+  background-color: #ffea00; /* Custom hover color */
+  border-color: #ffea00; /* Custom hover border color */
+}
+
+.button-status-container {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 10px; /* Or any other value for space between rows */
+  background-color: var(--input-background); /* Keep the default background for buttons */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-/* Styles for sidebar button spacing */
-.offcanvas-body .btn {
-  margin-bottom: 10px; /* Adds space between buttons */
-  width: 100%; /* Optional: Makes buttons full width */
-}
-.custom-padding {
-  padding: 10px 20px; /* Example padding: 10px top and bottom, 20px left and right */
-}
-
-/* App.css */
-.right-aligned-buttons {
-  position: absolute;
-  right: 0;
-  top: 50px; /* Adjust based on your header height */
+.status-box {
+  border: 3px solid var(--border-color); /* Adds a dark border around the status box */
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+  margin: 10px;
+  display: inline-block;
 }
 
 .right-aligned-buttons .btn {
   display: block; /* Stack buttons vertically */
   margin-bottom: 10px; /* Space out buttons */
+  background-color: var(--button-background);
+  color: var(--button-text-color);
 }
 
 @media (max-width: 576px) {
@@ -56,28 +85,23 @@
   }
 }
 
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Custom styles for tabs */
+.custom-tabs .nav-link {
+  color: var(--text-color) !important; /* Default text color */
+  background-color: var(--background-color) !important; /* Default background color */
+  border: 1px solid var(--border-color) !important; /* Border color */
+  margin-right: 5px;
 }
 
-.button-status-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* Or any other value for space between rows */
+.custom-tabs .nav-link.active {
+  color: var(--button-text-color) !important; /* Active tab text color */
+  background-color: var(--button-background) !important; /* Active tab background color */
+  border-color: var(--button-background) !important; /* Active tab border color */
 }
 
-.status-box {
-  border: 3px solid black; /* Adds a black border around the status box */
-  color: inherit; /* Uses the color set dynamically in the component */
-  font-size: 16px; /* Sets a larger font size */
-  font-weight: bold; /* Makes the font bold */
-  padding: 5px; /* Adds some padding inside the status box */
-  margin: 10px; /* Adds slight space around the box */
-  display: inline-block; /* Ensures the box does not stretch */
+/* Sidebar button spacing */
+.offcanvas-body .btn {
+  margin-bottom: 10px; /* Adds space between buttons */
+  width: 100%; /* Optional: Makes buttons full width */
 }
+

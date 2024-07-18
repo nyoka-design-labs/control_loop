@@ -1,69 +1,79 @@
+import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
-import { useTogglePumpButton, useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
-import { useControlLoopStatus, useDataCollectionStatus, useBufferPumpStatus, useLysatePumpStatus } from '../components/StatusBoxes';
-import { Chart } from '../components/Charts';
-import '../App.css';
-import 'chart.js/auto';
+import { useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
+import useStatusBox from '../components/StatusBoxes';
+import DynamicComponents from '../components/DynamicComponents';
+import DynamicConfigComponent from '../components/DynamicConfigComponent';
+import { Graph } from '../components/Graph'; // Use the new Graph component
+import './views.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ConcentrationControlPanel = () => {
-  const { systemData, currentMeasurements } = useData();
-  // Unique identifier for the concentration control loop
-  const concentrationLoopIdentifier = 'concentration_loop';
-  
-  const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", concentrationLoopIdentifier);
-  const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", concentrationLoopIdentifier, isControlLoopRunning);
-  const toggleBufferPumpButton = useTogglePumpButton("Toggle Buffer Pump", "toggle_buffer", concentrationLoopIdentifier);
-  const toggleLysatePumpButton = useTogglePumpButton("Toggle Lysate Pump", "toggle_lysate", concentrationLoopIdentifier);
+    const { systemData, currentMeasurements, pumpData } = useData();
+    const concentrationLoopIdentifier = 'concentration_loop';
 
-  const bufferPumpStatus = useBufferPumpStatus();
-  const lysatePumpStatus = useLysatePumpStatus();
-  const controlLoopStatus = useControlLoopStatus();
-  const dataCollectionStatus = useDataCollectionStatus();
+    const currentPumps = pumpData[concentrationLoopIdentifier] || {};
 
+    const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", concentrationLoopIdentifier);
+    const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", concentrationLoopIdentifier, isControlLoopRunning);
+    const dataCollectionStatus = useStatusBox("data_collection_status", "ON", "OFF", true);
+    const controlLoopStatus = useStatusBox("control_loop_status", "ON", "OFF", true);
 
-  return (
-    <div className="App container mt-5">
-      <h1>Concentration Control Panel</h1>
-      <div className="mb-3">
-        <div className="button-status-container">
-          {dataCollectionButton}
-          {dataCollectionStatus}
+    // State to force a re-render of the graph
+    const [graphKey, setGraphKey] = useState(0);
+
+    return (
+        <div className="view-container">
+            <h1>Concentration Control Panel</h1>
+            <div className="view-content">
+                <div className="graphs-section">
+                    <div className="content">
+                        <div className="graph-section">
+                            <Tabs
+                                defaultActiveKey="buffer_weight"
+                                className="mb-3 custom-tabs"
+                                onSelect={() => setGraphKey(graphKey + 1)}
+                            >
+                                <Tab eventKey="buffer_weight" title="Buffer Weight">
+                                    <h3>Buffer Weight: {currentMeasurements.buffer_weight} g</h3>
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)"
+                                        expectedDataKey="buffer_weight" expectedColor="rgb(255, 99, 132)" />
+                                </Tab>
+                                <Tab eventKey="lysate_weight" title="Lysate Weight">
+                                    <h3>Lysate Weight: {currentMeasurements.lysate_weight} g</h3>
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="lysate_weight" actualColor="rgb(75, 192, 192)"
+                                        expectedDataKey="lysate_weight" expectedColor="rgb(75, 192, 192)" />
+                                </Tab>
+                            </Tabs>
+                        </div>
+                    </div>
+                </div>
+                <div className="controls-section">
+                <div className="mb-3">
+                        <div className="button-status-container">
+                            {dataCollectionButton}
+                            {dataCollectionStatus}
+                        </div>
+                        <div className="button-status-container">
+                            {controlLoopButton}
+                            {controlLoopStatus}
+                        </div>
+                    </div>
+                    <div className="config-panel-dark">
+                        <div className="right-aligned-buttons">
+                            <div className="mb-3">
+                                <DynamicComponents pumps={currentPumps} loopIdentifier={concentrationLoopIdentifier} />
+                            </div>
+                            <div className="config-section">
+                                <DynamicConfigComponent loopIdentifier={concentrationLoopIdentifier} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <Tabs defaultActiveKey="buffer_weight" id="uncontrolled-tab-example" className="mb-3">
-        <Tab eventKey="buffer_weight" title="Buffer Weight">
-          <h3>Buffer Weight: {currentMeasurements.buffer_weight} g</h3>
-          <Chart systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)"
-          expectedDataKey="buffer_weight" expectedColor="rgb(255, 99, 132)" />
-        </Tab>
-        <Tab eventKey="lysate_weight" title="Lysate Weight">
-          <h3>Lysate Weight: {currentMeasurements.lysate_weight} g</h3>
-          <Chart systemData={systemData} label="lysate_weight" color="rgb(75, 192, 192)" 
-          expectedDataKey="lysate_weight" expectedColor="rgb(75, 192, 192)"/>
-        </Tab>
-        
-      </Tabs>
-
-      <div className="right-aligned-buttons">
-        <div className="mb-3">
-          <div className="button-status-container">
-            {toggleBufferPumpButton}
-            {bufferPumpStatus}
-          </div>
-          <div className="button-status-container">
-            {toggleLysatePumpButton}
-            {lysatePumpStatus}
-          </div>
-           <div className="button-status-container">
-            {controlLoopButton}
-            {controlLoopStatus}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ConcentrationControlPanel;

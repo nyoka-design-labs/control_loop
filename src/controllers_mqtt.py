@@ -79,18 +79,19 @@ class Controller:
         """
         try:
             command = state + self.pcu_id + '\n'
-            print(f"Sending command: {command.encode()}")
+            # print(f"Sending command: {command.encode()}")
             logger.info(f"Sending command: {command.encode()}")
             if pumps:
-                print("sending command to esp")
+                # print("sending command to esp")
+                logger.info("sending command to esp")
                 self.arduino.write(command.encode())
                 time.sleep(1)
                 if self.arduino.in_waiting > 0:
                     response = self.arduino.read(self.arduino.in_waiting).decode('utf-8')
                     print(f"Response from ESP32: {response}")
-
+                    logger.info(f"Response from ESP32: {response}")
         except Exception as e:
-            print(f"failed to control pump: \n state: {state}, \n{e}")
+            # print(f"failed to control pump: \n state: {state}, \n{e}")
             logger.error(f"Error in pump_control: \n state: {state}, \n{e}\n{traceback.format_exc()}")
 
         time.sleep(1)
@@ -116,7 +117,7 @@ class Controller:
             else:
                 raise ValueError(f"No control method found for loop_id: {self.loop_id}")
         except Exception as e:
-            print(f"failed to start control: \n{e}")
+            # print(f"failed to start control: \n{e}")
             logger.error(f"Error in start_control: {e}\n{traceback.format_exc()}")
         
     def start_collection(self, control_status: bool):
@@ -142,7 +143,7 @@ class Controller:
                 self.save_data_sheets(data)
                 return self.status, data
         except Exception as e:
-            print(f"failed to start_collection: \n control_status: {control_status} \n{e}")
+            # print(f"failed to start_collection: \n control_status: {control_status} \n{e}")
             logger.error(f"Error in start_collection: \n control_status: {control_status}, \n{e}\n{traceback.format_exc()}")
 
     def reset_controller_consts(self, testing: bool=False):
@@ -168,8 +169,8 @@ class Controller:
         Returns:
             dict: The updated status after stopping the control processes.
         """
-        print("stopping pumps")
-        
+        # print("stopping pumps")
+        logger.info("stopping pumps")
         try:
             for pump in self.pumps.values():
                 self.pump_control(pump.control(False))
@@ -178,7 +179,7 @@ class Controller:
 
             return self.status
         except Exception as e:
-            print(f"failed to stop_control: \n data_col_is_on: {data_col_is_on} \n{e}")
+            # print(f"failed to stop_control: \n data_col_is_on: {data_col_is_on} \n{e}")
             logger.error(f"Error in get_data: \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
     
     def toggle_pump(self, pump_name):
@@ -197,7 +198,7 @@ class Controller:
                     f"{pump_name}_status": str(self.pumps[pump_name].state)
                 })
         except Exception as e:
-            print(f"failed to toggle_pump: \n{pump_name}, \n{e}")
+            # print(f"failed to toggle_pump: \n{pump_name}, \n{e}")
             logger.error(f"Error in toggle_pump: \n{pump_name}, \n{e}\n{traceback.format_exc()}")
          
     def initialize_pumps(self):
@@ -216,7 +217,7 @@ class Controller:
                 pumps[pump_name] = Pump(name=pump_value)
             return pumps
         except Exception as e:
-            print(f"failed to initialize_pumps: \n{e}")
+            # print(f"failed to initialize_pumps: \n{e}")
             logger.error(f"Error in initialize_pumps: {e}\n{traceback.format_exc()}")
 
     def initialize_status(self):
@@ -240,7 +241,7 @@ class Controller:
 
             return status
         except Exception as e:
-            print(f"failed to initialize_status: \n{e}")
+            # print(f"failed to initialize_status: \n{e}")
             logger.error(f"Error in initialize_status: {e}\n{traceback.format_exc()}")
     
     def update_control_status(self, control_is_on: bool=False, data_col_is_on: bool=True):
@@ -281,7 +282,7 @@ class Controller:
             for pump_name in self.pumps:
                 self.status[f"{pump_name}_status"] = str(self.pumps[pump_name].state)
         except Exception as e:
-            print(f"failed to update_status: \n control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on} \n {e}")
+            # print(f"failed to update_status: \n control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on} \n {e}")
             logger.error(f"Error in update_status: control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
 
     def get_data(self):
@@ -297,14 +298,14 @@ class Controller:
         try:
             if testing:
                     data = self.mqtt_client.request_data(testing=testing)
-                    print(f"test data: {data}")
+                    # print(f"test data: {data}")
                     logger.info(f"test data: {data}")
                     return data
             else:
                 data = self.mqtt_client.request_data()
                 return data
         except Exception as e:
-            print(f"failed to get data: {e}")
+            # print(f"failed to get data: {e}")
             logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
       
     def save_data_sheets(self, data):
@@ -326,10 +327,10 @@ class Controller:
             combined_data.pop("type", None)
             combined_data.update(status)
             save_dict_to_sheet(combined_data, self.csv_name)
-            print("added data to sheets")
+            # print("added data to sheets")
             logger.info("added data to sheets")
         except Exception as e:
-            print(f"failed to add data to sheets: {data}, \n{e}")
+            # print(f"failed to add data to sheets: {data}, \n{e}")
             logger.error(f"Error in save_data_sheets: \n{data}, \n{e}\n{traceback.format_exc()}")
 
     def load_control_constants(self):
@@ -342,14 +343,22 @@ class Controller:
             constants = get_control_constant(self.loop_id, self.control_id, "control_consts")  # Fetch constants for the given control
             # Store constants in a dictionary
             self.control_consts = constants
-            print(f"Loaded control constants for {self.control_id}: {self.control_consts}")
+            # print(f"Loaded control constants for {self.control_id}: {self.control_consts}")
             logger.info(f"Loaded control constants for {self.control_id}: {self.control_consts}")
+
+            # Store configuration in a dictionary
+            constants = get_control_constant(self.loop_id, self.control_id, "control_config")  # Fetch constants for the given control
+            # Store constants in a dictionary
+            self.control_config = constants
+            # print(f"Loaded control configuration for {self.control_id}: {self.control_config}")
+            logger.info(f"Loaded control configuration for {self.control_id}: {self.control_config}")
         except Exception as e:
-            print(f"Failed to load control constants: {e}")
+            # print(f"Failed to load control constants: {e}")
             logger.error(f"Error in load_control_constants: {e}\n{traceback.format_exc()}")
             self.control_consts = {}  # Default to an empty dict if loading fails
+            self.control_config = {}  # Default to an empty dict if loading fails
     
-    def update_controller_consts(self, *args, **kwargs):
+    def update_controller_consts(self, toUpdate, *args, **kwargs):
         """
         Updates specific control constants within the controller's configuration.
 
@@ -368,20 +377,20 @@ class Controller:
         loop_found = next((item for item in data["loop"] if item["loop_id"] == self.loop_id), None)
         if loop_found:
             controller_found = next((controller for controller in loop_found["controllers"] if controller["controller_id"] == self.control_id), None)
-            if controller_found and "control_consts" in controller_found:
-                updated_dict = update_dict(controller_found["control_consts"], *args, **kwargs)
-                controller_found["control_consts"] = updated_dict
+            if controller_found and toUpdate in controller_found:
+                updated_dict = update_dict(controller_found[toUpdate], *args, **kwargs)
+                controller_found[toUpdate] = updated_dict
                 # Save the updated data back to the JSON file
                 with open(json_file_path, "w") as file:
                     json.dump(data, file, indent=4)
-                print(f"Updated {args, kwargs} in controller {self.control_id} of loop {self.loop_id}")
+                # print(f"Updated {args, kwargs} in controller {self.control_id} of loop {self.loop_id}")
                 logger.info(f"Updated {args, kwargs} in controller {self.control_id} of loop {self.loop_id}")
                 self.load_control_constants()
-                print("Updated control_consts for controller")
+                # print("Updated control_consts for controller")
             else:
-                print(f"Controller {self.control_id} not found in loop {self.loop_id}")
+                logger.info(f"Controller {self.control_id} not found in loop {self.loop_id}")
         else:
-            print(f"Loop {self.loop_id} not found")
+            logger.info(f"Loop {self.loop_id} not found")
 
     def __convert_even_odd(self, value):
         """
@@ -445,10 +454,7 @@ class ConcentrationController(Controller):
         self.init_device_manager()
 
         self.initial_buffer_mass = None
-        self.initial_lysate_mass = None
-
-        self.control_consts = {}
-        
+        self.initial_lysate_mass = None  
 
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
@@ -484,9 +490,9 @@ class ConcentrationController(Controller):
         Turns on pump if LESS than set point. Re-fills reservoir.
         '''
         
-        if self.control_consts["buffer_sp"] == 0:
-            self.update_controller_consts("buffer_sp", weight)
-        buffer_sp = self.control_consts["buffer_sp"]
+        if self.control_config["buffer_sp"] == 0:
+            self.update_controller_consts("control_config", "buffer_sp", weight)
+        buffer_sp = self.control_config["buffer_sp"]
         if (weight < buffer_sp):
             self.pump_control(self.pumps["buffer_pump"].control(True))
         else:
@@ -497,8 +503,8 @@ class ConcentrationController(Controller):
         Turns on pump if GREATER than set point. Empties reservoir.
         '''
         
-        lysate_upper_sp = self.control_consts["lysate_upper_sp"]
-        lysate_lower_sp = self.control_consts["lysate_lower_sp"]
+        lysate_upper_sp = self.control_config["lysate_upper_sp"]
+        lysate_lower_sp = self.control_config["lysate_lower_sp"]
         if (weight > lysate_upper_sp):
             self.pump_control(self.pumps["lysate_pump"].control(True))
         elif (weight < lysate_lower_sp):
@@ -519,8 +525,6 @@ class FermentationController(Controller):
 
         self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
         self.init_device_manager()
-
-        self.control_consts = {}
         
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
@@ -553,10 +557,10 @@ class FermentationController(Controller):
 
         pre_feed_trigger_type = 'ph'
         feed_trigger_type = 'ph'
-        feed_trigger_sp = self.control_consts["feed_trigger_sp"]
+        feed_trigger_sp = self.control_config["feed_trigger_sp"]
 
-        start_feed_trig_value = self.control_consts.get("start_feed_trig_value")
-        required_readings = self.control_consts.get("required_readings")
+        start_feed_trig_value = self.control_config.get("start_feed_trig_value")
+        required_readings = self.control_config.get("required_readings")
         feed_counter = self.control_consts.get("feed_counter", 0)
 
         
@@ -572,14 +576,15 @@ class FermentationController(Controller):
 
         # Phase 2: Start feeding with glycerol pump
         if start_feed and current_datetime < phase3_start_time:
-            print("Phase 2: Glycerol Feed")
+            # print("Phase 2: Glycerol Feed")
             logger.info("Phase 2: Glucose Feed")
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
 
         # Phase 3: Start feeding with lactose pump
         if start_feed and current_datetime >= phase3_start_time:
-            print("Phase 3: Lactose Feed")
+            # print("Phase 3: Lactose Feed")
+            logger.info("Phase 3: Lactose Feed")
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
             self.__control_pump_activation(data, 'lactose_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
 
@@ -615,14 +620,14 @@ class FermentationController(Controller):
         pre_feed_trigger_type = 'do'
         feed_trigger_type = 'ph'
 
-        feed_trigger_sp = self.control_consts["feed_trigger_sp"]
+        feed_trigger_sp = self.control_config["feed_trigger_sp"]
 
-        start_feed_trig_value = self.control_consts.get("start_feed_trig_value")
-        start_trig_value = self.control_consts.get("start_trig_value")
+        start_feed_trig_value = self.control_config.get("start_feed_trig_value")
+        start_trig_value = self.control_config.get("start_trig_value")
         start_counter = self.control_consts.get("start_counter", 0)
         feed_counter = self.control_consts.get("feed_counter", 0)
 
-        required_readings = self.control_consts.get("required_readings")
+        required_readings = self.control_config.get("required_readings")
 
         start_phase_1 = eval(self.control_consts["start_phase_1"])
         start_feed = eval(self.control_consts["start_feed"])
@@ -673,15 +678,14 @@ class FermentationController(Controller):
         feed_trigger_type = 'do'
 
 
-        required_readings = self.control_consts.get("required_readings")
-        deriv_window = self.control_consts["deriv_window"]
-        derivs  = self.control_consts["derivs"]
-        feed_counter = self.control_consts.get("feed_counter", 0)
+        required_readings = self.control_config.get("required_readings")
+        deriv_window = self.control_config["deriv_window"]
+        derivs  = self.control_config["derivs"]
+        feed_counter = self.control_config.get("feed_counter", 0)
         
-        feed_trigger_upper_sp = self.control_consts["feed_trigger_upper_sp"]
-        feed_trigger_lower_sp = self.control_consts["feed_trigger_lower_sp"]
+        feed_trigger_upper_sp = self.control_config["feed_trigger_upper_sp"]
+        feed_trigger_lower_sp = self.control_config["feed_trigger_lower_sp"]
 
-        csv_name = self.control_consts["csv_name"]
         current_time = time.time()
         current_datetime = datetime.fromtimestamp(current_time)
         phase3_start_time = datetime(2024, 6, 20, 20, 30, 0)  # 8:30 PM Jun 20, 2024
@@ -690,11 +694,11 @@ class FermentationController(Controller):
         # Phase 1: Maintain pH using only base
         if not start_feed:
             self.__pH_balance(data["ph"], base_control=True, acid_control=False)
-            self.__start_feed_check_der(self, pre_feed_trigger_type, feed_counter, derivs, csv_name, required_readings=required_readings, deriv_window=deriv_window)
+            self.__start_feed_check_der(self, pre_feed_trigger_type, feed_counter, derivs, self.csv_name, required_readings=required_readings, deriv_window=deriv_window)
 
         # Phase 2: Start feeding with glycerol pump
         if start_feed and current_datetime < phase3_start_time:
-            print("Phase 2: Glycerol Feed")
+            # print("Phase 2: Glycerol Feed")
             logger.info("Phase 2: Glucose Feed")
             self.__pH_balance(data["ph"], base_control=True, acid_control=True)
             self.pump_control(self.pumps["lactose_pump"].control(False))
@@ -704,7 +708,8 @@ class FermentationController(Controller):
 
         # Phase 3: Start feeding with lactose pump
         if start_feed and current_datetime >= phase3_start_time:
-            print("Phase 3: Lactose Feed")
+            # print("Phase 3: Lactose Feed")
+            logger.info("Phase 3: Lactose Feed")
             self.__pH_balance(data["ph"], base_control=True, acid_control=True)
             self.pump_control(self.pumps["feed_pump"].control(False))
             self.pump_control(self.pumps["feed_const_pump"].control(False))
@@ -719,13 +724,13 @@ class FermentationController(Controller):
     
     def __test_loop(self):
         data = self.get_data()
-        cyc = self.control_consts["cycles"]
+        cyc = self.control_config["cycles"]
         self.pump_control(self.pumps["feed_pump"].toggle())
         self.pump_control(self.pumps["base_pump"].toggle())
 
         cyc += 1
 
-        self.update_controller_consts("cycles", cyc)
+        self.update_controller_consts("control_config", "cycles", cyc)
 
         self.update_status()
 
@@ -737,11 +742,11 @@ class FermentationController(Controller):
         """
         # control_id = self.control_id
         # current_value = get_control_constant(self.loop_id, control_id, "feed_media")
-        current_value = self.control_consts["feed_media"]
+        current_value = self.control_config["feed_media"]
         new_value = 'Lactose' if current_value == 'Glucose' else 'Glucose'
-        self.update_controller_consts("feed_media", new_value)
+        self.update_controller_consts("control_config", "feed_media", new_value)
         self.status.update({
-            "feed_media": self.control_consts["feed_media"]
+            "feed_media": self.control_config["feed_media"]
         })
     
     def __pH_balance(self, ph: float, base_control: bool=True, acid_control: bool=True):
@@ -762,10 +767,10 @@ class FermentationController(Controller):
             - The function also logs the current pH balancing status and updates the system's status.
         """
         
-        ph_base_sp = self.control_consts["base_sp"]
-        ph_acid_sp = self.control_consts["acid_sp"]
+        ph_base_sp = self.control_config["base_sp"]
+        ph_acid_sp = self.control_config["acid_sp"]
 
-        print(f"ph being balanced at base: {ph_base_sp} and acid: {ph_acid_sp}")
+        # print(f"ph being balanced at base: {ph_base_sp} and acid: {ph_acid_sp}")
         logger.info(f"ph being balanced at base: {ph_base_sp} and acid: {ph_acid_sp}")
 
         if base_control and (ph <= ph_base_sp):
@@ -795,7 +800,7 @@ class FermentationController(Controller):
 
         self.update_status()
 
-    def __pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: int, start_counter: int, start_phase_1: bool, trigger_below = True):
+    def __pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: float, start_counter: int, start_phase_1: bool, trigger_below = True):
         """
         Checks and activates pre-phase based on the specified trigger value conditions.
 
@@ -817,22 +822,22 @@ class FermentationController(Controller):
             if (trigger_below and curr_value < start_trig_value) or (not trigger_below and curr_value > start_trig_value):
                 start_counter += 1
                 if start_counter >= required_readings - 1:
-                    self.update_controller_consts("start_phase_1", "True")
+                    self.update_controller_consts("control_consts", "start_phase_1", "True")
                     start_phase_1 = True
-                    print(f"Phase 1 activated by {trigger_type} {'below' if trigger_below else 'above'} {start_trig_value} for {required_readings} readings.")
+                    # print(f"Phase 1 activated by {trigger_type} {'below' if trigger_below else 'above'} {start_trig_value} for {required_readings} readings.")
                     logger.info(f"Phase 1 activated by {trigger_type} {'below' if trigger_below else 'above'} {start_trig_value} for {required_readings} readings.")
             else:
                 start_counter = 0  # Reset counter if condition not met
-            self.update_controller_consts("start_counter", start_counter)
+            self.update_controller_consts("control_consts", "start_counter", start_counter)
 
         self.update_status()
 
         return start_phase_1
     
-    def test_pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: int, start_counter: int, start_phase_1: bool, trigger_below = True):
+    def test_pre_phase_check(self, data: dict, trigger_type: str, start_trig_value: float, required_readings: float, start_counter: int, start_phase_1: bool, trigger_below = True):
         return self.__pre_phase_check(data, trigger_type, start_trig_value, required_readings, start_counter, start_phase_1, trigger_below)
 
-    def __start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1=True, trigger_below=False, start_feed=False):
+    def __start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: float, feed_counter: int, start_phase_1=True, trigger_below=False, start_feed=False):
         """
         Checks and determines if feeding should start based on sensor data exceeding/subceeding a set threshold.
 
@@ -854,22 +859,22 @@ class FermentationController(Controller):
             if (not trigger_below and curr_value >= start_feed_trig_value) or (trigger_below and curr_value <= start_feed_trig_value):
                 feed_counter += 1
                 if feed_counter >= required_readings:
-                    self.update_controller_consts("start_feed", "True")
+                    self.update_controller_consts("control_consts", "start_feed", "True")
                     start_feed = True
-                    print(f"Feed started by {trigger_type} {'above' if not trigger_below else 'below'} {start_feed_trig_value} for {required_readings} readings.")
+                    # print(f"Feed started by {trigger_type} {'above' if not trigger_below else 'below'} {start_feed_trig_value} for {required_readings} readings.")
                     logger.info(f"Feed started by {trigger_type} {'above' if not trigger_below else 'below'} {start_feed_trig_value} for {required_readings} readings.")
             else:
                 feed_counter = 0  # Reset counter if condition not met
-            self.update_controller_consts("feed_counter", feed_counter)
+            self.update_controller_consts("control_consts", "feed_counter", feed_counter)
 
         self.update_status()
 
         return start_feed
     
-    def test_start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: int, feed_counter: int, start_phase_1=True, trigger_below = False, start_feed = False):
+    def test_start_feed_check_bool(self, data: dict, trigger_type: str, start_feed_trig_value: float, required_readings: float, feed_counter: int, start_phase_1=True, trigger_below = False, start_feed = False):
         return self.__start_feed_check_bool(data, trigger_type, start_feed_trig_value, required_readings, feed_counter, start_phase_1, trigger_below, start_feed)
 
-    def __start_feed_check_der(self, trigger_type: str, feed_counter: int, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
+    def __start_feed_check_der(self, trigger_type: str, feed_counter: float, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
         """
         Determines whether to initiate feed based on the derivative of sensor data, considering either positive or negative trends as specified.
 
@@ -899,19 +904,19 @@ class FermentationController(Controller):
                 # Check if the derivatives meet the criteria for starting feed
                 if isDerPositive(derivs, required_readings):
                     start_feed = True
-                    self.update_controller_consts("start_feed", "True")
-                    print("Derivative conditions met. Transitioning to Phase 2")
+                    self.update_controller_consts("control_consts", "start_feed", "True")
+                    # print("Derivative conditions met. Transitioning to Phase 2")
                     logger.info("Derivative conditions met. Transitioning to Phase 2")
                 # Reset the counter and derivatives list after checking
                 
             # Update the current state of the derivative checks
-            self.update_controller_consts("feed_counter", feed_counter)
-            self.update_controller_consts("derivs", derivs)
+            self.update_controller_consts("control_consts", "feed_counter", feed_counter)
+            self.update_controller_consts("control_consts", "derivs", derivs)
 
         self.update_status()
         return start_feed
     
-    def test_start_feed_check_der(self, trigger_type: str, feed_counter: int, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
+    def test_start_feed_check_der(self, trigger_type: str, feed_counter: float, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
         return self.__start_feed_check_der(trigger_type, feed_counter, derivs, csv_name, required_readings, deriv_window, der_positive, start_phase_1, start_feed)
 
     def __control_pump_activation(self, data: dict, pump_name: str, feed_trigger_type: str, feed_trigger_upper_sp: float, feed_trigger_lower_sp: float,trigger_above = True):
@@ -937,11 +942,11 @@ class FermentationController(Controller):
 
         if (trigger_above and current_value >= feed_trigger_upper_sp) or (not trigger_above and current_value <= feed_trigger_lower_sp):
             self.pump_control(self.pumps[pump_name].control(True))
-            print(f"{pump_name} pump on")
+            # print(f"{pump_name} pump on")
             logger.info(f"{pump_name} pump on")
         elif (trigger_above and current_value < feed_trigger_lower_sp) or (not trigger_above and current_value > feed_trigger_upper_sp):
             self.pump_control(self.pumps[pump_name].control(False))
-            print(f"{pump_name} pump off")
+            # print(f"{pump_name} pump off")
             logger.info(f"{pump_name} pump off")
 
         self.update_status()
@@ -958,20 +963,20 @@ class FermentationController(Controller):
         """
         start_time = get_control_constant(self.loop_id, self.control_id, "start_time")
         last_antifoam_edition = self.control_consts.get("last_antifoam_edition", 0)
-        antifoam_edition_rate = self.control_consts.get("antifoam_edition_rate", 2)
+        antifoam_edition_rate = self.control_config.get("antifoam_edition_rate", 2)
         current_time = time.time()
 
         # Check if the antifoam pump is on
         if self.pumps["antifoam_pump"].is_on():
             # Turn off the antifoam pump and update last_antifoam_edition with current_time
             self.pump_control(self.pumps["antifoam_pump"].control(False))
-            self.update_controller_consts("last_antifoam_edition", current_time)
-            print("Antifoam pump deactivated")
+            self.update_controller_consts("control_consts", "last_antifoam_edition", current_time)
+            # print("Antifoam pump deactivated")
             logger.info("Antifoam pump deactivated")
         else:
             if last_antifoam_edition == 0:
                 # Initialize last_antifoam_edition with start_time
-                self.update_controller_consts("last_antifoam_edition", current_time)
+                self.update_controller_consts("control_consts", "last_antifoam_edition", current_time)
             last_antifoam_edition = self.control_consts.get("last_antifoam_edition")
 
             elapsed_time = (current_time - last_antifoam_edition) / 3600  # Convert elapsed time to hours
@@ -979,7 +984,7 @@ class FermentationController(Controller):
             # Check if specified hours have passed since the last antifoam edition
             if elapsed_time >= antifoam_edition_rate:
                 self.pump_control(self.pumps["antifoam_pump"].control(True))
-                print("Antifoam pump activated")
+                # print("Antifoam pump activated")
                 logger.info("Antifoam pump activated")
     
 if __name__ == "__main__":

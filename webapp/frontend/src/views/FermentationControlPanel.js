@@ -1,108 +1,85 @@
+import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
-import { useTogglePumpButton, useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
-import { useFeedPumpStatus, useBasePumpStatus, useLactosePumpStatus, useFeedConstPumpStatus, useLactoseConstPumpStatus, useControlLoopStatus, useDataCollectionStatus, useAcidPumpStatus, useFeedMediaStatus } from '../components/StatusBoxes';
-import { Chart } from '../components/Charts';
-import '../App.css';
-import 'chart.js/auto';
+import { useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
+import useStatusBox from '../components/StatusBoxes';
+import DynamicComponents from '../components/DynamicComponents';
+import DynamicConfigComponent from '../components/DynamicConfigComponent';
+import { Graph } from '../components/Graph'; // Use the new Graph component
+import './views.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const FermentationControlPanel = () => {
-  const { systemData, currentMeasurements } = useData();
-  const fermentationLoopIdentifier = 'fermentation_loop';
-  
-  
+    const { systemData, currentMeasurements, pumpData } = useData();
+    const fermentationLoopIdentifier = 'fermentation_loop';
 
-  const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", fermentationLoopIdentifier);
-  const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", fermentationLoopIdentifier, isControlLoopRunning);
-  const toggleFeedPumpButton = useTogglePumpButton("Toggle Feed Pump", "toggle_feed", fermentationLoopIdentifier);
-  const toggleFeedConstPumpButton = useTogglePumpButton("Toggle Const Feed Pump", "toggle_feed_const", fermentationLoopIdentifier);
-  const toggleLactoseConstPumpButton = useTogglePumpButton("Toggle Const Lactose Pump", "toggle_lactose_const", fermentationLoopIdentifier);
-  const toggleBasePumpButton = useTogglePumpButton("Toggle Base Pump", "toggle_base", fermentationLoopIdentifier);
-  const toggleLactosePumpButton = useTogglePumpButton("Toggle Lactose Pump", "toggle_lactose", fermentationLoopIdentifier);
-  const toggleAcidPumpButton = useTogglePumpButton("Toggle Acid Pump", "toggle_acid", fermentationLoopIdentifier);
-  const toggleFeedMediaButton = useTogglePumpButton("Switch Feed Media", "toggle_feed_media", fermentationLoopIdentifier);
-  
-  
-  const feedPumpStatus = useFeedPumpStatus();
-  const basePumpStatus = useBasePumpStatus();
-  const lactosePumpStatus = useLactosePumpStatus();
-  const controlLoopStatus = useControlLoopStatus();
-  const acidPumpStatus = useAcidPumpStatus();
-  const dataCollectionStatus = useDataCollectionStatus();
-  const feedMediaStatus = useFeedMediaStatus();
-  const feedConstPumpStatus =  useFeedConstPumpStatus();
-  const lactoseConstPumpStatus =  useLactoseConstPumpStatus();
+    const currentPumps = pumpData[fermentationLoopIdentifier] || {};
 
-  return (
-    <div className="App container mt-5">
-      <h1>Fermentaion Control Panel</h1>
-      <div className="mb-3">
-        <div className="button-status-container">
-          {dataCollectionButton}
-          {dataCollectionStatus}
+    const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", fermentationLoopIdentifier);
+    const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", fermentationLoopIdentifier, isControlLoopRunning);
+    const dataCollectionStatus = useStatusBox("data_collection_status", "ON", "OFF", true);
+    const controlLoopStatus = useStatusBox("control_loop_status", "ON", "OFF", true);
+
+    // State to force a re-render of the graph
+    const [graphKey, setGraphKey] = useState(0);
+
+    return (
+        <div className="view-container">
+            <h1>Fermentation Control Panel</h1>
+            <div className="view-content">
+                <div className="graphs-section">
+                    <div className="content">
+                        <div className="graph-section">
+                            <Tabs
+                                defaultActiveKey="weight"
+                                className="mb-3 custom-tabs"
+                                onSelect={() => setGraphKey(graphKey + 1)}
+                            >
+                                <Tab eventKey="weight" title="Weight">
+                                    <h3>Feed Weight: {currentMeasurements.weight} g</h3>
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)" />
+                                </Tab>
+                                <Tab eventKey="do" title="DO">
+                                    <h3>DO: {currentMeasurements.do} %</h3>
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="do" actualColor="rgb(75, 192, 192)" />
+                                </Tab>
+                                <Tab eventKey="temp" title="Temperature">
+                                    <h3>Temp: {currentMeasurements.temp} °C</h3>
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="Temp" actualColor="rgb(75, 192, 192)" />
+                                </Tab>
+                                <Tab eventKey="ph" title="pH">
+                                    <h3>pH: {currentMeasurements.ph}</h3>
+                                    <Graph graphInstanceKey={graphKey} systemData={systemData} label="PH" actualColor="rgb(75, 192, 192)" />
+                                </Tab>
+                            </Tabs>
+                        </div> 
+                    </div>
+                </div>
+                <div className="controls-section">
+                    <div className="mb-3">
+                        <div className="button-status-container">
+                            {dataCollectionButton}
+                            {dataCollectionStatus}
+                        </div>
+                        <div className="button-status-container">
+                            {controlLoopButton}
+                            {controlLoopStatus}
+                        </div>
+                    </div>
+                    <div className="config-panel-dark">
+                        <div className="right-aligned-buttons">
+                            <div className="mb-3">
+                                <DynamicComponents pumps={currentPumps} loopIdentifier={fermentationLoopIdentifier} />
+                            </div>
+                            <div className="config-section">
+                                <DynamicConfigComponent loopIdentifier={fermentationLoopIdentifier} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <Tabs defaultActiveKey="weight" id="uncontrolled-tab-example" className="mb-3">
-        <Tab eventKey="weight" title="Weight">
-          <h3>Feed Weight: {currentMeasurements.weight} g</h3>
-          <h3>Lactose Weight: {currentMeasurements.expected_weight} g</h3>
-          <Chart systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)"
-          expectedDataKey="lactose_weight" expectedColor="rgb(255, 99, 132)" />
-        </Tab>
-        <Tab eventKey="do" title="DO">
-          <h3>DO: {currentMeasurements.do} %</h3>
-          <Chart systemData={systemData} label="do" color="rgb(75, 192, 192)" 
-          expectedDataKey="do" expectedColor="rgb(75, 192, 192)"/>
-        </Tab>
-        <Tab eventKey="temp" title="Temperature">
-          <h3>Temp: {currentMeasurements.temp} °C</h3>
-          <Chart systemData={systemData} label="Temperature" color="rgb(75, 192, 192)" 
-          expectedDataKey="Temperature" expectedColor="rgb(75, 192, 192)"/>
-        </Tab>
-        <Tab eventKey="ph" title="pH">
-          <div className="mb-3">
-            <h3>pH: {currentMeasurements.ph}</h3>
-          </div>
-          <Chart systemData={systemData} label="PH" color="rgb(75, 192, 192)" 
-          expectedDataKey="PH" expectedColor="rgb(75, 192, 192)"/>
-        </Tab>
-      </Tabs>
-
-      <div className="right-aligned-buttons">
-        <div className="mb-3">
-          <div className="button-status-container">
-            {toggleFeedPumpButton}
-            {feedPumpStatus}
-          </div>
-          <div className="button-status-container">
-            {toggleFeedConstPumpButton}
-            {feedConstPumpStatus}
-          </div>
-          <div className="button-status-container">
-            {toggleLactosePumpButton}
-            {lactosePumpStatus}
-          </div>
-          <div className="button-status-container">
-            {toggleLactoseConstPumpButton}
-            {lactoseConstPumpStatus}
-          </div>
-          <div className="button-status-container">
-            {toggleBasePumpButton}
-            {basePumpStatus}
-          </div>
-          <div className="button-status-container">
-            {toggleAcidPumpButton}
-            {acidPumpStatus}
-          </div>
-          <div className="button-status-container">
-            {controlLoopButton}
-            {controlLoopStatus}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default FermentationControlPanel;

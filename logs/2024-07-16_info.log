@@ -1,0 +1,1072 @@
+2024-07-16 14:25:31 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 81, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 14:25:31 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 14:25:51 - ERROR - recieved ping from frontend
+2024-07-16 14:26:11 - ERROR - recieved ping from frontend
+2024-07-16 14:26:31 - ERROR - recieved ping from frontend
+2024-07-16 14:26:45 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 81, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 14:26:45 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 14:26:58 - INFO - Command received: toggle_buffer_pump
+2024-07-16 14:26:58 - ERROR - Error in get_controller: 
+ Input: concentrationLoopIdentifier, 
+ cannot access local variable 'controller' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 269, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 43, in create_controller
+    return controller
+           ^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'controller' where it is not associated with a value
+
+2024-07-16 14:26:58 - ERROR - Error in toggle: 
+ Input: toggle_buffer_pump, 
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 170, in toggle
+    controller_info["controller"].toggle_pump(pump_name + "_pump")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-07-16 14:27:05 - ERROR - recieved ping from frontend
+2024-07-16 14:27:25 - ERROR - recieved ping from frontend
+2024-07-16 14:27:45 - ERROR - recieved ping from frontend
+2024-07-16 14:28:05 - ERROR - recieved ping from frontend
+2024-07-16 14:28:25 - ERROR - recieved ping from frontend
+2024-07-16 14:28:45 - ERROR - recieved ping from frontend
+2024-07-16 14:29:05 - ERROR - recieved ping from frontend
+2024-07-16 14:30:03 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 81, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 14:30:03 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 14:30:08 - INFO - Command received: toggle_buffer_pump
+2024-07-16 14:30:08 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-16 14:30:13 - ERROR - Error in get_controller: 
+ Input: concentration_loop, 
+ timed out
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 269, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 39, in create_controller
+    controller = ConcentrationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 444, in __init__
+    self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controller_mqtt_client.py", line 9, in __init__
+    self.client.connect(broker_address, 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+2024-07-16 14:30:13 - ERROR - Error in toggle: 
+ Input: toggle_buffer_pump, 
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 170, in toggle
+    controller_info["controller"].toggle_pump(pump_name + "_pump")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-07-16 14:30:23 - ERROR - recieved ping from frontend
+2024-07-16 14:30:43 - ERROR - recieved ping from frontend
+2024-07-16 14:31:03 - ERROR - recieved ping from frontend
+2024-07-16 14:31:23 - ERROR - recieved ping from frontend
+2024-07-16 14:31:43 - ERROR - recieved ping from frontend
+2024-07-16 14:32:22 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 81, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 14:32:22 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 14:32:25 - INFO - Command received: toggle_feed_pump
+2024-07-16 14:33:12 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-16 15:20:41 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 109, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:20:41 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:20:41 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 109, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:20:41 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:20:41 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 109, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-16 15:20:41 - ERROR - Backup Server Starting
+2024-07-16 15:20:41 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-16 15:20:41 - INFO - Loaded control configuration for test_loop: No control_config provided
+2024-07-16 15:20:46 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ timed out
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 109, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 268, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 525, in __init__
+    self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controller_mqtt_client.py", line 9, in __init__
+    self.client.connect(broker_address, 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+2024-07-16 15:20:46 - ERROR - Error in handle_server_error
+Unexpected error: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 109, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 204, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-16 15:20:46 - ERROR - type of exception: <class 'TypeError'>
+2024-07-16 15:20:46 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 109, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 204, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-16 15:21:55 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 109, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:21:55 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:22:21 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 109, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:22:21 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:27:00 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:27:00 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:27:00 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:27:00 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:27:00 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-16 15:27:00 - ERROR - Backup Server Starting
+2024-07-16 15:27:00 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-16 15:27:00 - INFO - Loaded control configuration for test_loop: No control_config provided
+2024-07-16 15:27:00 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ [Errno 65] No route to host
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 268, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 525, in __init__
+    self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controller_mqtt_client.py", line 9, in __init__
+    self.client.connect(broker_address, 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+OSError: [Errno 65] No route to host
+
+2024-07-16 15:27:00 - ERROR - Error in handle_server_error
+Unexpected error: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 215, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-16 15:27:00 - ERROR - type of exception: <class 'TypeError'>
+2024-07-16 15:27:00 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 215, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-16 15:28:19 - ERROR - Error in send_pump_data
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 85, in send_pump_data
+    await websocket.send(json.dumps({
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 647, in send
+    await self.write_frame(True, opcode, data)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 1209, in write_frame
+    await self.drain()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 1198, in drain
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-16 15:28:19 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-16 15:28:19 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 85, in send_pump_data
+    await websocket.send(json.dumps({
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 647, in send
+    await self.write_frame(True, opcode, data)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 1209, in write_frame
+    await self.drain()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 1198, in drain
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-16 15:28:53 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:28:53 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:31:02 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:31:02 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:31:22 - ERROR - recieved ping from frontend
+2024-07-16 15:31:42 - ERROR - recieved ping from frontend
+2024-07-16 15:32:02 - ERROR - recieved ping from frontend
+2024-07-16 15:32:22 - ERROR - recieved ping from frontend
+2024-07-16 15:32:42 - ERROR - recieved ping from frontend
+2024-07-16 15:33:02 - ERROR - recieved ping from frontend
+2024-07-16 15:33:22 - ERROR - recieved ping from frontend
+2024-07-16 15:33:42 - ERROR - recieved ping from frontend
+2024-07-16 15:34:02 - ERROR - recieved ping from frontend
+2024-07-16 15:34:22 - ERROR - recieved ping from frontend
+2024-07-16 15:34:42 - ERROR - recieved ping from frontend
+2024-07-16 15:35:02 - ERROR - recieved ping from frontend
+2024-07-16 15:35:22 - ERROR - recieved ping from frontend
+2024-07-16 15:35:42 - ERROR - recieved ping from frontend
+2024-07-16 15:36:02 - ERROR - recieved ping from frontend
+2024-07-16 15:36:22 - ERROR - recieved ping from frontend
+2024-07-16 15:36:42 - ERROR - recieved ping from frontend
+2024-07-16 15:37:02 - ERROR - recieved ping from frontend
+2024-07-16 15:37:22 - ERROR - recieved ping from frontend
+2024-07-16 15:37:42 - ERROR - recieved ping from frontend
+2024-07-16 15:38:02 - ERROR - recieved ping from frontend
+2024-07-16 15:38:22 - ERROR - recieved ping from frontend
+2024-07-16 15:38:42 - ERROR - recieved ping from frontend
+2024-07-16 15:39:02 - ERROR - recieved ping from frontend
+2024-07-16 15:39:12 - INFO - Updated base_sp to 30000000 in control_config
+2024-07-16 15:39:22 - ERROR - recieved ping from frontend
+2024-07-16 15:39:42 - ERROR - recieved ping from frontend
+2024-07-16 15:40:02 - ERROR - recieved ping from frontend
+2024-07-16 15:40:14 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:40:14 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:40:21 - INFO - Updated base_sp to 30000000.0 in control_config
+2024-07-16 15:40:34 - ERROR - recieved ping from frontend
+2024-07-16 15:40:38 - INFO - Updated base_sp to 6.95 in control_config
+2024-07-16 15:40:55 - ERROR - recieved ping from frontend
+2024-07-16 15:41:15 - ERROR - recieved ping from frontend
+2024-07-16 15:41:35 - ERROR - recieved ping from frontend
+2024-07-16 15:42:26 - ERROR - recieved ping from frontend
+2024-07-16 15:43:26 - ERROR - recieved ping from frontend
+2024-07-16 15:44:26 - ERROR - recieved ping from frontend
+2024-07-16 15:45:26 - ERROR - recieved ping from frontend
+2024-07-16 15:46:26 - ERROR - Error in handle_client
+Unexpected error: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+2024-07-16 15:46:26 - ERROR - type of exception: <class 'TimeoutError'>
+2024-07-16 15:46:26 - ERROR - Error in handle_client
+Unexpected error: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+2024-07-16 15:46:26 - ERROR - type of exception: <class 'TimeoutError'>
+2024-07-16 15:46:26 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-16 15:46:26 - ERROR - Backup Server Starting
+2024-07-16 15:46:26 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-16 15:46:26 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-16 15:46:31 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ timed out
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 268, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 525, in __init__
+    self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controller_mqtt_client.py", line 9, in __init__
+    self.client.connect(broker_address, 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+2024-07-16 15:46:31 - ERROR - Error in handle_server_error
+Unexpected error: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 215, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-16 15:46:31 - ERROR - type of exception: <class 'TypeError'>
+2024-07-16 15:46:31 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 552, in recv
+    await asyncio.wait(
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 464, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 550, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 215, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 191, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 12, in send_notification
+    print(user.is_authenticated, user.devices)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 400, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 469, in _authenticate
+    response, _ = self.app._request('validate', {'user': self.token})
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 337, in _request
+    response = pool.open(url, bytes(urlencode(data), 'utf-8', 'strict') if data else None)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-16 15:53:09 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 120, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-16 15:53:09 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-16 15:53:12 - INFO - Command received: toggle_feed_pump
+2024-07-16 15:53:12 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-16 15:53:12 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-16 15:53:12 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ [Errno 65] No route to host
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 268, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 525, in __init__
+    self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controller_mqtt_client.py", line 9, in __init__
+    self.client.connect(broker_address, 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+OSError: [Errno 65] No route to host
+
+2024-07-16 15:53:12 - ERROR - Error in toggle: 
+ Input: toggle_feed_pump, 
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 170, in toggle
+    controller_info["controller"].toggle_pump(pump_name + "_pump")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-07-16 15:53:29 - ERROR - recieved ping from frontend

@@ -9,7 +9,8 @@ class FlushingFileHandler(logging.FileHandler):
         self.flush()
 
 def setup_logger():
-    log_directory = 'logs'
+    curr_directory = os.path.dirname(__file__)
+    log_directory = os.path.join(curr_directory, "..", "..", "logs")
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
 
@@ -18,6 +19,7 @@ def setup_logger():
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
+    # Setup file handlers for logging info and errors
     current_date = datetime.now().strftime("%Y-%m-%d")
     info_filename = os.path.join(log_directory, f'{current_date}_info.log')
     error_filename = os.path.join(log_directory, f'{current_date}_error.log')
@@ -31,5 +33,11 @@ def setup_logger():
     error_handler.setLevel(logging.ERROR)
     error_handler.setFormatter(formatter)
     logger.addHandler(error_handler)
+
+    # Setup stream handler for outputting to console
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.DEBUG)  # Set to the lowest level you want to display on console
+    console_handler.setFormatter(formatter)
+    logger.addHandler(console_handler)
 
     return logger
