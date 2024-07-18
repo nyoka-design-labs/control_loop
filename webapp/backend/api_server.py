@@ -61,7 +61,7 @@ async def send_config_data(websocket):
             "data": combined_config
         }))
     except Exception as e:
-        handle_error(e, "send_config_data")
+        handle_error(e, "send_config_data", notify=False)
 
 async def send_pump_data(websocket):
     """
@@ -87,7 +87,7 @@ async def send_pump_data(websocket):
             "data": pump_data
         }))
     except Exception as e:
-        handle_error(e, "send_pump_data")
+        handle_error(e, "send_pump_data", notify=False)
 
 async def update_config(data):
     try:
