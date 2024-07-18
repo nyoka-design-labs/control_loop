@@ -1,0 +1,143 @@
+2024-07-18 13:49:20 - INFO - recieved ping from frontend
+2024-07-18 13:49:40 - INFO - recieved ping from frontend
+2024-07-18 13:50:00 - INFO - recieved ping from frontend
+2024-07-18 13:50:20 - INFO - recieved ping from frontend
+2024-07-18 13:50:40 - INFO - recieved ping from frontend
+2024-07-18 13:51:00 - INFO - recieved ping from frontend
+2024-07-18 13:51:13 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-18 13:51:13 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-18 13:51:13 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-18 13:51:13 - ERROR - Backup Server Starting
+2024-07-18 13:51:13 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-18 13:51:13 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-18 13:51:13 - INFO - stopping pumps
+2024-07-18 13:51:13 - INFO - Sending command: b'0pcu1\n'
+2024-07-18 13:51:14 - INFO - Sending command: b'2pcu1\n'
+2024-07-18 13:51:50 - INFO - recieved ping from frontend
+2024-07-18 13:52:10 - INFO - recieved ping from frontend
+2024-07-18 13:52:30 - INFO - recieved ping from frontend
+2024-07-18 13:52:50 - INFO - recieved ping from frontend
+2024-07-18 13:53:10 - INFO - recieved ping from frontend
+2024-07-18 13:53:30 - INFO - recieved ping from frontend
+2024-07-18 13:53:50 - INFO - recieved ping from frontend
+2024-07-18 13:54:10 - INFO - recieved ping from frontend
+2024-07-18 13:54:30 - INFO - recieved ping from frontend
+2024-07-18 13:54:50 - INFO - recieved ping from frontend
+2024-07-18 13:55:07 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-18 13:55:07 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-18 13:55:08 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-18 13:55:08 - ERROR - Backup Server Starting
+2024-07-18 13:55:08 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-18 13:55:08 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-18 13:55:08 - INFO - stopping pumps
+2024-07-18 13:55:08 - INFO - Sending command: b'0pcu1\n'

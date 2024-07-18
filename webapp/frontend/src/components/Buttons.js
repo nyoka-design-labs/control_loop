@@ -1,95 +1,104 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
-import { useData } from '../DataContext'; // Use the custom hook
+import mqtt from 'mqtt';
 
+// MQTT Client Setup
+const brokerAddress = '192.168.0.25'; // Change to your broker address if needed
+const port = 1883;
+const clientId = `mqttjs_${Math.random().toString(16).substr(2, 8)}`;
+
+const mqttClient = mqtt.connect(`mqtt://${brokerAddress}:${port}`, {
+    clientId: clientId
+});
+
+mqttClient.on('connect', () => {
+    console.log('Connected to MQTT Broker');
+});
+
+mqttClient.on('error', (err) => {
+    console.error('MQTT Connection Error:', err);
+});
 
 export const useControlLoopButton = (startCommand, stopCommand, loopIdentifier) => {
-  const [isControlLoopRunning, setIsControlLoopRunning] = useState(false);
-  const { websocket } = useData();
+    const [isControlLoopRunning, setIsControlLoopRunning] = useState(false);
 
-  const handleStartControlLoop = () => {
-      if (!isControlLoopRunning && websocket) {
-          const command = JSON.stringify({ command: startCommand, loopID: loopIdentifier });
-          websocket.send(command);
-          console.log(`Sending: ${command}`);
-          setIsControlLoopRunning(true);
-      }
-  };
+    const handleStartControlLoop = () => {
+        if (!isControlLoopRunning && mqttClient) {
+            const command = JSON.stringify({ command: startCommand, loopID: loopIdentifier });
+            mqttClient.publish('commands', command);
+            console.log(`Publishing: ${command} to topic 'commands'`);
+            setIsControlLoopRunning(true);
+        }
+    };
 
-  const handleStopControlLoop = () => {
-      if (isControlLoopRunning && websocket) {
-          const command = JSON.stringify({ command: stopCommand, loopID: loopIdentifier });
-          websocket.send(command);
-          console.log(`Sending: ${command}`);
-          setIsControlLoopRunning(false);
-      }
-  };
+    const handleStopControlLoop = () => {
+        if (isControlLoopRunning && mqttClient) {
+            const command = JSON.stringify({ command: stopCommand, loopID: loopIdentifier });
+            mqttClient.publish('commands', command);
+            console.log(`Publishing: ${command} to topic 'commands'`);
+            setIsControlLoopRunning(false);
+        }
+    };
 
-  const controlLoopButton = isControlLoopRunning ? (
-      <Button variant="danger" onClick={handleStopControlLoop} className="me-2">
-          Stop Control Loop
-      </Button>
-  ) : (
-      <Button variant="success" onClick={handleStartControlLoop} className="me-2">
-          Start Control Loop
-      </Button>
-  );
+    const controlLoopButton = isControlLoopRunning ? (
+        <Button variant="danger" onClick={handleStopControlLoop} className="me-2">
+            Stop Control Loop
+        </Button>
+    ) : (
+        <Button variant="success" onClick={handleStartControlLoop} className="me-2">
+            Start Control Loop
+        </Button>
+    );
 
-  return [controlLoopButton, isControlLoopRunning];
+    return [controlLoopButton, isControlLoopRunning];
 };
 
 export const useDataCollectionButton = (startCommand, stopCommand, loopIdentifier, isControlLoopRunning) => {
-  const [isDataCollectionRunning, setIsDataCollectionRunning] = useState(false);
-  const { websocket } = useData();
+    const [isDataCollectionRunning, setIsDataCollectionRunning] = useState(false);
 
-  // Ensure that data collection runs when control loop is running
-  useEffect(() => {
-      if (isControlLoopRunning && !isDataCollectionRunning) {
-          setIsDataCollectionRunning(true);
-      }
-  }, [isControlLoopRunning, isDataCollectionRunning]);
+    useEffect(() => {
+        if (isControlLoopRunning && !isDataCollectionRunning) {
+            setIsDataCollectionRunning(true);
+        }
+    }, [isControlLoopRunning, isDataCollectionRunning]);
 
-  const handleStartDataCollection = () => {
-      if (!isDataCollectionRunning && websocket) {
-          const command = JSON.stringify({ command: startCommand, loopID: loopIdentifier });
-          
-          websocket.send(command);
-          console.log(`Sending: ${command}`);
-          setIsDataCollectionRunning(true);
-      }
-  };
+    const handleStartDataCollection = () => {
+        if (!isDataCollectionRunning && mqttClient) {
+            const command = JSON.stringify({ command: startCommand, loopID: loopIdentifier });
+            mqttClient.publish('commands', command);
+            console.log(`Publishing: ${command} to topic 'commands'`);
+            setIsDataCollectionRunning(true);
+        }
+    };
 
-  const handleStopDataCollection = () => {
-      // Prevent stopping data collection when control loop is running
-      if (isDataCollectionRunning && !isControlLoopRunning && websocket) {
-          const command = JSON.stringify({ command: stopCommand, loopID: loopIdentifier });
-          websocket.send(command);
-          console.log(`Sending: ${command}`);
-          setIsDataCollectionRunning(false);
-      }
-  };
+    const handleStopDataCollection = () => {
+        if (isDataCollectionRunning && !isControlLoopRunning && mqttClient) {
+            const command = JSON.stringify({ command: stopCommand, loopID: loopIdentifier });
+            mqttClient.publish('commands', command);
+            console.log(`Publishing: ${command} to topic 'commands'`);
+            setIsDataCollectionRunning(false);
+        }
+    };
 
-  const dataCollectionButton = isDataCollectionRunning ? (
-      <Button variant="danger" onClick={handleStopDataCollection} className="me-2" disabled={isControlLoopRunning}>
-          Stop Data Collection
-      </Button>
-  ) : (
-      <Button variant="success" onClick={handleStartDataCollection} className="me-2">
-          Start Data Collection
-      </Button>
-  );
+    const dataCollectionButton = isDataCollectionRunning ? (
+        <Button variant="danger" onClick={handleStopDataCollection} className="me-2" disabled={isControlLoopRunning}>
+            Stop Data Collection
+        </Button>
+    ) : (
+        <Button variant="success" onClick={handleStartDataCollection} className="me-2">
+            Start Data Collection
+        </Button>
+    );
 
-  return dataCollectionButton;
+    return dataCollectionButton;
 };
 
-  export const useTogglePumpButton = (buttonLabel, sendCommand, loopIdentifier) => {
-    const { websocket } = useData();
-
+export const useTogglePumpButton = (buttonLabel, sendCommand, loopIdentifier) => {
     const handleToggle = () => {
-        if (websocket) {
-          const command = JSON.stringify({ command: sendCommand, loopID: loopIdentifier });
-          websocket.send(command);
-          console.log(`Sending: ${command}`);
+        if (mqttClient) {
+            const command = JSON.stringify({ command: sendCommand, loopID: loopIdentifier });
+            mqttClient.publish('commands', command);
+            console.log(`Publishing: ${command} to topic 'commands'`);
         }
     };
 
@@ -103,25 +112,23 @@ export const useDataCollectionButton = (startCommand, stopCommand, loopIdentifie
 };
 
 export const useStateToggleButton = (buttonLabelOn, buttonLabelOff, sendCommandOn, sendCommandOff, defaultRunningState = false) => {
-  const [isRunning, setIsRunning] = useState(defaultRunningState);
-  const { websocket } = useData();
+    const [isRunning, setIsRunning] = useState(defaultRunningState);
 
-  const toggleState = () => {
-      const commandToSend = isRunning ? sendCommandOff : sendCommandOn;
-      if (websocket) {
-          
-          websocket.send(commandToSend);
-          console.log(commandToSend);
-          setIsRunning(!isRunning);
-      }
-  };
+    const toggleState = () => {
+        const commandToSend = isRunning ? sendCommandOff : sendCommandOn;
+        if (mqttClient) {
+            mqttClient.publish('commands', commandToSend);
+            console.log(`Publishing: ${commandToSend} to topic 'commands'`);
+            setIsRunning(!isRunning);
+        }
+    };
 
-  return (
-      <Button
-          variant={isRunning ? "danger" : "success"}
-          onClick={toggleState}
-          className="me-2">
-          {isRunning ? buttonLabelOff : buttonLabelOn}
-      </Button>
-  );
+    return (
+        <Button
+            variant={isRunning ? "danger" : "success"}
+            onClick={toggleState}
+            className="me-2">
+            {isRunning ? buttonLabelOff : buttonLabelOn}
+        </Button>
+    );
 };
