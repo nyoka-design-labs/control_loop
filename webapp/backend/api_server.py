@@ -16,7 +16,7 @@ SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
 
 logger = setup_logger()
-
+current_websocket = None
 def handle_error(exception, context, data=None, notify=True):
     """
     Handles errors by logging, printing to standard output, and optionally sending notifications.
@@ -113,9 +113,16 @@ async def handle_client(websocket):
 
     Listens for incoming messages on the websocket, processes them based on type ('ping' or command), and sends appropriate responses. Handles exceptions by logging and notifying errors, and potentially initiating backup procedures.
     """
+    global current_websocket
+    current_websocket = websocket
     try:
-        await send_pump_data(websocket)
-        await send_config_data(websocket)
+        try:
+            await send_pump_data(websocket)
+            await send_config_data(websocket)
+        except websockets.exceptions.ConnectionClosedOK:
+            handle_error(e, "intial_startup", notify=False)
+        except websockets.exceptions.ConnectionClosedError:
+            handle_error(e, "intial_startup", notify=False)
         while True:
             message = await asyncio.wait_for(websocket.recv(), timeout=60)
             data = json.loads(message)
@@ -127,9 +134,9 @@ async def handle_client(websocket):
                 await update_config(data)
             else:
                 await process_client_command(websocket, data)
-    except Exception as e:
-        handle_error(e, "handle_client", notify=False)
+    except Exception as e:       
         error = eval(get_loop_constant(loop_id="server_consts", const="error"))
+ 
         if error:
             try:
                 handle_error(e, "handle_client")
@@ -140,6 +147,8 @@ async def handle_client(websocket):
                 handle_error(e, "backup protocol in handle_client")
         else:
             update_loop_constant("server_consts", "error", "True")
+            
+    
 
 async def process_client_command(websocket, data):
     """
@@ -224,17 +233,31 @@ async def handle_server_error():
     except Exception as e:
         handle_error(e, "handle_server_error")
 
-async def main():
-    """
-    The main entry point for starting the WebSocket server.
+async def close_websocket():
+    global current_websocket
+    if current_websocket:
+        await current_websocket.close(code=1001, reason='Server shutdown')
+        current_websocket = None
 
-    Executes the setup and start of the WebSocket server, managing incoming client connections and facilitating real-time data exchange and control commands.
-    """
-    await start_server()
+async def main():
+    try:
+        server = await websockets.serve(
+            handle_client,
+            "localhost",
+            8765,
+            ping_interval=20,
+            ping_timeout=40
+        )
+        await server.wait_closed()
+    except Exception as e:
+        handle_error(e, "start_server")
+    finally:
+        await close_websocket()
 
 if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
+        logger.info("Program terminated by user")
+        asyncio.run(close_websocket())
         update_loop_constant("server_consts", "error", "False")
-        logger.info("\nProgram terminated")
