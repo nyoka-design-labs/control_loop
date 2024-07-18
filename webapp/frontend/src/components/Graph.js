@@ -3,19 +3,12 @@ import React from 'react';
 import CanvasJSReact from './canvasjs.react'; // Make sure the path is correct
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, expectedColor = 'rgb(255, 99, 132)' }) => {
-    const dataPoints = systemData.map(data => ({
-        x: data.time, // Use the float value directly
-        y: data[label.toLowerCase()]
-    }));
-    
-    const expectedDataPoints = expectedDataKey ? systemData.map(data => ({
-        x: data.time, // Use the float value directly
-        y: data[expectedDataKey.toLowerCase()]
-    })) : [];
+export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, expectedColor = 'rgb(255, 99, 132)', key }) => {
+    const dataPoints = systemData.map(data => ({ x: data.time, y: data[label.toLowerCase()] }));
+    const expectedDataPoints = expectedDataKey ? systemData.map(data => ({ x: data.time, y: data[expectedDataKey.toLowerCase()] })) : [];
 
     const options = {
-        theme: "light2",
+        theme: "light",
         animationEnabled: true,
         zoomEnabled: true,
         height: 650,
@@ -52,7 +45,7 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
 
     return (
         <div className="graph-container">
-            <CanvasJSChart options={options} />
+            <CanvasJSChart key={key} options={options} />
         </div>
     );
 };

@@ -1,5 +1,4 @@
-// ConcentrationControlPanel.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
 import { useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
@@ -21,6 +20,9 @@ const ConcentrationControlPanel = () => {
     const dataCollectionStatus = useStatusBox("data_collection_status", "ON", "OFF", true);
     const controlLoopStatus = useStatusBox("control_loop_status", "ON", "OFF", true);
 
+    // State to force a re-render of the graph
+    const [graphKey, setGraphKey] = useState(0);
+
     return (
         <div className="view-container">
             <h1>Concentration Control Panel</h1>
@@ -28,14 +30,18 @@ const ConcentrationControlPanel = () => {
                 <div className="graphs-section">
                     <div className="content">
                         <div className="graph-section">
-                            <Tabs defaultActiveKey="buffer_weight" className="mb-3 custom-tabs">
+                            <Tabs
+                                defaultActiveKey="buffer_weight"
+                                className="mb-3 custom-tabs"
+                                onSelect={() => setGraphKey(graphKey + 1)}
+                            >
                                 <Tab eventKey="buffer_weight" title="Buffer Weight">
                                     <h3>Buffer Weight: {currentMeasurements.buffer_weight} g</h3>
-                                    <Graph systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)" />
+                                    <Graph key={graphKey} systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="lysate_weight" title="Lysate Weight">
                                     <h3>Lysate Weight: {currentMeasurements.lysate_weight} g</h3>
-                                    <Graph systemData={systemData} label="lysate_weight" actualColor="rgb(75, 192, 192)" />
+                                    <Graph key={graphKey} systemData={systemData} label="lysate_weight" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                             </Tabs>
                         </div>

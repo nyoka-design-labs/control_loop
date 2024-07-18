@@ -1,5 +1,5 @@
 // FermentationControlPanel.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
 import { useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
@@ -21,6 +21,9 @@ const FermentationControlPanel = () => {
     const dataCollectionStatus = useStatusBox("data_collection_status", "ON", "OFF", true);
     const controlLoopStatus = useStatusBox("control_loop_status", "ON", "OFF", true);
 
+    // State to force a re-render of the graph
+    const [graphKey, setGraphKey] = useState(0);
+
     return (
         <div className="view-container">
             <h1>Fermentation Control Panel</h1>
@@ -28,22 +31,26 @@ const FermentationControlPanel = () => {
                 <div className="graphs-section">
                     <div className="content">
                         <div className="graph-section">
-                            <Tabs defaultActiveKey="weight" className="mb-3 custom-tabs">
+                            <Tabs
+                                defaultActiveKey="weight"
+                                className="mb-3 custom-tabs"
+                                onSelect={() => setGraphKey(graphKey + 1)}
+                            >
                                 <Tab eventKey="weight" title="Weight">
                                     <h3>Feed Weight: {currentMeasurements.weight} g</h3>
-                                    <Graph systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)" />
+                                    <Graph key={graphKey} systemData={systemData} label="Feed_Weight" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="do" title="DO">
                                     <h3>DO: {currentMeasurements.do} %</h3>
-                                    <Graph systemData={systemData} label="do" actualColor="rgb(75, 192, 192)" />
+                                    <Graph key={graphKey} systemData={systemData} label="do" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="temp" title="Temperature">
                                     <h3>Temp: {currentMeasurements.temp} °C</h3>
-                                    <Graph systemData={systemData} label="Temp" actualColor="rgb(75, 192, 192)" />
+                                    <Graph key={graphKey} systemData={systemData} label="Temp" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="ph" title="pH">
                                     <h3>pH: {currentMeasurements.ph}</h3>
-                                    <Graph systemData={systemData} label="PH" actualColor="rgb(75, 192, 192)" />
+                                    <Graph key={graphKey} systemData={systemData} label="PH" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                             </Tabs>
                         </div> 
@@ -52,12 +59,12 @@ const FermentationControlPanel = () => {
                 <div className="controls-section">
                     <div className="mb-3">
                         <div className="button-status-container">
-                                {dataCollectionButton}
-                                {dataCollectionStatus}
+                            {dataCollectionButton}
+                            {dataCollectionStatus}
                         </div>
                         <div className="button-status-container">
-                                {controlLoopButton}
-                                {controlLoopStatus}
+                            {controlLoopButton}
+                            {controlLoopStatus}
                         </div>
                     </div>
                     <div className="config-panel-dark">
