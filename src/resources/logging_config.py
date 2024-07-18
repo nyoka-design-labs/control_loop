@@ -9,7 +9,8 @@ class FlushingFileHandler(logging.FileHandler):
         self.flush()
 
 def setup_logger():
-    log_directory = 'logs'
+    curr_directory = os.path.dirname(__file__)
+    log_directory = os.path.join(curr_directory, "..", "..", "logs") 
     if not os.path.exists(log_directory):
         os.makedirs(log_directory)
 
