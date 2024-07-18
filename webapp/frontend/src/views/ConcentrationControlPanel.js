@@ -50,10 +50,12 @@ const ConcentrationControlPanel = () => {
                     </div>
                 </div>
                 <div className="controls-section">
-                    <div className="mb-3">
+                <div className="mb-3">
                         <div className="button-status-container">
                             {dataCollectionButton}
                             {dataCollectionStatus}
+                        </div>
+                        <div className="button-status-container">
                             {controlLoopButton}
                             {controlLoopStatus}
                         </div>
