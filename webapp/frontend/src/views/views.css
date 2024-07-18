@@ -94,9 +94,11 @@ body {
 
 .graphs-section,
 .controls-section {
-    background-color: var(--input-background); /* Slightly lighter background for sections */
-    padding: 20px;
-    border-radius: 8px;
+  background-color: var(--input-background); /* Slightly lighter background for sections */
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -107,24 +109,14 @@ body {
 }
 
 
-
 .graphs-section {
-    flex: 3!important;
-    margin-right: 20px!important;
-    display: flex!important;
-    flex-direction: column!important;
-    height: 100%!important;
-}
+    flex: 3;
+    margin-right: 20px;
+    overflow-y: auto; /* Add scroll if content overflows */
+  }
 
-.graph-section {
-    flex: 1!important;
-    display: flex!important;
-    flex-direction: column!important;
-    height: 100%!important;
-    
-}
 
 .graph-container {
-    flex: 1 !important;
-    height: 100%
-}
+    height: 100%;
+    width: 100%;
+  }
