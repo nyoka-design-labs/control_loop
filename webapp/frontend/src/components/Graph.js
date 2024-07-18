@@ -18,12 +18,12 @@ export const Graph = ({ systemData, label, actualColor, expectedDataKey = null, 
         theme: "light2",
         animationEnabled: true,
         zoomEnabled: true,
-        height: 600,
+        height: 650,
         title: {
             text: ""
         },
         axisX: {
-            title: "Time",
+            title: "",
             valueFormatString: "#,##0.####", // Format to show the float values\
         },
         axisY: {

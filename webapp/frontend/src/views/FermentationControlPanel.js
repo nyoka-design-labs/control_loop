@@ -26,14 +26,6 @@ const FermentationControlPanel = () => {
             <h1>Fermentation Control Panel</h1>
             <div className="view-content">
                 <div className="graphs-section">
-                    <div className="mb-3">
-                        <div className="button-status-container">
-                            {dataCollectionButton}
-                            {dataCollectionStatus}
-                            {controlLoopButton}
-                            {controlLoopStatus}
-                        </div>
-                    </div>
                     <div className="content">
                         <div className="graph-section">
                             <Tabs defaultActiveKey="weight" className="mb-3 custom-tabs">
@@ -58,6 +50,16 @@ const FermentationControlPanel = () => {
                     </div>
                 </div>
                 <div className="controls-section">
+                    <div className="mb-3">
+                        <div className="button-status-container">
+                                {dataCollectionButton}
+                                {dataCollectionStatus}
+                        </div>
+                        <div className="button-status-container">
+                                {controlLoopButton}
+                                {controlLoopStatus}
+                        </div>
+                    </div>
                     <div className="config-panel-dark">
                         <div className="right-aligned-buttons">
                             <div className="mb-3">

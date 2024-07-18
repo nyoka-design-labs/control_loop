@@ -1,3 +1,4 @@
+// ConcentrationControlPanel.js
 import React from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
@@ -25,33 +26,32 @@ const ConcentrationControlPanel = () => {
             <h1>Concentration Control Panel</h1>
             <div className="view-content">
                 <div className="graphs-section">
-                    
-                    <div className="mb-3">
-                        <div className="button-status-container">
-                            {dataCollectionButton}
-                            {dataCollectionStatus}
-                            {controlLoopButton}
-                            {controlLoopStatus}
-                        </div>
-                    </div>
                     <div className="content">
                         <div className="graph-section">
                             <Tabs defaultActiveKey="buffer_weight" className="mb-3 custom-tabs">
                                 <Tab eventKey="buffer_weight" title="Buffer Weight">
                                     <h3>Buffer Weight: {currentMeasurements.buffer_weight} g</h3>
-                                    <Graph systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)"
-                                        expectedDataKey="buffer_weight" expectedColor="rgb(255, 99, 132)" />
+                                    <Graph systemData={systemData} label="buffer_weight" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                                 <Tab eventKey="lysate_weight" title="Lysate Weight">
                                     <h3>Lysate Weight: {currentMeasurements.lysate_weight} g</h3>
-                                    <Graph systemData={systemData} label="lysate_weight" actualColor="rgb(75, 192, 192)"
-                                        expectedDataKey="lysate_weight" expectedColor="rgb(75, 192, 192)" />
+                                    <Graph systemData={systemData} label="lysate_weight" actualColor="rgb(75, 192, 192)" />
                                 </Tab>
                             </Tabs>
                         </div>
                     </div>
                 </div>
                 <div className="controls-section">
+                    <div className="mb-3">
+                        <div className="button-status-container">
+                            {dataCollectionButton}
+                            {dataCollectionStatus}
+                        </div>
+                        <div className="button-status-container">
+                            {controlLoopButton}
+                            {controlLoopStatus}
+                        </div>
+                    </div>
                     <div className="config-panel-dark">
                         <div className="right-aligned-buttons">
                             <div className="mb-3">
