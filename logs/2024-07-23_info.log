@@ -1,0 +1,1251 @@
+2024-07-23 11:59:50 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 11:59:50 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 11:59:50 - INFO - stopping pumps
+2024-07-23 11:59:50 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 11:59:51 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 11:59:52 - INFO - Data received from sensor unit:
+2024-07-23 11:59:52 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 11:59:53 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 11:59:54 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 11:59:54 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 11:59:58 - INFO - Data received from sensor unit:
+2024-07-23 12:00:25 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:00:25 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:00:25 - INFO - stopping pumps
+2024-07-23 12:00:25 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:00:26 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:00:27 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:00:28 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:00:29 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:00:29 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:00:31 - INFO - Data received from sensor unit: {'point': 3}
+2024-07-23 12:00:35 - INFO - added data to sheets
+2024-07-23 12:01:09 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:01:09 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:01:09 - INFO - stopping pumps
+2024-07-23 12:01:09 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:01:10 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:01:11 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:01:12 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:01:13 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:01:13 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:01:42 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:01:42 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:01:42 - INFO - stopping pumps
+2024-07-23 12:01:42 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:01:43 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:01:44 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:01:45 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:01:46 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:01:46 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:02:44 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:02:44 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:02:44 - INFO - stopping pumps
+2024-07-23 12:02:44 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:02:45 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:02:46 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:02:47 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:02:48 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:02:48 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:03:53 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:03:53 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:03:53 - INFO - stopping pumps
+2024-07-23 12:03:53 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:03:54 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:03:55 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:03:56 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:03:57 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:03:57 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:04:51 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:04:51 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:04:51 - INFO - stopping pumps
+2024-07-23 12:04:51 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:04:52 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:04:53 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:04:54 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:04:55 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:04:55 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:04:55 - INFO - Data received from sensor unit: {'do': 118.62, 'ph': 6.361, 'temp': 26.461, 'feed_weight': 0.0, 'time': 0, 'date': '23-07-2024', 'time_of_day': '12:04:55', 'type': 'data'}
+2024-07-23 12:04:59 - INFO - added data to sheets
+2024-07-23 12:05:02 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:05:02 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:05:02 - INFO - Data received from sensor unit: {'do': 118.626, 'ph': 6.36, 'temp': 26.461, 'feed_weight': 0.0, 'time': 0.00193774, 'date': '23-07-2024', 'time_of_day': '12:05:02', 'type': 'data'}
+2024-07-23 12:05:05 - INFO - added data to sheets
+2024-07-23 12:05:08 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:05:08 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:05:08 - INFO - Data received from sensor unit: {'do': 118.656, 'ph': 6.359, 'temp': 26.46, 'feed_weight': 0.0, 'time': 0.00376472, 'date': '23-07-2024', 'time_of_day': '12:05:08', 'type': 'data'}
+2024-07-23 12:05:12 - INFO - added data to sheets
+2024-07-23 12:05:15 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:05:15 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:05:15 - INFO - Data received from sensor unit: {'do': 118.665, 'ph': 6.36, 'temp': 26.462, 'feed_weight': 0.0, 'time': 0.00573104, 'date': '23-07-2024', 'time_of_day': '12:05:15', 'type': 'data'}
+2024-07-23 12:05:19 - INFO - added data to sheets
+2024-07-23 12:06:18 - INFO - recieved ping from frontend
+2024-07-23 12:06:38 - INFO - recieved ping from frontend
+2024-07-23 12:06:58 - INFO - recieved ping from frontend
+2024-07-23 12:07:02 - INFO - Command received: start_collection
+2024-07-23 12:07:02 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:07:02 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:07:02 - INFO - stopping pumps
+2024-07-23 12:07:02 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:07:03 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:07:04 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:07:05 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:07:06 - INFO - data being collected
+2024-07-23 12:07:06 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:07:06 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:07:06 - INFO - Data received from sensor unit: {'do': 118.719, 'ph': 6.357, 'temp': 26.46, 'feed_weight': 0.0, 'time': 0.03649746, 'date': '23-07-2024', 'time_of_day': '12:07:06', 'type': 'data'}
+2024-07-23 12:07:10 - INFO - added data to sheets
+2024-07-23 12:07:10 - INFO - data sent from collect: {'do': 118.719, 'ph': 6.357, 'temp': 26.46, 'feed_weight': 0.0, 'time': 0.03649746, 'date': '23-07-2024', 'time_of_day': '12:07:06', 'type': 'data'}
+2024-07-23 12:07:14 - INFO - data being collected
+2024-07-23 12:07:14 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:07:14 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:07:14 - INFO - Data received from sensor unit: {'do': 118.722, 'ph': 6.357, 'temp': 26.461, 'feed_weight': 0.0, 'time': 0.03879135, 'date': '23-07-2024', 'time_of_day': '12:07:15', 'type': 'data'}
+2024-07-23 12:07:18 - INFO - added data to sheets
+2024-07-23 12:07:18 - INFO - data sent from collect: {'do': 118.722, 'ph': 6.357, 'temp': 26.461, 'feed_weight': 0.0, 'time': 0.03879135, 'date': '23-07-2024', 'time_of_day': '12:07:15', 'type': 'data'}
+2024-07-23 12:07:18 - INFO - recieved ping from frontend
+2024-07-23 12:07:22 - INFO - data being collected
+2024-07-23 12:07:22 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:07:22 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:07:23 - INFO - Data received from sensor unit: {'do': 118.722, 'ph': 6.357, 'temp': 26.459, 'feed_weight': 0.0, 'time': 0.04105749, 'date': '23-07-2024', 'time_of_day': '12:07:23', 'type': 'data'}
+2024-07-23 12:07:26 - INFO - added data to sheets
+2024-07-23 12:07:26 - INFO - data sent from collect: {'do': 118.722, 'ph': 6.357, 'temp': 26.459, 'feed_weight': 0.0, 'time': 0.04105749, 'date': '23-07-2024', 'time_of_day': '12:07:23', 'type': 'data'}
+2024-07-23 12:07:30 - INFO - data being collected
+2024-07-23 12:07:30 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:07:30 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:07:31 - INFO - Data received from sensor unit: {'do': 118.739, 'ph': 6.358, 'temp': 26.461, 'feed_weight': 0.0, 'time': 0.04326821, 'date': '23-07-2024', 'time_of_day': '12:07:31', 'type': 'data'}
+2024-07-23 12:07:35 - INFO - added data to sheets
+2024-07-23 12:07:35 - INFO - data sent from collect: {'do': 118.739, 'ph': 6.358, 'temp': 26.461, 'feed_weight': 0.0, 'time': 0.04326821, 'date': '23-07-2024', 'time_of_day': '12:07:31', 'type': 'data'}
+2024-07-23 12:07:35 - INFO - Command received: stop_collection
+2024-07-23 12:07:35 - INFO - Collection task was cancelled
+2024-07-23 12:07:38 - INFO - recieved ping from frontend
+2024-07-23 12:07:59 - INFO - recieved ping from frontend
+2024-07-23 12:08:19 - INFO - recieved ping from frontend
+2024-07-23 12:08:39 - INFO - recieved ping from frontend
+2024-07-23 12:09:08 - INFO - recieved ping from frontend
+2024-07-23 12:09:15 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-23 12:09:15 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 12:09:15 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 12:09:15 - ERROR - Backup Server Starting
+2024-07-23 12:09:15 - INFO - stopping pumps
+2024-07-23 12:09:15 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:09:53 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-23 12:09:53 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 12:09:53 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 12:09:53 - ERROR - Backup Server Starting
+2024-07-23 12:09:53 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:09:53 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:09:53 - INFO - stopping pumps
+2024-07-23 12:09:53 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:09:55 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:09:56 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:09:57 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:09:58 - INFO - stopping pumps
+2024-07-23 12:09:58 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:09:59 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:10:00 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:10:01 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:10:02 - INFO - Controller retrieved, starting backup server.
+2024-07-23 12:10:02 - INFO - Starting backup server due to critical failure.
+2024-07-23 12:10:02 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 12:10:02 - INFO - back up server running
+2024-07-23 12:10:02 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 0, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:10:02 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:10:02 - INFO - Data received from sensor unit: {'do': 118.823, 'ph': 6.356, 'temp': 26.458, 'feed_weight': 0.0, 'time': 0.08527083, 'date': '23-07-2024', 'time_of_day': '12:10:02', 'type': 'data'}
+2024-07-23 12:10:02 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:10:03 - INFO - feed_pump pump off
+2024-07-23 12:10:03 - INFO - Updated (('last_antifoam_edition', 1721761803.304759), {}) in controller 2_phase_do_trig_ph_feed_control of loop fermentation_loop
+2024-07-23 12:10:03 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:10:03 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:10:07 - INFO - added data to sheets
+2024-07-23 12:10:07 - INFO - data: {'do': 118.823, 'ph': 6.356, 'temp': 26.458, 'feed_weight': 0.0, 'time': 0.08527083, 'date': '23-07-2024', 'time_of_day': '12:10:02', 'type': 'data'}
+2024-07-23 12:10:11 - INFO - back up server running
+2024-07-23 12:10:11 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:10:11 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:10:11 - INFO - Data received from sensor unit: {'do': 118.854, 'ph': 6.355, 'temp': 26.458, 'feed_weight': 0.0, 'time': 0.08791608, 'date': '23-07-2024', 'time_of_day': '12:10:11', 'type': 'data'}
+2024-07-23 12:10:11 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:10:12 - INFO - feed_pump pump off
+2024-07-23 12:10:16 - INFO - added data to sheets
+2024-07-23 12:10:16 - INFO - data: {'do': 118.854, 'ph': 6.355, 'temp': 26.458, 'feed_weight': 0.0, 'time': 0.08791608, 'date': '23-07-2024', 'time_of_day': '12:10:11', 'type': 'data'}
+2024-07-23 12:10:20 - INFO - back up server running
+2024-07-23 12:10:20 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:10:20 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:10:20 - INFO - Data received from sensor unit: {'do': 118.877, 'ph': 6.357, 'temp': 26.459, 'feed_weight': 0.0, 'time': 0.09043103, 'date': '23-07-2024', 'time_of_day': '12:10:20', 'type': 'data'}
+2024-07-23 12:10:20 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:10:21 - INFO - feed_pump pump off
+2024-07-23 12:10:25 - INFO - added data to sheets
+2024-07-23 12:10:25 - INFO - data: {'do': 118.877, 'ph': 6.357, 'temp': 26.459, 'feed_weight': 0.0, 'time': 0.09043103, 'date': '23-07-2024', 'time_of_day': '12:10:20', 'type': 'data'}
+2024-07-23 12:10:25 - INFO - stopping pumps
+2024-07-23 12:10:25 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:10:26 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:10:27 - INFO - Program terminated by user
+2024-07-23 12:17:28 - INFO - Command received: start_collection
+2024-07-23 12:17:28 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:17:28 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:17:28 - INFO - stopping pumps
+2024-07-23 12:17:28 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:17:30 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:17:31 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:17:32 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:17:33 - INFO - data being collected
+2024-07-23 12:17:33 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:17:33 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:17:33 - INFO - Data received from sensor unit: {'do': 118.894, 'ph': 6.356, 'temp': 26.454, 'feed_weight': 0.0, 'time': 0.21053051, 'date': '23-07-2024', 'time_of_day': '12:17:33', 'type': 'data'}
+2024-07-23 12:17:38 - INFO - added data to sheets
+2024-07-23 12:17:42 - INFO - data being collected
+2024-07-23 12:17:42 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:17:42 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:17:42 - INFO - Data received from sensor unit: {'do': 118.942, 'ph': 6.356, 'temp': 26.455, 'feed_weight': 0.0, 'time': 0.21312274, 'date': '23-07-2024', 'time_of_day': '12:17:42', 'type': 'data'}
+2024-07-23 12:17:45 - INFO - added data to sheets
+2024-07-23 12:17:45 - INFO - recieved ping from frontend
+2024-07-23 12:17:49 - INFO - data being collected
+2024-07-23 12:17:49 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:17:49 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:17:50 - INFO - Data received from sensor unit: {'do': 118.943, 'ph': 6.356, 'temp': 26.454, 'feed_weight': 0.0, 'time': 0.21519705, 'date': '23-07-2024', 'time_of_day': '12:17:50', 'type': 'data'}
+2024-07-23 12:17:53 - INFO - added data to sheets
+2024-07-23 12:17:53 - INFO - Command received: stop_collection
+2024-07-23 12:17:53 - INFO - Collection task was cancelled
+2024-07-23 12:18:05 - INFO - recieved ping from frontend
+2024-07-23 12:18:25 - INFO - recieved ping from frontend
+2024-07-23 12:18:45 - INFO - recieved ping from frontend
+2024-07-23 12:18:47 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-23 12:18:47 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 12:18:47 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 12:18:47 - ERROR - Backup Server Starting
+2024-07-23 12:18:47 - INFO - stopping pumps
+2024-07-23 12:18:47 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:18:48 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:18:49 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:24:18 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:24:18 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:24:18 - INFO - stopping pumps
+2024-07-23 12:24:18 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:24:19 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:24:20 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:24:21 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:24:22 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:24:22 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:24:31 - INFO - Data received from sensor unit: {'do': 118.789, 'ph': 6.356, 'temp': 26.451, 'feed_weight': 0.0, 'time': 0.32677099, 'date': '23-07-2024', 'time_of_day': '12:24:31', 'type': 'data'}
+2024-07-23 12:24:36 - INFO - added data to sheets
+2024-07-23 12:26:06 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:26:06 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:26:06 - INFO - stopping pumps
+2024-07-23 12:26:06 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:26:07 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:26:08 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:26:09 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:26:10 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:26:10 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:26:10 - INFO - Data received from sensor unit: {'do': 118.839, 'ph': 6.356, 'temp': 26.452, 'feed_weight': 0.0, 'time': 0.35433918, 'date': '23-07-2024', 'time_of_day': '12:26:10', 'type': 'data'}
+2024-07-23 12:26:14 - INFO - added data to sheets
+2024-07-23 12:26:17 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:26:17 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:26:17 - INFO - Data received from sensor unit: {'do': 118.881, 'ph': 6.356, 'temp': 26.451, 'feed_weight': 0.0, 'time': 0.35627772, 'date': '23-07-2024', 'time_of_day': '12:26:17', 'type': 'data'}
+2024-07-23 12:26:21 - INFO - added data to sheets
+2024-07-23 12:26:24 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:26:24 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:26:24 - INFO - Data received from sensor unit: {'do': 118.898, 'ph': 6.356, 'temp': 26.452, 'feed_weight': 0.0, 'time': 0.3581621, 'date': '23-07-2024', 'time_of_day': '12:26:24', 'type': 'data'}
+2024-07-23 12:26:28 - INFO - added data to sheets
+2024-07-23 12:26:31 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:26:31 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:26:31 - INFO - Data received from sensor unit: {'do': 118.878, 'ph': 6.357, 'temp': 26.452, 'feed_weight': 0.0, 'time': 0.35999051, 'date': '23-07-2024', 'time_of_day': '12:26:31', 'type': 'data'}
+2024-07-23 12:26:34 - INFO - added data to sheets
+2024-07-23 12:26:37 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:26:37 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:26:37 - INFO - Data received from sensor unit: {'do': 118.888, 'ph': 6.357, 'temp': 26.451, 'feed_weight': 0.0, 'time': 0.36184726, 'date': '23-07-2024', 'time_of_day': '12:26:38', 'type': 'data'}
+2024-07-23 12:26:41 - INFO - added data to sheets
+2024-07-23 12:26:44 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:26:44 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:26:44 - INFO - Data received from sensor unit: {'do': 118.919, 'ph': 6.357, 'temp': 26.452, 'feed_weight': 0.0, 'time': 0.36367709, 'date': '23-07-2024', 'time_of_day': '12:26:44', 'type': 'data'}
+2024-07-23 12:26:47 - INFO - added data to sheets
+2024-07-23 12:34:21 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:34:21 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:34:21 - INFO - stopping pumps
+2024-07-23 12:34:21 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 12:34:22 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 12:34:23 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 12:34:24 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 12:34:25 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:34:25 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:34:25 - INFO - Data received from sensor unit: {'do': 118.834, 'ph': 6.357, 'temp': 26.451, 'feed_weight': 0.0, 'time': 0.49177266, 'date': '23-07-2024', 'time_of_day': '12:34:25', 'type': 'data'}
+2024-07-23 12:34:29 - INFO - added data to sheets
+2024-07-23 12:34:32 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:34:32 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:34:33 - INFO - Data received from sensor unit: {'do': 118.822, 'ph': 6.356, 'temp': 26.452, 'feed_weight': 0.0, 'time': 0.49384636, 'date': '23-07-2024', 'time_of_day': '12:34:33', 'type': 'data'}
+2024-07-23 12:34:36 - INFO - added data to sheets
+2024-07-23 12:34:39 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:34:39 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 12:34:39 - INFO - Data received from sensor unit: {'do': 118.834, 'ph': 6.356, 'temp': 26.45, 'feed_weight': 0.0, 'time': 0.4956746, 'date': '23-07-2024', 'time_of_day': '12:34:39', 'type': 'data'}
+2024-07-23 12:34:43 - INFO - added data to sheets
+2024-07-23 12:34:46 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 12:34:46 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:17:44 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-23 13:17:44 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 13:17:45 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:17:45 - ERROR - Backup Server Starting
+2024-07-23 13:17:45 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:17:45 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:17:45 - INFO - stopping pumps
+2024-07-23 13:17:45 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:17:46 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:17:47 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 13:17:48 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 13:17:49 - INFO - stopping pumps
+2024-07-23 13:17:49 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:17:50 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:17:51 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 13:17:52 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 13:17:53 - INFO - Controller retrieved, starting backup server.
+2024-07-23 13:17:53 - INFO - Starting backup server due to critical failure.
+2024-07-23 13:17:53 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:17:53 - INFO - back up server running
+2024-07-23 13:17:53 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:17:53 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:17:53 - INFO - Data received from sensor unit: {'do': 119.16, 'ph': 6.355, 'temp': 26.486, 'feed_weight': 0.0, 'time': 1.21612547, 'date': '23-07-2024', 'time_of_day': '13:17:53', 'type': 'data'}
+2024-07-23 13:17:53 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:17:54 - INFO - feed_pump pump off
+2024-07-23 13:17:54 - INFO - Sending command: b'5pcu1\n'
+2024-07-23 13:17:55 - INFO - Antifoam pump activated
+2024-07-23 13:18:00 - INFO - stopping pumps
+2024-07-23 13:18:00 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:18:01 - INFO - Program terminated by user
+2024-07-23 13:18:09 - INFO - Command received: start_collection
+2024-07-23 13:18:09 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:18:09 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:18:10 - INFO - stopping pumps
+2024-07-23 13:18:10 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:18:11 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:18:12 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 13:18:13 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 13:18:14 - INFO - data being collected
+2024-07-23 13:18:14 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:18:14 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:18:14 - INFO - Data received from sensor unit: {'do': 119.145, 'ph': 6.356, 'temp': 26.488, 'feed_weight': 0.0, 'time': 1.221936, 'date': '23-07-2024', 'time_of_day': '13:18:14', 'type': 'data'}
+2024-07-23 13:18:19 - INFO - added data to sheets
+2024-07-23 13:18:23 - INFO - data being collected
+2024-07-23 13:18:23 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:18:23 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:18:23 - INFO - Data received from sensor unit: {'do': 119.118, 'ph': 6.355, 'temp': 26.487, 'feed_weight': 0.0, 'time': 1.2245269, 'date': '23-07-2024', 'time_of_day': '13:18:23', 'type': 'data'}
+2024-07-23 13:18:28 - INFO - added data to sheets
+2024-07-23 13:18:28 - INFO - recieved ping from frontend
+2024-07-23 13:18:29 - INFO - Command received: stop_collection
+2024-07-23 13:18:30 - INFO - Collection task was cancelled
+2024-07-23 13:18:45 - INFO - recieved ping from frontend
+2024-07-23 13:19:05 - INFO - recieved ping from frontend
+2024-07-23 13:19:25 - INFO - recieved ping from frontend
+2024-07-23 13:19:45 - INFO - recieved ping from frontend
+2024-07-23 13:20:05 - INFO - recieved ping from frontend
+2024-07-23 13:20:25 - INFO - recieved ping from frontend
+2024-07-23 13:20:45 - INFO - recieved ping from frontend
+2024-07-23 13:21:05 - INFO - recieved ping from frontend
+2024-07-23 13:21:25 - INFO - recieved ping from frontend
+2024-07-23 13:21:45 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-23 13:21:45 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 13:21:45 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:21:45 - ERROR - Backup Server Starting
+2024-07-23 13:21:45 - INFO - stopping pumps
+2024-07-23 13:21:45 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:21:50 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-23 13:21:50 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 13:21:50 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:21:50 - ERROR - Backup Server Starting
+2024-07-23 13:21:50 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:21:50 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:21:50 - INFO - stopping pumps
+2024-07-23 13:21:50 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:21:51 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:21:52 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 13:21:53 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 13:21:54 - INFO - stopping pumps
+2024-07-23 13:21:54 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:21:55 - INFO - Program terminated by user
+2024-07-23 13:22:23 - INFO - Command received: start_collection
+2024-07-23 13:22:23 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:22:23 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:22:23 - INFO - stopping pumps
+2024-07-23 13:22:23 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:22:24 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:22:25 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 13:22:26 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 13:22:27 - INFO - data being collected
+2024-07-23 13:22:27 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:22:27 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:22:27 - INFO - Data received from sensor unit: {'do': 119.183, 'ph': 6.354, 'temp': 26.494, 'feed_weight': 0.0, 'time': 1.29226208, 'date': '23-07-2024', 'time_of_day': '13:22:27', 'type': 'data'}
+2024-07-23 13:22:32 - INFO - added data to sheets
+2024-07-23 13:22:36 - INFO - data being collected
+2024-07-23 13:22:36 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:22:36 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:22:36 - INFO - Data received from sensor unit: {'do': 119.194, 'ph': 6.355, 'temp': 26.496, 'feed_weight': 0.0, 'time': 1.29485375, 'date': '23-07-2024', 'time_of_day': '13:22:36', 'type': 'data'}
+2024-07-23 13:22:41 - INFO - added data to sheets
+2024-07-23 13:22:41 - INFO - recieved ping from frontend
+2024-07-23 13:22:45 - INFO - data being collected
+2024-07-23 13:22:45 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:22:45 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:22:45 - INFO - Data received from sensor unit: {'do': 119.18, 'ph': 6.355, 'temp': 26.495, 'feed_weight': 0.0, 'time': 1.29731062, 'date': '23-07-2024', 'time_of_day': '13:22:45', 'type': 'data'}
+2024-07-23 13:22:49 - INFO - added data to sheets
+2024-07-23 13:22:53 - INFO - data being collected
+2024-07-23 13:22:53 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:22:53 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:22:53 - INFO - Data received from sensor unit: {'do': 119.18, 'ph': 6.355, 'temp': 26.495, 'feed_weight': 0.0, 'time': 1.29959991, 'date': '23-07-2024', 'time_of_day': '13:22:53', 'type': 'data'}
+2024-07-23 13:22:58 - INFO - added data to sheets
+2024-07-23 13:22:58 - INFO - Command received: toggle_feed_pump
+2024-07-23 13:22:59 - INFO - recieved ping from frontend
+2024-07-23 13:23:02 - INFO - data being collected
+2024-07-23 13:23:02 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:23:02 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:23:02 - INFO - Data received from sensor unit: {'do': 119.185, 'ph': 6.354, 'temp': 26.495, 'feed_weight': 0.0, 'time': 1.3020822, 'date': '23-07-2024', 'time_of_day': '13:23:02', 'type': 'data'}
+2024-07-23 13:23:07 - INFO - added data to sheets
+2024-07-23 13:23:07 - INFO - Command received: stop_collection
+2024-07-23 13:23:07 - INFO - Collection task was cancelled
+2024-07-23 13:23:19 - INFO - recieved ping from frontend
+2024-07-23 13:23:39 - INFO - recieved ping from frontend
+2024-07-23 13:23:59 - INFO - recieved ping from frontend
+2024-07-23 13:24:19 - INFO - recieved ping from frontend
+2024-07-23 13:24:39 - INFO - recieved ping from frontend
+2024-07-23 13:24:59 - INFO - recieved ping from frontend
+2024-07-23 13:25:19 - INFO - recieved ping from frontend
+2024-07-23 13:25:39 - INFO - recieved ping from frontend
+2024-07-23 13:25:59 - INFO - recieved ping from frontend
+2024-07-23 13:26:19 - INFO - recieved ping from frontend
+2024-07-23 13:26:36 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-23 13:26:36 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 13:26:36 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:26:36 - ERROR - Backup Server Starting
+2024-07-23 13:26:36 - INFO - stopping pumps
+2024-07-23 13:26:36 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:26:51 - INFO - Command received: toggle_feed_pump
+2024-07-23 13:26:51 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:26:51 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:26:51 - INFO - stopping pumps
+2024-07-23 13:26:51 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:26:52 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:26:53 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 13:26:54 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 13:27:04 - INFO - Command received: toggle_feed_pump
+2024-07-23 13:27:08 - INFO - recieved ping from frontend
+2024-07-23 13:27:15 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-23 13:27:15 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 13:27:15 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:27:15 - ERROR - Backup Server Starting
+2024-07-23 13:27:15 - INFO - stopping pumps
+2024-07-23 13:27:15 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:28:20 - ERROR - Error in send_config_data
+Unexpected error: no close frame received or sent
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 59, in send_config_data
+    await websocket.send(json.dumps({
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 647, in send
+    await self.write_frame(True, opcode, data)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 1209, in write_frame
+    await self.drain()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 1198, in drain
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+
+2024-07-23 13:28:20 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedError'>
+2024-07-23 13:28:25 - INFO - Command received: toggle_feed_pump
+2024-07-23 13:28:25 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:28:25 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:28:26 - INFO - stopping pumps
+2024-07-23 13:28:26 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:28:27 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:28:28 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 13:28:29 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 13:29:23 - INFO - Command received: toggle_feed_pump
+2024-07-23 13:29:23 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:29:23 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:29:23 - INFO - stopping pumps
+2024-07-23 13:29:23 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:29:24 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:29:25 - INFO - Sending command: b'14pcu1\n'
+2024-07-23 13:29:26 - INFO - Sending command: b'4pcu1\n'
+2024-07-23 13:29:32 - INFO - Sending command: b'1pcu1\n'
+2024-07-23 13:29:39 - INFO - recieved ping from frontend
+2024-07-23 13:29:42 - INFO - Command received: toggle_feed_pump
+2024-07-23 13:29:42 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:29:44 - INFO - Command received: toggle_base_pump
+2024-07-23 13:29:44 - INFO - Sending command: b'3pcu1\n'
+2024-07-23 13:29:47 - INFO - Command received: toggle_base_pump
+2024-07-23 13:29:47 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:29:55 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-23 13:29:55 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 13:29:55 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:29:55 - ERROR - Backup Server Starting
+2024-07-23 13:29:55 - INFO - stopping pumps
+2024-07-23 13:29:55 - INFO - Sending command: b'0pcu1\n'
+2024-07-23 13:29:56 - INFO - Sending command: b'2pcu1\n'
+2024-07-23 13:30:45 - INFO - Program terminated by user
+2024-07-23 13:31:25 - INFO - recieved ping from frontend
+2024-07-23 13:31:45 - INFO - recieved ping from frontend
+2024-07-23 13:31:50 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-23 13:31:50 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-23 13:31:50 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:31:50 - ERROR - Backup Server Starting
+2024-07-23 13:31:50 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:31:50 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:31:50 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ [Errno 51] Network is unreachable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 266, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 529, in __init__
+    self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controller_mqtt_client.py", line 12, in __init__
+    self.client.connect(broker_address, 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+OSError: [Errno 51] Network is unreachable
+
+2024-07-23 13:31:50 - ERROR - Error in handle_server_error
+Unexpected error: argument of type 'NoneType' is not iterable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 229, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 189, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+2024-07-23 13:31:50 - ERROR - type of exception: <class 'TypeError'>
+2024-07-23 13:31:50 - ERROR - Error in send_notification: 'NoneType' object has no attribute 'raw'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 127, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 229, in handle_server_error
+    controller = await manager_server.stop_all(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/manager_server.py", line 189, in stop_all
+    if "control_task" in controller_info:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/resources/error_notification.py", line 17, in send_notification
+    print(app.is_authenticated)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 200, in is_authenticated
+    self._authenticate()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 273, in _authenticate
+    self._sounds = self._request('sound')[0]['sounds']
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/__init__.py", line 334, in _request
+    response = pool.open(url)
+               ^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/chump/connection_pool.py", line 82, in https_open
+    if response.raw.will_close:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'raw'
+
+2024-07-23 13:31:50 - INFO - Program terminated by user
+2024-07-23 13:31:58 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:31:58 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-23 13:32:07 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-23 13:32:07 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}

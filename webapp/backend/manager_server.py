@@ -98,9 +98,8 @@ async def control_task(controller, websocket):
             while True:
                 # print("loop controlled")
                 logger.info("loop controlled")
-                data, status = controller.start_control()
-                logger.info(f"data sent from control: {data}")
-                await websocket.send(json.dumps(data))
+                status = controller.start_control()
+                # await websocket.send(json.dumps(data))
                 await send_status_update(websocket, status)
                 await asyncio.sleep(INTERVAL)
         except asyncio.CancelledError:
@@ -132,10 +131,9 @@ async def collection_task(controller, websocket, loop_id):
             while True:
                 logger.info(f"data being collected")
                 if controller.status["control_loop_status"] == "control_off":
-                    status, data = controller.start_collection(False)
-                    logger.info(f"data sent from collect: {data}")
-                    await websocket.send(json.dumps(data))
-                    await send_status_update(websocket, status)
+                    status, _ = controller.start_collection(False)
+                    # await websocket.send(json.dumps(data))
+                    # await send_status_update(websocket, status)
                 await asyncio.sleep(INTERVAL)
         
         except asyncio.CancelledError:
@@ -167,10 +165,10 @@ async def toggle(loop_id, command, websocket):
             controller_info["controller"].switch_feed_media()
         else:
             pump_name = extract_after_toggle(command)
-            controller_info["controller"].toggle_pump(pump_name + "_pump")
+            controller_info["controller"].toggle_pump(pump_name)
 
         status = controller_info["controller"].status
-        await send_status_update(websocket, status)
+        # await send_status_update(websocket, status)
     except Exception as e:
         # print(f"Error in toggle: \n Input: {command}, \n{e}")
         logger.error(f"Error in toggle: \n Input: {command}, \n{e}\n{traceback.format_exc()}")

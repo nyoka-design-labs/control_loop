@@ -58,7 +58,7 @@
             "load_data": "False",
             "devices_connected": "True",
             "pumps_connected": "False",
-            "error": "True",
+            "error": "False",
             "control_running": "fermentation_loop"
         },
         {
@@ -194,7 +194,7 @@
                     "control_consts": {
                         "feed_counter": 0,
                         "start_counter": 0,
-                        "last_antifoam_edition": 0,
+                        "last_antifoam_edition": 1721761803.304759,
                         "start_feed": "True",
                         "start_phase_1": "True"
                     },

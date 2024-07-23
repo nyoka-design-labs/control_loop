@@ -147,6 +147,10 @@ async def handle_client(websocket):
                 handle_error(e, "backup protocol in handle_client")
         else:
             update_loop_constant("server_consts", "error", "True")
+    except KeyboardInterrupt:
+        logger.info("Program terminated by user")
+        asyncio.run(close_websocket())
+        update_loop_constant("server_consts", "error", "False")
             
     
 

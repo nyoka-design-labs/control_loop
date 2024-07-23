@@ -112,6 +112,7 @@ class Controller:
                 control_method = getattr(self, f"_{self.__class__.__name__}__{control_id}", None)
                 if control_method:
                     return control_method()
+                
                 else:
                     raise AttributeError(f"Method {control_id} not found in class.")
             else:
@@ -141,6 +142,7 @@ class Controller:
             else:
                 data = self.get_data()
                 self.save_data_sheets(data)
+                self.mqtt_client.publish_data(self.status, "status")
                 return self.status, data
         except Exception as e:
             # print(f"failed to start_collection: \n control_status: {control_status} \n{e}")
@@ -197,6 +199,7 @@ class Controller:
                 self.status.update({
                     f"{pump_name}_status": str(self.pumps[pump_name].state)
                 })
+                self.mqtt_client.publish_data(self.status, "status")
         except Exception as e:
             # print(f"failed to toggle_pump: \n{pump_name}, \n{e}")
             logger.error(f"Error in toggle_pump: \n{pump_name}, \n{e}\n{traceback.format_exc()}")
@@ -471,8 +474,8 @@ class ConcentrationController(Controller):
         self.update_status()   
    
         self.save_data_sheets(data)
-
-        return data, self.status
+        
+        return self.status
     
     def __concentration_buffer_loop(self):
         data = self.get_data()
@@ -482,8 +485,8 @@ class ConcentrationController(Controller):
         self.update_status()   
    
         self.save_data_sheets(data)
-
-        return data, self.status
+        
+        return self.status
     
     def __buffer_control(self, weight: float):
         '''
@@ -592,7 +595,8 @@ class FermentationController(Controller):
 
         self.save_data_sheets(data)
 
-        return data, self.status
+        self.mqtt_client.publish_data(self.status, "status")
+        return self.status
     
     def __2_phase_do_trig_ph_feed_control(self):
         """
@@ -647,8 +651,8 @@ class FermentationController(Controller):
         self.update_status()
 
         self.save_data_sheets(data)
-
-        return data, self.status
+        self.mqtt_client.publish_data(self.status, "status")
+        return self.status
     
     def __3_phase_do_feed_control(self):
         """
@@ -719,8 +723,8 @@ class FermentationController(Controller):
         self.update_status()
 
         self.save_data_sheets(data)
-
-        return data, self.status
+        self.mqtt_client.publish_data(self.status, "status")
+        return self.status
     
     def __test_loop(self):
         data = self.get_data()
@@ -734,7 +738,7 @@ class FermentationController(Controller):
 
         self.update_status()
 
-        return data, self.status
+        return self.status
     
     def __switch_feed_media(self):
         """

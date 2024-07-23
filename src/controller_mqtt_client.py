@@ -18,7 +18,7 @@ class ControllerMQTTClient:
     def on_message(self, client, userdata, message):
         self.data_received = json.loads(message.payload.decode("utf-8"))
         self.data_ready = True
-        logger.info("Data received from sensor unit:", self.data_received)
+        logger.info(f"Data received from sensor unit: {self.data_received}")
 
     def request_data(self, testing=False):
         self.data_ready = False
@@ -27,6 +27,10 @@ class ControllerMQTTClient:
         while not self.data_ready:
             time.sleep(0.1)
         return self.data_received
+    
+    def publish_data(self, data, topic):
+        self.client.publish(topic, json.dumps(data))
+        print(f"published {data} from controller to topic {topic}")
 
     def init_device_manager(self, init_data):
         self.client.publish("init_device_manager", json.dumps(init_data))
