@@ -9,7 +9,7 @@ const useStatusBox = (key, onMessage, offMessage, shouldTimeout = false) => {
   const statusTimeout = useRef();
 
   useEffect(() => {
-    const client = mqtt.connect('ws://192.168.0.25:9001');
+    const client = mqtt.connect('ws://localhost:9001');
 
     const handleMqttMessage = (topic, message) => {
       const data = JSON.parse(message.toString());

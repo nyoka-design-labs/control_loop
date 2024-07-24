@@ -1,0 +1,174 @@
+2024-07-24 10:31:18 - ERROR - Error in start_server
+Unexpected error: timed out
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 262, in main
+    setup_mqtt()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 60, in setup_mqtt
+    mqtt_client.connect("192.168.0.25", 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+2024-07-24 10:31:18 - ERROR - type of exception: <class 'TimeoutError'>
+2024-07-24 10:31:23 - ERROR - Error in start_server
+Unexpected error: [Errno 64] Host is down
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 262, in main
+    setup_mqtt()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 60, in setup_mqtt
+    mqtt_client.connect("192.168.0.25", 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+OSError: [Errno 64] Host is down
+
+2024-07-24 10:31:23 - ERROR - type of exception: <class 'OSError'>
+2024-07-24 10:31:27 - ERROR - Error in start_server
+Unexpected error: [Errno 64] Host is down
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 262, in main
+    setup_mqtt()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 60, in setup_mqtt
+    mqtt_client.connect("192.168.0.25", 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+OSError: [Errno 64] Host is down
+
+2024-07-24 10:31:27 - ERROR - type of exception: <class 'OSError'>
+2024-07-24 11:24:14 - ERROR - Error in start_server
+Unexpected error: [Errno 8] nodename nor servname provided, or not known
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 262, in main
+    setup_mqtt()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 60, in setup_mqtt
+    mqtt_client.connect("broker_ip", 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 829, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 964, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+2024-07-24 11:24:14 - ERROR - type of exception: <class 'socket.gaierror'>
+2024-07-24 11:25:39 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 147, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-24 11:25:39 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-24 11:25:39 - ERROR - Backup Server Starting
+2024-07-24 11:27:08 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 147, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-24 11:27:08 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-24 11:27:08 - ERROR - Backup Server Starting
+2024-07-24 11:28:26 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 147, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-24 11:28:26 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-24 11:28:26 - ERROR - Backup Server Starting
+2024-07-24 11:54:27 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 147, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-24 11:54:27 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-24 11:54:27 - ERROR - Backup Server Starting

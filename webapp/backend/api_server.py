@@ -1,6 +1,7 @@
 import asyncio
 import websockets
 import json
+import paho.mqtt.client as mqtt
 import sys
 import os
 import traceback
@@ -9,14 +10,17 @@ import backup_server
 from resources.logging_config import setup_logger
 from resources.utils import *
 from resources.error_notification import send_notification
+import time
 
 # Set the current directory and source directories
 curr_directory = os.path.dirname(__file__)
 SRC_DIR = os.path.join(curr_directory, "..", "..", "src")
 sys.path.append(SRC_DIR)
-
+mqtt_client = None  # Global MQTT client
 logger = setup_logger()
+config_sent = False
 current_websocket = None
+broker_ip = get_loop_constant(loop_id="server_consts", const="broker_ip")
 def handle_error(exception, context, data=None, notify=True):
     """
     Handles errors by logging, printing to standard output, and optionally sending notifications.
@@ -33,15 +37,32 @@ def handle_error(exception, context, data=None, notify=True):
     logger.error(error_message)
     logger.error(f"type of exception: {type(exception)}")
 
-    # print(error_message)
     if data:
         logger.error(f"Input data: {data}")
-        # print(f"Input data: {data}")
     if notify:
-        send_notification(f"Unexpected error in {context}")
+        # send_notification(f"Unexpected error in {context}")
+        pass
 
-async def send_config_data(websocket):
+def on_connect(client, userdata, flags, rc, properties=None):
+    if rc == 0:
+        logger.info("Connected to MQTT broker")
+    else:
+        logger.error(f"Failed to connect to MQTT broker, return code {rc}")
+
+def on_publish(client, userdata, mid, properties=None, reasonCode=None):
+    logger.info(f"Message published with mid: {mid}, properties: {properties}, reasonCode: {reasonCode}")
+
+def setup_mqtt():
+    global mqtt_client
+    mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="server")
+    mqtt_client.on_connect = on_connect
+    mqtt_client.on_publish = on_publish
+    mqtt_client.connect(broker_ip, 1883, 60)
+    mqtt_client.loop_start()
+
+async def send_config_data():
     try:
+        time.sleep(1)
         # Fetch configuration for fermentation loop
         fer_control_id = get_loop_constant("fermentation_loop", "chosen_control")
         fermentation_config = get_control_constant("fermentation_loop", fer_control_id, "control_config")
@@ -56,21 +77,18 @@ async def send_config_data(websocket):
             "concentration_loop": concentration_config
         }
 
-        await websocket.send(json.dumps({
-            "type": "config_setup",
+        mqtt_client.publish("config_setup", json.dumps({
             "data": combined_config
         }))
     except Exception as e:
         handle_error(e, "send_config_data", notify=False)
 
-async def send_pump_data(websocket):
+async def send_pump_data():
     """
     Sends the pump data to the frontend.
-
-    Args:
-        websocket (websockets.WebSocketServerProtocol): The WebSocket connection to send data through.
     """
     try:
+        time.sleep(1)
         fer_control_id = get_loop_constant("fermentation_loop", "chosen_control")
         fermentation_pumps = get_control_constant("fermentation_loop", fer_control_id, "pumps")
 
@@ -82,8 +100,7 @@ async def send_pump_data(websocket):
             "concentration_loop": concentration_pumps
         }
 
-        await websocket.send(json.dumps({
-            "type": "button_setup",
+        mqtt_client.publish("button_setup", json.dumps({
             "data": pump_data
         }))
     except Exception as e:
@@ -103,7 +120,7 @@ async def update_config(data):
         logger.info(f"Updated {key} to {value} in control_config")
     except Exception as e:
         handle_error(e, "update_config", data)
-        
+
 async def handle_client(websocket):
     """
     Continuously listens for and processes messages from clients over a WebSocket.
@@ -115,44 +132,42 @@ async def handle_client(websocket):
     """
     global current_websocket
     current_websocket = websocket
-    try:
+    global config_sent
+
+    if not config_sent:
         try:
-            await send_pump_data(websocket)
-            await send_config_data(websocket)
-        except websockets.exceptions.ConnectionClosedOK:
-            handle_error(e, "intial_startup", notify=False)
-        except websockets.exceptions.ConnectionClosedError:
-            handle_error(e, "intial_startup", notify=False)
+            await send_pump_data()
+            await send_config_data()
+            config_sent = True
+        except Exception as e:
+            handle_error(e, "initial_startup", notify=False)
+
+    try:
         while True:
             message = await asyncio.wait_for(websocket.recv(), timeout=60)
             data = json.loads(message)
             if data.get("type") == "ping":
-                # print("recieved ping")
-                logger.info("recieved ping from frontend")
+                logger.info("received ping from frontend")
                 await websocket.send(json.dumps({"type": "pong"}))
             elif data.get("type") == "update_config":
                 await update_config(data)
             else:
                 await process_client_command(websocket, data)
-    except Exception as e:       
+    except KeyboardInterrupt:
+        logger.info("Program terminated by user")
+        await close_websocket()
+        update_loop_constant("server_consts", "error", "False")
+    except Exception as e:
         error = eval(get_loop_constant(loop_id="server_consts", const="error"))
- 
         if error:
             try:
                 handle_error(e, "handle_client")
-                # print("starting backup server")
                 logger.error("Backup Server Starting")
                 await handle_server_error()
             except Exception as e:
                 handle_error(e, "backup protocol in handle_client")
         else:
             update_loop_constant("server_consts", "error", "True")
-    except KeyboardInterrupt:
-        logger.info("Program terminated by user")
-        asyncio.run(close_websocket())
-        update_loop_constant("server_consts", "error", "False")
-            
-    
 
 async def process_client_command(websocket, data):
     """
@@ -167,7 +182,6 @@ async def process_client_command(websocket, data):
     try:
         command = data.get("command")
         loop_id = data.get("loopID")
-        # print(f"Command received: {command}")
         logger.info(f"Command received: {command}")
         update_loop_constant("server_consts", "control_running", loop_id)
         if "control" in command:
@@ -245,6 +259,7 @@ async def close_websocket():
 
 async def main():
     try:
+        setup_mqtt()
         server = await websockets.serve(
             handle_client,
             "localhost",

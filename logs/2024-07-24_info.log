@@ -1,0 +1,282 @@
+2024-07-24 10:31:18 - ERROR - Error in start_server
+Unexpected error: timed out
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 262, in main
+    setup_mqtt()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 60, in setup_mqtt
+    mqtt_client.connect("192.168.0.25", 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+2024-07-24 10:31:18 - ERROR - type of exception: <class 'TimeoutError'>
+2024-07-24 10:31:23 - ERROR - Error in start_server
+Unexpected error: [Errno 64] Host is down
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 262, in main
+    setup_mqtt()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 60, in setup_mqtt
+    mqtt_client.connect("192.168.0.25", 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+OSError: [Errno 64] Host is down
+
+2024-07-24 10:31:23 - ERROR - type of exception: <class 'OSError'>
+2024-07-24 10:31:27 - ERROR - Error in start_server
+Unexpected error: [Errno 64] Host is down
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 262, in main
+    setup_mqtt()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 60, in setup_mqtt
+    mqtt_client.connect("192.168.0.25", 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 838, in create_connection
+    sock.connect(sa)
+OSError: [Errno 64] Host is down
+
+2024-07-24 10:31:27 - ERROR - type of exception: <class 'OSError'>
+2024-07-24 11:24:14 - ERROR - Error in start_server
+Unexpected error: [Errno 8] nodename nor servname provided, or not known
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 262, in main
+    setup_mqtt()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 60, in setup_mqtt
+    mqtt_client.connect("broker_ip", 1883, 60)
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1435, in connect
+    return self.reconnect()
+           ^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 1598, in reconnect
+    self._sock = self._create_socket()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4609, in _create_socket
+    sock = self._create_socket_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/paho/mqtt/client.py", line 4640, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 829, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 964, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 8] nodename nor servname provided, or not known
+
+2024-07-24 11:24:14 - ERROR - type of exception: <class 'socket.gaierror'>
+2024-07-24 11:25:18 - INFO - Connected to MQTT broker
+2024-07-24 11:25:33 - INFO - Message published with mid: 1, properties: Success, reasonCode: []
+2024-07-24 11:25:34 - INFO - Message published with mid: 2, properties: Success, reasonCode: []
+2024-07-24 11:25:39 - ERROR - Error in handle_client
+Unexpected error: received 1001 (going away); then sent 1001 (going away)
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 147, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1001 (going away); then sent 1001 (going away)
+
+2024-07-24 11:25:39 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-24 11:25:39 - ERROR - Backup Server Starting
+2024-07-24 11:25:39 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 11:25:39 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 11:25:39 - INFO - stopping pumps
+2024-07-24 11:25:39 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 11:25:40 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 11:25:41 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 11:25:42 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 11:25:43 - INFO - stopping pumps
+2024-07-24 11:25:43 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 11:25:44 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 11:25:45 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 11:25:46 - INFO - Program terminated by user
+2024-07-24 11:26:04 - INFO - Connected to MQTT broker
+2024-07-24 11:26:13 - INFO - Message published with mid: 1, properties: Success, reasonCode: []
+2024-07-24 11:26:14 - INFO - Message published with mid: 2, properties: Success, reasonCode: []
+2024-07-24 11:26:20 - INFO - Program terminated by user
+2024-07-24 11:26:22 - INFO - Connected to MQTT broker
+2024-07-24 11:26:49 - INFO - Message published with mid: 1, properties: Success, reasonCode: []
+2024-07-24 11:26:50 - INFO - Message published with mid: 2, properties: Success, reasonCode: []
+2024-07-24 11:27:08 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 147, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-24 11:27:08 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-24 11:27:08 - ERROR - Backup Server Starting
+2024-07-24 11:27:08 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 11:27:08 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 11:27:08 - INFO - stopping pumps
+2024-07-24 11:27:08 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 11:28:07 - INFO - Connected to MQTT broker
+2024-07-24 11:28:12 - INFO - Message published with mid: 1, properties: Success, reasonCode: []
+2024-07-24 11:28:13 - INFO - Message published with mid: 2, properties: Success, reasonCode: []
+2024-07-24 11:28:26 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 147, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-24 11:28:26 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-24 11:28:26 - ERROR - Backup Server Starting
+2024-07-24 11:28:26 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 11:28:26 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 11:28:26 - INFO - stopping pumps
+2024-07-24 11:28:26 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 11:28:39 - INFO - Connected to MQTT broker
+2024-07-24 11:28:43 - INFO - Message published with mid: 1, properties: Success, reasonCode: []
+2024-07-24 11:28:44 - INFO - Message published with mid: 2, properties: Success, reasonCode: []
+2024-07-24 11:29:04 - INFO - received ping from frontend
+2024-07-24 11:29:24 - INFO - received ping from frontend
+2024-07-24 11:29:44 - INFO - received ping from frontend
+2024-07-24 11:30:04 - INFO - received ping from frontend
+2024-07-24 11:30:24 - INFO - received ping from frontend
+2024-07-24 11:30:44 - INFO - received ping from frontend
+2024-07-24 11:31:04 - INFO - received ping from frontend
+2024-07-24 11:31:24 - INFO - received ping from frontend
+2024-07-24 11:31:44 - INFO - received ping from frontend
+2024-07-24 11:32:04 - INFO - received ping from frontend
+2024-07-24 11:32:24 - INFO - received ping from frontend
+2024-07-24 11:32:44 - INFO - received ping from frontend
+2024-07-24 11:33:04 - INFO - received ping from frontend
+2024-07-24 11:33:24 - INFO - received ping from frontend
+2024-07-24 11:33:44 - INFO - received ping from frontend
+2024-07-24 11:34:04 - INFO - received ping from frontend
+2024-07-24 11:34:24 - INFO - received ping from frontend
+2024-07-24 11:34:44 - INFO - received ping from frontend
+2024-07-24 11:35:04 - INFO - received ping from frontend
+2024-07-24 11:35:24 - INFO - received ping from frontend
+2024-07-24 11:35:44 - INFO - received ping from frontend
+2024-07-24 11:36:04 - INFO - received ping from frontend
+2024-07-24 11:36:24 - INFO - received ping from frontend
+2024-07-24 11:36:44 - INFO - received ping from frontend
+2024-07-24 11:37:04 - INFO - received ping from frontend
+2024-07-24 11:37:24 - INFO - received ping from frontend
+2024-07-24 11:37:44 - INFO - received ping from frontend
+2024-07-24 11:38:04 - INFO - received ping from frontend
+2024-07-24 11:38:24 - INFO - received ping from frontend
+2024-07-24 11:38:44 - INFO - received ping from frontend
+2024-07-24 11:39:04 - INFO - received ping from frontend
+2024-07-24 11:39:24 - INFO - received ping from frontend
+2024-07-24 11:39:44 - INFO - received ping from frontend
+2024-07-24 11:40:04 - INFO - received ping from frontend
+2024-07-24 11:40:24 - INFO - received ping from frontend
+2024-07-24 11:40:44 - INFO - received ping from frontend
+2024-07-24 11:41:04 - INFO - received ping from frontend
+2024-07-24 11:41:24 - INFO - received ping from frontend
+2024-07-24 11:41:44 - INFO - received ping from frontend
+2024-07-24 11:42:04 - INFO - received ping from frontend
+2024-07-24 11:42:24 - INFO - received ping from frontend
+2024-07-24 11:42:44 - INFO - received ping from frontend
+2024-07-24 11:43:04 - INFO - received ping from frontend
+2024-07-24 11:43:24 - INFO - received ping from frontend
+2024-07-24 11:43:44 - INFO - received ping from frontend
+2024-07-24 11:44:04 - INFO - received ping from frontend
+2024-07-24 11:44:24 - INFO - received ping from frontend
+2024-07-24 11:44:44 - INFO - received ping from frontend
+2024-07-24 11:45:04 - INFO - received ping from frontend
+2024-07-24 11:45:24 - INFO - received ping from frontend
+2024-07-24 11:45:44 - INFO - received ping from frontend
+2024-07-24 11:46:04 - INFO - received ping from frontend
+2024-07-24 11:46:24 - INFO - received ping from frontend
+2024-07-24 11:46:44 - INFO - received ping from frontend
+2024-07-24 11:47:04 - INFO - received ping from frontend
+2024-07-24 11:47:24 - INFO - received ping from frontend
+2024-07-24 11:47:44 - INFO - received ping from frontend
+2024-07-24 11:48:04 - INFO - received ping from frontend
+2024-07-24 11:48:24 - INFO - received ping from frontend
+2024-07-24 11:48:44 - INFO - received ping from frontend
+2024-07-24 11:49:04 - INFO - received ping from frontend
+2024-07-24 11:49:24 - INFO - received ping from frontend
+2024-07-24 11:49:44 - INFO - received ping from frontend
+2024-07-24 11:50:04 - INFO - received ping from frontend
+2024-07-24 11:50:53 - INFO - received ping from frontend
+2024-07-24 11:51:53 - INFO - received ping from frontend
+2024-07-24 11:52:53 - INFO - received ping from frontend
+2024-07-24 11:53:53 - INFO - received ping from frontend
+2024-07-24 11:54:27 - ERROR - Error in handle_client
+Unexpected error: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/api_server.py", line 147, in handle_client
+    message = await asyncio.wait_for(websocket.recv(), timeout=60)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "/Users/samgupta/Github/control_loop/control_loop/lib/python3.12/site-packages/websockets/legacy/protocol.py", line 948, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown; then received 1001 (going away) Server shutdown
+
+2024-07-24 11:54:27 - ERROR - type of exception: <class 'websockets.exceptions.ConnectionClosedOK'>
+2024-07-24 11:54:27 - ERROR - Backup Server Starting
+2024-07-24 11:54:27 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 11:54:27 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 11:54:27 - INFO - stopping pumps
+2024-07-24 11:54:27 - INFO - Sending command: b'0pcu1\n'

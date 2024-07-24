@@ -40,14 +40,6 @@ export const DataProvider = ({ children }) => {
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             switch (data.type) {
-                case 'button_setup':
-                    console.log("Button setup data received:", data.data);
-                    setPumpData(data.data);
-                    break;
-                case 'config_setup':
-                    console.log("Config setup data received:", data.data);
-                    setConfigData(data.data);
-                    break;
                 case 'pong':
                     console.log("Pong received from server");
                     break;
@@ -70,29 +62,50 @@ export const DataProvider = ({ children }) => {
             ws.close();
         };
     }, []); // Empty dependency array ensures this runs only once on mount
+    
     useEffect(() => {
         // MQTT connection setup
-        const client = mqtt.connect('ws://192.168.0.25:9001');
+        const client = mqtt.connect('ws://localhost:9001', { connectTimeout: 5000 });
 
         client.on('connect', () => {
             console.log('Connected to MQTT broker');
-            client.subscribe('sensor_data');
+            client.subscribe(['sensor_data', 'button_setup', 'config_setup'], (err) => {
+                if (err) {
+                    console.error('Subscription error:', err);
+                } else {
+                    console.log('Subscribed to topics');
+                }
+            });
         });
 
         client.on('message', (topic, message) => {
-            if (topic === 'sensor_data') {
-                const data = JSON.parse(message.toString());
-                console.log("MQTT Data Received:", data);
-                setSystemData(prevData => [...prevData, data]);
-                setCurrentMeasurements({
-                    weight: data.feed_weight,
-                    do: data.do,
-                    ph: data.ph,
-                    temp: data.temp,
-                    expected_weight: data.lactose_weight,
-                    buffer_weight: data.buffer_weight,
-                    lysate_weight: data.lysate_weight
-                });
+            const data = JSON.parse(message.toString());
+            console.log(`MQTT Message Received. Topic: ${topic}, Data: ${JSON.stringify(data)}`);
+            switch (topic) {
+                case 'sensor_data':
+                    console.log("MQTT Data Received:", data);
+                    setSystemData(prevData => [...prevData, data]);
+                    setCurrentMeasurements({
+                        weight: data.feed_weight,
+                        do: data.do,
+                        ph: data.ph,
+                        temp: data.temp,
+                        expected_weight: data.lactose_weight,
+                        buffer_weight: data.buffer_weight,
+                        lysate_weight: data.lysate_weight
+                    });
+                    break;
+                case 'button_setup':
+                    console.log("Button setup data received:", data);
+                    setPumpData(data.data);
+                    break;
+                case 'config_setup':
+                    console.log("Config setup data received:", data);
+                    setConfigData(data.data);
+                    break;
+                default:
+                    console.log("Received unknown message type:", topic);
+                    break;
             }
         });
 

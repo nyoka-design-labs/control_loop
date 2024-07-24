@@ -452,8 +452,8 @@ class ConcentrationController(Controller):
         self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
         self.pcu_id = get_loop_constant(self.loop_id, "pcu_id")
         self.load_control_constants()
-        
-        self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+        broker_ip = get_loop_constant(loop_id="server_consts", const="broker_ip")
+        self.mqtt_client = ControllerMQTTClient(broker_address=broker_ip)
         self.init_device_manager()
 
         self.initial_buffer_mass = None
@@ -525,8 +525,8 @@ class FermentationController(Controller):
         self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
         self.pcu_id = get_loop_constant(self.loop_id, "pcu_id")
         self.load_control_constants()
-
-        self.mqtt_client = ControllerMQTTClient(broker_address="192.168.0.25")
+        broker_ip = get_loop_constant(loop_id="server_consts", const="broker_ip")
+        self.mqtt_client = ControllerMQTTClient(broker_address=broker_ip)
         self.init_device_manager()
         
         # Initialize pumps from JSON configuration

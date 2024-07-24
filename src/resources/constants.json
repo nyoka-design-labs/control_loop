@@ -58,8 +58,9 @@
             "load_data": "False",
             "devices_connected": "True",
             "pumps_connected": "False",
-            "error": "False",
-            "control_running": "fermentation_loop"
+            "error": "True",
+            "control_running": "fermentation_loop",
+            "broker_ip": "192.168.0.185"
         },
         {
             "loop_id": "concentration_loop",
