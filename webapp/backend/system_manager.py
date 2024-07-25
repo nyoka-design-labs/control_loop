@@ -71,6 +71,7 @@ async def collection(loop_id, command):
 
         elif command == "stop_collection":
             if "collection_task" in controller_info:
+                controller_info["controller"].update_status(control_is_on=False, data_col_is_on=False)
                 controller_info["collection_task"].cancel()
                 await controller_info["collection_task"]  # Ensure cancellation is handled properly
                 del controller_info["collection_task"]
