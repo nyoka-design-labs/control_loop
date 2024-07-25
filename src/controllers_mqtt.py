@@ -58,7 +58,7 @@ class Controller:
         # try:
         if pumps:
             self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
-            time.sleep(2)
+            time.sleep(0.5)
             
                 
         # except Exception as e:
@@ -83,7 +83,7 @@ class Controller:
             if pumps:
                 logger.info("sending command to esp")
                 self.arduino.write(command.encode())
-                time.sleep(2)
+                time.sleep(0.2)
                 if self.arduino.in_waiting > 0:
                     response = self.arduino.read(self.arduino.in_waiting).decode('utf-8')
                     print(f"Response from ESP32: {response}")
@@ -103,7 +103,7 @@ class Controller:
         except Exception as e:
             logger.error(f"Error in pump_control: \n state: {state}, \n{e}\n{traceback.format_exc()}")
 
-        time.sleep(1)
+        # time.sleep(0.5)
         
     def start_control(self):
         """
@@ -744,7 +744,7 @@ class FermentationController(Controller):
         self.update_controller_consts("control_config", "cycles", cyc)
 
         self.update_status()
-
+        self.mqtt_client.publish_data(self.status, "status")
         return self.status
     
     def __switch_feed_media(self):
@@ -1006,5 +1006,3 @@ if __name__ == "__main__":
         status, data = c.start_collection(control_status=False)
         print(data)
         time.sleep(3)
-
-       
