@@ -1,6 +1,5 @@
 import json
 import asyncio
-import websockets
 import os
 import sys
 import traceback
