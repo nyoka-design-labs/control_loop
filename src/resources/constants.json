@@ -54,10 +54,10 @@
         {
             "loop_id": "server_consts",
             "interval": 4,
-            "testing": "False",
+            "testing": "True",
             "load_data": "False",
             "devices_connected": "True",
-            "pumps_connected": "False",
+            "pumps_connected": "True",
             "error": "True",
             "control_running": "fermentation_loop",
             "broker_ip": "192.168.0.25"
@@ -116,7 +116,7 @@
         },
         {
             "loop_id": "fermentation_loop",
-            "chosen_control": "2_phase_do_trig_ph_feed_control",
+            "chosen_control": "test_loop",
             "pcu_id": "pcu1",
             "controllers": [
                 {
@@ -264,15 +264,13 @@
                     "devices": [
                         "do_sensor",
                         "ph_sensor",
-                        "uss_scale",
                         "uss_scale"
                     ],
                     "data_type": [
                         "do",
                         "ph",
                         "temp",
-                        "feed_weight",
-                        "base_weight"
+                        "feed_weight"
                     ],
                     "pumps": {
                         "feed_pump": "blackPump1",
@@ -285,6 +283,10 @@
                     "test_name": "2_phase_test_1",
                     "control_consts": {
                         "cycles": 0
+                    },
+                    "control_config": {
+                        "nothing": 0,
+                        "cycles": 13
                     }
                 }
             ]
