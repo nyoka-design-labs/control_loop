@@ -1,6 +1,5 @@
 import serial
 from devices.pump import Pump
-from DeviceManager import DeviceManager
 import time
 from resources.utils import *
 from resources.google_api.sheets import save_dict_to_sheet

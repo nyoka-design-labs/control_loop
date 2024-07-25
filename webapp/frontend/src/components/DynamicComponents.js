@@ -1,6 +1,7 @@
 import React from 'react';
 import TogglePumpButton from './TogglePumpButton'; // Import the new component
 import useStatusBox from './StatusBoxes';  // Adjust the path according to your file structure
+import { useData } from '../DataContext'; // Import the useData hook
 
 const DynamicComponent = ({ pumpKey, loopIdentifier }) => {
   const statusKey = `${pumpKey}_status`;
@@ -16,10 +17,13 @@ const DynamicComponent = ({ pumpKey, loopIdentifier }) => {
   );
 };
 
-const DynamicComponents = ({ pumps, loopIdentifier }) => {
+const DynamicComponents = ({ loopIdentifier }) => {
+  const { pumpData } = useData(); // Fetch pumpData from the context
+  const currentPumps = pumpData[loopIdentifier] || {}; // Get current pumps based on the loopIdentifier
+
   return (
     <>
-      {Object.keys(pumps).map((pumpKey) => (
+      {Object.keys(currentPumps).map((pumpKey) => (
         <DynamicComponent key={pumpKey} pumpKey={pumpKey} loopIdentifier={loopIdentifier} />
       ))}
     </>

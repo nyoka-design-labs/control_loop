@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
-import { useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
-import useStatusBox from '../components/StatusBoxes';
 import DynamicComponents from '../components/DynamicComponents';
 import DynamicConfigComponent from '../components/DynamicConfigComponent';
 import { Graph } from '../components/Graph'; // Use the new Graph component
+import ControlButtons from '../components/ControlButtons';
 import './views.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const FermentationControlPanel = () => {
-    const { systemData, currentMeasurements, pumpData } = useData();
+    const { systemData, currentMeasurements } = useData();
     const fermentationLoopIdentifier = 'fermentation_loop';
-
-    const currentPumps = pumpData[fermentationLoopIdentifier] || {};
-
-    const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", fermentationLoopIdentifier);
-    const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", fermentationLoopIdentifier, isControlLoopRunning);
-    const dataCollectionStatus = useStatusBox("data_collection_status", "ON", "OFF", true);
-    const controlLoopStatus = useStatusBox("control_loop_status", "ON", "OFF", true);
 
     // State to force a re-render of the graph
     const [graphKey, setGraphKey] = useState(0);
@@ -57,19 +49,12 @@ const FermentationControlPanel = () => {
                 </div>
                 <div className="controls-section">
                     <div className="mb-3">
-                        <div className="button-status-container">
-                            {dataCollectionButton}
-                            {dataCollectionStatus}
-                        </div>
-                        <div className="button-status-container">
-                            {controlLoopButton}
-                            {controlLoopStatus}
-                        </div>
+                        <ControlButtons loopIdentifier={fermentationLoopIdentifier} />
                     </div>
                     <div className="config-panel-dark">
                         <div className="right-aligned-buttons">
                             <div className="mb-3">
-                                <DynamicComponents pumps={currentPumps} loopIdentifier={fermentationLoopIdentifier} />
+                                <DynamicComponents loopIdentifier={fermentationLoopIdentifier} />
                             </div>
                             <div className="config-section">
                                 <DynamicConfigComponent loopIdentifier={fermentationLoopIdentifier} />

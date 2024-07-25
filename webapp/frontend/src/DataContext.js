@@ -5,7 +5,6 @@ const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
     const [systemData, setSystemData] = useState([]);
-    const [websocket, setWebsocket] = useState(null);
     const [currentMeasurements, setCurrentMeasurements] = useState({
         weight: '---',
         do: '---',
@@ -37,52 +36,6 @@ export const DataProvider = ({ children }) => {
 
         fetchConfigData();
     }, []);
-
-    useEffect(() => {
-        // Create a new WebSocket connection when the component mounts
-        const ws = new WebSocket("ws://localhost:8765");
-
-        ws.onopen = () => {
-            console.log("WebSocket connection established");
-            // Send a 'ping' message at regular intervals
-            const pingInterval = setInterval(() => {
-                if (ws.readyState === WebSocket.OPEN) {
-                    ws.send(JSON.stringify({ type: "ping" }));
-                }
-            }, 20000);
-
-            // Clear the interval on WebSocket close
-            ws.onclose = () => {
-                clearInterval(pingInterval);
-                console.log("WebSocket connection closed");
-            };
-        };
-
-        ws.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            switch (data.type) {
-                case 'pong':
-                    console.log("Pong received from server");
-                    break;
-                default:
-                    console.log("Received unknown message type:", data.type);
-                    break;
-            }
-        };
-
-        ws.onerror = (error) => {
-            console.error("WebSocket error:", error);
-        };
-
-        // Store the WebSocket connection in state
-        setWebsocket(ws);
-
-        // Cleanup function to close WebSocket connection when the component unmounts
-        return () => {
-            console.log("Closing WebSocket");
-            ws.close();
-        };
-    }, []); // Empty dependency array ensures this runs only once on mount
 
     useEffect(() => {
         // MQTT connection setup
@@ -129,7 +82,7 @@ export const DataProvider = ({ children }) => {
     }, []); // Empty dependency array ensures this runs only once on mount
 
     return (
-        <DataContext.Provider value={{ systemData, currentMeasurements, websocket, pumpData, configData }}>
+        <DataContext.Provider value={{ systemData, currentMeasurements, pumpData, configData }}>
             {children}
         </DataContext.Provider>
     );

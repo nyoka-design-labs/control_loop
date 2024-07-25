@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
-import { useDataCollectionButton, useControlLoopButton } from '../components/Buttons';
-import useStatusBox from '../components/StatusBoxes';
 import DynamicComponents from '../components/DynamicComponents';
 import DynamicConfigComponent from '../components/DynamicConfigComponent';
 import { Graph } from '../components/Graph'; // Use the new Graph component
+import ControlButtons from '../components/ControlButtons';
 import './views.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ConcentrationControlPanel = () => {
-    const { systemData, currentMeasurements, pumpData } = useData();
+    const { systemData, currentMeasurements } = useData();
     const concentrationLoopIdentifier = 'concentration_loop';
-
-    const currentPumps = pumpData[concentrationLoopIdentifier] || {};
-
-    const [controlLoopButton, isControlLoopRunning] = useControlLoopButton("start_control", "stop_control", concentrationLoopIdentifier);
-    const dataCollectionButton = useDataCollectionButton("start_collection", "stop_collection", concentrationLoopIdentifier, isControlLoopRunning);
-    const dataCollectionStatus = useStatusBox("data_collection_status", "ON", "OFF", true);
-    const controlLoopStatus = useStatusBox("control_loop_status", "ON", "OFF", true);
-
+   
     // State to force a re-render of the graph
     const [graphKey, setGraphKey] = useState(0);
 
@@ -50,20 +42,13 @@ const ConcentrationControlPanel = () => {
                     </div>
                 </div>
                 <div className="controls-section">
-                <div className="mb-3">
-                        <div className="button-status-container">
-                            {dataCollectionButton}
-                            {dataCollectionStatus}
-                        </div>
-                        <div className="button-status-container">
-                            {controlLoopButton}
-                            {controlLoopStatus}
-                        </div>
+                    <div className="mb-3">
+                        <ControlButtons loopIdentifier={concentrationLoopIdentifier} />
                     </div>
                     <div className="config-panel-dark">
                         <div className="right-aligned-buttons">
                             <div className="mb-3">
-                                <DynamicComponents pumps={currentPumps} loopIdentifier={concentrationLoopIdentifier} />
+                                <DynamicComponents loopIdentifier={concentrationLoopIdentifier} />
                             </div>
                             <div className="config-section">
                                 <DynamicConfigComponent loopIdentifier={concentrationLoopIdentifier} />
