@@ -36,6 +36,9 @@ const ControlButtons = ({ loopIdentifier }) => {
         if (!isControlLoopRunning) {
             sendCommand("start_control");
             setIsControlLoopRunning(true);
+            if (!isDataCollectionRunning) {
+                setIsDataCollectionRunning(true); // Ensure data collection is running
+            }
         }
     };
 
@@ -78,7 +81,7 @@ const ControlButtons = ({ loopIdentifier }) => {
             Stop Data Collection
         </Button>
     ) : (
-        <Button variant="success" onClick={handleStartDataCollection} className="me-2">
+        <Button variant="success" onClick={handleStartDataCollection} className="me-2" disabled={isControlLoopRunning}>
             Start Data Collection
         </Button>
     );

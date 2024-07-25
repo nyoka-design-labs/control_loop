@@ -1,10 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { useData } from '../DataContext';
 
 const TogglePumpButton = ({ buttonLabel, sendCommand, loopIdentifier }) => {
-  const { websocket } = useData();
-
   const handleToggle = async () => {
     try {
       const response = await fetch('/command', {
