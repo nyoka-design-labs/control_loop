@@ -3,7 +3,7 @@ import { useData } from '../DataContext';
 import './components.css';
 
 const DynamicConfigComponent = ({ loopIdentifier }) => {
-    const { configData, websocket } = useData();
+    const { configData } = useData();
     const [config, setConfig] = useState(configData[loopIdentifier] || {});
 
     useEffect(() => {
@@ -14,14 +14,26 @@ const DynamicConfigComponent = ({ loopIdentifier }) => {
         setConfig({ ...config, [key]: value });
     };
 
-    const handleSubmit = (key) => {
-        if (websocket && websocket.readyState === WebSocket.OPEN) {
-            websocket.send(JSON.stringify({
-                type: "update_config",
-                loop_id: loopIdentifier,
-                key: key,
-                value: config[key]
-            }));
+    const handleSubmit = async (key) => {
+        try {
+            const response = await fetch('/config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    loop_id: loopIdentifier,
+                    key: key,
+                    value: config[key]
+                })
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const responseData = await response.json();
+            console.log('Config update response:', responseData);
+        } catch (error) {
+            console.error('Error updating config:', error);
         }
     };
 

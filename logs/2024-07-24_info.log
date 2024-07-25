@@ -280,3 +280,72 @@ websockets.exceptions.ConnectionClosedOK: sent 1001 (going away) Server shutdown
 2024-07-24 11:54:27 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
 2024-07-24 11:54:27 - INFO - stopping pumps
 2024-07-24 11:54:27 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 17:02:21 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 17:02:21 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 17:02:21 - INFO - stopping pumps
+2024-07-24 17:02:21 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 17:02:22 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 17:02:23 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 17:02:24 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 17:02:25 - INFO - Sending command: b'1pcu1\n'
+2024-07-24 17:02:34 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 17:03:29 - INFO - Sending command: b'3pcu1\n'
+2024-07-24 17:03:58 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 17:04:01 - INFO - Sending command: b'15pcu1\n'
+2024-07-24 17:04:05 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 17:04:09 - INFO - Sending command: b'5pcu1\n'
+2024-07-24 17:04:11 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 17:45:04 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 17:45:04 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 17:45:04 - INFO - stopping pumps
+2024-07-24 17:45:04 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 17:45:05 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 17:45:06 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 17:45:07 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 17:45:08 - INFO - Sending command: b'1pcu1\n'
+2024-07-24 17:55:09 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 17:55:09 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 17:55:09 - INFO - stopping pumps
+2024-07-24 17:55:09 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 17:55:10 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 17:55:11 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 17:55:12 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 17:55:13 - INFO - Sending command: b'1pcu1\n'
+2024-07-24 17:55:16 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 17:55:29 - INFO - Sending command: b'1pcu1\n'
+2024-07-24 17:57:33 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 17:57:33 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 17:57:33 - INFO - stopping pumps
+2024-07-24 17:57:33 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 17:57:34 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 17:57:35 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 17:57:36 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 17:57:37 - INFO - Sending command: b'1pcu1\n'
+2024-07-24 17:57:41 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 18:04:47 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 18:04:47 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 18:04:47 - INFO - stopping pumps
+2024-07-24 18:04:47 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 18:04:48 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 18:04:49 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 18:04:50 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 18:04:51 - INFO - Sending command: b'1pcu1\n'
+2024-07-24 18:06:32 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 18:06:32 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 18:06:32 - INFO - stopping pumps
+2024-07-24 18:06:32 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 18:06:33 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 18:06:34 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 18:06:35 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 18:06:36 - INFO - Sending command: b'1pcu1\n'
+2024-07-24 18:08:28 - INFO - Loaded control constants for 2_phase_do_trig_ph_feed_control: {'feed_counter': 0, 'start_counter': 0, 'last_antifoam_edition': 1721761803.304759, 'start_feed': 'True', 'start_phase_1': 'True'}
+2024-07-24 18:08:28 - INFO - Loaded control configuration for 2_phase_do_trig_ph_feed_control: {'base_sp': 6.95, 'acid_sp': 8, 'feed_trigger_sp': 7.0, 'start_feed_trig_value': 50, 'start_trig_value': 30, 'required_readings': 3, 'antifoam_edition_rate': 1}
+2024-07-24 18:08:28 - INFO - stopping pumps
+2024-07-24 18:08:28 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 18:08:29 - INFO - Sending command: b'2pcu1\n'
+2024-07-24 18:08:30 - INFO - Sending command: b'14pcu1\n'
+2024-07-24 18:08:31 - INFO - Sending command: b'4pcu1\n'
+2024-07-24 18:08:32 - INFO - Sending command: b'1pcu1\n'
+2024-07-24 18:08:36 - INFO - Sending command: b'0pcu1\n'
+2024-07-24 18:08:39 - INFO - Sending command: b'3pcu1\n'
+2024-07-24 18:08:42 - INFO - Sending command: b'2pcu1\n'

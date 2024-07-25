@@ -1,16 +1,16 @@
 import React from 'react';
-import { useTogglePumpButton } from './Buttons';
+import TogglePumpButton from './TogglePumpButton'; // Import the new component
 import useStatusBox from './StatusBoxes';  // Adjust the path according to your file structure
 
 const DynamicComponent = ({ pumpKey, loopIdentifier }) => {
   const statusKey = `${pumpKey}_status`;
   const buttonLabel = `Toggle ${pumpKey.replace(/_/g, ' ')}`;
-  const toggleButton = useTogglePumpButton(buttonLabel, `toggle_${pumpKey}`, loopIdentifier);
+  const sendCommand = `toggle_${pumpKey}`;
   const statusBox = useStatusBox(statusKey, "ON", "OFF");
 
   return (
     <div className="button-status-container-dark">
-      {toggleButton}
+      <TogglePumpButton buttonLabel={buttonLabel} sendCommand={sendCommand} loopIdentifier={loopIdentifier} />
       {statusBox}
     </div>
   );
