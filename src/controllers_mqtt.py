@@ -142,16 +142,17 @@ class Controller:
         """
         try:
             self.load_control_constants()
-            self.status.update({
-                "data_collection_status": "data_collection_on"
-            })
+            # self.status.update({
+            #     "data_collection_status": "data_collection_on"
+            # })
+            self.update_status(control_is_on=control_status, data_col_is_on=True)
 
             if control_status:
                 return self.status
             else:
                 data = self.get_data()
                 self.save_data_sheets(data)
-                self.mqtt_client.publish_data(self.status, "status")
+                # self.mqtt_client.publish_data(self.status, "status")
                 return self.status, data
         except Exception as e:
             # print(f"failed to start_collection: \n control_status: {control_status} \n{e}")
@@ -187,7 +188,7 @@ class Controller:
                 self.pump_control(pump, pump.control(False))
 
             self.update_status(control_is_on=False, data_col_is_on=data_col_is_on)
-
+        
             return self.status
         except Exception as e:
             logger.error(f"Error in get_data: \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
@@ -204,10 +205,11 @@ class Controller:
         try:
             if pump_name in self.pumps:
                 self.pump_control(self.pumps[pump_name], self.pumps[pump_name].toggle())
-                self.status.update({
-                    f"{pump_name}_status": str(self.pumps[pump_name].state)
-                })
-                self.mqtt_client.publish_data(self.status, "status")
+                # self.status.update({
+                #     f"{pump_name}_status": str(self.pumps[pump_name].state)
+                # })
+                self.update_status(just_pumps=True)
+                # self.mqtt_client.publish_data(self.status, "status")
         except Exception as e:
             logger.error(f"Error in toggle_pump: \n{pump_name}, \n{e}\n{traceback.format_exc()}")
          
@@ -269,7 +271,7 @@ class Controller:
         data_col = "data_collection_on" if data_col_is_on else "data_collection_off"
         return control, data_col
     
-    def update_status(self, control_is_on: bool=True, data_col_is_on: bool=True):
+    def update_status(self, control_is_on: bool=True, data_col_is_on: bool=True, just_pumps: bool=False):
         """
         Updates the comprehensive status of the controller, including static and dynamic states.
 
@@ -280,13 +282,14 @@ class Controller:
         Updates both static and dynamic components of the controller's status based on current operational states.
         """
         try:
-            control, data_col = self.update_control_status(control_is_on, data_col_is_on)
-            
-            # Update static statuses
-            self.status.update({
-                "control_loop_status": control,
-                "data_collection_status": data_col,
-            })
+            if not just_pumps:
+                control, data_col = self.update_control_status(control_is_on, data_col_is_on)
+                
+                # Update static statuses
+                self.status.update({
+                    "control_loop_status": control,
+                    "data_collection_status": data_col,
+                })
             
             # Update dynamic pump statuses
             for pump_name in self.pumps:
@@ -294,7 +297,8 @@ class Controller:
         except Exception as e:
             # print(f"failed to update_status: \n control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on} \n {e}")
             logger.error(f"Error in update_status: control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
-
+        
+        self.mqtt_client.publish_data(self.status, "status")
     def get_data(self):
         """
         Fetches measurement data from the device manager based on the current testing configuration.
@@ -602,7 +606,7 @@ class FermentationController(Controller):
 
         self.save_data_sheets(data)
 
-        self.mqtt_client.publish_data(self.status, "status")
+        # self.mqtt_client.publish_data(self.status, "status")
         return self.status
     
     def __2_phase_do_trig_ph_feed_control(self):
@@ -658,7 +662,7 @@ class FermentationController(Controller):
         self.update_status()
 
         self.save_data_sheets(data)
-        self.mqtt_client.publish_data(self.status, "status")
+        # self.mqtt_client.publish_data(self.status, "status")
         return self.status
     
     def __3_phase_do_feed_control(self):
@@ -730,7 +734,7 @@ class FermentationController(Controller):
         self.update_status()
 
         self.save_data_sheets(data)
-        self.mqtt_client.publish_data(self.status, "status")
+        # self.mqtt_client.publish_data(self.status, "status")
         return self.status
     
     def __test_loop(self):
@@ -744,7 +748,7 @@ class FermentationController(Controller):
         self.update_controller_consts("control_config", "cycles", cyc)
 
         self.update_status()
-        self.mqtt_client.publish_data(self.status, "status")
+        # self.mqtt_client.publish_data(self.status, "status")
         return self.status
     
     def __switch_feed_media(self):
