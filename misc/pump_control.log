@@ -1,0 +1,129 @@
+2024-07-25 11:16:48,267 Command 0 sent successfully: Starting sender setup...
+Sender setup completed.
+Command received: 
+0pcu1
+
+Pin command received: 
+0
+
+
+PCU ID received: 
+pcu1
+
+Sending command:
+cmd: 0
+pcu_id: pcu1
+Address: FC:B4:67:F3:C6:E0
+Sent with success
+
+Last Packet Send Status:	Delivery Success
+
+2024-07-25 11:16:50,268 Command 2 sent successfully: Command received: 
+2pcu1
+
+Pin command received: 
+2
+
+
+PCU ID received: 
+pcu1
+
+Sending command:
+cmd: 2
+pcu_id: pcu1
+Address: FC:B4:67:F3:C6:E0
+Sent with success
+
+Last Packet Send Status:	Delivery Success
+
+2024-07-25 11:16:52,269 Command 4 sent successfully: Command received: 
+4pcu1
+
+Pin command received: 
+4
+
+
+PCU ID received: 
+pcu1
+
+Sending command:
+cmd: 4
+pcu_id: pcu1
+Address: FC:B4:67:F3:C6:E0
+Sent with success
+
+Last Packet Send Status:	Delivery Success
+
+2024-07-25 11:16:54,275 Command 6 sent successfully: Command received: 
+6pcu1
+
+Pin command received: 
+6
+
+
+PCU ID received: 
+pcu1
+
+Sending command:
+cmd: 6
+pcu_id: pcu1
+Address: FC:B4:67:F3:C6:E0
+Sent with success
+
+Last Packet Send Status:	Delivery Success
+
+2024-07-25 11:16:56,282 Command 8 sent successfully: Command received: 
+8pcu1
+
+Pin command received: 
+8
+
+
+PCU ID received: 
+pcu1
+
+Sending command:
+cmd: 8
+pcu_id: pcu1
+Address: FC:B4:67:F3:C6:E0
+Sent with success
+
+Last Packet Send Status:	Delivery Success
+
+2024-07-25 11:16:58,288 Command 1 sent successfully: Command received: 
+1pcu1
+
+Pin command received: 
+1
+
+
+PCU ID received: 
+pcu1
+
+Sending command:
+cmd: 1
+pcu_id: pcu1
+Address: FC:B4:67:F3:C6:E0
+Sent with success
+
+Last Packet Send Status:	Delivery Success
+
+2024-07-25 11:17:00,092 Testing interrupted by user
+2024-07-25 12:00:27,953 Command 0 sent successfully: {"receiver_mac":"fc:b4:67:f3:c6:e0","sender_mac":"FC:B4:67:F3:4A:F0","command_sent_to_sender":"0pcu1","command_sent_to_receiver":"0pcu1","command_delivered":true,"command_implemented":false}
+
+2024-07-25 12:00:29,960 Command 2 sent successfully: {"receiver_mac":"fc:b4:67:f3:c6:e0","sender_mac":"FC:B4:67:F3:4A:F0","command_sent_to_sender":"2pcu1","command_sent_to_receiver":"2pcu1","command_delivered":true,"command_implemented":false}
+
+2024-07-25 12:00:30,273 Testing interrupted by user
+2024-07-25 12:46:59,855 Command 0 sent successfully: {"receiver_mac":"fc:b4:67:f3:c6:e0","sender_mac":"FC:B4:67:F3:4A:F0","command_sent_to_sender":"0pcu1","command_sent_to_receiver":"0pcu1","command_delivered":true}
+
+2024-07-25 12:47:01,860 Command 2 sent successfully: {"receiver_mac":"fc:b4:67:f3:c6:e0","sender_mac":"FC:B4:67:F3:4A:F0","command_sent_to_sender":"2pcu1","command_sent_to_receiver":"2pcu1","command_delivered":true}
+
+2024-07-25 12:47:03,867 Command 4 sent successfully: {"receiver_mac":"fc:b4:67:f3:c6:e0","sender_mac":"FC:B4:67:F3:4A:F0","command_sent_to_sender":"4pcu1","command_sent_to_receiver":"4pcu1","command_delivered":true}
+
+2024-07-25 12:47:05,872 Command 6 sent successfully: {"receiver_mac":"fc:b4:67:f3:c6:e0","sender_mac":"FC:B4:67:F3:4A:F0","command_sent_to_sender":"6pcu1","command_sent_to_receiver":"6pcu1","command_delivered":true}
+
+2024-07-25 12:47:07,877 Command 8 sent successfully: {"receiver_mac":"fc:b4:67:f3:c6:e0","sender_mac":"FC:B4:67:F3:4A:F0","command_sent_to_sender":"8pcu1","command_sent_to_receiver":"8pcu1","command_delivered":true}
+
+2024-07-25 12:47:09,882 Command 1 sent successfully: {"receiver_mac":"fc:b4:67:f3:c6:e0","sender_mac":"FC:B4:67:F3:4A:F0","command_sent_to_sender":"1pcu1","command_sent_to_receiver":"1pcu1","command_delivered":true}
+
+2024-07-25 12:47:11,045 Testing interrupted by user

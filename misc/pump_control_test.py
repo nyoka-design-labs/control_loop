@@ -8,7 +8,7 @@ logging.basicConfig(filename='pump_control.log', level=logging.INFO, format='%(a
 
 # Replace with the correct port for your ESP32
 port = '/dev/cu.usbserial-0001'
-baudrate = 460800
+baudrate = 9600
 
 # Initialize serial connection
 esp = serial.Serial(port=port, baudrate=baudrate, timeout=1)

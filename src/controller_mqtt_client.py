@@ -9,7 +9,7 @@ class ControllerMQTTClient:
     def __init__(self, broker_address="localhost"):
         self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="controller")        
         self.client.on_message = self.on_message
-        self.client.connect(broker_address, 1883, 60)
+        self.client.connect("localhost", 1883, 60)
         self.client.loop_start()
         self.data_received = None
         self.data_ready = False

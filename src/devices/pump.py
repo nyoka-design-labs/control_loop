@@ -32,16 +32,16 @@ class Pump:
         Adjusts the pump state based on the command to turn on or off,
         and returns the appropriate command code.
         """
-        self.state = self.pump_names[self.name][1 if turn_on else 0]
-        return str(self.state)
+        state = self.pump_names[self.name][1 if turn_on else 0]
+        return str(state)
     
     def toggle(self) -> str:
         """
         Toggles the pump state.
         """
         current_state = self.state % 2  # Get current state (0 or 1)
-        self.state = self.pump_names[self.name][1 - current_state]  # Toggle state
-        return str(self.state)
+        state = self.pump_names[self.name][1 - current_state]  # Toggle state
+        return str(state)
 
     def set_rpm(self, rpm: float) -> str:
         """
@@ -65,14 +65,15 @@ class Pump:
         bool: True if the pump is on, False otherwise.
         """
         return self.state == self.pump_names[self.name][1]
+    def set_state(self, state: int):
+        if state in self.pump_names[self.name]:
+            self.state = state
+        else:
+            raise ValueError(f"Invalid pump state {state}, for pump {self.name}")
 
 if __name__ == "__main__":
     # example usage of Pump class
-    pump = Pump(name="blackPump3")
-
-    try:
-        while True:
-            print(pump.toggle())
-            time.sleep(2)
-    except KeyboardInterrupt:
-        print("Program terminated")
+    pump = Pump(name="blackPump1")
+    print(pump.state)
+    pump.set_state(1)
+    print(pump.state)

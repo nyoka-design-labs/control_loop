@@ -17,7 +17,7 @@ logger = setup_logger()
 port = '/dev/ttyUSB0'
 curr_dir = os.path.dirname(__file__)
 json_file_path = os.path.join(curr_dir, "resources","constants.json")
-baudrate = 460800
+baudrate = 9600
 testing = eval(get_loop_constant(loop_id="server_consts", const="testing"))
 pumps = eval(get_loop_constant(loop_id="server_consts", const="pumps_connected"))
 
@@ -67,21 +67,20 @@ class Controller:
         #     raise AttributeError("Unable to connect to Arduino; serial monitor in Arduino IDE may be open")
         pass
 
-    def pump_control(self, state: str):
+    def pump_control(self, pump, state: str):
         """
         Sends a control command to the Arduino to manage pump states.
 
         Args:
+            pump: The pump object to be controlled.
             state (str): The desired state ('on' or 'off') to which the pump should be set.
 
         Logs the command sent to the Arduino and handles any exceptions that occur during the process.
         """
         try:
             command = state + self.pcu_id + '\n'
-            # print(f"Sending command: {command.encode()}")
             logger.info(f"Sending command: {command.encode()}")
             if pumps:
-                # print("sending command to esp")
                 logger.info("sending command to esp")
                 self.arduino.write(command.encode())
                 time.sleep(1)
@@ -89,8 +88,19 @@ class Controller:
                     response = self.arduino.read(self.arduino.in_waiting).decode('utf-8')
                     print(f"Response from ESP32: {response}")
                     logger.info(f"Response from ESP32: {response}")
+                    
+                    # Parse the response
+                    response_data = json.loads(response)
+                    
+                    if response_data.get("command_delivered"):
+                        # Update the pump state if the command was delivered
+                        pump_state = int(command[0])  # Extract the state from the command
+                        pump.set_state(pump_state)
+                        logger.info(f"Pump {pump.name} state updated to {pump_state}")
+                    else:
+                        logger.warning(f"Command not delivered for pump {pump.name}")
+
         except Exception as e:
-            # print(f"failed to control pump: \n state: {state}, \n{e}")
             logger.error(f"Error in pump_control: \n state: {state}, \n{e}\n{traceback.format_exc()}")
 
         time.sleep(1)
@@ -174,13 +184,12 @@ class Controller:
         logger.info("stopping pumps")
         try:
             for pump in self.pumps.values():
-                self.pump_control(pump.control(False))
+                self.pump_control(pump, pump.control(False))
 
             self.update_status(control_is_on=False, data_col_is_on=data_col_is_on)
 
             return self.status
         except Exception as e:
-            # print(f"failed to stop_control: \n data_col_is_on: {data_col_is_on} \n{e}")
             logger.error(f"Error in get_data: \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
     
     def toggle_pump(self, pump_name):
@@ -194,13 +203,12 @@ class Controller:
         """
         try:
             if pump_name in self.pumps:
-                self.pump_control(self.pumps[pump_name].toggle())
+                self.pump_control(pumps[pump_name], self.pumps[pump_name].toggle())
                 self.status.update({
                     f"{pump_name}_status": str(self.pumps[pump_name].state)
                 })
                 self.mqtt_client.publish_data(self.status, "status")
         except Exception as e:
-            # print(f"failed to toggle_pump: \n{pump_name}, \n{e}")
             logger.error(f"Error in toggle_pump: \n{pump_name}, \n{e}\n{traceback.format_exc()}")
          
     def initialize_pumps(self):
@@ -496,9 +504,9 @@ class ConcentrationController(Controller):
             self.update_controller_consts("control_config", "buffer_sp", weight)
         buffer_sp = self.control_config["buffer_sp"]
         if (weight < buffer_sp):
-            self.pump_control(self.pumps["buffer_pump"].control(True))
+            self.pump_control(pumps["buffer_pump"], self.pumps["buffer_pump"].control(True))
         else:
-            self.pump_control(self.pumps["buffer_pump"].control(False))
+            self.pump_control(pumps["buffer_pump"], self.pumps["buffer_pump"].control(False))
 
     def __lysate_control(self, weight: float):
         '''
@@ -508,9 +516,9 @@ class ConcentrationController(Controller):
         lysate_upper_sp = self.control_config["lysate_upper_sp"]
         lysate_lower_sp = self.control_config["lysate_lower_sp"]
         if (weight > lysate_upper_sp):
-            self.pump_control(self.pumps["lysate_pump"].control(True))
+            self.pump_control(pumps["lysate_pump"], self.pumps["lysate_pump"].control(True))
         elif (weight < lysate_lower_sp):
-            self.pump_control(self.pumps["lysate_pump"].control(False))
+            self.pump_control(pumps["lysate_pump"], self.pumps["lysate_pump"].control(False))
 
 class FermentationController(Controller):
     """
@@ -704,9 +712,9 @@ class FermentationController(Controller):
             # print("Phase 2: Glycerol Feed")
             logger.info("Phase 2: Glucose Feed")
             self.__pH_balance(data["ph"], base_control=True, acid_control=True)
-            self.pump_control(self.pumps["lactose_pump"].control(False))
-            self.pump_control(self.pumps["lactose_const_pump"].control(False))
-            self.pump_control(self.pumps["feed_const_pump"].control(True))
+            self.pump_control(pumps["lactose_pump"], self.pumps["lactose_pump"].control(False))
+            self.pump_control(pumps["lactose_const_pump"], self.pumps["lactose_const_pump"].control(False))
+            self.pump_control(pumps["feed_const_pump"], self.pumps["feed_const_pump"].control(True))
             self.__control_pump_activation(data, 'feed_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_upper_sp, feed_trigger_lower_sp=feed_trigger_lower_sp)
 
         # Phase 3: Start feeding with lactose pump
@@ -714,9 +722,9 @@ class FermentationController(Controller):
             # print("Phase 3: Lactose Feed")
             logger.info("Phase 3: Lactose Feed")
             self.__pH_balance(data["ph"], base_control=True, acid_control=True)
-            self.pump_control(self.pumps["feed_pump"].control(False))
-            self.pump_control(self.pumps["feed_const_pump"].control(False))
-            self.pump_control(self.pumps["lactose_const_pump"].control(True))
+            self.pump_control(pumps["feed_pump"], self.pumps["feed_pump"].control(False))
+            self.pump_control(pumps["feed_const_pump"], self.pumps["feed_const_pump"].control(False))
+            self.pump_control(pumps["lactose_const_pump"], self.pumps["lactose_const_pump"].control(True))
             self.__control_pump_activation(data, 'lactose_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_upper_sp, feed_trigger_lower_sp=feed_trigger_lower_sp)
 
         self.update_status()
@@ -728,8 +736,8 @@ class FermentationController(Controller):
     def __test_loop(self):
         data = self.get_data()
         cyc = self.control_config["cycles"]
-        self.pump_control(self.pumps["feed_pump"].toggle())
-        self.pump_control(self.pumps["base_pump"].toggle())
+        self.pump_control(pumps["feed_pump"], self.pumps["feed_pump"].toggle())
+        self.pump_control(pumps["base_pump"], self.pumps["base_pump"].toggle())
 
         cyc += 1
 
@@ -778,28 +786,28 @@ class FermentationController(Controller):
 
         if base_control and (ph <= ph_base_sp):
             # turn on base pump
-            self.pump_control(self.pumps["base_pump"].control(True))
+            self.pump_control(pumps["base_pump"], self.pumps["base_pump"].control(True))
             # turn off acid pump if acid_control is True
             if acid_control:
-                self.pump_control(self.pumps["acid_pump"].control(False))
+                self.pump_control(pumps["acid_pump"], self.pumps["acid_pump"].control(False))
 
         elif acid_control and (ph > ph_acid_sp):
             # turn on acid pump
-            self.pump_control(self.pumps["acid_pump"].control(True))
+            self.pump_control(pumps["acid_pump"], self.pumps["acid_pump"].control(True))
             # turn off base pump if base_control is True
             if base_control:
-                self.pump_control(self.pumps["base_pump"].control(False))
+                self.pump_control(pumps["base_pump"], self.pumps["base_pump"].control(False))
 
         elif (not acid_control) and (not base_control):
-            self.pump_control(self.pumps["base_pump"].control(False))
-            self.pump_control(self.pumps["acid_pump"].control(False))
+            self.pump_control(pumps["base_pump"], self.pumps["base_pump"].control(False))
+            self.pump_control(pumps["acid_pump"], self.pumps["acid_pump"].control(False))
 
         else:
             # turn off both pumps if their respective control is True
             if base_control:
-                self.pump_control(self.pumps["base_pump"].control(False))
+                self.pump_control(pumps["base_pump"], self.pumps["base_pump"].control(False))
             if acid_control:
-                self.pump_control(self.pumps["acid_pump"].control(False))
+                self.pump_control(pumps["acid_pump"], self.pumps["acid_pump"].control(False))
 
         self.update_status()
 
@@ -944,11 +952,11 @@ class FermentationController(Controller):
         current_value = data[feed_trigger_type]
 
         if (trigger_above and current_value >= feed_trigger_upper_sp) or (not trigger_above and current_value <= feed_trigger_lower_sp):
-            self.pump_control(self.pumps[pump_name].control(True))
+            self.pump_control(pumps[pump_name], self.pumps[pump_name].control(True))
             # print(f"{pump_name} pump on")
             logger.info(f"{pump_name} pump on")
         elif (trigger_above and current_value < feed_trigger_lower_sp) or (not trigger_above and current_value > feed_trigger_upper_sp):
-            self.pump_control(self.pumps[pump_name].control(False))
+            self.pump_control(pumps[pump_name], self.pumps[pump_name].control(False))
             # print(f"{pump_name} pump off")
             logger.info(f"{pump_name} pump off")
 
@@ -972,7 +980,7 @@ class FermentationController(Controller):
         # Check if the antifoam pump is on
         if self.pumps["antifoam_pump"].is_on():
             # Turn off the antifoam pump and update last_antifoam_edition with current_time
-            self.pump_control(self.pumps["antifoam_pump"].control(False))
+            self.pump_control(pumps["antifoam_pump"], self.pumps["antifoam_pump"].control(False))
             self.update_controller_consts("control_consts", "last_antifoam_edition", current_time)
             # print("Antifoam pump deactivated")
             logger.info("Antifoam pump deactivated")
@@ -986,7 +994,7 @@ class FermentationController(Controller):
 
             # Check if specified hours have passed since the last antifoam edition
             if elapsed_time >= antifoam_edition_rate:
-                self.pump_control(self.pumps["antifoam_pump"].control(True))
+                self.pump_control(pumps["antifoam_pump"], self.pumps["antifoam_pump"].control(True))
                 # print("Antifoam pump activated")
                 logger.info("Antifoam pump activated")
     
