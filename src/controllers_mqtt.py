@@ -779,7 +779,6 @@ class FermentationController(Controller):
         self.update_status()
 
         self.save_data_sheets(data)
-        # self.mqtt_client.publish_data(self.status, "status")
         return self.status
     
     def __test_loop(self):
@@ -791,9 +790,8 @@ class FermentationController(Controller):
         cyc += 1
 
         self.update_controller_consts("control_config", "cycles", cyc)
-
+        self.save_data_sheets(data)
         self.update_status()
-        # self.mqtt_client.publish_data(self.status, "status")
         return self.status
     
     def __switch_feed_media(self):
