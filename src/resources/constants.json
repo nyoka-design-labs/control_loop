@@ -179,6 +179,10 @@
                         "acid_pump": "whitePump3",
                         "antifoam_pump": "blackPump3"
                     },
+                    "valves": {
+                        "heat_valve": "heat_valve",
+                        "cool_valve": "cool_valve"
+                    },
                     "start_time": 0,
                     "test_data_index": 0,
                     "csv_name": "test_sheet",
@@ -276,6 +280,10 @@
                         "feed_pump": "blackPump1",
                         "base_pump": "blackPump2",
                         "acid_pump": "whitePump3"
+                    },
+                    "valves": {
+                        "heat_valve": "heat_valve",
+                        "cool_valve": "cool_valve"
                     },
                     "start_time": 0,
                     "test_data_index": 0,

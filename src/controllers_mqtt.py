@@ -1,5 +1,6 @@
 import serial
 from devices.pump import Pump
+from devices.valve import Valve
 import time
 from resources.utils import *
 from resources.google_api.sheets import save_dict_to_sheet
@@ -58,6 +59,8 @@ class Controller:
         # try:
         if pumps:
             self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+            self.arduino.close()
+            self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
             time.sleep(0.5)
             
                 
@@ -103,7 +106,35 @@ class Controller:
         except Exception as e:
             logger.error(f"Error in pump_control: \n state: {state}, \n{e}\n{traceback.format_exc()}")
 
-        # time.sleep(0.5)
+    def valve_control(self, valve, state: str):
+        """
+        controls the heating and cooling valves
+        """
+        try:
+            command = state + self.pcu_id + '\n'
+            logger.info(f"Sending command: {command.encode()}")
+            if pumps:
+                logger.info("sending command to esp")
+                self.arduino.write(command.encode())
+                time.sleep(0.2)
+                if self.arduino.in_waiting > 0:
+                    response = self.arduino.read(self.arduino.in_waiting).decode('utf-8')
+                    print(f"Response from ESP32: {response}")
+                    logger.info(f"Response from ESP32: {response}")
+                    
+                    # Parse the response
+                    response_data = json.loads(response)
+                    
+                    if response_data.get("command_delivered"):
+                        # Update the pump state if the command was delivered
+                        valve_state = int(state)  # Extract the state from the command
+                        valve.set_state(valve_state)
+                        logger.info(f"Valve {valve.name} state updated to {valve_state}")
+                    else:
+                        logger.warning(f"Command not delivered for valve {valve.name}")
+
+        except Exception as e:
+            logger.error(f"Error in pump_control: \n state: {state}, \n{e}\n{traceback.format_exc()}")
         
     def start_control(self):
         """
@@ -229,8 +260,20 @@ class Controller:
                 pumps[pump_name] = Pump(name=pump_value)
             return pumps
         except Exception as e:
-            # print(f"failed to initialize_pumps: \n{e}")
             logger.error(f"Error in initialize_pumps: {e}\n{traceback.format_exc()}")
+
+    def initialize_valves(self):
+        """
+        Initializes the valves
+        """
+        try:
+            valves_info = get_control_constant(self.loop_id, self.control_id, "valves")
+            valves = {}
+            for valve_name, valve_value in valves_info.items():
+                valves[valve_name] = Valve(name=valve_value)
+            return valves
+        except Exception as e:
+            logger.error(f"Error in initialize_valves: {e}\n{traceback.format_exc()}")
 
     def initialize_status(self):
         """
@@ -251,9 +294,12 @@ class Controller:
             for pump_name in self.pumps:
                 status[f"{pump_name}_status"] = str(self.pumps[pump_name].state)
 
+            # Add initial valve statuses to the status dictionary
+            for valve_name in self.valves:
+                status[f"{valve_name}_status"] = str(self.valves[valve_name].state)
+
             return status
         except Exception as e:
-            # print(f"failed to initialize_status: \n{e}")
             logger.error(f"Error in initialize_status: {e}\n{traceback.format_exc()}")
     
     def update_control_status(self, control_is_on: bool=False, data_col_is_on: bool=True):
@@ -294,8 +340,11 @@ class Controller:
             # Update dynamic pump statuses
             for pump_name in self.pumps:
                 self.status[f"{pump_name}_status"] = str(self.pumps[pump_name].state)
+            
+            # Update dynamic valve statuses
+            for valve_name in self.valves:
+                self.status[f"{valve_name}_status"] = str(self.valves[valve_name].state)
         except Exception as e:
-            # print(f"failed to update_status: \n control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on} \n {e}")
             logger.error(f"Error in update_status: control_is_on: {control_is_on} \n data_col_is_on: {data_col_is_on}, \n{e}\n{traceback.format_exc()}")
         
         self.mqtt_client.publish_data(self.status, "status")
@@ -312,14 +361,12 @@ class Controller:
         try:
             if testing:
                     data = self.mqtt_client.request_data(testing=testing)
-                    # print(f"test data: {data}")
                     logger.info(f"test data: {data}")
                     return data
             else:
                 data = self.mqtt_client.request_data()
                 return data
         except Exception as e:
-            # print(f"failed to get data: {e}")
             logger.error(f"Error in get_data: {e}\n{traceback.format_exc()}")
       
     def save_data_sheets(self, data):
@@ -341,10 +388,8 @@ class Controller:
             combined_data.pop("type", None)
             combined_data.update(status)
             save_dict_to_sheet(combined_data, self.csv_name)
-            # print("added data to sheets")
             logger.info("added data to sheets")
         except Exception as e:
-            # print(f"failed to add data to sheets: {data}, \n{e}")
             logger.error(f"Error in save_data_sheets: \n{data}, \n{e}\n{traceback.format_exc()}")
 
     def load_control_constants(self):
@@ -1001,7 +1046,22 @@ class FermentationController(Controller):
                 self.pump_control(self.pumps["antifoam_pump"], self.pumps["antifoam_pump"].control(True))
                 # print("Antifoam pump activated")
                 logger.info("Antifoam pump activated")
-    
+    def __temp_control(self, temp: float):
+
+        temp_sp = self.control_config["temp_sp"]
+
+        if temp > temp_sp:
+            self.valve_control(self.valves["heat_valve"], self.pumps["heat_valve"].control(False))
+            self.valve_control(self.valves["cool_valve"], self.pumps["cool_valve"].control(True))
+        elif temp <= temp_sp:
+            self.valve_control(self.valves["heat_valve"], self.pumps["heat_valve"].control(True))
+            self.valve_control(self.valves["cool_valve"], self.pumps["cool_valve"].control(False))
+        else:
+            self.valve_control(self.valves["heat_valve"], self.pumps["heat_valve"].control(False))
+            self.valve_control(self.valves["cool_valve"], self.pumps["cool_valve"].control(False))
+
+        self.update_status()
+
 if __name__ == "__main__":
    
     c = FermentationController()
