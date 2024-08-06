@@ -151,6 +151,8 @@ async def toggle(loop_id, command):
         controller_info = get_controller(loop_id)
         if command == "toggle_feed_media":
             controller_info["controller"].switch_feed_media()
+        elif command == "toggle_temp":
+            controller_info["controller"].toggle_temp_control()
         else:
             pump_name = extract_after_toggle(command)
             controller_info["controller"].toggle_pump(pump_name)

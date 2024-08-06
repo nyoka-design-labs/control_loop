@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
-import DynamicComponents from '../components/DynamicComponents';
+import PumpTogglePanel from '../components/PumpTogglePanel';
 import DynamicConfigComponent from '../components/DynamicConfigComponent';
 import { Graph } from '../components/Graph'; // Use the new Graph component
 import ControlButtons from '../components/ControlButtons';
+import TemperatureControl from '../components/TemperatureControl';
 import './views.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -54,11 +55,15 @@ const FermentationControlPanel = () => {
                     <div className="config-panel-dark">
                         <div className="right-aligned-buttons">
                             <div className="mb-3">
-                                <DynamicComponents loopIdentifier={fermentationLoopIdentifier} />
+                                <PumpTogglePanel loopIdentifier={fermentationLoopIdentifier} />
+                            </div>
+                            <div className="button-status-container-dark">
+                                <TemperatureControl loopIdentifier={fermentationLoopIdentifier} />
                             </div>
                             <div className="config-section">
                                 <DynamicConfigComponent loopIdentifier={fermentationLoopIdentifier} />
                             </div>
+                            
                         </div>
                     </div>
                 </div>

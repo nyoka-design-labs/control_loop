@@ -7,5 +7,6 @@
     "acid_pump_status": [14, 15],
     "control_loop_status": ["control_off", "control_on"],
     "data_collection_status": ["data_collection_off", "data_collection_on"],
-    "feed_media": ["Glucose", "Lactose"]
+    "feed_media": ["Glucose", "Lactose"],
+    "temp_control": ["heating", "cooling", "OFF"]
 }

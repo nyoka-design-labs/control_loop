@@ -16,6 +16,7 @@ export const DataProvider = ({ children }) => {
     });
     const [pumpData, setPumpData] = useState({});
     const [configData, setConfigData] = useState({});
+    const [statusData, setStatusData] = useState({});
 
     useEffect(() => {
         // Fetch configuration data from Flask server using fetch
@@ -43,11 +44,11 @@ export const DataProvider = ({ children }) => {
 
         client.on('connect', () => {
             console.log('Connected to MQTT broker');
-            client.subscribe(['sensor_data'], (err) => {
+            client.subscribe(['sensor_data', 'status'], (err) => {
                 if (err) {
                     console.error('Subscription error:', err);
                 } else {
-                    console.log('Subscribed to sensor_data topic');
+                    console.log('Subscribed to sensor_data and status topics');
                 }
             });
         });
@@ -67,6 +68,9 @@ export const DataProvider = ({ children }) => {
                     buffer_weight: data.buffer_weight,
                     lysate_weight: data.lysate_weight
                 });
+            } else if (topic === 'status') {
+                console.log("Status data received:", data);
+                setStatusData(data);
             }
         });
 
@@ -82,7 +86,7 @@ export const DataProvider = ({ children }) => {
     }, []); // Empty dependency array ensures this runs only once on mount
 
     return (
-        <DataContext.Provider value={{ systemData, currentMeasurements, pumpData, configData }}>
+        <DataContext.Provider value={{ systemData, currentMeasurements, pumpData, configData, statusData }}>
             {children}
         </DataContext.Provider>
     );

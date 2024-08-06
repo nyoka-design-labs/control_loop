@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { useData } from '../DataContext';
-import DynamicComponents from '../components/DynamicComponents';
+import PumpTogglePanel from '../components/PumpTogglePanel';
 import DynamicConfigComponent from '../components/DynamicConfigComponent';
 import { Graph } from '../components/Graph'; // Use the new Graph component
 import ControlButtons from '../components/ControlButtons';
@@ -48,7 +48,7 @@ const ConcentrationControlPanel = () => {
                     <div className="config-panel-dark">
                         <div className="right-aligned-buttons">
                             <div className="mb-3">
-                                <DynamicComponents loopIdentifier={concentrationLoopIdentifier} />
+                                <PumpTogglePanel loopIdentifier={concentrationLoopIdentifier} />
                             </div>
                             <div className="config-section">
                                 <DynamicConfigComponent loopIdentifier={concentrationLoopIdentifier} />

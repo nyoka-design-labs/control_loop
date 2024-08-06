@@ -1,0 +1,91 @@
+2024-07-26 13:27:14 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+Traceback (most recent call last):
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/system_manager.py", line 233, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 574, in __init__
+    super().__init__()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 61, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+2024-07-26 13:32:06 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+Traceback (most recent call last):
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/system_manager.py", line 235, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 574, in __init__
+    super().__init__()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 61, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+2024-07-26 13:32:06 - ERROR - Error in toggle: 
+ Input: toggle_temp, 
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/system_manager.py", line 155, in toggle
+    controller_info["controller"].toggle_temp_control()
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-07-26 13:33:07 - ERROR - Error in get_data: 
+ data_col_is_on: False, 
+Controller.update_status() missing 1 required positional argument: 'temp_control'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 214, in stop_control
+    self.update_status(control_is_on=False, data_col_is_on=data_col_is_on)
+TypeError: Controller.update_status() missing 1 required positional argument: 'temp_control'
+
+2024-07-26 13:33:07 - ERROR - Error in toggling temperature control:
+'temp_control'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 242, in toggle_temp_control
+    if self.status["temp_control"] == "heating":
+       ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'temp_control'
+
+2024-07-26 13:44:27 - ERROR - Error in toggling temperature control:
+'temp_control'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 242, in toggle_temp_control
+    if self.status["temp_control"] == "heating":
+       ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'temp_control'
+

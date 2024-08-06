@@ -1,0 +1,162 @@
+2024-07-26 13:27:14 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+Traceback (most recent call last):
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/system_manager.py", line 233, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 574, in __init__
+    super().__init__()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 61, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+2024-07-26 13:27:14 - INFO - Invalid control command
+2024-07-26 13:32:06 - ERROR - Error in get_controller: 
+ Input: fermentation_loop, 
+ [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+Traceback (most recent call last):
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/system_manager.py", line 235, in get_controller
+    controller = c.create_controller(loop_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 41, in create_controller
+    controller = FermentationController()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 574, in __init__
+    super().__init__()
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 61, in __init__
+    self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/Users/samgupta/Nyoka/mqtt_frontend/mqtt_tests/lib/python3.12/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+2024-07-26 13:32:06 - ERROR - Error in toggle: 
+ Input: toggle_temp, 
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/system_manager.py", line 155, in toggle
+    controller_info["controller"].toggle_temp_control()
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2024-07-26 13:33:07 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-26 13:33:07 - INFO - Loaded control configuration for test_loop: {'nothing': 0, 'cycles': 13}
+2024-07-26 13:33:07 - INFO - stopping pumps
+2024-07-26 13:33:07 - INFO - Sending command: b'0pcu1\n'
+2024-07-26 13:33:07 - INFO - Sending command: b'2pcu1\n'
+2024-07-26 13:33:07 - INFO - Sending command: b'14pcu1\n'
+2024-07-26 13:33:07 - ERROR - Error in get_data: 
+ data_col_is_on: False, 
+Controller.update_status() missing 1 required positional argument: 'temp_control'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 214, in stop_control
+    self.update_status(control_is_on=False, data_col_is_on=data_col_is_on)
+TypeError: Controller.update_status() missing 1 required positional argument: 'temp_control'
+
+2024-07-26 13:33:07 - ERROR - Error in toggling temperature control:
+'temp_control'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 242, in toggle_temp_control
+    if self.status["temp_control"] == "heating":
+       ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'temp_control'
+
+2024-07-26 13:34:44 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-26 13:34:44 - INFO - Loaded control configuration for test_loop: {'nothing': 0, 'cycles': 13}
+2024-07-26 13:34:44 - INFO - stopping pumps
+2024-07-26 13:34:44 - INFO - Sending command: b'0pcu1\n'
+2024-07-26 13:34:44 - INFO - Sending command: b'2pcu1\n'
+2024-07-26 13:34:44 - INFO - Sending command: b'14pcu1\n'
+2024-07-26 13:34:44 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:34:44 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:44:27 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-26 13:44:27 - INFO - Loaded control configuration for test_loop: {'nothing': 0, 'cycles': 13}
+2024-07-26 13:44:27 - INFO - stopping pumps
+2024-07-26 13:44:27 - INFO - Sending command: b'0pcu1\n'
+2024-07-26 13:44:27 - INFO - Sending command: b'2pcu1\n'
+2024-07-26 13:44:27 - INFO - Sending command: b'14pcu1\n'
+2024-07-26 13:44:27 - ERROR - Error in toggling temperature control:
+'temp_control'
+Traceback (most recent call last):
+  File "/Users/samgupta/Github/control_loop/webapp/backend/../../src/controllers_mqtt.py", line 242, in toggle_temp_control
+    if self.status["temp_control"] == "heating":
+       ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'temp_control'
+
+2024-07-26 13:45:07 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-26 13:45:07 - INFO - Loaded control configuration for test_loop: {'nothing': 0, 'cycles': 13}
+2024-07-26 13:45:07 - INFO - stopping pumps
+2024-07-26 13:45:07 - INFO - Sending command: b'0pcu1\n'
+2024-07-26 13:45:07 - INFO - Sending command: b'2pcu1\n'
+2024-07-26 13:45:07 - INFO - Sending command: b'14pcu1\n'
+2024-07-26 13:45:07 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:45:07 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:46:45 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:46:45 - INFO - Sending command: b'19pcu1\n'
+2024-07-26 13:47:02 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:47:02 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:49:38 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:49:38 - INFO - Sending command: b'19pcu1\n'
+2024-07-26 13:52:18 - INFO - Invalid control command
+2024-07-26 13:52:28 - INFO - Invalid control command
+2024-07-26 13:52:58 - INFO - Loaded control constants for test_loop: {'cycles': 0}
+2024-07-26 13:52:58 - INFO - Loaded control configuration for test_loop: {'nothing': 0, 'cycles': 13}
+2024-07-26 13:52:58 - INFO - stopping pumps
+2024-07-26 13:52:58 - INFO - Sending command: b'0pcu1\n'
+2024-07-26 13:52:58 - INFO - Sending command: b'2pcu1\n'
+2024-07-26 13:52:58 - INFO - Sending command: b'14pcu1\n'
+2024-07-26 13:52:58 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:52:58 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:53:02 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:53:02 - INFO - Sending command: b'19pcu1\n'
+2024-07-26 13:53:04 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:53:04 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:53:06 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:53:06 - INFO - Sending command: b'19pcu1\n'
+2024-07-26 13:53:07 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:53:07 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:54:16 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:54:16 - INFO - Sending command: b'19pcu1\n'
+2024-07-26 13:54:17 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:54:17 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:54:22 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:54:22 - INFO - Sending command: b'19pcu1\n'
+2024-07-26 13:54:23 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:54:23 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:54:25 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:54:25 - INFO - Sending command: b'19pcu1\n'
+2024-07-26 13:54:26 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:54:26 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:55:15 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:55:15 - INFO - Sending command: b'19pcu1\n'
+2024-07-26 13:56:09 - INFO - Sending command: b'17pcu1\n'
+2024-07-26 13:56:09 - INFO - Sending command: b'18pcu1\n'
+2024-07-26 13:56:11 - INFO - Sending command: b'16pcu1\n'
+2024-07-26 13:56:11 - INFO - Sending command: b'19pcu1\n'
