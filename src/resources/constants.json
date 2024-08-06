@@ -267,17 +267,14 @@
                     "notes": "for testing robustness",
                     "devices": [
                         "do_sensor",
-                        "ph_sensor",
-                        "uss_scale"
+                        "ph_sensor"
                     ],
                     "data_type": [
                         "do",
                         "ph",
-                        "temp",
-                        "feed_weight"
+                        "temp"
                     ],
                     "pumps": {
-                        "feed_pump": "blackPump1",
                         "base_pump": "blackPump2",
                         "acid_pump": "whitePump3"
                     },
@@ -293,9 +290,8 @@
                         "cycles": 0
                     },
                     "control_config": {
-                        "nothing": 0,
-                        "cycles": 13,
-                        "temp_sp": 37
+                        "base_sp": 7,
+                        "acid_sp": 7.1
                     }
                 }
             ]

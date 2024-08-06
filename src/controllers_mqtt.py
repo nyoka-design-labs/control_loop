@@ -785,16 +785,7 @@ class FermentationController(Controller):
     
     def __test_loop(self):
         data = self.get_data()
-        cyc = self.control_config["cycles"]
-        self.pump_control(self.pumps["feed_pump"], self.pumps["feed_pump"].toggle())
-        self.pump_control(self.pumps["base_pump"], self.pumps["base_pump"].toggle())
-
-        cyc += 1
-
-        self.update_controller_consts("control_config", "cycles", cyc)
-        self.save_data_sheets(data)
-        self.update_status()
-        return self.status
+        self.__pH_balance(data["ph"])
     
     def __switch_feed_media(self):
         """
