@@ -36,14 +36,18 @@ async def control(loop_id, command):
             if "control_task" not in controller_info:
                 controller_info["control_task"] = asyncio.create_task(control_task(controller_info["controller"]))
         
-            if "collection_task" not in controller_info: # if data collection is not already happening then start it
-                controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], loop_id))
+            if "collection_task" in controller_info: # if data collection is already happening then stop it
+                controller_info["collection_task"].cancel()
+                await controller_info["collection_task"]  # Ensure cancellation is handled properly
+                del controller_info["collection_task"]
 
         elif command == "stop_control":
             if "control_task" in controller_info:
                 controller_info["control_task"].cancel()
                 await controller_info["control_task"]  # Ensure cancellation is handled properly
                 del controller_info["control_task"]
+            if "collection_task" not in controller_info: # if data collection is not already happening then start it
+                controller_info["collection_task"] = asyncio.create_task(collection_task(controller_info["controller"], loop_id))
 
             controller_info["controller"].stop_control()
 
@@ -122,17 +126,11 @@ async def collection_task(controller, loop_id):
 
             while True:
                 logger.info(f"data being collected")
-                if controller.status["control_loop_status"] == "control_off":
-                    status, _ = controller.start_collection(False)
+                controller.start_collection()
                 await asyncio.sleep(INTERVAL)
         
         except asyncio.CancelledError:
             logger.info("Collection task was cancelled")
-            status = controller.status
-            
-            status.update({
-                "data_collection_status": "data_collection_off"
-            })
     except Exception as e:
         logger.error(f"Error in collection_task: {e}\n{traceback.format_exc()}")
 

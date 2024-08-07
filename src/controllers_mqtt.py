@@ -146,13 +146,15 @@ class Controller:
         """
         try:
             self.load_control_constants()
+            self.update_status(control_is_on=True, data_col_is_on=True)
             control_id = self.control_id
 
             if control_id:
                 control_method = getattr(self, f"_{self.__class__.__name__}__{control_id}", None)
                 if control_method:
-                    return control_method()
-                
+                    data = self.get_data()  
+                    control_method(data)
+            
                 else:
                     raise AttributeError(f"Method {control_id} not found in class.")
             else:
@@ -160,7 +162,7 @@ class Controller:
         except Exception as e:
             logger.error(f"Error in start_control: {e}\n{traceback.format_exc()}")
         
-    def start_collection(self, control_status: bool):
+    def start_collection(self):
         """
         Starts or continues data collection based on the control status.
 
@@ -172,16 +174,10 @@ class Controller:
         """
         try:
             self.load_control_constants()
-            self.update_status(control_is_on=control_status, data_col_is_on=True)
-
-            if control_status:
-                return self.status
-            else:
-                data = self.get_data()
-                self.save_data_sheets(data)
-                return self.status, data
+            self.update_status(control_is_on=False, data_col_is_on=True)
+            self.get_data()
         except Exception as e:
-            logger.error(f"Error in start_collection: \n control_status: {control_status}, \n{e}\n{traceback.format_exc()}")
+            logger.error(f"Error in start_collection: \n{e}\n{traceback.format_exc()}")
 
     def reset_controller_consts(self, testing: bool=False):
         """
@@ -369,6 +365,7 @@ class Controller:
         try:
             if testing:
                     data = self.mqtt_client.request_data(testing=testing)
+                    self.save_data_sheets(data)
                     logger.info(f"test data: {data}")
                     return data
             else:
@@ -413,8 +410,8 @@ class Controller:
             logger.info(f"Loaded control constants for {self.control_id}: {self.control_consts}")
 
             # Store configuration in a dictionary
-            config = get_control_constant(self.loop_id, self.control_id, "control_config")  # Fetch constants for the given control
-            # Store constants in a dictionary
+            config = get_control_constant(self.loop_id, self.control_id, "control_config")  # Fetch the configuration for the given control
+            # Store config in a dictionary
             self.control_config = config
             logger.info(f"Loaded control configuration for {self.control_id}: {self.control_config}")
         except Exception as e:
@@ -506,17 +503,13 @@ class ConcentrationController(Controller):
     def __init__(self):
         super().__init__()
 
-        self.loop_id = "fermentation_loop"
+        self.loop_id = "concentration_loop"
         self.control_id = get_loop_constant(self.loop_id, "chosen_control")
-        self.csv_name = get_control_constant(self.loop_id, self.control_id, "csv_name")
         self.pcu_id = get_loop_constant(self.loop_id, "pcu_id")
         self.load_control_constants()
         broker_ip = get_loop_constant(loop_id="server_consts", const="broker_ip")
         self.mqtt_client = ControllerMQTTClient(broker_address=broker_ip)
-        self.init_device_manager()
-
-        self.initial_buffer_mass = None
-        self.initial_lysate_mass = None  
+        self.init_device_manager() 
 
         # Initialize pumps from JSON configuration
         self.pumps = self.initialize_pumps()
@@ -524,29 +517,19 @@ class ConcentrationController(Controller):
         self.status = self.initialize_status()
         self.stop_control(data_col_is_on=False)
         
-    def __concentration_loop(self):
-        data = self.get_data()
+    def __concentration_loop(self, data: dict):
 
         self.__buffer_control(data['buffer_weight'])
-        # self.__lysate_control(data['lysate_weight'])
+        self.__lysate_control(data['lysate_weight'])
 
         self.update_status()   
-   
-        self.save_data_sheets(data)
-        
-        return self.status
-    
-    def __concentration_buffer_loop(self):
-        data = self.get_data()
+               
+    def __concentration_buffer_loop(self, data: dict):
 
         self.__buffer_control(data['buffer_weight'])
 
         self.update_status()   
-   
-        self.save_data_sheets(data)
-        
-        return self.status
-    
+               
     def __buffer_control(self, weight: float):
         '''
         Turns on pump if LESS than set point. Re-fills reservoir.
@@ -598,7 +581,7 @@ class FermentationController(Controller):
         self.stop_control(data_col_is_on=False)
 
 
-    def __3_phase_feed_control(self):
+    def __3_phase_feed_control(self, data: dict):
         """
         Manages a three-phase feed control process involving pH adjustments and selective pump activation.
 
@@ -615,8 +598,6 @@ class FermentationController(Controller):
         Returns:
             tuple: Contains the data collected during the control process and the updated status of the controller.
         """
-
-        data = self.get_data()
 
         start_feed = eval(self.control_consts["start_feed"])
 
@@ -652,13 +633,8 @@ class FermentationController(Controller):
             self.__control_pump_activation(data, 'lactose_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_sp, feed_trigger_lower_sp=feed_trigger_sp)
 
         self.update_status()
-
-        self.save_data_sheets(data)
-
-        # self.mqtt_client.publish_data(self.status, "status")
-        return self.status
     
-    def __2_phase_do_trig_ph_feed_control(self):
+    def __2_phase_do_trig_ph_feed_control(self, data: dict):
         """
         Controls a two-phase feeding process that initiates based on dissolved oxygen (DO) and controls pH levels.
 
@@ -677,9 +653,6 @@ class FermentationController(Controller):
         Returns:
             tuple: Contains the data collected during the process and the updated status of the controller.
         """
-
-
-        data = self.get_data()
 
         pre_feed_trigger_type = 'do'
         feed_trigger_type = 'ph'
@@ -709,12 +682,8 @@ class FermentationController(Controller):
             self.__activate_antifoam_pump()
             
         self.update_status()
-
-        self.save_data_sheets(data)
-        # self.mqtt_client.publish_data(self.status, "status")
-        return self.status
     
-    def __3_phase_do_feed_control(self):
+    def __3_phase_do_feed_control(self, data: dict):
         """
         Manages a three-phase feeding process based on pH and dissolved oxygen (DO) levels, integrating derivative checks.
 
@@ -734,7 +703,6 @@ class FermentationController(Controller):
             tuple: Contains the latest data and the controller's updated status, detailing the operational state
                 and any changes enacted during the control process.
         """
-        data = self.get_data()
         
         start_feed = eval(self.control_consts["start_feed"])
 
@@ -779,13 +747,10 @@ class FermentationController(Controller):
             self.__control_pump_activation(data, 'lactose_pump', feed_trigger_type, feed_trigger_upper_sp=feed_trigger_upper_sp, feed_trigger_lower_sp=feed_trigger_lower_sp)
 
         self.update_status()
-
-        self.save_data_sheets(data)
-        return self.status
     
-    def __test_loop(self):
-        data = self.get_data()
+    def __test_loop(self, data: dict):
         self.__pH_balance(data["ph"])
+        self.update_status()
     
     def __switch_feed_media(self):
         """
@@ -961,6 +926,7 @@ class FermentationController(Controller):
             self.update_controller_consts("control_consts", "derivs", derivs)
 
         self.update_status()
+
         return start_feed
     
     def test_start_feed_check_der(self, trigger_type: str, feed_counter: float, derivs: list, csv_name: str, required_readings: int=5, deriv_window: int=5, der_positive=True, start_phase_1=True, start_feed=False):
@@ -1052,6 +1018,6 @@ if __name__ == "__main__":
     c = FermentationController()
     
     while True:
-        status, data = c.start_collection(control_status=False)
+        data = c.get_data()
         print(data)
         time.sleep(3)
