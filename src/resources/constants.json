@@ -275,8 +275,8 @@
                         "temp"
                     ],
                     "pumps": {
-                        "base_pump": "blackPump2",
-                        "acid_pump": "whitePump3"
+                        "base_pump": "blackPump1",
+                        "acid_pump": "blackPump2"
                     },
                     "valves": {
                         "heat_valve": "heat_valve",
