@@ -61,7 +61,7 @@ class Controller:
             self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
             self.arduino.close()
             self.arduino = serial.Serial(port=port, baudrate=baudrate, timeout=1)
-            time.sleep(0.5)
+            time.sleep(1)
             
                 
         # except Exception as e:
@@ -86,7 +86,7 @@ class Controller:
             if pumps:
                 logger.info("sending command to esp")
                 self.arduino.write(command.encode())
-                time.sleep(0.2)
+                time.sleep(0.5)
                 if self.arduino.in_waiting > 0:
                     response = self.arduino.read(self.arduino.in_waiting).decode('utf-8')
                     print(f"Response from ESP32: {response}")
